@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>轨迹回放</title>
+    <style type="text/css" media="screen">
+        html, body{height: 100%;}
+        body{margin: 0;padding: 0; overflow: auto; text-align: center;background-color: #ffffff;}
+    </style>
+    
+</head>
+<body>
+    <div style="position: absolute; top: 0px; left: 100px; background-color: #BEBE9A;
+        padding: 2px; z-index: 10000">
+        <input type="button" value="添加" onclick="addWidget()" />
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://192.168.5.150:8585/HorseMap/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.DynamicLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(111.80845798483, 35.0956978538922, 113.66246838483, 36.1762787656687);
+        //        addWidget();
+    }
+
+    function addWidget() {
+        var trackPointInfo1 = new HMap.TrackPointInfo(112.861052, 35.49524, "2014-7-30 09:55:20");
+        var trackPointInfo2 = new HMap.TrackPointInfo(112.871052, 35.50524, "2014-7-30 09:56:20");
+        var trackPointInfo3 = new HMap.TrackPointInfo(112.891052, 35.50524, "2014-7-30 09:57:20");
+        var trackPointInfo4 = new HMap.TrackPointInfo(112.931052, 35.52524, "2014-7-30 09:58:20");
+        var trackPointInfo5 = new HMap.TrackPointInfo(112.901052, 35.55524, "2014-7-30 09:59:20");
+        var trackPointInfo6 = new HMap.TrackPointInfo(112.921052, 35.55524, "2014-7-30 09:59:20");
+        var trackPointInfo7 = new HMap.TrackPointInfo(112.931052, 35.56524, "2014-7-30 09:59:20");
+        var trackPointInfo8 = new HMap.TrackPointInfo(112.921052, 35.58524, "2014-7-30 09:59:20");
+        var trackPointInfo9 = new HMap.TrackPointInfo(112.951052, 35.58524, "2014-7-30 09:59:20");
+        var trackPointInfo10 = new HMap.TrackPointInfo(112.941052, 35.59524, "2014-7-30 09:59:20");
+        var trackPointInfos = [trackPointInfo1, trackPointInfo2, trackPointInfo3, trackPointInfo4, trackPointInfo5,
+        trackPointInfo6, trackPointInfo7, trackPointInfo8, trackPointInfo9, trackPointInfo10];
+
+        var trackPointInfo11 = new HMap.TrackPointInfo(112.869052, 35.49524, "2014-7-30 09:55:20");
+        var trackPointInfo12 = new HMap.TrackPointInfo(112.879052, 35.51524, "2014-7-30 09:56:20");
+        var trackPointInfo13 = new HMap.TrackPointInfo(112.899052, 35.50524, "2014-7-30 09:57:20");
+        var trackPointInfo14 = new HMap.TrackPointInfo(112.939052, 35.52524, "2014-7-30 09:58:20");
+        var trackPointInfo15 = new HMap.TrackPointInfo(112.909052, 35.55524, "2014-7-30 09:59:20");
+        var trackPointInfo16 = new HMap.TrackPointInfo(112.929052, 35.55524, "2014-7-30 09:59:20");
+        var trackPointInfo17 = new HMap.TrackPointInfo(112.939052, 35.56524, "2014-7-30 09:59:20");
+        var trackPointInfo18 = new HMap.TrackPointInfo(112.929052, 35.58524, "2014-7-30 09:59:20");
+        var trackPointInfo19 = new HMap.TrackPointInfo(112.959052, 35.58524, "2014-7-30 09:59:20");
+        var trackPointInfo110 = new HMap.TrackPointInfo(112.949052, 35.59524, "2014-7-30 09:59:20");
+
+        var trackPointInfos1 = [trackPointInfo11, trackPointInfo12, trackPointInfo13, trackPointInfo14, trackPointInfo15,
+        trackPointInfo16, trackPointInfo17, trackPointInfo18, trackPointInfo19, trackPointInfo110];
+
+        var trackLineSymbol = new HMap.SimpleLineSymbol({ color: 0xffff00 });
+        var playLineSymbol = new HMap.SimpleLineSymbol({ color: 0xff0000 });
+        var trackStartImg = "http://192.168.5.150:8585/HorseMap/Images/pic/water_3.png";
+        var trackMoveImg = "http://192.168.5.150:8585/HorseMap/Images/pic/water_3.png";
+
+        var field1 = new HMap.PopFieldOption("车牌：", "京A123456", "", true);
+        var field2 = new HMap.PopFieldOption("车主：", "张三", "", true);
+        var field3 = new HMap.PopFieldOption("联系方式：", "010-123456", "", true);
+        var infoWindow = new HMap.PopInfoWindow("车辆信息", { fields: [field1, field2, field3] });
+        var trackMoveInfo = new HMap.InfoSymbol("name:car1\ncardID:京A123456");
+        var trackMoveInfo2 = new HMap.InfoSymbol("car2");
+
+        var trackInfo = new HMap.TrackInfo({
+            carID: "car1",
+            carName: "car1",
+            trackPointInfos: trackPointInfos,
+            //            trackLineSymbol: trackLineSymbol,
+            //            playLineSymbol: playLineSymbol,
+            //            trackStartImg: trackStartImg,
+            //            trackEndImg: trackStartImg,
+                        trackMoveImg: trackMoveImg,
+            trackMoveInfo: trackMoveInfo,
+            infoWindow: infoWindow,
+            isShowInfoWindow: false
+        });
+        var trackInfo1 = new HMap.TrackInfo({
+            carID: "car2",
+            carName: "car2",
+            trackPointInfos: trackPointInfos1,
+            trackMoveInfo: trackMoveInfo2,
+            infoWindow: infoWindow,
+            isShowInfoWindow: false
+        });
+
+        var widgetParam = new HMap.WidgetParam({ top: 40, right: 100, backgroundColor: 0x1497D6, widgetAlpha: 0.7 });
+        trackPlayWidget = new HMap.TrackPlayWidget(2, [trackInfo, trackInfo1], { widgetParam: widgetParam });
+        hmap.addControl(trackPlayWidget);
+    }
+
+    creatHMap();
+
+</script>
+</html>

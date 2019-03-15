@@ -1,0 +1,296 @@
+MIME-Version: 1.0
+X-Document-Type: Worksheet
+Content-Location: file:///C:/208BA2B3/R_Parameters.htm
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="gb2312"
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office"
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel"
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dgb2312">
+<meta name=3DProgId content=3DExcel.Sheet>
+<meta name=3DGenerator content=3D"Microsoft Excel 14">
+<link rel=3DFile-List href=3D"R_Parameters.files/filelist.xml">
+<style id=3D"MapAPI-2.0  ½Ó¿ÚÉè¼Æ-xyf - ¸±±¾_8379_Styles">
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+.font58379
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;}
+.xl638379
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl648379
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:middle;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl658379
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:middle;
+	border:.5pt solid windowtext;
+	background:#76933C;
+	mso-pattern:black none;
+	white-space:normal;}
+.xl668379
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl678379
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:center;
+	vertical-align:middle;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl688379
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:windowtext;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	background:#B8CCE4;
+	mso-pattern:black none;
+	white-space:nowrap;}
+ruby
+	{ruby-align:left;}
+rt
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-char-type:none;}
+-->
+</style>
+</head>
+
+<body>
+<!--[if !excel]>¡¡¡¡<![endif]-->
+<!--ÏÂÁÐÐÅÏ¢ÓÉ Microsoft Excel µÄ·¢²¼ÎªÍøÒ³Ïòµ¼Éú³É¡£-->
+<!--Èç¹ûÍ¬Ò»ÌõÄ¿´Ó Excel ÖÐÖØÐÂ·¢²¼£¬ÔòËùÓÐÎ»ÓÚ DIV ±ê¼ÇÖ®¼äµÄÐÅÏ¢¾ù½«±»Ìæ»=
+»¡£-->
+<!----------------------------->
+<!--¡°´Ó EXCEL ·¢²¼ÍøÒ³¡±Ïòµ¼¿ªÊ¼-->
+<!----------------------------->
+
+<div id=3D"MapAPI-2.0  ½Ó¿ÚÉè¼Æ-xyf - ¸±±¾_8379" align=3Dcenter x:publishso=
+urce=3D"Excel">
+
+<table border=3D0 cellpadding=3D0 cellspacing=3D0 width=3D964 class=3Dxl655=
+358379
+ style=3D'border-collapse:collapse;table-layout:fixed;width:724pt'>
+ <col class=3Dxl655358379 width=3D13 style=3D'mso-width-source:userset;mso-=
+width-alt:
+ 416;width:10pt'>
+ <col class=3Dxl655358379 width=3D85 style=3D'mso-width-source:userset;mso-=
+width-alt:
+ 2720;width:64pt'>
+ <col class=3Dxl655358379 width=3D245 style=3D'mso-width-source:userset;mso=
+-width-alt:
+ 7840;width:184pt'>
+ <col class=3Dxl655358379 width=3D621 style=3D'mso-width-source:userset;mso=
+-width-alt:
+ 19872;width:466pt'>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 width=3D13 style=3D'height:13.5pt;wid=
+th:10pt'></td>
+  <td class=3Dxl688379 width=3D85 style=3D'width:64pt'>¡¡</td>
+  <td class=3Dxl688379 width=3D245 style=3D'border-left:none;width:184pt'>À=
+à</td>
+  <td class=3Dxl688379 width=3D621 style=3D'border-left:none;width:466pt'>Ã=
+èÊö</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td rowspan=3D6 class=3Dxl678379 style=3D'border-top:none'>µ¥Î»</td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>BUFFER_ME=
+TER</td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>Ã×£¨»º³å£=
+©</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>BUFFER_KI=
+LOMETER</td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>Ç§Ã×£¨»º³=
+å£©</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>METER</td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>Ã×</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>KILOMETER=
+</td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>Ç§Ã×</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>SQUARE_ME=
+TERS</td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>Æ½·½Ã×</t=
+d>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>SQUARE_KI=
+LOMETERS</td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>Æ½·½Ç§Ã×<=
+/td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td class=3Dxl658379 width=3D85 style=3D'border-top:none;width:64pt'>¡¡</=
+td>
+  <td class=3Dxl658379 width=3D245 style=3D'border-top:none;border-left:non=
+e;
+  width:184pt'>¡¡</td>
+  <td class=3Dxl658379 width=3D621 style=3D'border-top:none;border-left:non=
+e;
+  width:466pt'>¡¡</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td rowspan=3D2 class=3Dxl678379 style=3D'border-top:none'>×ø±êÏµ</td>
+  <td class=3Dxl668379 style=3D'border-top:none;border-left:none'>4326</td>
+  <td class=3Dxl638379 style=3D'border-top:none;border-left:none'>GCS_WGS_1=
+984£¨µØÀí×ø±êÏµ£©</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td class=3Dxl668379 style=3D'border-top:none;border-left:none'>102100</t=
+d>
+  <td class=3Dxl648379 width=3D621 style=3D'border-top:none;border-left:non=
+e;
+  width:466pt'>WGS_1984_web_mercator_auxiliary_sphere£¨Í¶Ó°×ø±êÏµ£©</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl655358379 style=3D'height:13.5pt'></td>
+  <td class=3Dxl658379 width=3D85 style=3D'border-top:none;width:64pt'>¡¡</=
+td>
+  <td class=3Dxl658379 width=3D245 style=3D'border-top:none;border-left:non=
+e;
+  width:184pt'>¡¡</td>
+  <td class=3Dxl658379 width=3D621 style=3D'border-top:none;border-left:non=
+e;
+  width:466pt'>¡¡</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=3D0 style=3D'display:none'>
+  <td width=3D13 style=3D'width:10pt'></td>
+  <td width=3D85 style=3D'width:64pt'></td>
+  <td width=3D245 style=3D'width:184pt'></td>
+  <td width=3D621 style=3D'width:466pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</div>
+
+
+<!----------------------------->
+<!--¡°´Ó EXCEL ·¢²¼ÍøÒ³¡±Ïòµ¼½áÊø-->
+<!----------------------------->
+</body>
+
+</html>

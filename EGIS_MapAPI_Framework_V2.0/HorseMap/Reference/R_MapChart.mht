@@ -1,0 +1,1065 @@
+MIME-Version: 1.0
+X-Document-Type: Worksheet
+Content-Location: file:///C:/246592B4/R_MapChart.htm
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="gb2312"
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office"
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel"
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dgb2312">
+<meta name=3DProgId content=3DExcel.Sheet>
+<meta name=3DGenerator content=3D"Microsoft Excel 14">
+<link rel=3DFile-List href=3D"R_MapChart.files/filelist.xml">
+<style id=3D"MapAPI-2.0  ½Ó¿ÚÉè¼Æ-xyf - ¸±±¾_17658_Styles">
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+.font517658
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;}
+.font617658
+	{color:#333333;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;}
+.font717658
+	{color:#333333;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;}
+.xl6317658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	background:#B8CCE4;
+	mso-pattern:black none;
+	white-space:normal;}
+.xl6417658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:#008E40;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl6517658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6617658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:14.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl6717658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl6817658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:14.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl6917658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:middle;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl7017658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl7117658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl7217658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl7317658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:14.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl7417658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:bottom;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl7517658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:14.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:bottom;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl7617658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:#4F81BD;
+	font-size:14.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl7717658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:middle;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:normal;}
+.xl7817658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	background:#B8CCE4;
+	mso-pattern:black none;
+	white-space:normal;}
+.xl7917658
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:#333333;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:middle;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+ruby
+	{ruby-align:left;}
+rt
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:ËÎÌå;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-char-type:none;}
+-->
+</style>
+</head>
+
+<body>
+<!--[if !excel]>¡¡¡¡<![endif]-->
+<!--ÏÂÁĞĞÅÏ¢ÓÉ Microsoft Excel µÄ·¢²¼ÎªÍøÒ³Ïòµ¼Éú³É¡£-->
+<!--Èç¹ûÍ¬Ò»ÌõÄ¿´Ó Excel ÖĞÖØĞÂ·¢²¼£¬ÔòËùÓĞÎ»ÓÚ DIV ±ê¼ÇÖ®¼äµÄĞÅÏ¢¾ù½«±»Ìæ»=
+»¡£-->
+<!----------------------------->
+<!--¡°´Ó EXCEL ·¢²¼ÍøÒ³¡±Ïòµ¼¿ªÊ¼-->
+<!----------------------------->
+
+<div id=3D"MapAPI-2.0  ½Ó¿ÚÉè¼Æ-xyf - ¸±±¾_17658" align=3Dcenter x:publishs=
+ource=3D"Excel">
+
+<table border=3D0 cellpadding=3D0 cellspacing=3D0 width=3D964 class=3Dxl655=
+3517658
+ style=3D'border-collapse:collapse;table-layout:fixed;width:724pt'>
+ <col class=3Dxl6553517658 width=3D13 style=3D'mso-width-source:userset;mso=
+-width-alt:
+ 416;width:10pt'>
+ <col class=3Dxl6553517658 width=3D349 style=3D'mso-width-source:userset;ms=
+o-width-alt:
+ 11168;width:262pt'>
+ <col class=3Dxl6553517658 width=3D157 style=3D'mso-width-source:userset;ms=
+o-width-alt:
+ 5024;width:118pt'>
+ <col class=3Dxl6553517658 width=3D445 style=3D'mso-width-source:userset;ms=
+o-width-alt:
+ 14240;width:334pt'>
+ <tr class=3Dxl7217658 height=3D25 style=3D'height:18.75pt'>
+  <td height=3D25 class=3Dxl7217658 width=3D13 style=3D'height:18.75pt;widt=
+h:10pt'></td>
+  <td class=3Dxl7617658 width=3D349 style=3D'width:262pt'>MapChart</td>
+  <td class=3Dxl7317658 width=3D157 style=3D'width:118pt'></td>
+  <td class=3Dxl7317658 width=3D445 style=3D'width:334pt'></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl7417658 width=3D349 style=3D'width:262pt'></td>
+  <td class=3Dxl7517658 width=3D157 style=3D'width:118pt'></td>
+  <td class=3Dxl7517658 width=3D445 style=3D'width:334pt'></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6917658 width=3D349 style=3D'width:262pt'>Í¼±í</td>
+  <td class=3Dxl6817658 width=3D157 style=3D'border-left:none;width:118pt'>=
+¡¡</td>
+  <td class=3Dxl6817658 width=3D445 style=3D'border-left:none;width:334pt'>=
+¡¡</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6717658 width=3D349 style=3D'border-top:none;width:262pt'>¡=
+¡</td>
+  <td class=3Dxl6817658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>¡¡</td>
+  <td class=3Dxl6817658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>¡¡</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6317658 width=3D349 style=3D'border-top:none;width:262pt'>¹=
+¹Ôìº¯Êı</td>
+  <td colspan=3D2 class=3Dxl7817658 width=3D602 style=3D'border-left:none;w=
+idth:452pt'>ÃèÊö</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D93 style=3D'mso-height-source:userset;heigh=
+t:69.75pt'>
+  <td height=3D93 class=3Dxl7217658 width=3D13 style=3D'height:69.75pt;widt=
+h:10pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>M=
+apChart(x:Number,y:Number,<br>
+    dataSource:Array&lt;Object&gt;,<br>
+    chartSeries:ChartSeries,<br>
+    option:ChartOption)</td>
+  <td colspan=3D2 class=3Dxl7717658 width=3D602 style=3D'border-left:none;w=
+idth:452pt'>´´½¨Ò»¸öÍ¼±í£º<br>
+    x,y:¶ÔÓ¦µÄÍ¼±êÎ»ÖÃ×ø±êÖµ£»<br>
+    dataSource:Êı¾İÔ´£»<br>
+    chareSeries:Í¼±íĞòÁĞ¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl7717658 width=3D349 style=3D'border-top:none;width:262pt'>¡=
+¡</td>
+  <td class=3Dxl7717658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>¡¡</td>
+  <td class=3Dxl7717658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>¡¡</td>
+ </tr>
+ <tr height=3D25 style=3D'height:18.75pt'>
+  <td height=3D25 class=3Dxl6553517658 style=3D'height:18.75pt'></td>
+  <td class=3Dxl6617658 width=3D349 style=3D'border-top:none;width:262pt'>M=
+apChartOption</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6517658 style=3D'border-top:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D19 style=3D'height:14.25pt'>
+  <td height=3D19 class=3Dxl6553517658 style=3D'height:14.25pt'></td>
+  <td colspan=3D3 class=3Dxl7917658><font class=3D"font717658">´ËÀà±íÊ¾</fo=
+nt><font
+  class=3D"font617658"> MapChart </font><font class=3D"font717658">¹¹Ôìº¯Êı=
+µÄ¿ÉÑ¡²ÎÊı¡£ËüÃ»ÓĞ¹¹Ôìº¯Êı£¬µ«¿ÉÍ¨¹ı¶ÔÏó×ÖÃæÁ¿ĞÎÊ½±íÊ¾¡£</font></td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6517658 style=3D'border-top:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6317658 width=3D349 style=3D'border-top:none;width:262pt'>Ê=
+ôĞÔ</td>
+  <td class=3Dxl6317658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>ÀàĞÍ</td>
+  <td class=3Dxl6317658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>ÃèÊö</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>v=
+isible</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Booble</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¿É¼ûĞÔ¡£=
+</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>a=
+lpha</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Number</td>
+  <td class=3Dxl7017658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>Í¸Ã÷¶È¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>t=
+itle</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>String</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>Í¼±í±êÌâ=
+¡£</td>
+ </tr>
+ <tr height=3D36 style=3D'height:27.0pt'>
+  <td height=3D36 class=3Dxl6553517658 style=3D'height:27.0pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>n=
+ameField</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>String</td>
+  <td class=3Dxl7017658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>Öù×´Í¼£ºxÖáÏÔÊ¾Ãû³Æ×Ö¶Î£»Ïß×´Í¼£ºÃ¿ÌõÕÛÏßÏÔÊ¾Ãû³Æ×Ö¶Î£»¶ÔÓÚ±=
+ı×´Í¼²»ĞèÒª¸ÄÊôĞÔ£»</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>i=
+nitialWidth</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Number</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>Í¼±í³õÊ¼=
+»¯¿í¶È¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>i=
+nitialHeight</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Number</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>Í¼±í³õÊ¼=
+»¯¸ß¶È¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>m=
+axScale</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Number</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>Í¼±í×î´ó=
+·Å´ó±ÈÀı¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>m=
+inScale</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Number</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>Í¼±í×îĞ¡=
+ËõĞ¡±ÈÀı¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>i=
+sShowBg</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Booble</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>Ê±ºòÏÔÊ¾=
+±³¾°¡£</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D25 style=3D'height:18.75pt'>
+  <td height=3D25 class=3Dxl7217658 width=3D13 style=3D'height:18.75pt;widt=
+h:10pt'></td>
+  <td class=3Dxl7617658 width=3D349 style=3D'width:262pt'>ColumnChartSeries=
+</td>
+  <td class=3Dxl7317658 width=3D157 style=3D'width:118pt'></td>
+  <td class=3Dxl7317658 width=3D445 style=3D'width:334pt'></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl7417658 width=3D349 style=3D'width:262pt'></td>
+  <td class=3Dxl7517658 width=3D157 style=3D'width:118pt'></td>
+  <td class=3Dxl7517658 width=3D445 style=3D'width:334pt'></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6917658 width=3D349 style=3D'width:262pt'>Öù×´Í¼</td>
+  <td class=3Dxl6817658 width=3D157 style=3D'border-left:none;width:118pt'>=
+¡¡</td>
+  <td class=3Dxl6817658 width=3D445 style=3D'border-left:none;width:334pt'>=
+¡¡</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>¡=
+¡</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>¡¡</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6317658 width=3D349 style=3D'border-top:none;width:262pt'>¹=
+¹Ôìº¯Êı</td>
+  <td colspan=3D2 class=3Dxl7817658 width=3D602 style=3D'border-left:none;w=
+idth:452pt'>ÃèÊö</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D36 style=3D'height:27.0pt'>
+  <td height=3D36 class=3Dxl7217658 width=3D13 style=3D'height:27.0pt;width=
+:10pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>C=
+olumnChartSeries(valueField:String,<br>
+    option:ColumnChartSeriesOption)</td>
+  <td colspan=3D2 class=3Dxl7717658 width=3D602 style=3D'border-left:none;w=
+idth:452pt'>´´½¨Ò»¸öÖù×´Í¼£º<br>
+    valueField£ºÊı¾İ×Ö¶Î¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl7717658 width=3D349 style=3D'border-top:none;width:262pt'>¡=
+¡</td>
+  <td class=3Dxl7717658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>¡¡</td>
+  <td class=3Dxl7717658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>¡¡</td>
+ </tr>
+ <tr height=3D25 style=3D'height:18.75pt'>
+  <td height=3D25 class=3Dxl6553517658 style=3D'height:18.75pt'></td>
+  <td class=3Dxl6617658 width=3D349 style=3D'border-top:none;width:262pt'>C=
+olumnChartSeriesOption</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6517658 style=3D'border-top:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D19 style=3D'height:14.25pt'>
+  <td height=3D19 class=3Dxl6553517658 style=3D'height:14.25pt'></td>
+  <td colspan=3D3 class=3Dxl7917658><font class=3D"font717658">´ËÀà±íÊ¾</fo=
+nt><font
+  class=3D"font617658"> ColumnChartSeries </font><font class=3D"font717658"=
+>¹¹Ôìº¯ÊıµÄ¿ÉÑ¡²ÎÊı¡£ËüÃ»ÓĞ¹¹Ôìº¯Êı£¬µ«¿ÉÍ¨¹ı¶ÔÏó×ÖÃæÁ¿ĞÎÊ½±íÊ¾¡£</font></t=
+d>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6517658 style=3D'border-top:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6317658 width=3D349 style=3D'border-top:none;width:262pt'>Ê=
+ôĞÔ</td>
+  <td class=3Dxl6317658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>ÀàĞÍ</td>
+  <td class=3Dxl6317658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>ÃèÊö</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>n=
+ame</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>String</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>ÁĞÃû¡£</=
+td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>c=
+olor</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Number</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>Öù×ÓÑÕÉ«=
+¡£</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D25 style=3D'height:18.75pt'>
+  <td height=3D25 class=3Dxl7217658 width=3D13 style=3D'height:18.75pt;widt=
+h:10pt'></td>
+  <td class=3Dxl7617658 width=3D349 style=3D'width:262pt'>LineChartSeries</=
+td>
+  <td class=3Dxl7317658 width=3D157 style=3D'width:118pt'></td>
+  <td class=3Dxl7317658 width=3D445 style=3D'width:334pt'></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl7417658 width=3D349 style=3D'width:262pt'></td>
+  <td class=3Dxl7517658 width=3D157 style=3D'width:118pt'></td>
+  <td class=3Dxl7517658 width=3D445 style=3D'width:334pt'></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6917658 width=3D349 style=3D'width:262pt'>ÕÛÏßÍ¼</td>
+  <td class=3Dxl6817658 width=3D157 style=3D'border-left:none;width:118pt'>=
+¡¡</td>
+  <td class=3Dxl6817658 width=3D445 style=3D'border-left:none;width:334pt'>=
+¡¡</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6717658 width=3D349 style=3D'border-top:none;width:262pt'>¡=
+¡</td>
+  <td class=3Dxl6817658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>¡¡</td>
+  <td class=3Dxl6817658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>¡¡</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6317658 width=3D349 style=3D'border-top:none;width:262pt'>¹=
+¹Ôìº¯Êı</td>
+  <td colspan=3D2 class=3Dxl7817658 width=3D602 style=3D'border-left:none;w=
+idth:452pt'>ÃèÊö</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D36 style=3D'height:27.0pt'>
+  <td height=3D36 class=3Dxl7217658 width=3D13 style=3D'height:27.0pt;width=
+:10pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>L=
+ineChartSeries(valueField:String,<br>
+    option:LineChartSeriesOption)</td>
+  <td colspan=3D2 class=3Dxl7717658 width=3D602 style=3D'border-left:none;w=
+idth:452pt'>´´½¨Ò»¸öÕÛÏÖÍ¼£º<br>
+    valueField£ºÊı¾İ×Ö¶Î¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl7717658 width=3D349 style=3D'border-top:none;width:262pt'>¡=
+¡</td>
+  <td class=3Dxl7717658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>¡¡</td>
+  <td class=3Dxl7717658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>¡¡</td>
+ </tr>
+ <tr height=3D25 style=3D'height:18.75pt'>
+  <td height=3D25 class=3Dxl6553517658 style=3D'height:18.75pt'></td>
+  <td class=3Dxl6617658 width=3D349 style=3D'border-top:none;width:262pt'>L=
+ineChartSeriesOption</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6517658 style=3D'border-top:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D19 style=3D'height:14.25pt'>
+  <td height=3D19 class=3Dxl6553517658 style=3D'height:14.25pt'></td>
+  <td colspan=3D3 class=3Dxl7917658><font class=3D"font717658">´ËÀà±íÊ¾</fo=
+nt><font
+  class=3D"font617658"> LineChartSeries </font><font class=3D"font717658">¹=
+¹Ôìº¯ÊıµÄ¿ÉÑ¡²ÎÊı¡£ËüÃ»ÓĞ¹¹Ôìº¯Êı£¬µ«¿ÉÍ¨¹ı¶ÔÏó×ÖÃæÁ¿ĞÎÊ½±íÊ¾¡£</font></td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6517658 style=3D'border-top:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6317658 width=3D349 style=3D'border-top:none;width:262pt'>Ê=
+ôĞÔ</td>
+  <td class=3Dxl6317658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>ÀàĞÍ</td>
+  <td class=3Dxl6317658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>ÃèÊö</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>n=
+ame</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>String</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>ÁĞÃû¶ÔÓ¦=
+×Ö¶Î¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>c=
+olor</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Number</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>ÕÛÏßÑÕÉ«=
+¡£</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+  <td class=3Dxl6553517658></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D25 style=3D'height:18.75pt'>
+  <td height=3D25 class=3Dxl7217658 width=3D13 style=3D'height:18.75pt;widt=
+h:10pt'></td>
+  <td class=3Dxl7617658 width=3D349 style=3D'width:262pt'>PieChartSeries</t=
+d>
+  <td class=3Dxl7317658 width=3D157 style=3D'width:118pt'></td>
+  <td class=3Dxl7317658 width=3D445 style=3D'width:334pt'></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl7417658 width=3D349 style=3D'width:262pt'></td>
+  <td class=3Dxl7517658 width=3D157 style=3D'width:118pt'></td>
+  <td class=3Dxl7517658 width=3D445 style=3D'width:334pt'></td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6917658 width=3D349 style=3D'width:262pt'>±ı×´Í¼</td>
+  <td class=3Dxl6817658 width=3D157 style=3D'border-left:none;width:118pt'>=
+¡¡</td>
+  <td class=3Dxl6817658 width=3D445 style=3D'border-left:none;width:334pt'>=
+¡¡</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'mso-height-source:userset;heigh=
+t:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6717658 width=3D349 style=3D'border-top:none;width:262pt'>¡=
+¡</td>
+  <td class=3Dxl6817658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>¡¡</td>
+  <td class=3Dxl6817658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>¡¡</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl7217658 width=3D13 style=3D'height:13.5pt;width=
+:10pt'></td>
+  <td class=3Dxl6317658 width=3D349 style=3D'border-top:none;width:262pt'>¹=
+¹Ôìº¯Êı</td>
+  <td colspan=3D2 class=3Dxl7817658 width=3D602 style=3D'border-left:none;w=
+idth:452pt'>ÃèÊö</td>
+ </tr>
+ <tr class=3Dxl7217658 height=3D36 style=3D'height:27.0pt'>
+  <td height=3D36 class=3Dxl7217658 width=3D13 style=3D'height:27.0pt;width=
+:10pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>P=
+ieChartSeries(valueField:String,<br>
+    option:PieChartSeriesOption)</td>
+  <td colspan=3D2 class=3Dxl7717658 width=3D602 style=3D'border-left:none;w=
+idth:452pt'>´´½¨Ò»¸ö±ı×´Í¼£º<br>
+    valueField£ºÊı¾İ×Ö¶Î¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl7717658 width=3D349 style=3D'border-top:none;width:262pt'>¡=
+¡</td>
+  <td class=3Dxl7717658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>¡¡</td>
+  <td class=3Dxl7717658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>¡¡</td>
+ </tr>
+ <tr height=3D25 style=3D'height:18.75pt'>
+  <td height=3D25 class=3Dxl6553517658 style=3D'height:18.75pt'></td>
+  <td class=3Dxl6617658 width=3D349 style=3D'border-top:none;width:262pt'>P=
+ieChartSeriesOption</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6517658 style=3D'border-top:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D19 style=3D'height:14.25pt'>
+  <td height=3D19 class=3Dxl6553517658 style=3D'height:14.25pt'></td>
+  <td colspan=3D3 class=3Dxl7917658><font class=3D"font717658">´ËÀà±íÊ¾</fo=
+nt><font
+  class=3D"font617658"> PieChartSeries </font><font class=3D"font717658">¹¹=
+Ôìº¯ÊıµÄ¿ÉÑ¡²ÎÊı¡£ËüÃ»ÓĞ¹¹Ôìº¯Êı£¬µ«¿ÉÍ¨¹ı¶ÔÏó×ÖÃæÁ¿ĞÎÊ½±íÊ¾¡£</font></td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6517658 style=3D'border-top:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+  <td class=3Dxl6517658 style=3D'border-top:none;border-left:none'>¡¡</td>
+ </tr>
+ <tr height=3D18 style=3D'height:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6317658 width=3D349 style=3D'border-top:none;width:262pt'>Ê=
+ôĞÔ</td>
+  <td class=3Dxl6317658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>ÀàĞÍ</td>
+  <td class=3Dxl6317658 width=3D445 style=3D'border-top:none;border-left:no=
+ne;
+  width:334pt'>ÃèÊö</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>n=
+ame</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>String</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>Ã¿¿é¶ÔÓ¦=
+Ãû³Æ×Ö¶Î¡£</td>
+ </tr>
+ <tr class=3Dxl6553517658 height=3D18 style=3D'mso-height-source:userset;he=
+ight:13.5pt'>
+  <td height=3D18 class=3Dxl6553517658 style=3D'height:13.5pt'></td>
+  <td class=3Dxl6417658 width=3D349 style=3D'border-top:none;width:262pt'>c=
+olors</td>
+  <td class=3Dxl6417658 width=3D157 style=3D'border-top:none;border-left:no=
+ne;
+  width:118pt'>Array&lt;Number&gt;</td>
+  <td class=3Dxl7117658 style=3D'border-top:none;border-left:none'>ÑÕÉ«¡£</=
+td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=3D0 style=3D'display:none'>
+  <td width=3D13 style=3D'width:10pt'></td>
+  <td width=3D349 style=3D'width:262pt'></td>
+  <td width=3D157 style=3D'width:118pt'></td>
+  <td width=3D445 style=3D'width:334pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</div>
+
+
+<!----------------------------->
+<!--¡°´Ó EXCEL ·¢²¼ÍøÒ³¡±Ïòµ¼½áÊø-->
+<!----------------------------->
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="QXForeCastHist.aspx.cs" Inherits="Devoops_ForeCast_QXForeCastHist" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+
+    <script>
+
+
+        function getData() {
+            $.ajax({
+                url: "../../Data/GetQxForeCastData.ashx",
+                data: { flag: "histdata", date: $("#txt_begin").val(), day: $("#ddl_day").val(), hour: $("#ddl_hour").val() },
+                dataType: "json",
+                success: function (result) {
+
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+                        obj = result.DataTable;
+                        $("#tb_report tr:gt(1)").remove();
+                        $('#container').show();
+                        var StationNames = new Array();
+                        var ReportData = new Array();
+                        var MaxTemp = { name: "最高温度", data: [] }
+                        var MinTemp = { name: "最低温度", data: [] }
+                        var WindSpeed = { name: "风速", data: [] }
+
+                        for (var i = 0; i < result.DataTable.length; i++) {
+                            StationNames.push(result.DataTable[i]["StationName"]);
+                            MaxTemp.data.push(result.DataTable[i]["MaxTemp"] == '/////' ? 'null' : parseFloat(result.DataTable[i]["MaxTemp"]));
+                            MinTemp.data.push(result.DataTable[i]["MinTemp"] == '/////' ? 'null' : parseFloat(result.DataTable[i]["MinTemp"]));
+                            WindSpeed.data.push(result.DataTable[i]["WindSpeed"] == '/////' ? 'null' : parseFloat(result.DataTable[i]["WindSpeed"]));
+                            var contents = $("<tr >"
+                            + "<td>" + result.DataTable[i]["StationName"] + "</td>"
+                            + "<td>" + result.DataTable[i]["ForeCastTime"].replace("T", " ").split(" ")[0] + "</td>"
+                            + "<td>" + result.DataTable[i]["MinTemp"] + "℃" + "</td>"
+                            + "<td>" + result.DataTable[i]["MaxTemp"] + "℃" + "</td>"
+                            + "<td>" + result.DataTable[i]["WindSpeed"] + "m/s" + "</td>"
+                            + "<td>" + result.DataTable[i]["WindDirectionName"] + "(" + result.DataTable[i]["WindDirectionMark"] + ")" + "</td>"
+                            + "<td>" + result.DataTable[i]["WeatherName"] + "</td>"
+                            + "</tr>");
+                            $("#tb_report").append(contents);
+                        }
+                        ReportData.push(MaxTemp);
+                        ReportData.push(MinTemp);
+                        ReportData.push(WindSpeed);
+                        debugger;
+                        $('#container').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: '气象预报数据统计图'
+                            },
+
+                            xAxis: {
+                                categories: StationNames
+                            },
+                            yAxis: {
+                                title: {
+                                    text: '温度（℃）'
+                                }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size: 10px;">{point.key}</span><table>',
+                                pointFormat: '<tbody><tr><td style="padding: 0px;">{series.name}: </td>' +
+                                    '<td style="padding: 0px;"><b>{point.y:.0f}</b></td></tr>',
+                                footerFormat: '</tbody></table>',
+                                shared: true,
+                                useHTML: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0
+                                }
+                            },
+                            series: ReportData
+                        });
+                    } else {
+                        $("#tb_report tr:gt(1)").remove();
+                        $("#tb_report").append($("<tr ><td colspan='7' style='text-align:center; height:40px;'>暂无数据</td></tr>"));
+                        $('#container').hide();
+
+                    }
+                }
+
+            });
+        }
+
+        $(function () {
+            $("#container").width($(window).width() - 45);
+            getData();
+            $("#txt_begin").change(function () {
+                getData();
+            });
+            $("#ddl_day").change(function () {
+                getData();
+            });
+            $("#ddl_hour").change(function () {
+                getData();
+            });
+        });
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="background: #fff;">
+            <table class="tab" id="tb_report" cellspacing="0" cellpadding="0" style="width: 100%;">
+                <tr>
+                    <td colspan="18" style="text-align: left; padding-left: 15px;margin-top:3px;"><span>监测时间：</span>  
+                        <input type="text" style="height: 25px; color: black; vertical-align:middle;" runat="server" id="txt_begin" placeholder="Date" />
+                        <asp:DropDownList Style="height: 25px; color: black; vertical-align:middle;"  runat="server" ID="ddl_day">
+                        </asp:DropDownList>
+                        <asp:DropDownList Style="height: 25px; color: black; vertical-align:middle;" runat="server" ID="ddl_hour">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <th>区域</th>
+                    <th>预报时间</th>
+                    <th>最低温度</th>
+                    <th>最高温度</th>
+                    <th>风速</th>
+                    <th>风向</th>
+                    <th>天气</th>
+                </tr>
+            </table>
+            <div id="container" style="margin-bottom: 10px; border: 1px solid #cfc2c2"></div>
+        </div>
+    </form>
+</body>
+</html>

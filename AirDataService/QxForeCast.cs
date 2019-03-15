@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataRepair
+{
+    public class QxForeCast
+    {
+        public string scon = "", tcon = "";
+         
+        /// <summary>
+        /// 获取气象预报报文
+        /// </summary>
+        public void getQxPacket()
+        {
+            string targetPath = ConfigurationManager.AppSettings["targetFile"];
+
+            DirectoryInfo TheFolder = new DirectoryInfo(targetPath);
+            writelog("遍历文件夹：" + targetPath);
+            foreach (FileInfo FileItem in TheFolder.GetFiles())
+            {
+                string str1 = DateTime.Now.ToString("yyyMMdd") + "0230";
+                string str2 = DateTime.Now.ToString("yyyMMdd") + "0830";
+                string str3 = DateTime.Now.ToString("yyyMMdd") + "2245";
+
+                if (FileItem.Name.IndexOf(str1) > -1)//上午
+                {
+                    //File.Copy(targetPath + FileItem.Name, targetPath + FileItem.Name, true);
+                    ReadTXT(targetPath + FileItem.Name, 0);
+                    writelog("成功解析气象报文：" + FileItem.Name);
+                }
+                if (FileItem.Name.IndexOf(str2) > -1)//下午
+                {
+                    //File.Copy(targetPath + FileItem.Name, targetPath + FileItem.Name, true);
+                    ReadTXT(targetPath + FileItem.Name, 1);
+                    writelog("成功解析气象报文：" + FileItem.Name);
+                }
+            }
+        }
+        /// <summary>
+        /// 将信息输出到文本文件
+        /// </summary>
+        /// <param name="readme"></param>
+        public void writelog(string txt)
+        {
+            string logPath = ConfigurationManager.AppSettings["logPath"] + "QxDataGather\\" + DateTime.Now.ToString("yyyy-MM-dd").ToString() + ".txt";
+            StreamWriter dout = new StreamWriter(logPath, true);
+            dout.Write(System.DateTime.Now.ToString("yyy-MM-dd HH:mm:ss") + " => " + txt + "\r\n");
+            dout.Close();
+        }  
+
+        private void ReadTXT(string path,int timeType)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (FileStream fs = new FileStream(path, FileMode.Open))
+            {
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    int stationCode = 0;
+                    while (!sr.EndOfStream)
+                    {
+                        decimal lon = 0;
+                        decimal lat = 0;
+                        int ForeCastHours = 0;
+                        double maxTemp = 0;
+                        double minTemp = 0;
+                        double weather = 0;
+                        double winDirection = 0;
+                        double winSeep = 0;
+                        string createTime = DateTime.Now.ToString();
+                        string sLine = sr.ReadLine();
+                        if (sLine.Length < 1)
+                        {
+                            continue;
+                        }
+                        string[] strAry = sLine.Split(' ');
+                        if (sLine.IndexOf("14 21") > -1)//判断站点
+                        {
+                            stationCode = Int32.Parse(strAry[0]);
+                        }
+                        if (strAry.Length > 20)
+                        {
+                            IList<string> strlist = new List<string>(strAry);
+                            for (int i = strlist.Count-1; i >= 0; i--)
+                            {
+                                if (strlist[i] == " " || strlist[i] == "") 
+                                    strlist.RemoveAt(i);
+                            }
+                            if (Int32.Parse(strlist[0]) % 24 == 0 && Int32.Parse(strlist[0]) <= 72)
+                            {
+                                ForeCastHours = Int32.Parse(strlist[0]);
+                                maxTemp = Double.Parse(strlist[11]);
+                                minTemp = Double.Parse(strlist[12]);
+                                weather = Double.Parse(strlist[19]);
+                                winDirection = Double.Parse(strlist[20]);
+                                winSeep = Double.Parse(strlist[21]);
+
+                                string strSql = "select * from T_Mid_QXForeCastData where StationCode=" + stationCode + " and ForeCastHours=" + ForeCastHours + " and ForeCastTime = '" + System.DateTime.Now.ToString("yyy-MM-dd") + "' and TimeType=" + timeType;
+                                DataSet ds = SqlHelper.ExecuteDataset(tcon, CommandType.Text, strSql);
+                                if (ds == null || ds.Tables[0].Rows.Count == 0)
+                                {
+                                    string QXstr = "select lon,lat from T_Bas_QxStation where StationCode='" + stationCode + "'";
+                                    DataSet Qxds = SqlHelper.ExecuteDataset(tcon, CommandType.Text, QXstr);
+                                    if (Qxds.Tables[0].Rows.Count > 0)
+                                    {
+                                        lon = Convert.ToDecimal(Qxds.Tables[0].Rows[0]["lon"].ToString());
+                                        lat = Convert.ToDecimal(Qxds.Tables[0].Rows[0]["lat"].ToString());
+                                    }
+                                    string InsertStr = "insert into T_Mid_QXForeCastData(StationCode,ForeCastTime,TimeType,ForeCastHours,lon,lat,MaxTemp,MinTemp,WeatherCode,WindSpeed,WindDirection) values('" + stationCode + "','" + createTime + "','" + timeType + "'," + ForeCastHours + "," + lon + "," + lat + "," + maxTemp + "," + minTemp + "," + weather + "," + winSeep + "," + winDirection + ")";
+                                    SqlHelper.ExecuteNonQuery(tcon, CommandType.Text, InsertStr);
+                                    writelog(InsertStr);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+}

@@ -1,0 +1,266 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Devoops_Index" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>朔州市大气重污染天气预测预警系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="css/css.css" rel="stylesheet" />
+    <link href="plugins/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <link href="plugins/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="plugins/xcharts/xcharts.min.css" rel="stylesheet" />
+    <link href="plugins/select2/select2.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="plugins/bootstrap-fileupload/bootstrap-fileupload.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <!--Start Header-->
+    <div id="screensaver">
+        <canvas id="canvas"></canvas>
+        <i class="fa fa-lock" id="screen_unlock"></i>
+    </div>
+    <div id="modalbox">
+        <div class="devoops-modal">
+            <div class="devoops-modal-header">
+                <div class="modal-header-name">
+                    <span>Basic table</span>
+                </div>
+                <div class="box-icons">
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="devoops-modal-inner">
+            </div>
+            <div class="devoops-modal-bottom">
+            </div>
+        </div>
+    </div>
+    <header class="navbar">
+        <div class="container-fluid expanded-panel" id="divTop">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12" style="padding: 0px;">
+                    <div style="height: 39px; background: url(img/index_02.png) repeat; width: 100%">
+                        <div style="background: url(img/index_01.png) no-repeat; width: 470px; height: 39px; float: left;"></div>
+                        <%--<div style="background: url(img/index_03.png) no-repeat; width: 589px; height: 39px; float: right;"></div>--%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div id="logo" class="col-xs-12 col-sm-2">
+                    <a href="#">功能列表</a>
+                </div>
+                <div id="top-panel" class="col-xs-12 col-sm-10" style="height: 40px;">
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-4">
+                            <a href="javascript:void(0)" style="margin-top: -6px;" class="show-sidebar" attr="show">
+                                <i class="fa fa-bars" title="缩放菜单"></i>
+                            </a>
+                            <div id="search">
+                                <div id="breadcrumb" style="padding-top: 0px;">
+                                    <ol class="breadcrumb">
+                                        <li style="color: #456782;">当前位置</li>
+                                        <li style="color: #456782;">监测实况</li>
+                                        <li style="color: #456782;">气象实况图</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-8 top-panel-right">
+                            <ul class="nav navbar-nav pull-right panel-menu">
+                                <li class="hidden-xs">
+                                    <a class="modal-link">
+                                        <i style="cursor:pointer;" onclick="publicBind()" class="fa fa-bullhorn" title="发布系统"></i>
+                                        <%--<span class="badge">7</span>--%>
+                                    </a>
+                                </li>
+                                <li class="hidden-xs">
+                                    <a class="modal-link">
+                                        <i style="cursor:pointer;" onclick="WarningBind()" class="fa fa-bell" title="预警"></i>
+                                        <%--<span class="badge">7</span>--%>
+                                    </a>
+                                </li>
+                                <li class="hidden-xs" style="display:none;">
+                                    <a class="ajax-link" href="ajax/calendar.html">
+                                        <i class="fa fa-calendar" title="任务"></i>
+                                    </a>
+                                </li>
+                                <li class="hidden-xs">
+                                    <a class="submenu" id="locked-screen" href="javascript:void(0)">
+                                        <i class="fa fa-envelope" title="锁屏"></i>
+                                    </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
+                                        <div class="avatar" style="vertical-align:top;">
+                                            <i class="fa fa-user" style="margin-top:5px;"></i>
+                                            <%--<img src="img/ur.png" class="img-rounded" alt="avatar" style="height: 30px;width:30px;margin-top:5px;" />--%>
+                                        </div>
+                                        
+                                      <i class="fa fa-angle-down pull-right"></i>
+                                        <div class="user-mini pull-right">
+                                            <span class="welcome">欢迎,</span>
+                                            <span><%=strUser %>登录</span>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                       <%-- <li>
+                                            <a href="#">
+                                                <i class="fa fa-user"></i>
+                                                <span>个人信息</span>
+                                            </a>
+                                        </li>--%>
+                                        <li style="display:none;">
+                                            <a href="ajax/calendar.html" class="ajax-link">
+                                                <i class="fa fa-tasks"></i>
+                                                <span>日常任务</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="exitSign();">
+                                                <i class="fa fa-power-off"></i>
+                                                <span>注销</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--End Header-->
+    <!--Start Container-->
+    <div id="main" class="container-fluid" style="padding-top: 30px;">
+        <div class="row">
+            <div id="sidebar-left" class="col-xs-2 col-sm-2">
+                <ul class="nav main-menu">
+                    <%=strModule %>
+                </ul>
+            </div>
+
+            <!--Start Content-->
+            <div id="content" class="col-xs-12 col-sm-10" style="padding-left: 0px; padding-right: 0px;">
+                <div id="ajax-content" style="padding-bottom: 0px;">
+
+                    <div id="ParentFrame" style="overflow: auto">
+                        <div id="MainFrame" style="padding-top: 15px;"></div>
+                    </div>
+                </div>
+            </div>
+            <!--End Content-->
+        </div>
+
+    </div>
+     <div id="dialog"></div>
+    <a id="aHidden"></a>
+    <script src="plugins/jquery/jquery-2.1.0.min.js"></script>
+    <!--End Container-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+   
+      
+<script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="plugins/justified-gallery/jquery.justifiedgallery.min.js"></script>
+    <script src="plugins/tinymce/tinymce.min.js"></script>
+    <script src="plugins/tinymce/jquery.tinymce.min.js"></script>
+    <script src="js/devoops.js"></script>
+    <!-- ThisPageScript -->
+    <script src="js/Index.js" type="text/javascript"></script>
+    <script src="js/SingleTable.js" type="text/javascript"></script>
+    <script src="js/method.js" type="text/javascript"></script>
+    <script src="js/bootstrap-paginator.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="plugins/bootbox/bootbox.min.js"></script>
+    <!-- loading -->
+    <script src="plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="js/app.js"></script>
+    <!-- Verification -->
+    <script src="plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="plugins/jquery-validation/localization/messages_zh.js" type="text/javascript"></script>
+    <!-- fileupload -->
+    <script src="plugins/bootstrap-fileupload/bootstrap-fileupload.js" type="text/javascript"></script>
+    <!-- jquery-mixitup -->
+    <script src="plugins/jquery-mixitup/jquery.mixitup.min.js" type="text/javascript"></script>
+    <script src="plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
+    <!-- data-tables -->
+    <script src="plugins/data-tables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="plugins/data-tables/DT_bootstrap.js" type="text/javascript"></script>
+    <!-- DatePicker -->
+    <script src="../Controls/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <!-- highcharts -->
+    <script src="../Controls/Highcharts-4.0.1/highcharts.js" type="text/javascript"></script>
+    <script src="../Controls/Highcharts-4.0.1/exporting.js" type="text/javascript"></script>
+    <!-- nicescroll -->
+    <script src="../Controls/jquery.nicescroll-master/jquery.nicescroll.min.js" type="text/javascript"></script>
+
+    <script>
+        $(function () {
+            //$(".dropdown-toggle:contains('用户管理')").trigger("click");
+            //$(".ajax-link:contains('用户管理')").trigger("click");
+
+            var menu = $(".main-menu li:first a");
+            menu.eq(0).trigger("click");
+            if (menu.siblings().size() > 0) {
+               // menu.trigger("click");
+                menu.siblings().eq(0).find("li:first a").trigger("click");
+            }
+            $(".main-menu a").each(function () {
+                var li = $(this);
+                li.click(function (a) {
+                    var contentli = '<ol class="breadcrumb"><li style="color:#456782;">当前位置</li>';
+                    var parenttext = li.parent().parent().siblings().filter("[href]")
+                    if (parenttext.text() != "") {
+                        contentli += '<li style="color:#456782;">' + parenttext.text() + '</li>';
+                    }
+                    contentli += '<li style="color:#456782;">' + li.text() + '</li></ol>';
+                    $("#breadcrumb").empty().html(contentli);
+                });
+            });
+        });
+        function WarningBind() {
+            var contentli = '<ol class="breadcrumb"><li style="color:#456782;">当前位置</li>';           
+            contentli += '<li style="color:#456782;">预测预报</li>';
+            contentli += '<li style="color:#456782;">预警管理</li></ol>';
+            $("#breadcrumb").empty().html(contentli);
+            TRansIframe('shuozhou/RevisedList.html', '预警管理');
+        }
+        function publicBind()
+        {
+            window.open('Publish/index.aspx');
+        }
+        //中间显示Iframe方法
+        function TRansIframe(url, title) {
+            hideIframe("ParentFrame");
+            CreateIframe("ParentFrame", "FrameContent", url);
+        }
+
+        //设置中间部分显示内容高度
+        $("#ParentFrame").height($(window).height() - 80);
+        $(window).resize(function () {
+            $("#ParentFrame").height($(window).height() - 80);
+        });
+     
+    </script>
+</body>
+</html>

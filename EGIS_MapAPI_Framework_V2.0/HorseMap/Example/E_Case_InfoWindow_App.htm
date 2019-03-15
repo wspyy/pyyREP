@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>切换符号气泡窗口</title>
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style="position: absolute; top: 0px; left: 100px; background-color: #BEBE9A;
+        padding: 2px; z-index: 10000">
+        <input type="button" value="添加点位" onclick="addPicGraphics()" />
+        
+        <input type="button" value="隐藏气泡窗口" onclick="hideInfoWindow()" />
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://192.168.5.150:8585/HorseMap/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781);
+    }
+
+    //添加图片符号点位图形
+    function addPicGraphics() {
+        //气泡窗口点位
+        var glowFilter = new HMap.GlowFilter({ color: 0x000000, blurX: 5, blurY: 5 });
+        var dropShadowFilter = new HMap.DropShadowFilter({ color: 0x000000, distance: 5, alpha: 0.8 });
+        var textFormat = new HMap.TextFormat({ color: 0xffffff, italic: true, bold: true });
+
+        var infoGraArr = new Array();
+        var picGraArr = new Array();
+        for (var i = 0; i < 3; i++) {
+            var infoGra = new HMap.InfoGraphic(100 + i * 10, 38, "河西区：30", { data: "hello!", placement: "upperLeft", textFromat: textFormat, filters: [glowFilter, dropShadowFilter],borderColor: 0x2793E6,backgroundColor: 0x2793E6 });
+            infoGra.addEventListener("mouseClick", onInfoPointGraClick);
+            infoGraArr.push(infoGra);
+            var picGra = new HMap.PictureGraphic(100 + i * 10, 38, "http://192.168.5.150:8585/HorseMap/Images/pic/water_3.png");
+            picGra.addEventListener("mouseClick", onPicPointGraClick, infoGra);
+            picGraArr.push(picGra);
+        }
+
+        hmap.addGraphic(picGraArr);
+        hmap.addGraphic(infoGraArr);
+    }
+   
+    function onInfoPointGraClick(e) {
+        var currentGraphic = e.target;
+        currentGraphic.visible = false;
+        currentInfoId = currentGraphic.id;
+        currentGraphic.data = "已更改！";
+        hmap.editGraphic(currentGraphic); //编辑图形
+
+        var field1 = new HMap.PopFieldOption("长度", "100", "m", true);
+        var field2 = new HMap.PopFieldOption("宽度", "30", "km", true);
+
+        var infoWindow = new HMap.PopInfoWindow("test", { fields: [field1, field2]});
+        infoWindow.addEventListener("infoWindowClosed", infoWindowClosed, currentGraphic);
+        hmap.showInfoWindow(currentGraphic.x, currentGraphic.y, infoWindow);
+    }
+    var currentInfoId;
+    function onPicPointGraClick(e) {
+        var currentGraphic = e.param;
+        if (currentInfoId != currentGraphic.id) {
+            currentGraphic.visible = false;
+            currentInfoId = currentGraphic.id;
+            currentGraphic.data = "已更改！";
+            hmap.editGraphic(currentGraphic); //编辑图形
+            var field1 = new HMap.PopFieldOption("长度", "100", "m", true);
+            var field2 = new HMap.PopFieldOption("宽度", "30", "km", true);
+
+            var infoWindow = new HMap.PopInfoWindow("test", { fields: [field1, field2]});
+            infoWindow.addEventListener("infoWindowClosed", infoWindowClosed, currentGraphic);
+            hmap.showInfoWindow(currentGraphic.x, currentGraphic.y, infoWindow);
+        }
+        
+    }
+    function infoWindowClosed(e) {
+        var currentGraphic = e.param;
+        currentGraphic.visible = true;
+        currentGraphic.data = "已更改！";
+        hmap.editGraphic(currentGraphic); //编辑图形
+    }
+
+    //隐藏气泡窗口
+    function hideInfoWindow() {
+        hmap.hideInfoWindow();
+    }
+
+    creatHMap();
+
+</script>
+</html>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    注意: 除了手动编辑此文件以外，您还可以使用 
+    Web 管理工具来配置应用程序的设置。可以使用 Visual Studio 中的
+     “网站”->“Asp.Net 配置”选项。
+    设置和注释的完整列表在 
+    machine.config.comments 中，该文件通常位于 
+    \Windows\Microsoft.Net\Framework\v2.x\Config 中
+    
+    
+    ##############################################################
+    key     SingleGridRowCount   单表采集列表显示行数：
+    value   15                   每页显示15行数据
+    
+    ##############################################################
+    key     SingleGridIsShowPK    单表采集是否显示标识列：
+    value   true                  显示标识列
+    value   false                 隐藏标识列
+    
+    ##############################################################      
+    key     SingleGridIsShowCheckDelete  单表采集是否显示批量删除：
+    value   true                  显示
+    value   false                 隐藏
+    
+    ##############################################################
+    key     ImportNumberFormat    导入excel设置数字格式：
+    value   -1                    不做处理
+    value   0.000000              数字保留6位小数
+
+    ##############################################################
+    key     ImportTextFiltration  导入excel需要过滤字符：
+    value   /-                    字符
+    
+    ##############################################################
+    key     ImportRemoveDuplicate 导入excel是否去重：
+    value   true                  去重，提示是否覆盖
+    value   false                 不去重，全部导入
+    
+    ##############################################################
+    key     ErrorLog              错误日志地址：
+    value   c:\\                  磁盘物理路径
+    
+    ############################################################## 
+-->
+<configuration>
+  <appSettings>
+     <!--市环境监测站值为01-->
+    <add key="JCDepartID" value="01"/>
+   <!--市气象台值为02-->
+    <add key="QXDepartID" value="02"/>
+    <add key="ImgLocalPath" value="D:\yutu_data\AirForeCastData\"/>
+    <add key="ReportUser" value="User0001A"/>
+    <add key="SingleGridRowCount" value="10" />
+    <add key="SingleGridIsShowPK" value="false" />
+    <add key="SingleGridIsShowCheckDelete" value="true" />
+    <add key="ImportNumberFormat" value="-1" />
+    <add key="ImportTextFiltration" value="/-" />
+    <add key="ImportRemoveDuplicate" value="true" />
+    
+    <add key="ErrorLog" value="c:\\ErrorLog\\" />
+    <!--数据库备份与还原路径-->
+  <add key="DbPath" value="E:\"/>
+    <add key="DbServer" value="192.168.4.102"/><!--192.168.4.102-->
+    <add key="Uid" value="sa"/>
+    <add key="Pwd" value="yutu"/><!--yutu-->
+  <!---->
+  <add key="webpages:Enabled" value="true" />
+  </appSettings>
+  <connectionStrings>
+      <add name="JinchengDB2Entities" connectionString="metadata=res://*/JinchengModel.csdl|res://*/JinchengModel.ssdl|res://*/JinchengModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=YUTU845\DUY;initial catalog=JinchengDB2;persist security info=True;user id=sa;password=yutu;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+      <add name="MetaDB" connectionString="Data Source=192.168.4.102;Initial Catalog=AirDB_shuozh;Persist Security Info=True;User ID=sa;Password=yutu;Connect Timeout=50000;" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  <system.web>
+
+    <httpHandlers>
+      <add verb="*" path="Reserved.ReportViewerWebControl.axd" type="Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"   />
+    </httpHandlers>
+    <!--
+              通过 <httpRuntime> 节可以配置 ASP.NET 使用的
+              上传文件的上传时间，从而实现超大文件上传。
+        -->
+    <httpRuntime requestValidationMode="2.0" executionTimeout="36000" maxRequestLength="951200" maxQueryStringLength="1024000" useFullyQualifiedRedirectUrl="true" minFreeThreads="8" minLocalRequestFreeThreads="4" appRequestQueueLimit="100" enableVersionHeader="true" />
+    <!--session过期时间，量纲：分钟-->
+    <sessionState mode="InProc" cookieless="false" timeout="30" />
+
+    <!-- 
+            设置 compilation debug="true" 可将调试符号插入
+            已编译的页面中。但由于这会 
+            影响性能，因此只在开发过程中将此值 
+            设置为 true。
+        -->
+    <compilation debug="true" targetFramework="4.0">
+      <buildProviders>
+        <add extension=".rdlc" type="Microsoft.Reporting.RdlBuildProvider, Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+      </buildProviders>
+      <assemblies>
+        <add assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="Microsoft.Build.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+     
+        <add assembly="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
+        <add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
+        <add assembly="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A" />
+      </assemblies>
+    </compilation>
+    <!--
+            通过 <authentication> 节可以配置 ASP.NET 用来 
+            识别进入用户的
+            安全身份验证模式。 
+        -->
+    <authentication mode="Windows" />
+    <!--
+            如果在执行请求的过程中出现未处理的错误，
+            则通过 <customErrors> 节可以配置相应的处理步骤。具体说来，
+            开发人员通过该节可以配置
+            要显示的 html 错误页
+            以代替错误堆栈跟踪。
+
+        -->
+    <!--自定义错误页面-->
+    <!--<customErrors  defaultRedirect="~/Framework/ErrorPage.aspx" mode="On">
+      <error statusCode="403" redirect="~/Framework/ErrorPage.aspx?Error=403"/>
+      <error statusCode="404" redirect="~/Framework/ErrorPage.aspx?Error=404"/>
+      <error statusCode="500" redirect="~/Framework/ErrorPage.aspx?Error=500"/>
+    </customErrors>-->
+    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID" />
+  </system.web>
+  <system.webServer>
+    <handlers>
+    <remove name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" /><remove name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" /><remove name="ExtensionlessUrlHandler-Integrated-4.0" /><add name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness32" responseBufferLimit="0" /><add name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness64" responseBufferLimit="0" /><add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    
+       <add path="Reserved.ReportViewerWebControl.axd" verb="*" type="Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" name="ss"/>
+    </handlers>    
+  <!--<modules>
+<add type="wqcms.URLRewriter.ModuleRewriter, wqcms_URLRewriter" name="ModuleRewriter" />
+</modules>-->
+  </system.webServer>
+  <!-- 
+        在 Internet 信息服务 7.0 下运行 ASP.NET AJAX 需要 system.webServer
+        节。对早期版本的 IIS 来说则不需要此节。
+    -->
+  <system.serviceModel>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="">
+          <serviceMetadata httpGetEnabled="true" />
+          <serviceDebug includeExceptionDetailInFaults="false" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <bindings>
+      <customBinding>
+        <binding name="Service.customBinding0">
+          <binaryMessageEncoding />
+          <httpTransport />
+        </binding>
+      </customBinding>
+    </bindings>
+    <serviceHostingEnvironment aspNetCompatibilityEnabled="true"
+      multipleSiteBindingsEnabled="true" />
+    <services>
+      <service name="Service">
+        <endpoint address="" binding="customBinding" bindingConfiguration="Service.customBinding0"
+          contract="Service" />
+        <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+      </service>
+    </services>
+  </system.serviceModel>
+</configuration>

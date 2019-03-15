@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>图片播放</title>
+    <style type="text/css" media="screen">
+        html, body{height: 100%;}
+        body{margin: 0;padding: 0; overflow: auto; text-align: center;background-color: #ffffff;}
+    </style>
+    
+</head>
+<body>
+    <div style="position: absolute; top: 0px; left: 100px; background-color: #BEBE9A;
+        padding: 2px; z-index: 10000">
+        <input type="button" value="添加模块" onclick="addWidget()" />
+        <input type="button" value="开始" onclick="play()" />
+        <input type="button" value="暂停" onclick="pause()" />
+        <input type="button" value="上一张" onclick="previous()" />
+        <input type="button" value="下一张" onclick="next()" />
+        <input type="button" value="停止" onclick="stop()" />
+        <input type="button" value="清除" onclick="closeAndclear()" />
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://localhost/HorseMapAPI/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+    var playPicWidget;
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://server.arcgisonline.com/arcgis/rest/services/ESRI_Imagery_World_2D/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781);
+        hmap.setMapOption({ colorStyle: "Blue_S" });
+    }
+
+    function addWidget() {
+        var pictureExtent = new HMap.Extent(116.397597, 29.477814, 123.196518, 34.657330);
+        var picArr = new Array();
+        for (var i = 0; i < 72; i++) {
+            var picture = new HMap.PlayPic({
+                picId: "pic" + i,
+                picUrl: "http://localhost/JcImg/CloudImg/" + i + ".JPG",
+                picInfo: i + "小时预报图片",
+                fadeInTime: 1000,
+                fadeOutTime: 1000,
+                pauseTime: 1000,
+                alphaMax: 1,
+                alphaMin: 0,
+                picExtent: pictureExtent
+            });
+            picArr.push(picture);
+        }
+
+
+        var widgetParam = new HMap.WidgetParam({ top: 40, right: 100 });
+        playPicWidget = new HMap.PlayPicWidget(picArr, { timeUnit:"h",isReplay: true, widgetParam: widgetParam, widgetWisible: true });
+        widget = hmap.addControl(playPicWidget);
+    }
+
+    function play() {
+        playPicWidget.play();
+    }
+    function pause() {
+        playPicWidget.pause();
+    }
+    function previous() {
+        playPicWidget.previous();
+    }
+    function next() {
+        playPicWidget.next();
+    }
+    function stop() {
+        playPicWidget.stop();
+    }
+    function closeAndclear() {
+        playPicWidget.closeAndclear();
+    }
+
+    creatHMap();
+
+</script>
+</html>

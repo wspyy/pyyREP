@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../plugins/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <script src="../plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="../plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../../Controls/My97DatePicker/WdatePicker.js"></script>
+    <script src="../js/ImgPlay.js"></script>
+    <style>
+        html, body {
+            background: #fff;
+        }
+
+        .dashboard_tabs {
+            background-color: #fff;
+        }
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        a, img {
+            border: 0;
+        }
+
+        body {
+            font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
+        }
+
+        /* tFocus */
+        #tFocus-btn li.active, #tFocus-leftbtn, #tFocus-rightbtn {
+            display: block;
+            background: url(../img/spr.png) no-repeat;
+        }
+
+        #tFocus {
+            width: 100%;
+            height: 100%;
+            background: #DDD;
+            overflow: hidden;
+            margin: 30px auto 0 auto;
+        }
+
+        #tFocus-pic {
+            width: 338px;
+            height: 400px;
+            position: relative;
+        }
+
+            #tFocus-pic li {
+                width: 338px;
+                height: 400px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                filter: alpha(opacity:0);
+                opacity: 0;
+            }
+
+        #tFocusBtn {
+            width: 100%;
+            height: 68px;
+            padding-left: 5px;
+            margin-top: 5px;
+            z-index: 20;
+            overflow: hidden;
+        }
+
+        #tFocus-btn {
+            width: 95%;
+            height: 68px;
+            position: relative;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+            float: left;
+            margin-right: 3px;
+        }
+
+            #tFocus-btn ul {
+                width: 100000px;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            #tFocus-btn li {
+                height: 57px;
+                width: 91px;
+                padding-top: 7px;
+                display: block;
+                float: left;
+                margin-right: 5px;
+            }
+
+                #tFocus-btn li img {
+                    border: 2px solid #dddddd;
+                }
+
+                #tFocus-btn li.active {
+                    background-position: -448px -100px;
+                }
+
+                    #tFocus-btn li.active img {
+                        border: 2px solid #40b9e5;
+                    }
+
+        #tFocus-leftbtn, #tFocus-rightbtn {
+            height: 40px;
+            margin-top: 18px;
+            width: 15px;
+            float: left;
+            text-indent: -9999px;
+        }
+
+        #tFocus-leftbtn {
+            margin-right: 5px;
+            background-position: -455px -60px;
+        }
+
+        #tFocus-rightbtn {
+            background-position: -480px -60px;
+        }
+
+        #dashboard_links {
+            cursor:pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        var start = false;
+        /*function getImgList(e) {
+            $.ajax({
+                url: "../../Data/GetAirForeCastData.ashx",
+                data: { flag: "Img", item: e.id },
+                dataType: "json",
+                success: function (result) {
+                    var strhtml1 = "";
+                    var strhtml2 = "";
+                    if (result) {
+                        debugger;
+                        for (var i = 0; i < result.length; i++) {
+                            strhtml1 += " <li><a href='#'><img height='400px' src='" + "http://" + document.location.hostname + "/JcData/AirForeCastData/CMAQ/2014121320jc/" + result[i]["imgurl"] + "'></a></li>";
+                            //result[i].imgurl
+                            if (i == 0)
+                                strhtml2 += " <li class='active'><img width='80px;' src='" + "http://" + document.location.hostname + "/JcData/AirForeCastData/CMAQ/2014121320jc/" + result[i]["imgurl"] + "'></li>";
+                                //2014121320jc/
+                            else
+                                strhtml2 += " <li><img width='80px;' src='" + "http://" + document.location.hostname + "/JcData/AirForeCastData/CMAQ/2014121320jc/" + result[i]["imgurl"] + "'></li>";
+                            //2014121320jc/
+                        }
+                        $("#tFocus-pic").html(strhtml1);
+                        $("#tFocus-btn-ul").html(strhtml2);
+                        if (!start)
+                            addLoadEvent(Focus());
+                        start = true;
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
+        }*/
+        function getImgList(e) {
+            var pubdate = $("#txt_Time").val();
+            var date = pubdate.replace(/-/g, "");
+            $.ajax({
+                url: "../../Data/GetAirForeCastData.ashx",
+                data: { flag: "picture", item: id, date: date },
+                dataType: "json",
+                success: function (result) {
+                    var strhtml1 = "";
+                    var strhtml2 = "";
+                    if (result) {
+                        debugger;
+                        for (var i = 0; i < result.length; i++) {
+                            strhtml1 += " <li><a href='#'><img height='400px' src='" + "http://" + window.location.host + "/AirData/AirForeCastData/CMAQ/" + result[i]["imgurl"] + "'></a></li>";
+                            //result[i].imgurl
+                            if (i == 0)
+                                strhtml2 += " <li class='active'><img width='80px;' src='" + "http://" + window.location.host + "/AirData/AirForeCastData/CMAQ/" + result[i]["imgurl"] + "'></li>";
+                                //2014121320jc/
+                            else
+                                strhtml2 += " <li><img width='80px;' src='" + "http://" + window.location.host + "/AirData/AirForeCastData/CMAQ/" + result[i]["imgurl"] + "'></li>";
+                            // document.location.host//2014121320jc/
+                        }
+                        $("#tFocus-pic").html(strhtml1);
+                        $("#tFocus-btn-ul").html(strhtml2);
+                        if (!start)
+                            addLoadEvent(Focus());
+                        start = true;
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <span style="float:left;">日期：</span>     
+        <span><input type="text" class="form-control" id="txt_Time" onclick="WdatePicker({
+    onpicked: function () {
+        if (pollItem != null) {
+            getImgList(pollItem);
+        }
+}
+}
+    )"  style="width:100px;" /></span>
+        <!--<input type="text" style="color: #1571a0; vertical-align: central; width: 100px;" runat="server" id="txt_beginDateSec" placeholder="Date" onchange="changeCheck(1);" />-->
+    </div>
+    <div id="tabs-3" style="background-color: #fff;">
+        <div class="row-fluid" style="margin-top: 5px;">
+            <div id="dashboard_links" class="col-xs-12 col-sm-2 pull-right" style="width: 10%;">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a class="tab-link" id="AQI">AQI</a></li>
+                    <li><a class="tab-link" id="PM2">PM2.5</a></li>
+                    <li><a class="tab-link" id="PM10">PM10</a></li>
+                    <li><a class="tab-link" id="CO">CO</a></li>
+                    <li><a class="tab-link" id="NOX">NO<sub>2</sub></a></li>
+                    <li><a class="tab-link" id="O3">O<sub>3</sub></a></li>
+                    <li><a class="tab-link" id="SO2">SO<sub>2</sub></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="dashboard_tabs" class="col-xs-12 col-sm-10">
+
+            <div id="tFocus">
+                <div class="prev" id="prev"></div>
+                <div class="next" id="next"></div>
+                <ul id="tFocus-pic">
+
+                </ul>
+                <div id="tFocusBtn">
+                    <a href="javascript:void(0);" id="tFocus-leftbtn">上一张</a>
+                    <div id="tFocus-btn">
+                        <ul id="tFocus-btn-ul">
+
+                        </ul>
+                    </div>
+                    <a href="javascript:void(0);" id="tFocus-rightbtn">下一张</a>
+                </div>
+            </div>
+            <!--tFocus end-->
+
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        TabImgs();
+        var pollItem="";
+        function TabImgs() {
+            $('#tabs-3').on('click', 'a.tab-link', function (e) {
+                //e.preventDefault();
+                $('div#dashboard_tabs').find('div[id^=dashboard]').each(function () {
+                    $(this).css('visibility', 'hidden').css('position', 'absolute');
+
+                });
+                //var attr = $(this).attr('id');
+                //$('#' + 'dashboard-' + attr).css('visibility', 'visible').css('position', 'relative');
+                $(this).closest('.nav').find('li').removeClass('active');
+                $(this).closest('li').addClass('active');
+
+                getImgList(this);
+                pollItem = this.id;
+            });
+        }
+    </script>
+</body>
+</html>

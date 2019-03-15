@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JinchengDB2Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="JinchengDB2" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="T_Bas_AirStation" EntityType="JinchengDB2Model.T_Bas_AirStation" />
+    <EntitySet Name="T_Bas_Enterprise" EntityType="JinchengDB2Model.T_Bas_Enterprise" />
+    <EntitySet Name="T_Bas_EnterpriseProduct" EntityType="JinchengDB2Model.T_Bas_EnterpriseProduct" />
+    <EntitySet Name="T_Bas_QualityStandard" EntityType="JinchengDB2Model.T_Bas_QualityStandard" />
+    <EntitySet Name="T_Bas_QxStation" EntityType="JinchengDB2Model.T_Bas_QxStation" />
+    <EntitySet Name="T_Cod_Folder" EntityType="JinchengDB2Model.T_Cod_Folder" />
+    <EntitySet Name="T_Cod_OperateType" EntityType="JinchengDB2Model.T_Cod_OperateType" />
+    <EntitySet Name="T_Cod_Region" EntityType="JinchengDB2Model.T_Cod_Region" />
+    <EntitySet Name="T_Mid_AirDayData" EntityType="JinchengDB2Model.T_Mid_AirDayData" />
+    <EntitySet Name="T_Mid_AirForeCast" EntityType="JinchengDB2Model.T_Mid_AirForeCast" />
+    <EntitySet Name="T_Mid_AirForeCastStat" EntityType="JinchengDB2Model.T_Mid_AirForeCastStat" />
+    <EntitySet Name="T_Mid_AirHourData" EntityType="JinchengDB2Model.T_Mid_AirHourData" />
+    <EntitySet Name="T_Mid_ImgFiles" EntityType="JinchengDB2Model.T_Mid_ImgFiles" />
+    <EntitySet Name="T_Mid_QXForeCastData" EntityType="JinchengDB2Model.T_Mid_QXForeCastData" />
+    <EntitySet Name="T_Mid_QXRealTimeData" EntityType="JinchengDB2Model.T_Mid_QXRealTimeData" />
+    <EntitySet Name="T_Mid_Report" EntityType="JinchengDB2Model.T_Mid_Report" />
+    <EntitySet Name="T_Mid_ReportData" EntityType="JinchengDB2Model.T_Mid_ReportData" />
+    <EntitySet Name="T_Oth_Database" EntityType="JinchengDB2Model.T_Oth_Database" />
+    <EntitySet Name="T_Oth_EnterUpload" EntityType="JinchengDB2Model.T_Oth_EnterUpload" />
+    <EntitySet Name="T_Oth_Image" EntityType="JinchengDB2Model.T_Oth_Image" />
+    <EntitySet Name="T_PC_Department" EntityType="JinchengDB2Model.T_PC_Department" />
+    <EntitySet Name="T_PC_Department_Model" EntityType="JinchengDB2Model.T_PC_Department_Model" />
+    <EntitySet Name="T_PC_Log" EntityType="JinchengDB2Model.T_PC_Log" />
+    <EntitySet Name="T_PC_Role" EntityType="JinchengDB2Model.T_PC_Role" />
+    <EntitySet Name="T_PC_Role_Model" EntityType="JinchengDB2Model.T_PC_Role_Model" />
+    <EntitySet Name="T_PC_User" EntityType="JinchengDB2Model.T_PC_User" />
+    <EntitySet Name="T_PC_User_DataFiltering" EntityType="JinchengDB2Model.T_PC_User_DataFiltering" />
+    <EntitySet Name="T_PC_User_Model" EntityType="JinchengDB2Model.T_PC_User_Model" />
+    <EntitySet Name="T_Sys_CommonTree" EntityType="JinchengDB2Model.T_Sys_CommonTree" />
+    <EntitySet Name="T_Sys_ConfigChart" EntityType="JinchengDB2Model.T_Sys_ConfigChart" />
+    <EntitySet Name="T_Sys_ConfigField" EntityType="JinchengDB2Model.T_Sys_ConfigField" />
+    <EntitySet Name="T_Sys_ConfigTable" EntityType="JinchengDB2Model.T_Sys_ConfigTable" />
+    <EntitySet Name="T_Sys_Exception" EntityType="JinchengDB2Model.T_Sys_Exception" />
+    <EntitySet Name="T_Sys_Model" EntityType="JinchengDB2Model.T_Sys_Model" />
+    <EntitySet Name="V_Mid_AirForeCast" EntityType="JinchengDB2Model.V_Mid_AirForeCast" />
+    <EntitySet Name="V_Mid_AirForeCastNew" EntityType="JinchengDB2Model.V_Mid_AirForeCastNew" />
+    <EntitySet Name="V_Mid_QXForeCast" EntityType="JinchengDB2Model.V_Mid_QXForeCast" />
+  </EntityContainer>
+  <EntityType Name="T_Bas_AirStation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RegionName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationCode" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="lon" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="lat" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Height" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Altitude" Type="Decimal" Precision="6" Scale="2" />
+  </EntityType>
+  <EntityType Name="T_Bas_Enterprise">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="EnterpriseCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="EnterpriseName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Bas_EnterpriseProduct">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="EnterpriseCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ProductCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Bas_QualityStandard">
+    <Key>
+      <PropertyRef Name="QualityLevel" />
+    </Key>
+    <Property Name="QualityLevel" Type="Int32" Nullable="false" />
+    <Property Name="QualitySymbol" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="QualityIndex" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Category" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MinValue" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MaxValue" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ColorName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ColorCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Affect" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Proposal" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Bas_QxStation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RegionName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationCode" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="lon" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="lat" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationHeiht" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="StationType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="T_Cod_Folder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="FolderCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FolderName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Cod_OperateType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="OperateTypeCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="OperateTypeName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Cod_Region">
+    <Key>
+      <PropertyRef Name="RegionCode" />
+    </Key>
+    <Property Name="RegionCode" Type="Int64" Nullable="false" />
+    <Property Name="RegionName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ParentNode" Type="Int64" />
+    <Property Name="Spell" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Summary" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Mid_AirDayData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="StationName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MoniDate" Type="DateTime" Precision="3" />
+    <Property Name="SO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="Int32" />
+    <Property Name="FirstP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevel" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevelDes" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirColor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Mid_AirForeCast">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AirLevel" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="StationName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MonitorTime" Type="DateTime" Precision="3" />
+    <Property Name="ForecastTime" Type="DateTime" Precision="3" />
+    <Property Name="SO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="Int32" />
+    <Property Name="FirstP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevel" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevelDes" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirColor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ForecastModel" Type="Int32" />
+  </EntityType>
+  <EntityType Name="T_Mid_AirForeCastStat">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AirLevel" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="StationName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MonitorTime" Type="DateTime" Precision="3" />
+    <Property Name="ForecastTime" Type="DateTime" Precision="3" />
+    <Property Name="SO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="Int32" />
+    <Property Name="FirstP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevel" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevelDes" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirColor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ForecastModel" Type="Int32" />
+    <Property Name="TimeType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="T_Mid_AirHourData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="StationName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MoniDate" Type="DateTime" Precision="3" />
+    <Property Name="SO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="Int32" />
+    <Property Name="FirstP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevel" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevelDes" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirColor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Mid_ImgFiles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Cate" Type="Int32" />
+    <Property Name="FileDate" Type="DateTime" Precision="3" />
+    <Property Name="FullFileName" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="T_Mid_QXForeCastData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="StationCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="ForeCastTime" Type="DateTime" Precision="3" />
+    <Property Name="ForeCastHours" Type="Int32" />
+    <Property Name="lon" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="lat" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MaxTemp" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MinTemp" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WeatherCode" Type="Int32" />
+    <Property Name="WindSpeed" Type="Int32" />
+    <Property Name="WindDirection" Type="Int32" />
+  </EntityType>
+  <EntityType Name="T_Mid_QXRealTimeData">
+    <Key>
+      <PropertyRef Name="StationNum" />
+      <PropertyRef Name="ObservTimes" />
+      <PropertyRef Name="Locat" />
+      <PropertyRef Name="InsertTime" />
+    </Key>
+    <Property Name="StationNum" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="ObservTimes" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="true" />
+    <Property Name="Locat" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="InsertTime" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="true" />
+    <Property Name="WindDirect" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="WindVelocity" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="WindDirect10" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="WindVelocity10" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="MaxWindD" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="MaxWindV" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="TimeMaxWind" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="InstantWindD" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="InstantWindV" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="ExMaxWindD" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="ExMaxWindV" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="TimeExMaxWind" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="PrecipitationAmount" Type="String" MaxLength="120" Unicode="false" FixedLength="true" />
+    <Property Name="Precipitation" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="FellRain" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="DryBulTemp" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="MaxTemp" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="TimeMaxTemp" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="MinTemp" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="TimeMinTemp" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="RelHumidity" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="MinRelHumidity" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="TimeMinRelH" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="VapourPress" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="DewTemp" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="StationPress" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="MaxPSta" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="TimeMaxPSta" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="MinPSta" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="TimeMinPSta" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="SurfaceTemp" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="SurfaceMaxTemp" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="TimeSurMaxTemp" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="SurfaceMinTemp" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="TimeSurMinTemp" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="Temp5cm" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="Temp10cm" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="Temp15cm" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="Temp20cm" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="Temp40cm" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="Temp80cm" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="Temp160cm" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="Temp320cm" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="EvagaugeAmount" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="SeaLevelPress" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="Visibility" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="CloudAmount" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="LowCloudAmount" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="CloudHigh" Type="String" MaxLength="30" Unicode="false" FixedLength="true" />
+    <Property Name="CloudShape" Type="String" MaxLength="45" Unicode="false" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="T_Mid_Report">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportCode" Type="Int32" />
+    <Property Name="ReportTime" Type="DateTime" Precision="0" />
+    <Property Name="QXText" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+    <Property Name="QXUser" Type="Int32" />
+    <Property Name="QXSubmit" Type="Int32" />
+    <Property Name="JCUser" Type="Int32" />
+    <Property Name="JCSubmit" Type="Int32" />
+  </EntityType>
+  <EntityType Name="T_Mid_ReportData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportCode" Type="Int32" />
+    <Property Name="AQI" Type="Int32" />
+    <Property Name="TimeType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="T_Oth_Database">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FileData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="imgFormat" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Tag" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Oth_EnterUpload">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UploadEnter" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FileName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FileUrl" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Folder" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="imgFormat" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Tag" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CheckType" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CheckMessage" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Oth_Image">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FileUrl" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Folder" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="imgFormat" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Tag" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_PC_Department">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DepartmentName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_PC_Department_Model">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ModelID" Type="String" Nullable="false" MaxLength="2000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_PC_Log">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="OperateUser" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="OperateUserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="OperateType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="OperateObject" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="OperateDesc" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Sys_DateTime" Type="DateTime" Precision="3" />
+    <Property Name="LocalIP" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="MacAddress" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_PC_Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="RoleName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_PC_Role_Model">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ModelID" Type="String" Nullable="false" MaxLength="2000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_PC_User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="U_LoginName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="U_Password" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="U_Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="U_Role" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="U_Sex" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="U_HomeTel" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="U_Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="U_RealName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DepartmentID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="RegionCode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_PC_User_DataFiltering">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ConfigID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SqlWhere" Type="String" Nullable="false" MaxLength="2000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_PC_User_Model">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ModelID" Type="String" Nullable="false" MaxLength="2000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Sys_CommonTree">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NodeID" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="NodeName" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="NodeParentID" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="VisibleType" Type="Boolean" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="OnClick" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="VisibleOpen" Type="Boolean" />
+    <Property Name="VisibleQuery" Type="Boolean" />
+    <Property Name="SYSBack1" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="SYSBack2" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="SYSBack3" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Sys_ConfigChart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CONFIG_ID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Chart_Style" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Chart_Type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Chart_Title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Chart_Table" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="X_Axis" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Y_Axis" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Y_Axis_Sql" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="Y_Value" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Y_Dimension" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SYSBack1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SYSBack2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SYSBack3" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Sys_ConfigField">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CONFIG_ID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FIELD_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FIELD_NAME_CN" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CONTROL_ID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DISPLAY_CTRL" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SHOW_INDEX" Type="Int32" />
+    <Property Name="CONTROL_WIDTH" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CONTROL_HEIGHT" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IS_MULTILINE" Type="Int32" />
+    <Property Name="IS_PRIMARY_KEY" Type="Int32" />
+    <Property Name="IS_COMPOSITE_KEY" Type="Int32" />
+    <Property Name="IS_FOREIGN_KEY" Type="Int32" />
+    <Property Name="FOREIGN_KEY_TBNAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FOREIGN_KEY_TEXT" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FOREIGN_KEY_VALUE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FOREIGN_ORDER_BY" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IS_ENUM" Type="Int32" />
+    <Property Name="ENUM_TEXT" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DATE_FORMAT" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CK_RAD_COLCOUNT" Type="Int32" />
+    <Property Name="LISTVIEW_ISSHOW" Type="Int32" />
+    <Property Name="FORMVIEW_ISSHOW" Type="Int32" />
+    <Property Name="FORMVIEW_ISEDIT" Type="Int32" />
+    <Property Name="IS_QUERY" Type="Int32" />
+    <Property Name="IS_EXPORT" Type="Int32" />
+    <Property Name="IS_CUSTOM" Type="Int32" />
+    <Property Name="IS_MD5" Type="Int32" />
+    <Property Name="IS_ImportCheckDuplicate" Type="Int32" />
+    <Property Name="CustomRules" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MAX_LENGTH" Type="Int32" />
+    <Property Name="CustomValidation" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="SYSBack1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SYSBack2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SYSBack3" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Sys_ConfigTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CONFIG_ID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DT_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DT_NAME_CN" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IS_QUERY" Type="Int32" />
+    <Property Name="IS_EXPORT" Type="Int32" />
+    <Property Name="IS_EDIT" Type="Int32" />
+    <Property Name="IS_IMPORT" Type="Int32" />
+    <Property Name="ORDERBY" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SYSBack1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SYSBack2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SYSBack3" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="T_Sys_Exception">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ExceptionPage" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="ExceptionFunction" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="ExceptionParameter" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ExceptionSource" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ExceptionDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="T_Sys_Model">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleID" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="ModuleName" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="ModuleParentID" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="VisibleType" Type="Int32" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="IconUrl" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="ModuleURL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="OnClick" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SystemName" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="SYSBack1" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="SYSBack2" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="SYSBack3" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="V_Mid_AirForeCast">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AirLevel" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="StationName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MonitorTime" Type="DateTime" Precision="3" />
+    <Property Name="ForecastTime" Type="DateTime" Precision="3" />
+    <Property Name="SO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="Int32" />
+    <Property Name="FirstP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevel" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevelDes" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirColor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ForecastModel" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_Mid_AirForeCastNew">
+    <Key>
+      <PropertyRef Name="AirLevel" />
+    </Key>
+    <Property Name="StationCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="StationName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="day" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="hour" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="AQI" Type="Int32" />
+    <Property Name="AirLevelDes" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FirstP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AirLevel" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PublicTime" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="MonitorTime" Type="DateTime" Precision="3" />
+    <Property Name="ForecastTime" Type="DateTime" Precision="3" />
+    <Property Name="ColorCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="lon" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="lat" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="V_Mid_QXForeCast">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="StationName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="StationCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="ForeCastTime" Type="DateTime" Precision="3" />
+    <Property Name="ForeCastHours" Type="Int32" />
+    <Property Name="lon" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="lat" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MaxTemp" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MinTemp" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="WeatherCode" Type="Int32" />
+    <Property Name="WindSpeed" Type="Int32" />
+    <Property Name="WindDirection" Type="Int32" />
+    <Property Name="WeatherName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

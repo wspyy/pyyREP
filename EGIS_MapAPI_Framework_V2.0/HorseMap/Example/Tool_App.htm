@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>查询</title>
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    </style>
+    
+</head>
+<body>
+    <input type="button" value="查询" onclick="search()" />
+    <input type="button" value="按图层名称查询" onclick="searchByName()" />
+    <input type="button" value="缓冲" onclick="buffer()" />
+    <input type="button" value="叠加对比" onclick="relation()" />
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://localhost/EGIS_Map_API_2.0/EGIS_MapAPI_Framework_V2.0/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+    
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781);
+    }
+
+    //查询
+    function search() {
+        var url = "http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaSpecial/MapServer/4";
+        var where = "1=1";
+        var extent = new HMap.Extent(117.1652, 39.1820, 117.4352, 39.5820);
+        var point1 = new HMap.MapPoint(116.5652, 38.5820);
+        var point2 = new HMap.MapPoint(117.4352, 38.5820);
+        var point3 = new HMap.MapPoint(117.2352, 39.5820);
+        var polygon = new HMap.Polygon([point1, point2, point3]);
+
+//        hmap.search(url, where, onResult, { geometry: extent });
+        toolSearch = new HMap.Search(url, where, onResult);
+        hmap.useTool(toolSearch);
+    }
+
+    //按图层名称查询
+    function searchByName() {
+        var dynamicLayerUrl = "http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaSpecial/MapServer";
+        var layerName = "省会";
+        var where = "1=1";
+//        hmap.searchByName(dynamicLayerUrl, layerName, where, onResult);
+        toolSearchByName = new HMap.SearchByName(dynamicLayerUrl, layerName, where, onResult);
+        hmap.useTool(toolSearchByName);
+    }
+
+    //缓冲
+    function buffer() {
+        var geomtryServerUrl = "http://192.168.5.150/ArcGIS/rest/services/Geometry/GeometryServer";
+        var geometrys = [new HMap.Extent(117.1652, 39.1820, 117.4352, 39.5820)];
+        var distances = [1000];
+//        hmap.buffer(geomtryServerUrl, geometrys, distances, onResult);
+        toolBuffer = new HMap.Buffer(geomtryServerUrl, geometrys, distances, onResult);
+        hmap.useTool(toolBuffer);
+    }
+
+    //叠加对比
+    function relation() {
+        var geomtryServerUrl = "http://192.168.5.150/ArcGIS/rest/services/Geometry/GeometryServer";
+        var searchGeometrys = [new HMap.Extent(117.1652, 39.1820, 117.4352, 39.5820)];
+        var geometryList = [new HMap.Extent(117.1652, 39.1820, 117.4352, 39.5820)];
+        hmap.relation(geomtryServerUrl, searchGeometrys, geometryList, onResult);
+    }
+
+    function onResult(result) {
+//        alert(result);
+        var graphicArr = new Array();
+        for (var i = 0; i < result.length; i++) {
+            var graphic;
+            if (result[i].Geometry.type == "geometry_mapPoint") {
+                graphic = new HMap.SimpleGraphic(result[i].Geometry.x, result[i].Geometry.y, { data: result[i].Attributes });
+            }
+            if (result[i].Geometry.type == "geometry_polyline") {
+                graphic = new HMap.PolylineGraphic(result[i].Geometry.paths, { data: result[i].Attributes });
+            }
+            if (result[i].Geometry.type == "geometry_polygon") {
+                graphic = new HMap.PolygonGraphic(result[i].Geometry.rings, { data: result[i].Attributes });
+            }
+            if (result[i].Geometry.type == "geometry_extent") {
+                graphic = new HMap.ExtentGraphic(result[i].Geometry.xmin, result[i].Geometry.ymin, result[i].Geometry.xmax, result[i].Geometry.ymax, { data: result[i].Attributes });
+            }
+            graphicArr.push(graphic);
+        }
+        graLayerId = hmap.addGraphic(graphicArr);
+    }
+    function onFault(e) {
+        alert(e);
+    }
+
+    creatHMap();
+
+</script>
+</html>

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+        <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    
+    <script type="text/javascript">
+        $(function () {
+            var b = window.navigator.userAgent;
+            var sc = $("#f");
+            if (b.indexOf("Firefox") >= 1) {
+                sc.css({ "position": "absolute", "filter": "alpha(opacity=0)", "opacity": "0", "width": "50px", "left": "10px", "top": "0px" });
+            }
+            else if (b.indexOf("Chrome") >= 1) {
+                sc.css({ "position": "absolute", "filter": "alpha(opacity=0)", "opacity": "0", "width": "30px" });
+            }
+        });
+        </script>
+</head>
+<body style="margin:0px;">
+<form action="../../Data/DbfUp.ashx" enctype="multipart/form-data" method="post" style="float: left; border: 0; width: 52px; height: 35px; margin-left: 5px;" target="refresh">
+   <div style="position:relative;float:left;">        
+    <input type="button" onmousemove="move(event)" value="导入" id="import" class="btn btn-success btn-label-left" /><!--请选择文件-->
+            <input type="file" id="f" onchange="this.form.submit()" name="dbf"  />
+   </div>     
+            <iframe name="refresh" style="display: none;"></iframe>
+        </form>
+<script type="text/javascript">
+   
+    function move(event) {
+        
+        var event = event || window.event;
+        var a = document.getElementById('f');
+        a.style.left = event.clientX - 50 + 'px';
+        a.style.top = event.clientY - 10 + 'px';
+        
+    }
+</script>
+</body>
+</html>

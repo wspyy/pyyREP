@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../css/PageBarStyle.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../../Controls/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../plugins/data-tables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../js/method.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <script src="../plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js"></script>
+    <script src="../../Demo/plugins/jquery-ui/i18n/jquery.ui.datepicker-zh-CN.min.js"></script>
+    <script src="../../Controls/My97DatePicker/WdatePicker.js"></script>
+    <style>
+        body {
+            background-color: white;
+        }
+
+        .tab {
+            word-break: keep-all;
+            border: 1px solid #EBEBEB;
+            border-bottom: none;
+            border-left: none;
+            border-top-left-radius: 6px;
+            width: 100%;
+        }
+
+        .date {
+            cursor: pointer;
+            color: blue;
+        }
+        .level {
+            cursor: pointer;
+            color: white;
+        }
+
+        .yellow {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            font-weight: bold;
+            line-height: 1;
+            background-color: rgb(207, 207, 11);
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+        }
+        
+        #main {
+            margin-top: 0px;
+        }
+
+        .tab th {
+            background: #6494BB;
+            border-left: 1px solid #EBEBEB;
+            padding: 5px;
+            line-height: 25px;
+            border-bottom: 1px solid #EBEBEB;
+            color: #fff;
+        }
+
+        .tab td {
+            border-bottom: 1px solid #EBEBEB;
+            border-left: 1px solid #EBEBEB;
+            padding: 5px;
+            line-height: 20px;
+            color: #41A7E2;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            loadData(1);
+            yjSearch();
+        });
+        function yjSearch() {
+            $("#cc").change(function () {
+                var value = $(this).val();
+                var begin = $("#txt_begin").val();
+                var end = $("#txt_end").val();
+                loadData(1, begin, end, value);
+            })
+        };
+        function loadData(pageIndex, begin, end, value) {
+            $("#tb").children().empty();
+            $.post("../../Data/GetReportData.ashx", { pageIndex: pageIndex, beginTime: begin, endTime: end, val: value }, function (data) {
+                debugger;
+                var dataJson = $.parseJSON(data);
+                //var i=1;
+                $.each(dataJson.Report, function (index, item) {
+                    //alert(item.ReportTime);
+                    $("<tr><td>朔州市</td><td>" + item.FutureDate + "</td><td><a href='../../Devoops/ConsulCir/ConsultReportDeatil.aspx?date=" + item.ReportTime + "' class='date' >" + item.ReportTime + "</a></td><td>" + item.AQI + "</td><td>" + qualityLevel(item.QualityLevel) + "</td><td>" + item.Firstp + "</td><td><span class='" + changeColor(item.YJColor) + "'><a href='../../Devoops/ConsulCir/PollutionDayliyReport.aspx?ReportCode=" + item.ReportCode + "&level=" + item.YJColor + "&date=" + item.ReportTime + "' class='level'>" + item.YJColor + "</a></span></td></tr>").appendTo("#tb");
+                });
+                $(".page_nav").empty();
+                $(".page_nav").append(dataJson.PageBar);
+                ChangePage(begin, end);
+            });
+        }
+        //单击页面条
+        function ChangePage(begin, end) {
+            var value = $("#cc").val();            $(".myPageBar").click(function () {
+                var pageIndex = $(this).attr("href").split('=')[1];                loadData(pageIndex, begin, end, value);                return false;
+            });
+        };
+        //AQI等级sss
+        function qualityLevel(level) {
+            var strLevel = level.toString();
+            var qLevel = "";
+            switch (strLevel) {
+                case "1":
+                    qLevel = "Ⅰ";
+                    break;
+                case "2":
+                    qLevel = "Ⅱ";
+                    break;
+                case "3":
+                    qLevel = "Ⅲ";
+                    break;
+                case "4":
+                    qLevel = "Ⅳ";
+                    break;
+                case "5":
+                    qLevel = "Ⅴ";
+                    break;
+                case "6":
+                    qLevel = "Ⅵ";
+                    break;
+                default:
+                    qLevel = "--";
+                    break;
+            }
+            return qLevel;
+        }
+        //预警等级
+        function changeColor(level) {
+            var color = "";
+            switch (level) {
+                case "橙色":
+                    color = "label label-warning";
+                    break;
+                case "红色":
+                    color = "label label-danger";
+                    break;
+                case "蓝色":
+                    color = "label label-info";
+                    break;
+                case "黄色":
+                    color = "yellow";
+                    break;
+                default:
+                    color = "--";
+            }
+            return color;
+        }
+        function showDoc() {
+            //parent.document.getElementById("FrameContent") = "shuozhou/Approval.html";
+            window.location.href = "ApprovalPublish.html";
+        }
+        function dateSearch() {
+            var begin = $("#txt_begin").val();            var end = $("#txt_end").val();            var value = $("#cc").val();            loadData(1, begin, end, value);
+        };
+        //显示全部
+        function showAll() {
+            $("#txt_begin").val("");
+            $("#txt_end").val("");
+            loadData(1, "", "");
+        };
+    </script>
+</head>
+<body id="main">
+    <!--<div class="box-content no-padding">-->
+        <div class="box ui-draggable ui-droppable">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-table"></i>
+                        <span>订正记录</span>
+                    </div>
+       <div class="box-icons">
+            <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+
+            </a>
+            <a class="expand-link">
+                <i class="fa fa-expand"></i>
+            </a>
+            <a class="close-link">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <div class="no-move"></div>
+        </div>
+
+        <div class="box-content" style="height: 60px;">                           
+                
+            <label class="col-sm-1 control-label" style="padding-right: 0px;margin-top: 3px;font-size: larger;width: 10%">会商日期：</label>
+            <div class="col-sm-2" style="padding-left: 0px;">
+                <input type="text" id="txt_begin" class="form-control" onclick="WdatePicker()" />
+
+            </div>
+            <label class="col-sm-1 control-label" style="padding-left: 0px; width: 10px;margin-top: 3px;font-size: larger;">至</label>
+            <div class="col-sm-2" style="padding-left: 8px;">
+                <input type="text" id="txt_end" class="form-control" onclick="WdatePicker()" />
+            </div>
+            
+            <!--<button class="btn btn-primary btn-label-left" id="imgPaly1" type="button" onclick="showAll()">
+               显示全部
+            </button>-->
+            <label class="col-sm-1 control-label" style="padding-right: 0px;margin-top: 3px;font-size: larger;width: 10%;">是否预警：</label>
+            <select id="cc" style="width:200px;float:left;height:25px;">
+                <option value="all" selected>全部</option>
+                <option value="yes">已预警</option>
+                <option value="no">未预警</option>                    
+            </select> 
+               <button class="btn btn-primary btn-label-left" style="float:left;margin-left:10px;" id="imgPaly" type="button" onclick="dateSearch()">
+                查询
+            </button>
+        </div>
+            <div class="box-content no-padding">
+                <!--class="box-content no-padding"-->
+                <!--table table-bordered table-hover  table-heading no-border-bottom-->
+                <table class="tab">
+                    <thead>
+                        <tr>
+                            <th>监测点</th>
+                            <th>预报日期</th>
+                            <th>会商日期</th>
+                            <th>AQI</th>
+                            <th>等级</th>
+                            <th>首要污染物</th>
+                            <th>预警等级</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tb"></tbody>
+                </table>
+            </div>
+    </div>
+    <div class="page_nav"></div>
+</body>
+</html>

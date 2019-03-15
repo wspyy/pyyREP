@@ -1,0 +1,54 @@
+﻿<%@ WebHandler Language="C#" Class="DbfUp" %>
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+
+public class DbfUp : IHttpHandler {
+    
+    public void ProcessRequest (HttpContext context) {
+        context.Response.ContentType = "text/plain";
+        List<string> list = new List<string>() { ".dbf" };
+       
+        if (context.Request.Files.Count <= 0)
+        {
+            context.Response.Write("请选择要上传的bdf文件");
+            return;
+        }
+
+        HttpPostedFile file = context.Request.Files["dbf"];
+        if (!string .IsNullOrEmpty( file.FileName))
+        {
+            string fileName = Path.GetFileName(file.FileName);//获得文件名包括扩展名
+            string fileExt = Path.GetExtension(fileName);//获得扩展名用来限定上传的文件
+            if (list.Contains(fileExt))
+            {
+                
+                string path = "../Devoops/Files/" ;
+                if (!Directory.Exists(context.Request.MapPath(path)))
+                {
+                    Directory.CreateDirectory(context.Request.MapPath(path));
+                }
+                string newPath = path + fileName ;
+                file.SaveAs(context.Request.MapPath(newPath));
+                context.Response.Write( fileName);
+            }
+            else
+            {
+               // context.Response.Write("只能上传dbf文件");
+            }
+        }
+        else
+        {
+            //context.Response.Write("请选择要上传的dbf文件");
+        }
+    }
+ 
+    public bool IsReusable {
+        get {
+            return false;
+        }
+    }
+
+}

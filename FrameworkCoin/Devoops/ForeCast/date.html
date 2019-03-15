@@ -1,0 +1,29 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset=UTF-8>
+<title>recursion</title>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+    onload = function () {
+        setInterval(function () {
+            var date = new Date();
+            date.setHours(date.getHours() + 1);
+            var m = date.getMonth() + 1;
+            m = m < 10 ? "0" + m : m;
+            var d = date.getDate();
+            d = d < 10 ? "0" + d : d;
+            var h = date.getHours();
+            h = h < 10 ? "0" + h : h;
+            var mm = date.getMinutes();
+            mm = mm < 10 ? "0" + mm : mm;
+            txt.value = m + "-" + d + "-" + h + "-" + mm;
+        }, 1000);
+    }
+</script>
+</head>
+<body>
+    <input type="text" id="txt" />
+</body>
+</html>

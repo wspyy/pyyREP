@@ -1,0 +1,1311 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.SingleTable</name>
+    </assembly>
+    <members>
+        <member name="M:System.SingleTable.PublicMethod.ChineseToPinyin.GetPYString(System.String)">
+            <summary>
+            汉字转拼音缩写
+            </summary>
+            <param name="str">要转换的汉字字符串</param>
+            <returns>拼音缩写</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.ChineseToPinyin.GetPYChar(System.String)">
+            <summary>
+            单个汉字转拼音字母
+            </summary>
+            <param name="c">要转换的单个汉字</param>
+            <returns>拼音声母</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.ChineseToPinyin.GetPYStringALL(System.String)">
+            <summary> 
+            汉字转拼音 
+            </summary> 
+            <param name="txt"> 需要转换的汉字 </param> 
+            <returns> 返回汉字对应的拼音 </returns> 
+        </member>
+        <member name="T:System.SingleTable.GetQueryInfo">
+            <summary>
+            动态生成Form类库
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.GetCfgTableByID(System.String)">
+            <summary>
+            查询配置表名表
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.GetCfgFieldByID(System.String)">
+            <summary>
+            查询配置字段表
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.GetQueryTitle(System.String)">
+            <summary>
+            动态生成标题
+            </summary>
+            <param name="title">标题，可以为空</param>
+            <returns>返回生成title的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.GetQueryTitle_Div(System.String)">
+            <summary>
+            动态生成标题
+            </summary>
+            <param name="title">标题，可以为空</param>
+            <returns>返回生成title的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.GetQueryButton(System.Boolean,System.Boolean)">
+            <summary>
+            动态生成按钮（目前包含：返回）
+            </summary>
+            <param name="isSave">是否显示保存按钮，格式：true、false</param>
+            <param name="isReturn">是否显示返回按钮，格式：true、false</param>
+            <returns>返回生成button的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.GetQueryButton_Div(System.Boolean,System.Boolean)">
+            <summary>
+            动态生成按钮（目前包含：返回）
+            </summary>
+            <param name="isSave">是否显示保存按钮，格式：true、false</param>
+            <param name="isReturn">是否显示返回按钮，格式：true、false</param>
+            <returns>返回生成button的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.GetQuery(System.String,System.Int32)">
+            <summary>
+            动态生成Query-添加
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="columnNumber">显示列数</param>
+            <returns>返回生成Query的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.GetQuery_Div(System.String,System.Int32)">
+            <summary>
+            动态生成Query-添加
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="columnNumber">显示列数</param>
+            <returns>返回生成Query的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.DataSave(System.String,System.String[],System.Object[])">
+            <summary>
+            组合where查询条件
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="data_fieldName">需要提交的数据字段名</param>
+            <param name="data_fieleValue">需要提交的数据字段值</param>
+            <returns>查询条件，例如 and 1=1</returns>
+        </member>
+        <member name="M:System.SingleTable.GetQueryInfo.CreateControl(System.Data.DataTable,System.Int32)">
+            <summary>
+            创建控件,未赋值
+            </summary>
+            <param name="dtField">配置列，表数据</param>
+            <param name="flagNumber">行号</param>
+            <returns>创建控件的html字符串</returns>
+        </member>
+        <member name="T:System.SingleTable.PublicMethod.MSWordDot">
+            <summary>
+            Word模板操作类
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordDot.#ctor(System.String)">
+            <summary>
+            创建文档
+            </summary>
+            <param name="templatePath">模板文件路径</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordDot.InsertTextToBookmark(System.String,System.String)">
+            <summary>
+            插入文本到书签位置
+            </summary>
+            <param name="bookmarkName">书签名</param>
+            <param name="Text">文本</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordDot.InsertPictureToBookmarkByPath(System.String,System.String)">
+            <summary>
+            插入图片到书签位置
+            </summary>
+            <param name="bookmarkName">书签名</param>
+            <param name="picturePath">图片路径</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordDot.InsertTableToBookmark(System.String,System.String)">
+            <summary>
+            插入表格到书签位置
+            </summary>
+            <param name="bookmarkName">书签名</param>
+            <param name="tableString">表格内容（html）</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordDot.InsertTableToBookmark(System.String,System.String,System.String)">
+            <summary>
+            插入表格到书签位置
+            </summary>
+            <param name="bookmarkName">书签名</param>
+            <param name="tableString">表格内容（html）</param>
+            <param name="strCodePage">字符编码</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordDot.InsertHtmlFile(System.String,System.String)">
+            <summary>
+            插入Html文件到书签位置
+            </summary>
+            <param name="bookmarkName">书签名称</param>
+            <param name="filePath">文件路径</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordDot._FindBookmark(System.String)">
+            <summary>
+            查找书签
+            </summary>
+            <param name="bookmarkName">书签名</param>
+            <returns>找到的书签</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordDot.SaveAs(System.String)">
+            <summary>
+            保存文档
+            </summary>
+            <param name="path">保存路径</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordDot.Close(System.Boolean)">
+            <summary>
+            关闭文档
+            </summary>
+            <param name="bSaveChanges">是否保存改动</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:System.SingleTable.GetCalendar.GetDaysInMonth(System.Int32,System.Int32)">
+            <summary>
+            根据年份及月份得到每月的总天数
+            </summary>
+            <param name="iMonth">月</param>
+            <param name="iYear">年</param>
+            <returns>天数</returns>
+        </member>
+        <member name="M:System.SingleTable.GetCalendar.CheckLeap(System.Int32)">
+            <summary>
+            判断闰年
+            </summary>
+            <param name="year">年</param>
+            <returns>是否是闰年</returns>
+        </member>
+        <member name="M:System.SingleTable.GetCalendar.GetCalendarButton(System.Boolean,System.String)">
+            <summary>
+            动态生成按钮（目前包含：添加）
+            </summary>
+            <param name="isJump">是否显示上一月、下一月，格式：true、false</param>
+            <param name="title">标题，可以为空</param>
+            <returns>返回生成button的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetCalendar.GetCalendarHtml(System.Int32,System.Int32)">
+            <summary>
+            返回空日历表
+            </summary>
+            <param name="month">月</param>
+            <param name="year">年</param>
+            <returns>返回生成空日历的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetCalendar.GetCalendarHtml(System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            返回含信息的日历表
+            </summary>
+            <param name="month">月</param>
+            <param name="year">年</param>
+            <param name="configID">配置表唯一编号</param>
+            <param name="timeField">时间字段名称，例如：DutyDate</param>
+            <param name="messageField">需组合的消息字段名称，例如：GroupLeader|GroupPerson</param>
+            <returns>返回生成含信息的日历的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetCalendar.GetWeekTitle">
+            <summary>
+            返回星期几表头，私有方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:System.SingleTable.SQLHelper">
+            <summary>
+            使用数据工厂的模式的程序
+            </summary>
+        </member>
+        <member name="F:System.SingleTable.SQLHelper.myConnectionString">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.#ctor(System.String)">
+            <summary>
+            根据connname获取数据
+            </summary>
+            <param name="connName"></param>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.#ctor(System.String,System.String)">
+            <summary>
+            根据ProviderName和连接串获取数据
+            </summary>
+            <param name="providerName"></param>
+            <param name="connString"></param>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.CreateParameter">
+            <summary>
+            静态方法，返回DbParameter
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.CreateCommandBuilder">
+            <summary>
+            静态方法，返回DbCommandBuilder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.CreateConnection">
+            <summary>
+            静态方法，返回DbConnection
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.CreateDataAdapter">
+            <summary>
+            静态方法，返回DbCommandBuilder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.TestConnection">
+            <summary>
+            判断当前数据库是否可以连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.GetDataBaseName">
+            <summary>
+            返回当前数据库名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.ExecuteSQLDataSet(System.String)">
+            <summary>
+            传入参数：语句，参数数组
+            操作目的：执行SQL语句
+            返 回 值：数据库表
+            </summary>
+            <param name="sProcTxt">语句</param>
+            <param name="parameters">参数数组</param>
+            <returns>
+            返 回 值：数据库表
+            </returns>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.ExecuteSQLExist(System.String)">
+            <summary>
+            传入参数：语句，参数数组
+            操作目的：执行SQL语句
+            返 回 值：是否有数据
+            </summary>
+            <param name="sProcTxt">语句</param>
+            <param name="parameters">参数数组</param>
+            <returns>
+            返 回 值：是否有数据
+            </returns>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.ExecuteSQLNonQuery(System.String)">
+            <summary>
+            传入参数：语句，参数数组
+            操作目的：执行存储过程
+            返 回 值：执行的行数
+            </summary>
+            <param name="sProcTxt">语句</param>
+            <returns>
+            返 回 值：执行的行数
+            </returns>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.ExecuteSQLScalar(System.String)">
+            <summary>
+            传入参数：语句，参数数组
+            操作目的：执行SQL语句
+            返 回 值：执行的行数
+            </summary>
+            <param name="sProcTxt">语句</param>
+            <param name="parameters">参数数组</param>
+            <returns>
+            返 回 值：第一行第一列
+            </returns>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.ExecuteProcDataSet(System.String)">
+            <summary>
+            传入参数：语句，参数数组
+            操作目的：执行存储过程
+            返 回 值：数据库表
+            </summary>
+            <param name="sProcTxt">语句</param>
+            <param name="parameters">参数数组</param>
+            <returns>
+            返 回 值：数据库表
+            </returns>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.ExecuteProcExist(System.String)">
+            <summary>
+            传入参数：语句，参数数组
+            操作目的：执行存储过程
+            返 回 值：是否存在
+            </summary>
+            <param name="sProcTxt">语句</param>
+            <param name="parameters">参数数组</param>
+            <returns>
+            返 回 值：是否存在
+            </returns>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.ExecuteProcNonQuery(System.String)">
+            <summary>
+            传入参数：语句，参数数组
+            操作目的：执行存储过程
+            返 回 值：执行的行数
+            </summary>
+            <param name="sProcTxt">语句</param>
+            <returns>
+            返 回 值：执行的行数
+            </returns>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.ExecuteProcScalar(System.String)">
+            <summary>
+            传入参数：语句，参数数组
+            操作目的：执行存储过程
+            返 回 值：第一行第一列
+            </summary>
+            <param name="sProcTxt">语句</param>
+            <param name="parameters">参数数组</param>
+            <returns>
+            返 回 值：第一行第一列
+            </returns>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:System.SingleTable.SQLHelper.PrepareParameters(System.Data.Common.DbCommand,System.Collections.Generic.List{System.Data.Common.DbParameter})">
+            <summary>
+            准备参数
+            </summary>
+            <param name="comm"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="T:System.SingleTable.PublicMethod.MSExcel">
+            <summary>
+            导出Excel（html xml 转excel，不是标准excel）,导入（调用Microsoft.Ace.OleDb.12.0，读取标准excel）
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcel.AddExcelHead">
+            <summary>
+            添加xml头，显示excel框线
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcel.AddExcelHead(System.String)">
+            <summary>
+            添加xml头，显示excel框线
+            </summary>
+            <param name="SheetName">选项卡名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcel.ExportTable(System.Data.DataTable)">
+            <summary>
+            导出Excel
+            </summary>
+            <param name="tb">表格</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcel.AddExcelbottom">
+            <summary>
+            添加xml尾，显示excel框线
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcel.ImportExcel(System.String,System.String)">
+            <summary>
+            连接Excel  读取Excel数据   并返回DataSet数据集合
+            </summary>
+            <param name="filepath">Excel服务器路径</param>
+            <param name="tableName">Excel表名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.SendMail.MailSend(System.String,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.String,System.String,System.String@)">
+            <summary>
+            发送邮件
+            </summary>
+            <param name="server">服务器地址</param>
+            <param name="userID">用户邮箱ID</param>
+            <param name="pwd">密码</param>
+            <param name="fromAddress">发送人地址</param>
+            <param name="toAddressLst">收件人地址列表</param>
+            <param name="annexLst">附件路径列表</param>
+            <param name="subTxt">邮件主题</param>
+            <param name="bodyTxt">邮件内容</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.addContents">
+            <summary>
+            添加目录
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.addPageNumber">
+            <summary>
+            添加页码
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.checkWord">
+            <summary>
+            进程中检查是否有word进程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.defaultFont">
+            <summary>
+            默认字体
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.initializeBuiltinStyle">
+            <summary>
+            初始化文档样式
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.initializeList">
+            <summary>
+            初始化 样式
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.insertText(System.String,System.String,System.String,System.Single)">
+            <summary>
+            自定义插入文字
+            </summary>
+            <param name="value">文本内容</param>
+            <param name="position">位置，例如：left，center</param>
+            <param name="fontName">字体名称，例如：宋体，Arial</param>
+            <param name="fontSize">字号，例如：36,27</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.insertText(System.String,System.String,System.String,System.Single,Microsoft.Office.Interop.Word.WdColor,System.Int32)">
+            <summary>
+            自定义插入文字
+            </summary>
+            <param name="value">文本内容</param>
+            <param name="position">位置，例如：left，center</param>
+            <param name="fontName">字体名称，例如：宋体，Arial</param>
+            <param name="fontSize">字号，例如：36,27</param>
+            <param name="fontSize">颜色，例如：WdColor.wdColorRed,WdColor.wdColorBlack</param>
+            <param name="fontSize">粗细，例如：1,2</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.newBreakPage">
+            <summary>
+            插入分页
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.newParagraph">
+            <summary>
+            插入换行
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.newParagraph(System.Single)">
+            <summary>
+            插入换行
+            </summary>
+            <param name="indent">缩进排版</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.save(System.String,System.Boolean)">
+            <summary>
+            保存word文件
+            </summary>
+            <param name="sFileName">文件名称，例如：@"E:\abc.doc"</param>
+            <param name="bClose">是否自动关闭word程序，例如 true </param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.Dispose">
+            <summary>
+            手动关闭word程序
+            </summary>
+        </member>
+        <member name="F:System.SingleTable.PublicMethod.MSWordCustom.chartNumber">
+            <summary>
+            图表数量
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSWordCustom.insertChart(System.Data.DataTable,System.Boolean,Microsoft.Office.Interop.Graph.XlChartType,System.Object,System.Object,System.String)">
+            <summary>
+            插入图表    使用dll为 Microsoft.Office.Interop.Graph 版本12.0.0.0
+            </summary>
+            <param name="dt">数据集</param>
+            <param name="isLegend">是否显示图例，例如 false，ture</param>
+            <param name="chartType">图表类型，例如 Microsoft.Office.Interop.Graph.XlChartType.xl3DColumn</param>
+            <param name="width">图表宽度，例如500</param>
+            <param name="height">图表高度，例如400</param>
+            <param name="creditLine">题注，例如 No(表示不显示题注),水质量分析图</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.DataToJson.DataTable2Json(System.Data.DataTable)">
+            <summary> 
+             dataTable转换成Json格式 
+            </summary> 
+            <param name="dt"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.DataToJson.Dataset2Json(System.Data.DataSet)">
+            <summary> 
+             DataSet转换成Json格式 
+            </summary> 
+            <param name="ds">DataSet</param> 
+            <returns></returns> 
+        </member>
+        <member name="T:System.SingleTable.PublicMethod.LogInformation">
+            <summary>
+            日志记录
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.LogInformation.OperationLog(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            记录操作日志
+            </summary>
+            <param name="User">用户名</param>
+            <param name="Name">姓名</param>
+            <param name="Type">操作类型</param>
+            <param name="Object">操作对象</param>
+            <param name="Desc">备注</param>
+            <param name="IP">操作机器IP</param>
+            <param name="Mac">操作机器Mac地址</param>
+            <returns>成功与否</returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.LogInformation.CatchEx(System.String,System.String,System.String,System.String)">
+            <summary>
+            记录异常日志
+            </summary>
+            <param name="exceptionPage">出现异常页面</param>
+            <param name="exceptionFunction">出现异常方法</param>
+            <param name="exceptionParameter">异常方法相关参数</param>
+            <param name="exceptionSource">捕获异常的原始内容</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="T:System.SingleTable.GetFormInfo">
+            <summary>
+            动态生成Form类库
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetCfgTableByID(System.String)">
+            <summary>
+            查询配置表名表
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetCfgFieldByID(System.String)">
+            <summary>
+            查询配置字段表
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetCfgFieldByID_Save(System.String)">
+            <summary>
+            查询配置字段表
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetQueryTableSql(System.String,System.String)">
+            <summary>
+            获取查询业务表的sql,无分页
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="sqlWhere">过滤条件，格式：and id=1</param>
+            <returns>查询业务表的sql</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetFormButton(System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            动态生成按钮
+            </summary>
+            <param name="title">标题，可以为空</param>
+            <param name="isReturn">是否显示返回按钮</param>
+            <param name="isSave">是否显示保存按钮</param>
+            <param name="CustomButton">自定义按钮，格式：标准html button，包含点击事件</param>
+            <returns>返回生成button的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetFormButton_Div(System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            动态生成按钮
+            </summary>
+            <param name="title">标题，可以为空</param>
+            <param name="isReturn">是否显示返回按钮</param>
+            <param name="isSave">是否显示保存按钮</param>
+            <param name="CustomButton">自定义按钮，格式：标准html button，包含点击事件</param>
+            <returns>返回生成button的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetDetailUpdate(System.String,System.String,System.String,System.Int32,System.String)">
+            <summary>
+            动态生成Form
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="pk_Field">过滤字段，格式：ID</param>
+            <param name="pk_Value">过滤值，格式：1</param>
+            <param name="columnNumber">一行显示几列，格式：1</param>
+            <returns>返回生成Form的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetDetailUpdate_Div(System.String,System.String,System.String,System.Int32,System.String)">
+            <summary>
+            动态生成Form
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="pk_Field">过滤字段，格式：ID</param>
+            <param name="pk_Value">过滤值，格式：1</param>
+            <param name="columnNumber">一行显示几列，格式：1</param>
+            <returns>返回生成Form的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetFormAdd(System.String,System.Int32)">
+            <summary>
+            动态生成Form-添加
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="columnNumber"></param>
+            <returns>返回生成Form的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetFormAdd_Div(System.String,System.Int32)">
+            <summary>
+            动态生成Form-添加
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="columnNumber"></param>
+            <returns>返回生成Form的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.DataSave(System.String,System.String[],System.Object[])">
+            <summary>
+            保存操作结果
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="data_fieldName">需要提交的数据字段名</param>
+            <param name="data_fieleValue">需要提交的数据字段值</param>
+            <returns>操作结果</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.DataSave(System.String,System.String[],System.Object[],System.String)">
+            <summary>
+            保存操作结果
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="data_fieldName">需要提交的数据字段名</param>
+            <param name="data_fieleValue">需要提交的数据字段值</param>
+            <param name="sqlWhere">添加操作条件为空，更新操作传入条件</param>
+            <returns>操作结果</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.CreateControl(System.Data.DataTable,System.Int32,System.String)">
+            <summary>
+            创建控件,未赋值
+            </summary>
+            <param name="dtField">配置列，表数据</param>
+            <param name="flagNumber">行号</param>
+            <param name="configID">唯一标识</param>
+            <returns>创建控件的html字符串</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.CreateControl(System.Data.DataTable,System.Int32,System.Data.DataTable)">
+            <summary>
+            创建控件,赋值
+            </summary>
+            <param name="dtField">配置列，表数据</param>
+            <param name="flagNumber">行号</param>
+            <param name="dtBusiness">业务表数据</param>
+            <returns>创建控件的html字符串</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.GetCustomRules(System.String,System.String,System.String)">
+            <summary>
+            根据自定义规则生成标识
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="fieldName">字段名</param>
+            <param name="customRules">自定义规则</param>
+            <returns>新标识</returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.ImportCheckDuplicate(System.String,System.Data.DataTable)">
+            <summary>
+            导入Excel前检查是否有重复数据
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="dt">数据表，第一行为列头（中文描述）</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.GetFormInfo.ImportExcelData(System.String,System.Data.DataTable)">
+            <summary>
+            导入Excel中获取的数据到数据库
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="dt">数据表，第一行为列头（中文描述）</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.ModifyConfig.CopyDirectory(System.String,System.String)">
+            <summary>       
+            拷贝文件夹    
+            </summary>        
+            <param name="srcdir"></param>    
+            <param name="desdir"></param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.ModifyConfig.AddpathPower(System.String,System.String,System.String)">
+            <summary>
+            为创建的临时文件分配权限
+            </summary>
+            <param name="pathname"></param>
+            <param name="username"></param>
+            <param name="power"></param>
+            <remarks></remarks>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.ModifyConfig.ConnectionTest(System.String)">
+            <summary>
+            测试连接数据库是否成功
+            </summary>
+            连接字符串格式:"Data Source=localhost\SQLEXPRESS;Initial Catalog=Sample;Integrated Security=True"
+            <returns></returns>
+        </member>
+        <member name="T:System.SingleTable.PublicMethod.MSExcelCustom">
+            <summary>
+            Excel工具类，实现 Microsoft.Office.Interop.Excel 
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.#ctor(System.String,System.String)">
+            <summary>
+            构造函数，将一个已有Excel工作簿作为模板，并指定输出路径
+            </summary>
+            <param name="templetFilePath">Excel模板文件路径</param>
+            <param name="outputFilePath">输出Excel文件路径</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.#ctor">
+            <summary>
+            构造函数，新建一个工作簿
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.AddSheet">
+            <summary>
+            添加Sheet,默认 Sheet 个数为 3
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.ChangeSheet(System.Int32)">
+            <summary>
+            切换Excel中Sheet（薄板、选项卡）
+            </summary>
+            <param name="i">Sheet索引</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.ChangeSheet(System.Int32,System.String)">
+            <summary>
+            切换Excel中Sheet（薄板、选项卡）
+            </summary>
+            <param name="i">Sheet索引</param>
+            <param name="sheetName">Sheet名称</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.ArrayToExcel(System.Object[0:,0:],System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            将二维数组数据写入Excel文件
+            </summary>
+            <param name="arr">二维数组</param>
+            <param name="top">行索引</param>
+            <param name="left">列索引</param>
+            <param name="xAlignment">行对齐方式（center，left，right），传""默认为居中</param>
+            <param name="yAlignment">列对齐方式（center，left，right），传""默认为居中</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.ArrayToExcel(System.Object[0:,0:],System.String,System.String,System.String)">
+            <summary>
+            将二维数组数据写入Excel文件
+            </summary>
+            <param name="arr">二维数组</param>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="xAlignment">行对齐方式（center，left，right），传""默认为居中</param>
+            <param name="yAlignment">列对齐方式（center，left，right），传""默认为居中</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.InsertRows(System.Int32,System.Int32)">
+            <summary>
+            插行（在指定行上面插入指定数量行）
+            </summary>
+            <param name="rowIndex"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.CopyRows(System.Int32,System.Int32)">
+            <summary>
+            复制行（在指定行下面复制指定数量行）
+            </summary>
+            <param name="rowIndex"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.DeleteRows(System.Int32,System.Int32)">
+            <summary>
+            删除行
+            </summary>
+            <param name="rowIndex"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.InsertColumns(System.Int32,System.Int32)">
+            <summary>
+            插列（在指定列右边插入指定数量列）
+            </summary>
+            <param name="columnIndex"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.DeleteColumns(System.Int32,System.Int32)">
+            <summary>
+            删除列
+            </summary> 
+            <param name="columnIndex"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.MergeCells(System.Int32,System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>
+            合并单元格，并赋值，对指定WorkSheet操作
+            </summary>
+            <param name="beginRowIndex">开始行索引</param>
+            <param name="beginColumnIndex">开始列索引</param>
+            <param name="endRowIndex">结束行索引</param>
+            <param name="endColumnIndex">结束列索引</param>
+            <param name="text">合并后Range的值</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCells(System.Int32,System.Int32,System.String)">
+            <summary>
+            向单元格写入数据，对当前WorkSheet操作
+            </summary>
+            <param name="rowIndex">行索引</param>
+            <param name="columnIndex">列索引</param>
+            <param name="text">要写入的文本值</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCells(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            向单元格写入数据，对当前WorkSheet操作
+            </summary>
+            <param name="rowIndex">行索引</param>
+            <param name="columnIndex">列索引</param>
+            <param name="text">要写入的文本值</param>
+            <param name="comment">批注</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellComment(System.Int32,System.Int32,System.String)">
+            <summary>
+            向单元格写入数据，对当前WorkSheet操作
+            </summary>
+            <param name="rowIndex">行索引</param>
+            <param name="columnIndex">列索引</param>
+            <param name="comment">批注</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.MergeCells(System.String,System.String,System.String)">
+            <summary>
+            合并单元格，并赋值，对指定WorkSheet操作
+            </summary>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="EndRangeName"> 结束单元格名称，例如：F7 </param> 
+            <param name="text">合并后Range的值</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCells(System.String,System.String)">
+            <summary>
+            向单元格写入数据，对当前WorkSheet操作
+            </summary>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="text">要写入的文本值</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCells(System.String,System.String,System.String)">
+            <summary>
+            向单元格写入数据，对当前WorkSheet操作
+            </summary>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="text">要写入的文本值</param>
+            <param name="comment">批注</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellComment(System.String,System.String)">
+            <summary>
+            向单元格写入数据，对当前WorkSheet操作
+            </summary>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="comment">批注</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsLineStyle(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            单元格边框
+            </summary>
+            <param name="startRow">起始行</param>
+            <param name="startColumn">起始列</param>
+            <param name="endRow">结束行</param>
+            <param name="endColumn">结束列</param>
+            <param name="lineStyle">边框的粗细</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsWidthHeight(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            单元格边框
+            </summary>
+            <param name="startRow">起始行</param>
+            <param name="startColumn">起始列</param>
+            <param name="endRow">结束行</param>
+            <param name="endColumn">结束列</param>
+            <param name="columnWidth">单元格的宽度，-1为自动适应宽度</param>
+            <param name="rowHeight">单元格的行高，注：excel列宽与行高大小不一样</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsBackColor(System.Int32,System.Int32,System.Int32,System.Int32,System.SingleTable.PublicMethod.ColorIndex)">
+            <summary>
+            单元格背景色及填充方式
+            </summary>
+            <param name="startRow">起始行</param>
+            <param name="startColumn">起始列</param>
+            <param name="endRow">结束行</param>
+            <param name="endColumn">结束列</param>
+            <param name="color">颜色索引</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsFontStyle(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            单元格字体
+            </summary>
+            <param name="startRow">起始行</param>
+            <param name="startColumn">起始列</param>
+            <param name="endRow">结束行</param>
+            <param name="endColumn">结束列</param>
+            <param name="fontSize">字体大小</param>
+            <param name="underLine">是否有下划线</param>
+            <param name="isBold">是否加粗</param>
+            <param name="fontType">字体的种类，例如：黑体</param>
+            <param name="wrapText">文本自动换行</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsAlignment(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            设置单元格对齐方式
+            </summary>
+            <param name="startRow">起始行</param>
+            <param name="startColumn">起始列</param>
+            <param name="endRow">结束行</param>
+            <param name="endColumn">结束列</param>
+            <param name="xAlignment">行对齐方式（center，left，right），传""默认为居中</param>
+            <param name="yAlignment">列对齐方式（center，left，right），传""默认为居中</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsLineStyle(System.String,System.String,System.Int32)">
+            <summary>
+            单元格边框
+            </summary>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="EndRangeName"> 结束单元格名称，例如：F7 </param> 
+            <param name="lineStyle">边框的粗细</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsWidthHeight(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            单元格宽高
+            </summary>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="EndRangeName"> 结束单元格名称，例如：F7 </param> 
+            <param name="columnWidth">单元格的宽度，-1为自动适应宽度</param>
+            <param name="rowHeight">单元格的行高，注：excel列宽与行高大小不一样</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsBackColor(System.String,System.String,System.SingleTable.PublicMethod.ColorIndex)">
+            <summary>
+            单元格背景色及填充方式
+            </summary>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="EndRangeName"> 结束单元格名称，例如：F7 </param> 
+            <param name="color">颜色索引</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsFontStyle(System.String,System.String,System.Int32,System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            单元格字体
+            </summary>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="EndRangeName"> 结束单元格名称，例如：F7 </param> 
+            <param name="fontSize">字体大小</param>
+            <param name="underLine">是否有下划线</param>
+            <param name="isBold">是否加粗</param>
+            <param name="fontType">字体的种类，例如：黑体</param>
+            <param name="wrapText">文本自动换行</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SetCellsAlignment(System.String,System.String,System.String)">
+            <summary>
+            设置单元格对齐方式
+            </summary>
+            <param name="RangeName"> 单元格名称，例如：B4 </param> 
+            <param name="xAlignment">行对齐方式（center，left，right），传""默认为居中</param>
+            <param name="yAlignment">列对齐方式（center，left，right），传""默认为居中</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.InsertPicture(System.String,System.String,System.Single,System.Single)">
+            <summary>
+            将图片插入到指定的单元格位置。
+            </summary>
+            <param name="RangeName">单元格名称，例如：B4</param>
+            <param name="PicturePath">要插入图片的绝对路径。</param>
+            <param name="PictuteWidth">插入后，图片在Excel 中显示的宽度。</param>
+            <param name="PictureHeight">插入后，图片在Excel 中显示的高度。</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SaveAsFile">
+            <summary>
+            另存文件
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.SaveAsFile(System.SingleTable.PublicMethod.SaveAsFileFormat)">
+            <summary>
+            将Excel文件另存为指定格式
+            </summary>
+            <param name="format">HTML，CSV，TEXT，EXCEL，XML</param>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.KillExcelProcess(System.Boolean)">
+            <summary>
+            结束Excel进程
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.KillSpecialExcel">
+            <summary>
+            杀特殊进程的Excel
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.Quit">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.Dispose">
+            <summary>
+            接口方法 释放资源
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.MSExcelCustom.KillAllExcelProcess">
+            <summary>
+            杀Excel进程
+            </summary>
+        </member>
+        <member name="P:System.SingleTable.PublicMethod.MSExcelCustom.WorkSheetCount">
+            <summary>
+            WorkSheet数量
+            </summary>
+        </member>
+        <member name="P:System.SingleTable.PublicMethod.MSExcelCustom.TempletFilePath">
+            <summary>
+            Excel模板文件路径
+            </summary>
+        </member>
+        <member name="P:System.SingleTable.PublicMethod.MSExcelCustom.OutputFilePath">
+            <summary>
+            输出Excel文件路径
+            </summary>
+        </member>
+        <member name="T:System.SingleTable.PublicMethod.ColorIndex">
+            <summary>
+            常用颜色定义,对就Excel中颜色名
+            </summary>
+        </member>
+        <member name="T:System.SingleTable.PublicMethod.SaveAsFileFormat">
+            <summary>
+            HTML，CSV，TEXT，EXCEL，XML
+            </summary>
+        </member>
+        <member name="T:System.SingleTable.PublicMethod.GetMD5">
+            <summary>
+            MD5加密
+            </summary>
+        </member>
+        <member name="T:System.SingleTable.GetGridInfo">
+            <summary>
+            动态生成Grid类库
+            </summary>
+        </member>
+        <member name="F:System.SingleTable.GetGridInfo.allNum">
+            <summary>
+            总行数
+            </summary>
+        </member>
+        <member name="F:System.SingleTable.GetGridInfo.allPage">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetCfgTableByID(System.String)">
+            <summary>
+            查询配置表名表
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetCfgFieldByID(System.String)">
+            <summary>
+            查询配置字段表
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetCfgFieldByIdExport(System.String)">
+            <summary>
+            查询配置字段表
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetQueryTableSqlExport(System.String,System.String)">
+            <summary>
+            导出业务表的sql
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="sqlWhere">过滤条件，格式：and id=1</param>
+            <returns>查询业务表的sql</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetQueryTableSqlExportDot(System.String,System.String)">
+            <summary>
+            导出业务表的sql
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="excelUrl">excel路径</param>
+            <returns>成功与否</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetQueryTableSql(System.String,System.String)">
+            <summary>
+            获取查询业务表的sql,无分页
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="sqlWhere">过滤条件，格式：and id=1</param>
+            <returns>查询业务表的sql</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetQueryTableSql(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            获取查询业务表的sql，带分页
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="sqlWhere">过滤条件，格式：and id=1</param>
+            <param name="nowPage">当前页</param>
+            <param name="pageShowNum">每页显示几行</param>
+            <returns>查询业务表的sql</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridButton(System.String,System.Boolean,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            动态生成按钮（目前包含：添加、编辑、导出Excel、标题）
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="isAdd">是否显示添加按钮，格式：true、false</param>
+            <param name="isExport">是否显示导出按钮，格式：true、false</param>
+            <param name="isExport">是否显示导入按钮，格式：true、false</param>
+            <param name="title">标题，可以为空</param>
+            <returns>返回生成button的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridButton_Div(System.String,System.Boolean,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            动态生成按钮（目前包含：添加、编辑、导出Excel、标题）
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="isAdd">是否显示添加按钮，格式：true、false</param>
+            <param name="isExport">是否显示导出按钮，格式：true、false</param>
+            <param name="isExport">是否显示导入按钮，格式：true、false</param>
+            <param name="title">标题，可以为空</param>
+            <returns>返回生成button的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridButton(System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.String)">
+            <summary>
+            动态生成按钮（目前包含：添加、编辑、导出Excel、标题）
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="isAdd">是否显示添加按钮，格式：true、false</param>
+            <param name="isExport">是否显示导出按钮，格式：true、false</param>
+            <param name="isImport">是否显示导入按钮，格式：true、false</param>
+            <param name="title">标题，可以为空</param>
+            <param name="CustomButton">自定义按钮，格式：标准html button，包含点击事件</param>
+            <returns>返回生成button的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridButton_Div(System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.String)">
+            <summary>
+            动态生成按钮（目前包含：添加、编辑、导出Excel、标题）
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="isAdd">是否显示添加按钮，格式：true、false</param>
+            <param name="isExport">是否显示导出按钮，格式：true、false</param>
+            <param name="isImport">是否显示导入按钮，格式：true、false</param>
+            <param name="title">标题，可以为空</param>
+            <param name="CustomButton">自定义按钮，格式：标准html button，包含点击事件</param>
+            <returns>返回生成button的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridHtml(System.String,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            动态生成Grid
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="sqlWhere">过滤条件，格式：and id=1</param>
+            <param name="nowPage">当前页，若为 -1，则数据不分页</param>
+            <param name="pageShowNum">每页显示几行，若为 -1，则数据不分页</param>
+            <param name="isEdit">权限控制是否支持修改，true显示编辑、删除，false隐藏编辑、删除</param>
+            <returns>返回生成Grid的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridHtml_Div(System.String,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            动态生成Grid
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="sqlWhere">过滤条件，格式：and id=1</param>
+            <param name="nowPage">当前页，若为 -1，则数据不分页</param>
+            <param name="pageShowNum">每页显示几行，若为 -1，则数据不分页</param>
+            <param name="isEdit">权限控制是否支持修改，true显示编辑、删除，false隐藏编辑、删除</param>
+            <returns>返回生成Grid的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridHtml(System.String,System.String,System.Int32,System.Int32,System.Boolean,System.String[],System.String[])">
+            <summary>
+            动态生成Grid
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="sqlWhere">过滤条件，格式：and id=1</param>
+            <param name="nowPage">当前页，若为 -1，则数据不分页</param>
+            <param name="pageShowNum">每页显示几行，若为 -1，则数据不分页</param>
+            <param name="isEdit">权限控制是否支持修改，true显示编辑、删除，false隐藏编辑、删除</param>
+            <param name="CustomButtonName">自定义按钮名称，例如：导出报表</param>
+            <param name="CustomButtonValue">自定义按钮事件jumpPage中属性 名称、样式，例如：btn_map</param>
+            <returns>返回生成Grid的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridHtml_Div(System.String,System.String,System.Int32,System.Int32,System.Boolean,System.String[],System.String[])">
+            <summary>
+            动态生成Grid
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="sqlWhere">过滤条件，格式：and id=1</param>
+            <param name="nowPage">当前页，若为 -1，则数据不分页</param>
+            <param name="pageShowNum">每页显示几行，若为 -1，则数据不分页</param>
+            <param name="isEdit">权限控制是否支持修改，true显示编辑、删除，false隐藏编辑、删除</param>
+            <param name="CustomButtonName">自定义按钮名称，例如：导出报表</param>
+            <param name="CustomButtonValue">自定义按钮事件jumpPage中属性 名称、样式，例如：btn_map</param>
+            <returns>返回生成Grid的Html</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridColumnName(System.String,System.Boolean)">
+            <summary>
+            动态生成Grid列头Json
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="isEdit">权限控制是否支持修改，true显示编辑、删除，false隐藏编辑、删除</param>
+            <returns>返回生成Grid列头Json</returns>
+        </member>
+        <member name="M:System.SingleTable.GetGridInfo.GetGridColumnData(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            动态生成Grid数据Json
+            </summary>
+            <param name="configID">配置表唯一编号</param>
+            <param name="sqlWhere">过滤条件，格式：and id=1</param>
+            <param name="nowPage">当前页，若为 -1，则数据不分页</param>
+            <param name="pageShowNum">每页显示几行，若为 -1，则数据不分页</param>
+            <returns>返回生成Grid数据Json</returns>
+        </member>
+        <member name="T:System.SingleTable.PublicMethod.GetSystemProperties">
+            <summary>
+            得到访问机器属性
+            </summary>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.GetSystemProperties.GetIP">
+            <summary>
+            获取IP
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.SingleTable.PublicMethod.GetSystemProperties.GetMacBySendARP(System.String)">
+            <summary>
+            通过SendARP获取网卡Mac
+            网络被禁用或未接入网络（如没插网线）时此方法失灵
+            </summary>
+            <param name="remoteIP"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

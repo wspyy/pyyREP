@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+  <!--  <script src="../js/jquery-1.7.2.js"></script>-->
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <!--<script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>-->
+    <script src="../plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="../plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/devoops.js"></script>
+</head>
+<body>
+    <div id="tabs-3">
+    <div class="row-fluid" style="margin-top: 5px;">
+        <div id="dashboard_links" class="col-xs-12 col-sm-2 pull-right">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#" class="tab-link" id="3">模式预报结果</a></li>
+                <li><a href="#" class="tab-link" id="4">风场预报图</a></li>
+                <li><a href="#" class="tab-link" id="5">压力场预报图</a></li>
+                <li><a href="#" class="tab-link" id="6">湿度场预报图</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="dashboard_tabs" class="col-xs-12 col-sm-10">
+        <div id="dashboard-3" class="row" style="visibility: visible; position: relative;">
+            sdsdf
+        </div>
+        <div id="dashboard-4" class="row" style="visibility: hidden; position: absolute;">
+            <div class="col-xs-12 col-sm-6 col-md-8 ow-server">
+                11111
+            </div>
+        </div>
+        <div id="dashboard-5" class="row" style="visibility: hidden; position: absolute;">
+            70
+        </div>
+        <div id="dashboard-6" class="row" style="visibility: hidden; position: absolute;">
+            80
+        </div>
+    </div>
+        </div>
+    <script>
+        function TabImgs() {
+            $('#tabs-3').on('click', 'a.tab-link', function (e) {
+                e.preventDefault();
+                $('div#dashboard_tabs').find('div[id^=dashboard]').each(function () {
+                    $(this).css('visibility', 'hidden').css('position', 'absolute');
+
+                });
+                var attr = $(this).attr('id');
+                $('#' + 'dashboard-' + attr).css('visibility', 'visible').css('position', 'relative');
+                $(this).closest('.nav').find('li').removeClass('active');
+                $(this).closest('li').addClass('active');
+
+            });
+        }
+
+        TabImgs();
+
+    </script>
+</body>
+</html>

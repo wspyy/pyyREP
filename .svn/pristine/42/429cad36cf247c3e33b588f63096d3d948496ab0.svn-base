@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Righteous';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/w5P-SI7QJQSDqB3GziL8XfY6323mHUZFJMgTvxaG2iE.eot);
+    src: local('Righteous'), local('Righteous-Regular'), url(../fonts/w5P-SI7QJQSDqB3GziL8XfY6323mHUZFJMgTvxaG2iE.eot) format('embedded-opentype'), url(../fonts/w5P-SI7QJQSDqB3GziL8XT8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+
+.dropdown-menu li {
+    font-size: 14px;
+}
+
+.hidden-xs {
+    font-size: 15px;
+}
+
+.tab {
+    word-break: keep-all;
+    border: 1px solid #EBEBEB;
+    border-bottom: none;
+    border-left: none;
+    border-top-left-radius: 6px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+    .tab td {
+        border-bottom: 1px solid #EBEBEB;
+        border-left: 1px solid #EBEBEB;
+        padding: 5px;
+        line-height: 25px;
+        color: #41A7E2;
+        cursor: pointer;
+    }
+
+    .tab th {
+        background: #6494BB;
+        border-left: 1px solid #EBEBEB;
+        padding: 5px;
+        line-height: 25px;
+        border-bottom: 1px solid #EBEBEB;
+        color: #fff;
+        text-align: center;
+    }
+
+.form-control {
+    width: 140px;
+    display: inline;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../../Controls/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+    <script src="../../Controls/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            Resize();
+            $(window).resize(function () { Resize(); });
+            var url1 = "";
+            var url2 = "";
+            var url3 = "";
+            if (window.location.search == "") {
+                //初始化的时候
+                url1 = "E_HelloWorld_App.htm";
+                url2 = "E_HelloWorld_Code.mht";
+                url3 = "CE_BaseMap_direction.htm";
+            }
+            else {
+
+                var flagTemp = window.location.search.split("=")[1];
+                var flag = flagTemp.split(",")[0];
+                var flagCode = flagTemp.split(",")[1];
+                var flagDirection = flagTemp.split(",")[2];
+
+                url1 = "E_" + flag + "_App.htm";
+                if (flagCode != "") {
+                    url2 = "E_" + flag + "_Code.mht";
+                } else {
+                    url2 = "../BuildingPage.htm";
+                }
+                if (flagDirection != "") {
+                    url3 = "CE_" + flag + "_direction.htm";
+                }
+                else {
+                    url3 = "../BuildingPage.htm";
+                }
+
+
+            }
+            $("#iframe1").attr("src", url1);
+            $("#iframe2").attr("src", url2);
+            $("#iframe3").attr("src", url3);
+        });
+
+        //窗体修改后动态修改页面高度
+        function Resize() {
+            //$("iframe").height(document.documentElement.clientHeight - 100);
+            // $("#iframe1").height($(window).height());
+            $("#iframe1").height($(window).height() - 60);
+            $("#iframe2").height($(window).height() - 60);
+            $("#iframe3").height($(window).height() - 60);
+        }
+    </script>
+</head>
+<body>
+    <div class="tabbable">
+        <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">应用程序</a> </li>
+            <li><a href="#tab2" data-toggle="tab">源代码</a></li>
+            <!--<li><a href="#tab3" data-toggle="tab">说明</a></li>-->
+        </ul>
+        <div class="tab-content" style="overflow: hidden;">
+            <div class="tab-pane active" id="tab1" style="padding: 0 0 0 0;">
+                <iframe id="iframe1" width="100%" frameborder="0"></iframe>
+            </div>
+            <div class="tab-pane" id="tab2">
+                <iframe id="iframe2" width="100%" style="" frameborder="0"></iframe>
+            </div>
+            <!--<div class="tab-pane" id="tab3">
+                <iframe id="iframe3" width="100%" frameborder="0"></iframe>
+            </div>-->
+        </div>
+    </div>
+</body>
+</html>

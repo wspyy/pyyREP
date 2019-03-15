@@ -1,0 +1,37 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace WidgetTemplate "com.WidgetTemplate.*";
+@namespace ns "http://www.esri.com/2008/ags";
+
+
+WidgetTemplate|WidgetTemplate
+{
+	skinClass: ClassReference("com.WidgetTemplate.WidgetTemplateSkin")
+}
+
+WidgetTemplate|TitlebarButton
+{
+	skinClass:ClassReference("com.WidgetTemplate.TitlebarButtonSkin")
+}
+ns|ScaleBar
+{
+	skinClass: ClassReference("com.skins.ScaleBarSkin");
+} 
+ProgressBar {
+	borderColor: #ccff00;
+	barColor: #ff6600;
+	trackColors: #ccffcc, #ff3399;
+	color: #003366;
+	paddingLeft: 5;
+	paddingRight: 5;
+	textIndent: 3;
+	letterSpacing: 2;
+	trackHeight: 7;
+	verticalGap: 10;
+	fontFamily: Monaco;
+	fontSize: 20;
+	fontWeight: bold;
+	fontStyle: italic;
+	textDecoration: underline;
+}

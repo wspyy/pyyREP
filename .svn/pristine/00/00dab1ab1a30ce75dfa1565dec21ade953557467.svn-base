@@ -1,0 +1,52 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SingleTableSubPage.aspx.cs"
+    Inherits="Framework_SingleTable_SingleTableSubPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>SubPage</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tabbable-custom">
+                <ul class="nav nav-tabs">
+                    <li class=""><a href="#" onclick="subPageReturn();" data-toggle="tab">返回</a></li>
+                    <li class="active"><a href="#" onclick="subPageInfo();" data-toggle="tab">企业基本信息</a></li>
+                    <li class=""><a href="#" onclick="subPageProduct();" data-toggle="tab">主产品</a></li>
+                    <li class=""><a href="#" onclick="subPagePollotion();" data-toggle="tab">污染数据</a></li>
+                </ul>
+                <%--<div class="tab-content">
+                    <div id="MainSubPage"></div>
+                </div>--%>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function subPageReturn() {
+            args["Composite_FieldName"] = "";
+            args["Composite_FieldValue"] = "";
+
+            args["config_Id"] = "4001";
+            refreshQuery();
+            refreshGrid();
+            hideIframe("SubPageFrame");
+        }
+        function subPageInfo() {
+            args["config_Id"] = "4001";
+            args["operate_Type"] = "DetailNoReturn";
+            refreshForm();
+        }
+        function subPageProduct() {
+            args["config_Id"] = "4002";
+            refreshGrid();
+        }
+        function subPagePollotion() {
+            args["config_Id"] = "4003";
+            refreshGrid();
+        }
+        subPageInfo();
+    </script>
+</body>
+</html>

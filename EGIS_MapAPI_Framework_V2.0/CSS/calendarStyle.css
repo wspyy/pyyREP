@@ -1,0 +1,192 @@
+/* CSS Document */
+body
+{
+	font-size: 12px;
+	color: #000000;
+	margin: 0px;
+}
+img
+{
+	border: 0px;
+}
+td
+{
+	font-size: 12px;
+}
+/* A A:link A:visited A:hover A:active,系统默认链接文本样式 */
+A
+{
+	color: #000000;
+	text-decoration: none;
+}
+A:link
+{
+	text-decoration: none;
+	color: #000000;
+}
+A:visited
+{
+	text-decoration: none;
+	color: #000000;
+}
+A:hover
+{
+	color: #000000;
+	text-decoration: underline;
+}
+A:active
+{
+	text-decoration: none;
+	color: #000000;
+}
+
+.table_bg
+{
+	border-top: 1px solid #83b1d0;
+	border-left: 1px solid #83b1d0;
+}
+.table_td
+{
+	border-right: 1px solid #83b1d0;
+	border-bottom: 1px solid #83b1d0;
+}
+.tab_bg_line
+{
+	background-image: url(../Images/Calendar/tb_head_line_bg.gif);
+	background-repeat: repeat-x;
+	height: 30px;
+	border-top: 1px solid #83b1d0;
+	border-rigth: 1px solid #83b1d0;
+	border-left: 1px solid #83b1d0;
+	font-size: 14px;
+}
+.tab_two_bg_line
+{
+	background-image: url(../Images/Calendar/tab_two_bg_line.gif);
+	background-repeat: repeat-x;
+	height: 27px;
+	line-height: 27px;
+	text-align: center;
+	border-right: 1px solid #83b1d0;
+	border-bottom: 1px solid #83b1d0;
+}
+.tab_font_sy
+{
+	font-weight: bold;
+}
+.tab_btn_h
+{
+	background-image: url(../Images/Calendar/tb_icon_h.gif);
+	background-repeat: no-repeat;
+	width: 22px;
+	height: 21px;
+	border: 0px;
+	background-color: transparent;
+}
+.tab_btn_x
+{
+	background-image: url(../Images/Calendar/tb_icon_x.gif);
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 21px;
+	border: 0px;
+	background-color: transparent;
+}
+.tab_three_bg
+{
+	background-image: url(../Images/Calendar/tab_three_bg.jpg);
+	background-repeat: repeat-x;
+	background-color: #e7f1f7;
+	color: #426e9e;
+	height: 26px;
+	color: #000;
+	font-size: 18px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+.tab_nr_
+{
+	background-color: #f8f8f8;
+	color: #014d73;
+	font-size: 14px;
+	border-right: 1px solid #83b1d0;
+	border-bottom: 1px solid #83b1d0;
+}
+
+.tab_nr_font1
+{
+	border-bottom: 1px dashed #c0c0c0;
+}
+.tab_nr_font2
+{
+	color: #014d73;
+	font-size: 14px;
+	font-weight: bold;
+}
+.tab_nr_font3
+{
+	color: #014d73;
+	font-size: 14px;
+	border-bottom: 1px dashed #c0c0c0;
+}
+.tab_font_red2
+{
+	color: #e95606;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.tab_three_bg_selected
+{
+	background-image: url(../Images/Calendar/tab_three_s.jpg);
+	background-repeat: repeat-x;
+	background-color: #93d3f3;
+	color: #426e9e;
+	height: 26px;
+	color: #000;
+	font-size: 18px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+.tab_nr_selected
+{
+	background-color: #e2f0f6;
+	color: #014d73;
+	font-size: 12px;
+}
+.form_down_bg
+{
+	background-color: #efefef;
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #fff;
+	height: 18px;
+}
+.form_line
+{
+	background-image: url(../Images/Calendar/form_line.png);
+	width: 2px;
+	height: 15px;
+	border: 0px;
+	background-repeat:no-repeat;
+}
+.btn_clear
+{
+	background-image: url(../Images/Calendar/clear.png);
+	width: 16px;
+	height: 16px;
+	border: 0px;
+}
+.btn_add
+{
+	background-image: url(../Images/Calendar/add.png);
+	width: 16px;
+	height: 16px;
+	border: 0px;
+}
+.btn_edit
+{
+	background-image: url(../Images/Calendar/Overlay-edit.gif);
+	width: 16px;
+	height: 16px;
+	border: 0px;
+}

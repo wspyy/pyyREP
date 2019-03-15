@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+        <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    
+    <script type="text/javascript">
+        //onsubmit="return uploadF()" id="uploadForm"
+        function uploadF() {
+            // jquery 表单提交 
+            $("#uploadForm").ajaxSubmit(function (message) {
+                // 对于表单提交成功后处理，message为提交页面DbfUp.ashx的返回内容
+                document.frm.submit();
+
+            });
+            return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转 
+        }
+        </script>
+</head>
+<body style="margin:0px;">
+<form action="../../Data/DbfUp.ashx" enctype="multipart/form-data" method="post" style="float: left; border: 0; width: 52px; height: 35px; margin-left: 5px;" target="refresh">
+            <input type="button" onmousemove="move(event)" value="导入" id="import" class="btn btn-success btn-label-left" /><!--请选择文件-->
+
+            <input type="file" id="f" onchange="this.form.submit()" name="dbf" style="position: absolute; filter: alpha(opacity=0); opacity: 0; width: 30px; left: 10px; top: 0px;" />
+            <iframe name="refresh" style="display: none;"></iframe>
+        </form>
+<script type="text/javascript">
+   
+    function move(event) {
+        
+        var event = event || window.event;
+        var a = document.getElementById('f');
+        a.style.left = event.clientX - 50 + 'px';
+        a.style.top = event.clientY - 10 + 'px';
+        
+    }
+</script>
+</body>
+</html>

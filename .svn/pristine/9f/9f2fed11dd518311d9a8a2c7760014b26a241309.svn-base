@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="../plugins/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <script src="../../Controls/My97DatePicker/WdatePicker.js"></script>
+    <style>
+        html, body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            overflow: auto;
+        }
+
+        .dtable {
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-collapse: separate;
+            border-radius: 4px;
+        }
+
+            .dtable th {
+                border-left: 1px solid #ddd;
+                font-weight: bold;
+                height: 35px;
+            }
+
+            .dtable td {
+                border-left: 1px solid #ddd;
+                border-top: 1px solid #ddd;
+                height: 30px;
+            }
+
+        ol li {
+            float: left;
+            border: solid;
+            border-width: 1px;
+            border-color: #C7C7C7;
+            padding-left: 2px;
+            padding-right: 2px;
+            padding-top: 2px;
+            margin-left: 10px;
+            list-style: none;
+            cursor: pointer;
+        }
+
+            ol li:hover {
+                background-color: #0a50be;
+                color: white;
+            }
+
+        input[type="text"] {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 2px;
+            font-size: 1.2em;
+            color: #444;
+            width: 150px;
+            height: 25px;
+            float: left;
+        }
+    </style>
+    <!--<link href="../plugins/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />-->
+    <script src="../js/jquery-1.7.2.js"></script>
+    <script src="../plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../../API-2.0/MapAPI.js"></script>
+    <script src="../js/MapOperation.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs();
+            var imgindex = true;
+            $(".dtable tr:gt(0)").each(function (index) {
+                $(this).click(function () {
+                    $(".dtable tr:gt(0)").css({ background: "#fff" });
+                    $(this).css({ background: "#00AFF8" });
+                    if (imgindex)
+                        $("#nimg").attr("src", "img/nengjiandu1.jpg");
+                    else
+                        $("#nimg").attr("src", "img/nengjiandu0.jpg");
+                    imgindex = !imgindex;
+                });
+            });
+
+            //InitData("tabDay")
+        })
+
+        function InitData(objID) {
+            debugger;
+            $.ajax({
+                url: "../../Data/GetAirMonitorData.ashx",
+                dataType: "json",
+                data: { flag: objID },
+                success: function (result) {
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+                        DataObj = result.DataTable;
+                        changeTable(1, objID);
+                    } else {
+                        $("#" + objID).append($("<tr><td colspan='5' style='text-align:center; height:40px;'>暂无数据</td></tr>"));
+                    }
+                }
+            });
+        }
+
+
+        function changeTable(type, objID) {
+            debugger;
+            var tmpData = [];
+            for (var i = 0; i < DataObj.length; i++) {
+                if (DataObj[i]["StationType"] == type) {
+                    var contents = "<tr>"
+                    + "<td>" + DataObj[i]["StationName"] + "</td><td>" + DataObj[i]["AQI"]
+                    + "</td><td>" + DataObj[i]["AirLevel"] + "</td><td>" + DataObj[i]["Category"]
+                    + "</td><td>" + DataObj[i]["FirstP"] + "</td>"
+                    + "</tr>";
+                    $("#" + objID).append(contents);
+                    tmpData.push(DataObj[i]);
+                }
+            }
+            addPicGraphics(tmpData, 2);
+            addAirGraphics(tmpData, 1);
+
+        }
+
+        $(function () {
+            $("#datatable1").show();
+            $("#datatable2").hide();
+
+            $("li").each(function (index) {
+                $(this).click(function () {
+                    if ($(this)[0].innerText == "同比") {
+                        $("#datatable1").hide();
+                        $("#datatable2").show();
+                    }
+                    else {
+                        $("#datatable1").show();
+                        $("#datatable2").hide();
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body style="background: #fff;">
+    <div id="tabs" style="overflow: auto;">
+        <ul>
+            <li><a href="#tabs-1" style="font-weight: 800; color: #456782;">实时监测</a></li>
+            <li><a href="#tabs-2" style="font-weight: 800; color: #456782;">统计分析</a></li>
+        </ul>
+        <div id="tabs-1" style="border: 1px solid #d8d8d8; border-top: none; height: 95%;">
+            <table style="width: 100%; height: 100%">
+                <tr>
+                    <td>
+                        <div id="flashContent" style="width: 100%; height: 100%;"></div>
+                    </td>
+                    <td style="width: 350px; vertical-align: top;">
+                        <div id="data" style="float: left; padding-left: 1px;">
+                            <img id="nimg" style="width: 350px; height: 300px;" src="img/nengjiandu0.jpg" />
+                            <table class="dtable" style="width: 100%;">
+                                <tr>
+                                    <th>站点名称</th>
+                                    <th>AQI</th>
+                                    <th>指数等级</th>
+                                    <th>首要污染物</th>
+                                </tr>
+                                <tr style="background-color: #f9f9f9;">
+                                    <td>平朔</td>
+                                    <td>147</td>
+                                    <td>轻度污染</td>
+                                    <td>颗粒物(PM10)</td>
+                                </tr>
+                                <tr>
+                                    <td>朔唯</td>
+                                    <td>81</td>
+                                    <td>轻度污染</td>
+                                    <td>臭氧1小时</td>
+                                </tr>
+                                <tr style="background-color: #f9f9f9;">
+                                    <td>区政府</td>
+                                    <td>92</td>
+                                    <td>良</td>
+                                    <td>臭氧1小时</td>
+                                </tr>
+                                <tr>
+                                    <td>市环保局</td>
+                                    <td>44</td>
+                                    <td>优</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr style="background-color: #f9f9f9;">
+                                    <td>市二中</td>
+                                    <td>111</td>
+                                    <td>轻度污染</td>
+                                    <td>臭氧1小时</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div id="tabs-2" style="border: 1px solid #d8d8d8; border-top: none; height: 95%;">
+            <iframe src="../MoniData/AirMonitorData.html" width="100%" height="100%" style="border:none;"></iframe>
+        </div>
+    </div>
+    <script type="text/javascript">
+        
+    </script>
+</body>
+</html>

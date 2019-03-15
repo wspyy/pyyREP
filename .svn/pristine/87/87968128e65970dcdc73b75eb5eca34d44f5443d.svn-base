@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Microsoft.Reporting.WebForms;
+using System.Drawing;
+using System.IO;
+
+
+
+public partial class Devoops_ConsulCir_poll : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            bindReport();
+        }
+    }
+
+    private void bindReport()
+    {
+        
+        string ReportCode = Request["ReportCode"].ToString();
+        DataTable dt = new Bll.BusinessFun.ConsultReportDal().getpoll(ReportCode);
+        this.ReportViewer1.ProcessingMode = ProcessingMode.Local;
+        this.ReportViewer1.PageCountMode = PageCountMode.Actual;
+        //报表参数设置
+        
+        this.ReportViewer1.LocalReport.ReportPath = "Devoops/ConsulCir/pollutionDayliy.rdlc";
+        this.ReportViewer1.LocalReport.EnableExternalImages = true;
+
+        MergerImage(dt.Rows[0]["ExpertSign"].ToString(), "tmpExpert");
+        MergerImage(dt.Rows[0]["CheckSign"].ToString(), "tmpCheck");
+        string imgExpertUrl = "../img/sign/tmpExpert.png";
+            //"http://" + Request.Url.Authority + "/FrameworkCoin/Devoops/img/sign/tmpExpert.png";
+        string imgCheckUrl = "../img/sign/tmpCheck.png";
+            //"http://" + Request.Url.Authority + "/FrameworkCoin/Devoops/img/sign/tmpCheck.png";
+        ReportParameter imgExpert = new ReportParameter("imgExpert", dt.Rows[0]["ExpertSign"].ToString() == "" ? "" : imgExpertUrl);//(null || "")
+        //ReportParameter imgExpert = new ReportParameter("imgExpert", imgExpertUrl);
+        ReportParameter imgCheck = new ReportParameter("imgCheck", dt.Rows[0]["CheckSign"].ToString() == "" ? "" : imgCheckUrl);
+        //ReportParameter imgCheck = new ReportParameter("imgCheck", imgCheckUrl);
+        ReportParameter rpYearDate = new ReportParameter("rpYearDate", Convert.ToDateTime(dt.Rows[0]["ReportTime"]).ToString("yyyy 年 MM 月 dd 日"));
+        ReportParameter poll = new ReportParameter("poll", dt == null ? "" : dt.Rows[0]["Conclusions"].ToString());
+        ReportParameter op = new ReportParameter("op", dt == null ? "" : dt.Rows[0]["Opinion"].ToString());
+        ReportParameter rpUser = new ReportParameter("rpUser", dt == null ? "" : dt.Rows[0]["U_RealName"].ToString());
+        this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rpYearDate, poll, op, imgExpert, imgCheck, rpUser });
+        ReportViewer1.LocalReport.DisplayName = "朔州市重污染天气预报会商意见" + DateTime.Now.ToString("yyyy年MM月dd日");
+        //报表数据设置
+        this.ReportViewer1.LocalReport.DataSources.Clear();
+        this.ReportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+        this.ReportViewer1.DataBind();
+    }
+
+    private void MergerImage(string strImg, string strFile)
+    {
+        string[] imgAry = strImg.Split(',');
+
+        System.Drawing.Image[] imgs = new System.Drawing.Image[imgAry.Length - 1];
+        for (int i = 0; i < imgAry.Length; i++)
+        {
+            if (imgAry[i] == "") continue;
+            imgAry[i] = "\\Devoops\\img\\sign\\" + imgAry[i] + ".png";
+            imgs[i] = ReturnImage(imgAry[i]);
+        }
+        if (imgs.Length > 0)
+        {
+            //System.Drawing.Image newImage = imgs[0].GetThumbnailImage(140 * (imgAry.Length - 1), 60, null, new IntPtr());
+            System.Drawing.Image newImage = new System.Drawing.Bitmap(imgs[0].Width * (imgAry.Length - 1), 60, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Graphics g = Graphics.FromImage(newImage);
+            //g.DrawImage(imgs[0], 0, 0, imgs[0].Width, imgs[0].Height);
+            //g.DrawImage(imgs[1], 141, 0, imgs[1].Width, imgs[1].Height);
+            for (int i = 0; i < imgs.Length; i++)
+            {
+                g.DrawImage(imgs[i], i * imgs[i].Width, 0, imgs[i].Width, imgs[i].Height);
+            }
+            string tmpRootDir = Server.MapPath(System.Web.HttpContext.Current.Request.ApplicationPath.ToString());
+            newImage.Save(tmpRootDir + "\\Devoops\\img\\sign\\" + strFile + ".png");
+        }
+
+    }
+
+
+    /// <summary>
+    /// 首先给你一个函数；用来将图片保存到内存中   
+    /// </summary>
+    /// <param name="strPhotoPath"></param>
+    /// <returns></returns>
+    private System.Drawing.Image ReturnImage(string strPhotoPath)
+    {
+        //string tmpRootDir = Server.MapPath(System.Web.HttpContext.Current.Request.ApplicationPath.ToString());
+        //转换成服务器绝对路径  
+        //string imagesurl2 = tmpRootDir + strPhotoPath.Replace(@"/", @"/");
+        //System.Net.WebClient myWebClient = new System.Net.WebClient();        
+        //string tmpRootDir = System.Net.Dns.GetHostAddresses("localhost")[0].ToString();
+        string imagesurl2 = Server.MapPath("~"+strPhotoPath); // tmpRootDir + strPhotoPath.Replace(@"/", @"/");
+
+        FileStream fstream = new FileStream(imagesurl2, FileMode.OpenOrCreate, FileAccess.Read);
+        byte[] byData = new byte[fstream.Length];
+        fstream.Read(byData, 0, System.Convert.ToInt32(fstream.Length));
+        fstream.Close();
+        System.IO.MemoryStream stream = new System.IO.MemoryStream(byData, true);
+        stream.Write(byData, 0, byData.Length);
+        Bitmap bmp = new Bitmap(stream);
+        System.Drawing.Image image = bmp;
+        return bmp;
+    }
+}

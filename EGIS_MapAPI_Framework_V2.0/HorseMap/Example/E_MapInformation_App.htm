@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>地图信息</title>
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style="position: absolute; top: 0px; left: 100px; background-color: #BEBE9A;
+        padding: 2px; z-index: 10000">
+        <input type="button" value="获取中心点" onclick="getCenter()" />
+        <input type="button" value="获取等级" onclick="getLevel()" />
+        <!--<input type="button" value="获取最大等级" onclick="getMaxLevel()" />-->
+        <input type="button" value="获取当前比例尺" onclick="getScale()" />
+        <input type="button" value="获取范围" onclick="getExtent()" />
+    </div>
+    
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://192.168.5.150:8585/HorseMap/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781);
+    }
+
+
+    //获取地图中心点
+    function getCenter() {
+        var centerObj = hmap.getCenter();
+        alert(centerObj.x + "," + centerObj.y);
+    }
+
+    //获取地图当前的缩放等级
+    function getLevel() {
+        var levelObj = hmap.getLevel();
+        alert(levelObj);
+    }
+
+    //获取地图缩放等级的最大值
+    function getMaxLevel() {
+        var maxLevelObj = hmap.getMaxLevel();
+        alert(maxLevelObj);
+    }
+
+    //获取地图的当前比例尺
+    function getScale() {
+        var scaleObj = hmap.getScale();
+        alert(scaleObj);
+    }
+
+    //获取地图当前的显示范围
+    function getExtent() {
+        var extentObj = hmap.getExtent();
+        alert(extentObj.xmin + "," + extentObj.ymin + "," + extentObj.xmax + "," + extentObj.ymax);
+    }
+
+    creatHMap();
+
+</script>
+</html>

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../../Demo/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <link href="../plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <script src="../js/jquery-1.7.2.js"></script>
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../js/method.js"></script>
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <script src="../../Demo/plugins/jquery-ui/i18n/jquery.ui.datepicker-zh-CN.min.js"></script>
+    <style>
+        html, body {
+            margin: 0px 0px 0px 0px;
+            height: 100%;
+            overflow: hidden;
+            font-size: 12px;
+            background:#fff;
+        }
+
+        .tab {
+            word-break: keep-all;
+            border: 1px solid #EBEBEB;
+            border-bottom: none;
+            border-left: none;
+            border-top-left-radius: 6px;
+            margin-top: 10px;
+            margin-left:20px;
+            width:600px;
+        }
+
+            .tab td {
+                border-bottom: 1px solid #EBEBEB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                color: #41A7E2;
+                width:200px;
+            }
+
+            .tab th {
+                background: #6494BB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                border-bottom: 1px solid #EBEBEB;
+                color: #fff;
+                text-align:center;
+            }
+    </style>
+    <script>
+        $(function () {
+            $('#txt_Begin').val(new Date().addDays(-1).format("yyyy-MM-dd"));
+            $('#txt_Begin').datepicker({ showOn: "click" });
+            getData();
+        });
+
+        function getData() {
+            
+            $(".tab tr:not(:first)").empty();
+            $.ajax({
+                url: "../../Data/GetAirForeCastData.ashx",
+                data: { flag: "AirForeCastWeight", Strtime: $('#txt_Begin').val()},
+                dataType: "json",
+                success: function (result) {
+                    debugger;
+                    var content = "";
+                    if (result && result.Table && result.Table.length > 0) {
+                        for (var i = 0; i < result.Table.length; i++) {
+                            if (result.Table[i]["StationCode"] == "00") {
+                                var htmlTd = "<tr><td>" + result.Table[i]["ModelTypeName"]
+                                    + "</td><td id='tdaqi" + result.Table[i]["ForecastModel"] + "'>" + result.Table[i]["AQI"] + "</td>";
+                                if (result.Table[i]["ForecastModel"] == "9") {
+                                    htmlTd += "<td><input type='button' class='btn btn-primary btn-label-left' value='计算' onclick='CountWeight()'/>   <input type='button' class='btn btn-success btn-label-left' value='保存' onclick='SaveWeight()'/></td></tr>";
+                                }
+                                else if (result.Table[i]["ForecastModel"] != "10") {
+                                    htmlTd += "<td><input id='txtw" + result.Table[i]["ForecastModel"] + "' type='text' style='height:30px;' value='" + result.Table[i]["Weights"] + "'/>%</td></tr>";
+                                } else {
+                                    htmlTd += "<td></td></tr>";
+                                }
+                               
+                                $("#table").append(htmlTd);
+                            }
+                            
+                        }
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+
+        function CountWeight() {
+            var r0 = parseInt($("#tdaqi0").html() * $("#txtw0").val() / 100);
+            var r1 = parseInt($("#tdaqi1").html() * $("#txtw1").val() / 100);
+            var r2 = parseInt($("#tdaqi2").html() * $("#txtw2").val() / 100);
+            $("#tdaqi9").html(parseInt(r0 + r1 + r2));
+            //alert(r0 + r1 + r2);
+        }
+
+        function SaveWeight() {
+            var r0 = $("#txtw0").val();
+            var r1 = $("#txtw1").val();
+            var r2 = $("#txtw2").val();
+            $.ajax({
+                url: "../../Data/GetAirForeCastData.ashx",
+                data: { flag: "SaveWeight", ssci: $('#txtw0').val(), cmaq: $('#txtw1').val(), wrf: $('#txtw2').val() },
+                dataType: "html",
+                success: function (result) {
+                    debugger;
+                    if (result == "True")
+                    {
+                        alert("保存成功！");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+    </script>
+</head>
+<body style="margin:5px;">
+
+    <div style="height: 40px;  border: 1px solid #EBEBEB; border-radius: 7px; padding-left: 15px; padding-top:6px; ">
+        日期：
+       <input type="text" style="color:#1571a0;vertical-align:central;width:100px;" runat="server" id="txt_Begin" onchange="getData()" />
+    </div>
+    <div>
+        <table id="table" class="tab">
+            <tr>
+                <th>模式</th>
+                <th>晋城市AQI</th>
+                <th>权重设置</th>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

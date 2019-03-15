@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <script src="../js/jquery-1.7.2.js"></script>
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../../API-2.0/MapAPI.js"></script>
+    <script src="../js/MapOperation.js"></script>
+    <script src="../plugins/data-tables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../js/method.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+
+    <script src="../plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js"></script>
+    <script src="../../Demo/plugins/jquery-ui/i18n/jquery.ui.datepicker-zh-CN.min.js"></script>
+    <style>
+        html, body {
+            margin: 0px 0px 0px 0px;
+            height: 100%;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+
+        .tab {
+            word-break: keep-all;
+            border: 1px solid #EBEBEB;
+            border-bottom: none;
+            border-left: none;
+            border-top-left-radius: 6px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+            .tab td {
+                border-bottom: 1px solid #EBEBEB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                color: #41A7E2;
+                cursor: pointer;
+            }
+
+            .tab th {
+                background: #6494BB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                border-bottom: 1px solid #EBEBEB;
+                color: #fff;
+            }
+
+        .table img {
+            width: 30px;
+            height: 30px;
+        }
+
+        #entSearch input {
+            height: 30px;
+        }
+        .PollArea {
+            padding-bottom: 0px;
+            margin-top:30px;
+        }
+    </style>
+    <script type="text/javascript">
+        var DataObj;
+        var pSource;
+        var tmpData = "";
+        var p = 0;
+        var s = 0;
+        var n = 0;
+        var sum = 0;
+        $(function () {
+            $(window).resize(function () {
+                $(".box").css({ left: $(window).width() - $(".box").width() - 8 + "px" });
+                $(".box-content").css({ height: $(window).height() - 50 });
+                $("#EntDiv").height($(".box").height() - 120);
+
+            });
+            $(".box").css({ left: $(window).width() - $(".box").width() - 8 + "px" });
+            $(".box-content").css({ height: $(window).height() - 50 });
+            $("#EntDiv").height($(".box").height() - 120);
+            //设置Tab高度
+            $("#tabs").tabs({ height: "auto" }).height($(window).height() - 60);
+            $("div[id^=tabs-]").height($(window).height() - 115);
+            $(window).resize(function () {
+                $("#tabs").tabs({ height: "auto" }).height($(window).height() - 60);
+                $("div[id^=tabs-]").height($(window).height() - 115);
+            });
+
+            $("body").on('click', '.collapse-link', function (e) {
+                e.preventDefault();
+                var box = $(this).closest('div.box');
+                var button = $(this).find('i');
+                var content = box.find('div.box-content');
+                content.slideToggle('fast');
+                box.css({ "height": "auto" });
+                button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+                setTimeout(function () {
+                    box.resize();
+                    box.find('[id^=map-]').resize();
+                }, 50);
+            })
+            .on('click', '.close-link', function (e) {
+                e.preventDefault();
+                var content = $(this).closest('div.box');
+                content.remove();
+            });
+
+            $("#cmax").addClass('indie');
+            $("#wrf-charm").addClass('indie1');
+            $("#jt").css({ "background-color": "#3276b1" });
+
+            InitData("Entlist");
+        });
+
+        function InitData(objID) {
+            $.ajax({
+                url: "../../Data/GetPollutionData.ashx",
+                dataType: "json",
+                data: { flag: objID },
+                success: function (result) {
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+                        DataObj = result.DataTable;
+                        //addWidget1("PM");
+                        changeTable();
+                    } else {
+                        //$("#" + objID).append($("<tr><td colspan='5' style='text-align:center; height:40px;'>暂无数据</td></tr>"));
+                    }
+                }
+            });
+        }
+        //点击弹出气泡窗口
+        function onInfoPointGraClick(e) {
+            var currentGraphic = e.target;
+            currentGraphic.visible = false;
+            currentInfoId = currentGraphic.id;
+            currentGraphic.data = "已更改！";
+            hmap.editGraphic(currentGraphic); //编辑图形 
+            var ycSum = 0;
+            var ycAvg = 0;
+            var soSum = 0;
+            var soAvg = 0;
+            var noSum = 0;
+            var noAvg = 0;
+            var ySum = 0;
+            var sSum = 0;
+            var nSum = 0;
+            $.ajax({
+                url: "../../Data/GetPollutionData.ashx",
+                dataType: "json",
+                data: { flag: "PSource", sqlWhere: e.data["ID"] },
+                success: function (result) {
+                    pSource = result.DataTable;
+                    var pSourceLength = pSource.length;
+                    for (var i = 0; i < pSourceLength; i++) {
+                        if (pSource[i].MonitoringItem == "烟尘") {
+                            ycSum += pSource[i].MeasuredConcentration;
+                            ySum += pSource[i].WasteDischarge;
+                        }
+                        if (pSource[i].MonitoringItem == "二氧化硫") {
+                            soSum += pSource[i].MeasuredConcentration;
+                            sSum += pSource[i].WasteDischarge;
+                        }
+                        if (pSource[i].MonitoringItem == "氮氧化物") {
+                            noSum += pSource[i].MeasuredConcentration;
+                            nSum += pSource[i].WasteDischarge;
+                        }
+                    }
+                    if (pSource[0].DelFlag == "Main") {
+                        ycAvg = ycSum / 16 == 0 ? "--" : (ycSum / 16).toFixed(2);
+                        soAvg = soSum / 16 == 0 ? "--" : (soSum / 16).toFixed(2);
+                        noAvg = noSum / 16 == 0 ? "--" : (noSum / 16).toFixed(2);
+                        ySum = ySum == 0 ? "--" : (ySum / 2).toFixed(2);
+                        sSum = sSum == 0 ? "--" : (sSum / 2).toFixed(2);
+                        nSum = nSum == 0 ? "--" : (nSum / 2).toFixed(2);
+                    } else {
+                        ycAvg = ycSum / 16 == 0 ? "--" : (ycSum / 16).toFixed(2);
+                        soAvg = soSum / 16 == 0 ? "--" : (soSum / 16).toFixed(2);
+                        noAvg = noSum / 16 == 0 ? "--" : (noSum / 16).toFixed(2);
+                        ySum = ySum == 0 ? "--" : ySum.toFixed(2);
+                        sSum = sSum == 0 ? "--" : sSum.toFixed(2);
+                        nSum = nSum == 0 ? "--" : nSum.toFixed(2);
+                    }
+
+                    var address = pSource[0].EnterpriseAddress == "0" ? "--" : pSource[0].EnterpriseAddress;
+                    var industryName = pSource[0].IndustryName == "0" ? "--" : pSource[0].IndustryName;
+                    var field1 = new HMap.PopFieldOption("法人代码:", e.data["ID"], "", true);
+                    var field2 = new HMap.PopFieldOption("企业地址:", address, "", true);
+                    var field3 = new HMap.PopFieldOption("行业名称:", industryName, "", true);
+                    var field4 = new HMap.PopFieldOption("烟　　尘:", ycAvg, "", true);
+                    var field5 = new HMap.PopFieldOption("烟尘总量:", ySum, "", true);
+                    var field6 = new HMap.PopFieldOption("二氧化硫:", soAvg, "", true);
+                    var field7 = new HMap.PopFieldOption("SO2总量:", sSum, "", true);
+                    var field8 = new HMap.PopFieldOption("氮氧化物:", noAvg, "", true);
+                    var field9 = new HMap.PopFieldOption("NOx总量:", nSum, "", true);
+                    var infoWindow = new HMap.PopInfoWindow(pSource[0].EnterpriseName, { fields: [field1, field2, field3, field4, field5, field6, field7, field8, field9], width: 230 });
+                    infoWindow.addEventListener("infoWindowClosed", infoWindowClosed, currentGraphic);
+                    hmap.showInfoWindow(currentGraphic.x, currentGraphic.y, infoWindow);
+                }
+            });
+
+        }
+
+        var currentInfoId;
+        //关闭气泡窗口
+        function infoWindowClosed(e) {
+
+            var currentGraphic = e.param;
+
+            currentGraphic.visible = true;
+
+            currentGraphic.data = "已更改！";
+
+            hmap.editGraphic(currentGraphic); //编辑图形
+
+        }
+        //链接回调函数
+        function callbackFun(e) {
+            onInfoPointGraClick(e);
+            infoWindowClosed(e);
+            onPicPointGraMouseOut(e);
+            if (locationPointId) {
+                alert(locationPointId);
+                hmap.removeGraphic(locationPointId);
+                locationPointId = undefined;
+            }
+        }
+
+        function changeTable() {
+            tmpData = [];//var
+            var entname = $("#txtName").val();
+            $("#tdBody").html("");
+            //$(".tab").append("<tr><th>企业名称(" + DataObj.length + ")</th></tr>");
+            for (var i = 0; i < DataObj.length; i++) {
+                if (DataObj[i]["EnterpriseName"].indexOf(entname) > -1) {
+                    tmpData.push(DataObj[i]);
+                    var contents = $("<tr>" + "<td>"
+                        + DataObj[i]["EnterpriseName"] + "</td>"
+                               + "</tr>");
+                    $("#tdBody").append(contents);
+                }
+            }
+            $("#total").html(tmpData.length);
+            debugger;
+            hmap.clear();//把图层清空            
+            addPollGraphics(tmpData, 1);
+            $("#Entlist tr:gt(0)").each(function (index) {
+                $(this).click(function () {
+                    $("#Entlist tr:gt(0)").css({ background: "#fff" });
+                    $(this).css({ background: "#D2E27D" });
+                    //centerPoint(tmpData[index].lon, tmpData[index].lat, 5);
+                    hmap.centerAndLevel(tmpData[index].lon, tmpData[index].lat, 7);
+                    var points = [tmpData[index]];
+                    //hmap.clear();//把图层清空
+                    addPollGraphics(points, 1, null, true);
+                });
+            });
+
+        }
+
+
+        function showPoll(d) {
+            $("#tabs-2 div div label").attr("class", "btn btn-primary");
+            $("#" + d + "").attr("class", "btn btn-primary active");
+            addWidget(d);
+        }
+        function addWidget(e) {
+            hmap.clear();//把图层清空
+            var picArr = new Array();
+            var url = "../img/Poll/";
+            var pictureExtent = new HMap.Extent(109.755, 37.6294, 115.239, 41.376);
+            if (e.indexOf("CN") > -1) {
+                pictureExtent = new HMap.Extent(69.9807, 15.0893, 135.901, 55.0131);
+                hmap.extentTo(69.9807, 15.0893, 135.901, 55.0131);
+            }
+            else if (e.indexOf("HB") > -1) {
+                pictureExtent = new HMap.Extent(101.66, 30.2264, 128.249, 46.329);
+                hmap.extentTo(101.66, 30.2264, 128.249, 46.329);
+            }
+            else if (e.indexOf("SZ") > -1) {
+                pictureExtent = new HMap.Extent(109.755, 37.6294, 115.239, 41.376);
+                hmap.extentTo(109.755, 37.6294, 115.239, 41.376);
+            }
+            var picture = "";
+            picture = new HMap.PlayPic({
+                picId: "pic_" + e,
+                picUrl: url + e + ".png",
+                fadeInTime: 1000,
+                pauseTime: 1000,
+                alphaMax: 0.8,
+                alphaMin: 0,
+                picExtent: pictureExtent
+            })
+            picArr.push(picture);
+            var widgetParam = new HMap.WidgetParam({ bottom: 10, right: 40 });
+            var playPicWidget = new HMap.PlayPicWidget(picArr, { timeUnit: "h", isReplay: true, widgetParam: widgetParam, widgetWisible: false });
+            //widgetWisible: true(图片播放进度条)
+            widget = hmap.addControl(playPicWidget);
+            
+
+        }
+    </script>
+</head>
+<body>
+    <div class="box ui-draggable ui-droppable" style="border: 2px solid #6494BB; width: 336px; position: absolute; z-index: 0; left: 100px; top: 5px;">
+        <div class="box-header" style="background: #6494BB;">
+            <div class="box-name" style="color: #fff; font-size: 12px; font-weight: bold;">
+                <i class="fa fa-bar-chart-o"></i>&nbsp;&nbsp;污染源
+            </div>
+
+            <div class="box-icons">
+                <a class="collapse-link" style="border: none;">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+
+                <a class="close-link" style="border: none;">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content" style="overflow: auto; padding: 2px; background: #fff;">
+            <div id="tabs" style="overflow: auto;">
+                <ul>
+                    <li><a href="#tabs-1" style="font-weight: 800; color: #456782;">朔州企业</a></li>
+                    <li><a href="#tabs-2" style="font-weight: 800; color: #456782;">源清单</a></li>
+                </ul>
+                <div id="tabs-1" style="border: 1px solid #d8d8d8; border-top: none;">
+
+                    <div id="entSearch" style="margin-top: 5px; padding-left: 10px; height: 25px;">
+                        企业名称：
+                    <input id="txtName" type="text" style="height: 25px;" />
+                        <input id="btnSearch" type="button" class="btn btn-primary" value="查询" onclick="changeTable()" style="height: 25px;" />
+                    </div>
+                    <div id="EntDiv" style="overflow-y: auto;">
+                        <table id="Entlist" class="tab" cellspacing="0" cellpadding="0">
+                            <thead id="tdHead">
+                                <tr>
+                                    <th>企业名称(共 <span id="total"></span>家)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="tdBody">
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div id="tabs-2" style="border: 1px solid #d8d8d8; border-top: none;">
+
+                    <div id="PollArea" class="PollArea">
+                        <h4 class="page-header">全国源清单</h4>
+                        <div id="div1" class="btn-group" data-toggle="buttons">
+                            <label id="emis_CN_PM" class="btn btn-primary " style="width: 80px;">
+                                <input type="radio" name="options" onclick="showPoll('emis_CN_PM')" />
+                                PM
+                            </label>
+                            <label id="emis_CN_SO2" class="btn btn-primary" style="width: 80px;">
+                                <input type="radio" name="options" onclick="showPoll('emis_CN_SO2')" />
+                                SO2
+                            </label>
+                            <label id="emis_CN_NO" class="btn btn-primary" style="width: 80px;">
+                                <input type="radio" name="options" onclick="showPoll('emis_CN_NO')" />
+                                NO2
+                            </label>
+                        </div>
+                    </div>
+                    <div class="PollArea">
+                        <h4 class="page-header">山西及周边地区</h4>
+                        <div id="div3" class="btn-group" data-toggle="buttons">
+                            <label id="emis_HB_PM" class="btn btn-primary " style="width: 80px;">
+                                <input type="radio" name="options" onclick="showPoll('emis_HB_PM')" />
+                                PM
+                            </label>
+                            <label id="emis_HB_SO2" class="btn btn-primary" style="width: 80px;">
+                                <input type="radio" name="options" onclick="showPoll('emis_HB_SO2')" />
+                                SO2
+                            </label>
+                            <label id="emis_HB_NO" class="btn btn-primary" style="width: 80px;">
+                                <input type="radio" name="options" onclick="showPoll('emis_HB_NO')" />
+                                NO2 
+                            </label>
+                        </div>
+                    </div>
+                    <div class="PollArea">
+                        <h4 class="page-header">朔州及周边市</h4>
+                        <div id="div5" class="btn-group" data-toggle="buttons">
+                            <label id="emis_SZ_PM" class="btn btn-primary " style="width: 80px;">
+                                <input type="radio" name="options" onclick="showPoll('emis_SZ_PM')" />
+                                PM
+                            </label>
+                            <label id="emis_SZ_SO2" class="btn btn-primary" style="width: 80px;">
+                                <input type="radio" name="options" onclick="showPoll('emis_SZ_SO2')" />
+                                SO2
+                            </label>
+                            <label id="emis_SZ_NO" class="btn btn-primary" style="width: 80px;">
+                                <input type="radio" name="options" onclick="showPoll('emis_SZ_NO')" />
+                                NO2
+                            </label>
+                        </div>
+                    </div>
+                    <img style="position:absolute;bottom:0px;right:0px;" src="../img/Poll/Poll_Legend.png" />
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%;"></div>
+</body>
+</html>

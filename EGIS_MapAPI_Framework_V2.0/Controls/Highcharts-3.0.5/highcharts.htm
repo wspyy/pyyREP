@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>highcharts 图表生成页面</title>
+
+    <script src="../../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+
+    <script src="highcharts.js" type="text/javascript"></script>
+
+    <!--导出需要连接服务器 http://export.highcharts.com/-->
+    <!--<script src="exporting.src.js" type="text/javascript"></script>-->
+    
+    <script type="text/javascript">
+     $(document).ready(function() {
+        var strSql = "select X,max(case XType when 'Add' then Y end ) as 'Add(次数)'," +
+        "max(case XType when 'Delete' then Y end ) as 'Delete(次数)',"+
+        "max(case XType when 'Login' then Y end ) as 'Login(次数)' from "+
+        "(select convert(VARCHAR(10),Sys_DateTime,120) as X,OperateType as XType,count(ID) as Y from "+
+        "T_PC_Log  group by convert(VARCHAR(10),Sys_DateTime,120),OperateType)a group by X";
+        
+        //line column
+        loadChart("divChart",strSql,"操作次数","column",700,400,"对比值","60");
+     })
+     
+     function loadChart(divID,sql,title,type,width,height,avgLineName,avgLineValue)
+     {
+        $.ajax({
+                url:'../../Data/GetChartData.ashx',
+                method:'post',
+                data:{chartName:'highcharts',sql:sql,type:type,title:title,avgLineName:avgLineName,avgLineValue:avgLineValue},
+                cache:false,
+                beforSend:function(){$("#"+divID).html("图表加载中......")},
+                success:function(data){
+                    var yText = "次";
+                    var json = eval("("+data+")");
+                    var chart = new Highcharts.Chart({
+    		            chart:{
+    		                zoomType:'x',
+    		                spacingRight:20,
+    		                renderTo:divID,
+    		                type:type
+    		            },
+    		            title:{
+    		                text:title
+    		            },
+    		            xAxis:{
+    		                categories:json.ChartTime,
+    		                labels:{
+    		                    rotation:-25,
+    		                    step:2
+    		                }
+    		            },
+                        yAxis:{
+    		                title:{
+    		                    text:yText
+    		                },
+    		                labels:{
+    		                    formatter:function(){
+    		                        return this.value;
+    		                    }
+    		                }
+                            //,plotLines: [{   //一条延伸到整个绘图区的线，标志着轴中一个特定值。
+        //                    color: '#000',
+        //                    dashStyle: 'Dash', //Dash,Dot,Solid,默认Solid
+        //                    width: 1.5,
+        //                    value: avgLineValue,  //y轴显示位置
+        //                    zIndex: 5
+        //                }]
+    		            },
+                        legend:{
+                            backgroundColor:'#FFFFFF',
+                            floating:false,
+                            shadow:false
+                        },
+                        tooltip:{
+                            crosshairs:true,
+                            formatter:function(){
+                                return ''+this.series.name+':'+this.y+yText+'<br/>'+this.x;
+                            }
+                        },
+                        plotOptions:{
+                            column:{borderWidth:0}
+                        },
+
+    		            series:json.ChartValue
+                    })
+                },
+                error:function(){$("#"+divID).html("")}
+        });
+     }
+    </script>
+
+</head>
+<body>
+    <div id="divChart">
+    </div>
+</body>
+</html>

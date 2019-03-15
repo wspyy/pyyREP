@@ -1,0 +1,259 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.ServiceProcess;
+using System.Text;
+using System.Threading.Tasks;
+using MapUni.DataCenter.SQLServer.DAL;
+
+namespace ImgDataGather
+{
+    partial class Service1 : ServiceBase
+    {
+        private static System.Timers.Timer timer = null;
+        private int Muns = 0;
+        public Service1()
+        {
+            InitializeComponent();
+            if (timer == null)
+            {
+                timer = new System.Timers.Timer();
+                timer.Enabled = true;
+                timer.Interval = 60 * 1000; // 60秒
+                timer.Elapsed += new System.Timers.ElapsedEventHandler(this.timer_Elapsed);
+                this.ServiceName = "ImgDataGatherService";
+            }
+        }
+
+        protected override void OnStart(string[] args)
+        {
+            writelog("数据同步服务启动");
+            timer.Enabled = true;
+        }
+
+        protected override void OnStop()
+        {
+            timer.Enabled = false;
+            writelog("数据同步服务停止");
+            System.Diagnostics.Process[] myproc = System.Diagnostics.Process.GetProcessesByName("ServerForm");
+
+            if (myproc != null && myproc.Length > 0)
+            {
+                int n = myproc.Length;
+                for (int i = 0; i < n; i++)
+                {
+                    myproc[i].Kill();
+                }
+            }
+        }
+
+        // 定时执行
+
+        private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (Muns % 5 == 0)
+            {
+                RadarImg(DateTime.Now);//雷达
+            }
+            if (Muns % 60 == 0)//天气图
+            {
+                GroundImg(DateTime.Now, "00");
+                GroundImg(DateTime.Now, "50");
+                GroundImg(DateTime.Now, "70");
+                GroundImg(DateTime.Now, "85");
+                
+            }
+            if (Muns % 15 == 0)
+            {
+                CloudImg(DateTime.Now);//卫星云图
+            }
+            Muns++;
+        }
+        /// <summary>
+        /// 雷达图片
+        /// </summary>
+        private void RadarImg(DateTime dt)
+        {
+            dt = dt.AddMinutes(-(dt.Minute % 5)).AddMinutes(-10);//图片延迟10分钟，显示图片频次是每5分钟一次
+            //网页路径
+            string webpath = "http://image.nmc.cn/product/" + dt.Year + "/" + dt.ToString("MM") + "/" + dt.ToString("dd") + "/RDCP/SEVP_AOC_RDCP_SLDAS_EBREF_AZ9352_L88_PI_" + dt.AddHours(-8).ToString("yyyyMMddHHmm") + "00000.GIF";
+            string fileName = dt.ToString("yyyyMMddHHmm") + ".GIF";
+            string locationUrl = ConfigurationManager.AppSettings["fullpath"] + "RadarImg\\" + fileName;//保存到本地路径
+            DateTime CurrTime = Convert.ToDateTime(dt.ToString("yyyy-MM-dd HH:mm"));//文件时间
+            string relativePath = "RadarImg\\" + fileName;//文件相对路径
+            T_Moni_ImgFiles img = new T_Moni_ImgFiles();
+            img.FileName = fileName;
+            img.FullFileName = relativePath;
+            img.Cate = 1;
+            img.CreatedTime = DateTime.Now;
+            img.FileDate = CurrTime;
+            ImgAcp(webpath, locationUrl, img);
+        }
+        /// <summary>
+        /// 卫星云图
+        /// </summary>
+        private void CloudImg(DateTime dt)
+        {
+            dt = dt.AddMinutes(-(dt.Minute % 30)).AddMinutes(-15);//图片延迟10分钟，显示图片频次是每5分钟一次
+            //网页路径
+            string webpath = "http://image.nmc.cn/product/" + dt.Year + "/" + dt.ToString("MM") + "/" + dt.ToString("dd") + "/WXCL/SEVP_NSMC_WXCL_ASC_E99_ACHN_LNO_PY_" + dt.AddHours(-8).ToString("yyyyMMddHHmm") + "00000.JPG";
+            string fileName = dt.ToString("yyyyMMddHHmm") + ".JPG";
+            string locationUrl = ConfigurationManager.AppSettings["fullpath"] + "CloudImg\\" + fileName;//保存到本地路径
+            DateTime CurrTime = Convert.ToDateTime(dt.ToString("yyyy-MM-dd HH:mm"));//文件时间
+            string relativePath = "CloudImg\\" + fileName;//文件相对路径
+            T_Moni_ImgFiles img = new T_Moni_ImgFiles();
+            img.FileName = fileName;
+            img.FullFileName = relativePath;
+            img.Cate = 2;
+            img.FileDate = CurrTime;
+            img.CreatedTime = DateTime.Now;
+            ImgAcp(webpath, locationUrl, img);
+        }
+        /// <summary>
+        /// 地面图片
+        /// </summary>
+        private void GroundImg(DateTime dt, string cate)
+        {
+            dt = dt.AddHours(-((dt.Hour - 8) % 12 + 12));
+            string webpath = "http://image.nmc.cn/product/" + dt.AddHours(8).Year + "/" + dt.AddHours(8).ToString("MM") + "/" + dt.AddHours(8).ToString("dd") + "/WESA/medium/SEVP_NMC_WESA_SFER_EGH_ACWP_L" + cate + "_P9_" + dt.AddHours(-8).ToString("yyyyMMddHH") + "0000000.bmp";
+            string fileName = dt.ToString("yyyyMMddHH") + ".JPG";
+            string locationUrl = ConfigurationManager.AppSettings["fullpath"] + "GroundImg\\" + cate + "\\" + fileName;//保存到本地路径
+            DateTime CurrTime = Convert.ToDateTime(dt.ToString("yyyy-MM-dd HH:mm"));//文件时间
+            string relativePath = "GroundImg\\" + cate + "\\" + fileName;//文件相对路径
+            T_Moni_ImgFiles img = new T_Moni_ImgFiles();
+            img.FileName = fileName;
+            img.FullFileName = relativePath;
+            img.FileDate = CurrTime;
+            img.CreatedTime = DateTime.Now;
+            switch (cate)
+            {
+                case "70":
+                    img.Cate = 5;
+                    break;
+                case "50":
+                    img.Cate = 4;
+                    break;
+                case "85":
+                    img.Cate = 6;
+                    break;
+                case "00":
+                    img.Cate = 3;
+                    break;
+            }
+            ImgAcp(webpath, locationUrl, img);
+        }
+
+        /// <summary>
+        /// 图片采集
+        /// </summary>
+        private void ImgAcp(string imgUrl, string localpath, T_Moni_ImgFiles imgfile)
+        {
+            if (GetUrlError(imgUrl) != 200)
+            {
+                writelog("图片未找到：" + imgUrl);
+                return;
+            }
+                
+            WebRequest request = WebRequest.Create(imgUrl);
+            WebResponse response = null;
+            try
+            {
+                response = request.GetResponse();
+                request.Timeout = 5 * 60 * 1000;
+                ImageFormat f = ImageFormat.Gif;
+                string fileext = imgUrl.Substring(imgUrl.LastIndexOf('.'));
+                if (fileext.ToUpper() == ".JPG")
+                {
+                    f = ImageFormat.Jpeg;
+                }
+                else if (fileext.ToUpper() == ".PNG")
+                {
+                    f = f = ImageFormat.Png;
+                }
+                else if (fileext.ToUpper() == ".BMP")
+                {
+                    f = ImageFormat.Bmp;
+                }
+                Stream resStream = response.GetResponseStream();
+                FileInfo fi = new FileInfo(localpath);
+                //如果存在文件则先干掉
+                if (!fi.Exists)
+                {
+                    System.Drawing.Image img;
+                    img = System.Drawing.Image.FromStream(resStream);
+                    img.Save(localpath, f);
+                    resStream.Close();
+                    string ConnectionString = ConfigurationManager.ConnectionStrings["MapDB"].ConnectionString;
+                    SqlConnection conn = new SqlConnection(ConnectionString);
+                    conn.Open();
+                    string sql = "insert into T_Mid_ImgFiles(FileName,Cate,FileDate,FullFileName,CreatedTime) values('" + imgfile.FileName + "'," + imgfile.Cate + ",'" + imgfile.FileDate + "','" + imgfile.FullFileName + "','" + imgfile.CreatedTime + "')";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    //EntityHelper.Add<T_Moni_ImgFiles>(imgfile);
+                }
+                writelog("图片同步成功：" + localpath);
+            }
+            catch (Exception ex)
+            {
+                writelog("图片同步出错：" + ex.Message.ToString() + ">>" + imgUrl);
+            }
+            finally 
+            {
+                response.Close();
+                response.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// 将信息输出到文本文件
+        /// </summary>
+        /// <param name="readme"></param>
+        public void writelog(string txt)
+        {
+            string logPath = ConfigurationManager.AppSettings["logPath"] + "ImgDataGather\\" + DateTime.Now.ToString("yyyy-MM-dd").ToString() + ".txt";
+            StreamWriter dout = new StreamWriter(logPath, true);
+            dout.Write(System.DateTime.Now.ToString("yyy-MM-dd HH:mm:ss") + " => " + txt + "\r\n");
+            dout.Close();
+        }
+
+        private int GetUrlError(string curl)
+        {
+            int num = 200;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri(curl));
+            ServicePointManager.Expect100Continue = false;
+            try
+            {
+                ((HttpWebResponse)request.GetResponse()).Close();
+            }
+            catch (WebException exception)
+            {
+                if (exception.Status != WebExceptionStatus.ProtocolError)
+                {
+                    return num;
+                }
+                if (exception.Message.IndexOf("500 ") > 0)
+                {
+                    return 500;
+                }
+                if (exception.Message.IndexOf("401 ") > 0)
+                {
+                    return 401;
+                }
+                if (exception.Message.IndexOf("404") > 0)
+                {
+                    num = 404;
+                }
+            }
+            return num;
+        }   
+    }
+}

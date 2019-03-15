@@ -1,0 +1,199 @@
+body {
+	margin: 0px;
+}
+body {
+	font-family: Arial,Helvetica,sans-serif; font-size: 12px;
+}
+td {
+	font-family: Arial,Helvetica,sans-serif; font-size: 12px;
+}
+th {
+	font-family: Arial,Helvetica,sans-serif; font-size: 12px;
+}
+a:link {
+	color: rgb(0, 0, 0); text-decoration: none;
+}
+a:visited {
+	color: rgb(0, 0, 0); text-decoration: none;
+}
+a:hover {
+	color: rgb(255, 0, 0); text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+img {
+	
+}
+.a12 {
+	font-size: 12px;
+}
+.cu20 {
+	font-size: 20px; font-weight: bold;
+}
+.cu26 {
+	font-size: 26px; font-weight: bold;
+}
+.cu36 {
+	font-size: 36px; font-weight: bold;
+}
+.baisecu {
+	color: rgb(255, 255, 255); font-weight: bold;
+}
+.baise {
+	color: rgb(255, 255, 255);
+}
+.hongse {
+	color: rgb(255, 0, 0);
+}
+.lvse {
+	color: rgb(0, 130, 0);
+}
+.lanse {
+	color: rgb(0, 0, 255);
+}
+.qianlan {
+	color: rgb(99, 154, 206); font-size: 12px;
+}
+.huise {
+	color: rgb(189, 186, 189); font-size: 12px;
+}
+.huise a:link {
+	color: rgb(189, 186, 189); text-decoration: none;
+}
+.huise a:visited {
+	color: rgb(189, 186, 189); text-decoration: none;
+}
+.huise a:hover {
+	color: rgb(0, 0, 0); text-decoration: underline;
+}
+.huise a:active {
+	text-decoration: none;
+}
+h1 {
+	margin: 1px; width: 260px; text-indent: 3px; font-size: 12px; font-weight: normal;
+}
+h2 {
+	margin: 0px 0px 0px 20px; padding: 5px; color: rgb(255, 101, 0); font-size: 16px; font-weight: bold;
+}
+.h2dabiaoti {
+	margin: 0px; padding: 5px; text-align: center; color: rgb(255, 101, 0); font-size: 34px; font-weight: bold;
+}
+h3 {
+	margin: 5px; padding: 5px; color: rgb(48, 127, 220); font-size: 18px; font-weight: bold; filter: Glow(Color="#FFFFFF",Strength="5");
+}
+li {
+	margin: 0px; padding: 4px 0px; border-bottom-color: rgb(217, 217, 217); border-bottom-width: 1px; border-bottom-style: dotted; list-style-type: decimal;
+}
+li a {
+	font-size: 16px;
+}
+p::first-letter {
+	padding-left: 30px;
+}
+.huisefengexian {
+	text-align: center; color: rgb(102, 102, 102); padding-bottom: 3px; margin-bottom: 10px; border-bottom-color: rgb(217, 217, 217); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.xiaoshuomingkuang_biaoti {
+	margin: 30px 10px 0px; padding: 5px 5px 0px; border: 1px solid rgb(255, 255, 255); color: rgb(82, 82, 82); font-size: 24px; font-weight: bold;
+}
+.xiaoshuomingkuang_neirong {
+	margin: 2px 10px 10px; padding: 5px; border: 1px solid rgb(217, 217, 217); color: rgb(82, 82, 82);
+}
+#top {
+	width: 950px; height: 64px; clear: both; margin-top: 10px; margin-right: auto; margin-left: auto;
+}
+#top #logo {
+	width: 170px; text-align: center; padding-top: 6px; float: left;
+}
+#top #top_gg {
+	width: 480px; text-align: center; float: left;
+}
+#top #top_gg2 {
+	width: 250px; text-align: center; float: left;
+}
+#top #topyoubian {
+	width: 50px; text-align: right; line-height: 18px; padding-top: 5px; float: left;
+}
+#daohangtiao {
+	margin: 8px auto; width: 950px; height: 32px; line-height: 32px; overflow: hidden; clear: both; background-image: url("http://file1.zhongguoren.cn/file1/pic/daohang/menu_bg.gif");
+}
+#daohangtiao .daohangtiao_piczuo {
+	width: 11px; height: 32px; float: left; background-image: url("http://file1.zhongguoren.cn/file1/pic/daohang/menu_l.gif"); background-repeat: no-repeat;
+}
+#daohangtiao .daohangtiao_zuo {
+	float: left;
+}
+#daohangtiao .daohangtiao_you {
+	text-indent: 450px; float: left;
+}
+#daohangtiao .daohangtiao_picyou {
+	width: 11px; height: 32px; float: right; background-image: url("http://file1.zhongguoren.cn/file1/pic/daohang/menu_r.gif"); background-repeat: no-repeat;
+}
+.fenleibiaotilan {
+	background-position: 3px 5px; margin: 10px auto; width: 930px; clear: both; border-bottom-color: rgb(255, 244, 215); border-bottom-width: 2px; border-bottom-style: solid; background-image: url("http://file1.zhongguoren.cn/file1/pic/star.gif"); background-repeat: no-repeat;
+}
+.neirongkuang {
+	width: 950px; clear: both; margin-right: auto; margin-left: auto; background-image: url("http://file1.zhongguoren.cn/file1/pic/jiao/zhongbg.gif");
+}
+.neirongkuang .neirongkuang_quan {
+	border: 5px solid rgb(255, 251, 255); width: 930px; overflow: hidden; clear: both; margin-right: 5px; margin-left: 5px; background-color: rgb(255, 255, 255);
+}
+.neirongkuang .neirongkuang_quan .nrk_w {
+	width: 232px; height: 45px; margin-top: 4px; margin-bottom: 4px; float: left; background-color: rgb(255, 255, 255);
+}
+.neirongkuang .neirongkuang_quan .nrk_w .nrk_pic {
+	width: 32px; height: 32px; margin-top: 3px; margin-right: 5px; float: left;
+}
+.neirongkuang .neirongkuang_quan .nrk_w .nrk_pic img {
+	width: 32px; height: 32px;
+}
+.neirongkuang .neirongkuang_quan .nrk_w .nrk_bta {
+	width: 192px; padding-top: 3px; padding-bottom: 5px; font-size: 14px; float: left;
+}
+.neirongkuang .neirongkuang_quan .nrk_w .nrk_nra {
+	width: 192px; color: rgb(189, 186, 189); float: left;
+}
+
+.neirongkuang .neirongkuang_zhongshang {
+	background-position: bottom; width: 936px; height: 40px; text-indent: 5px; overflow: hidden; clear: both; margin-right: auto; margin-left: auto; background-image: url("http://file1.zhongguoren.cn/file1/pic/jiao/zhongshang.gif"); background-repeat: repeat-x;
+}
+.neirongkuang .neirongkuang_zhongshang #neirongkuang_zhongshang_zuo {
+	float: left;
+}
+.neirongkuang .neirongkuang_zhongshang #neirongkuang_zhongshang_you {
+	width: 480px; padding-top: 10px; float: right;
+}
+.neirongkuang .neirongkuang_zuo {
+	margin: 5px; padding: 5px; border: 1px solid rgb(217, 217, 217); width: 698px; float: left;
+}
+.neirongkuang .neirongkuang_you {
+	width: 200px; text-align: center; float: left;
+}
+.neirongkuang .neirongkuang_link {
+	padding: 8px;
+}
+#bottomlink {
+	width: 940px; padding-top: 10px; margin-right: auto; margin-left: auto;
+}
+#bottom {
+	width: 940px; line-height: 20px; padding-top: 10px; clear: both; margin-right: auto; margin-left: auto;
+}
+#bottom .zuo {
+	width: 250px; float: left;
+}
+#bottom .you {
+	width: 560px; text-align: right; float: right;
+}
+.k_pagelist {
+	line-height: 30px; clear: both;
+}
+.k_pagelist strong {
+	margin: 0px 1px; padding: 2px; border: 1px solid rgb(231, 231, 231); color: rgb(0, 153, 0); font-size: 12px;
+}
+.k_pagelist a {
+	margin: 0px 1px; padding: 2px; border: 1px solid rgb(231, 231, 231); font-size: 12px;
+}
+#jiazai_waitdiv {
+	background: rgb(239, 248, 254); border: 1px solid rgb(157, 200, 232); left: 50%; top: 40%; width: 370px; height: 100px; text-align: center; line-height: 100px; font-size: 16px; margin-top: -50px; margin-left: -185px; display: none; filter: alpha(opacity=90); position: absolute;
+}

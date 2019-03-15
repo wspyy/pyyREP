@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>空气质量区域渲染</title>
+    <style type="text/css" media="screen">
+        html, body{height: 100%;}
+        body{margin: 0;padding: 0; overflow: auto; text-align: center;background-color: #ffffff;}
+    </style>
+    
+</head>
+<body>
+    <div style="position: absolute; top: 0px; left: 100px; background-color: #BEBE9A;
+        padding: 2px; z-index: 10000">
+        <input type="button" value="AQI" onclick="addIDWRender('aqi')" />
+        <input type="button" value="PM10" onclick="addIDWRender('pm10')" />
+        <input type="button" value="PM2.5" onclick="addIDWRender('pm25')" />
+        <input type="button" value="CO" onclick="addIDWRender('co')" />
+        <input type="button" value="NO2" onclick="addIDWRender('no2')" />
+        <input type="button" value="SO2" onclick="addIDWRender('so2')" />
+        <input type="button" value="O3" onclick="addIDWRender('o3')" />
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://192.168.5.150:8585/HorseMap/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+    var layerId;
+
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(111.80845798483, 35.0956978538922, 113.66246838483, 36.1762787656687);
+        addPicGraphics();
+       
+    }
+
+    //添加图片符号点位图形
+
+    function addPicGraphics() {
+
+        var picGra1 = new HMap.PictureGraphic(119.171825, 34.599176, "http://192.168.5.150:8585/HorseMap/Images/pic/water_3.png", { alpha: 1, data: { aqi: 35, pm10: 45, pm25: 25,co:4,no2:50,so2:100,o3:100,Longitude: 119.171825, Latitude: 34.599176} });
+
+        var picGra2 = new HMap.PictureGraphic(109.126078, 21.487113, "http://192.168.5.150:8585/HorseMap/Images/pic/quality_air_12.png", { alpha: 1, data: { aqi: 80, pm10: 120, pm25: 55,co:6,no2:150,so2:170,o3:180, Longitude: 109.126078, Latitude: 21.487113} });
+
+        var picGra3 = new HMap.PictureGraphic(106.714938, 26.573490, "http://192.168.5.150:8585/HorseMap/Images/pic/quality_air_13.png", { alpha: 1, data: { aqi:120, pm10: 170, pm25:95,co:20,no2:250,so2:550,o3:250, Longitude:106.714938, Latitude:26.573490} });
+
+        var picGra4 = new HMap.PictureGraphic(118.795321, 32.063601, "http://192.168.5.150:8585/HorseMap/Images/pic/water_3.png", { alpha: 1, data: { aqi: 45, pm10: 110, pm25: 15,co:3,no2:60,so2:80,o3:80, Longitude: 118.795321, Latitude: 32.063601} });
+
+        var picGraphics = [picGra1, picGra2,picGra3, picGra4];
+
+        layerId = hmap.addGraphic(picGraphics, { isAutoZoom: true });
+        
+        //添加空气质量区域渲染功能
+        var factor="aqi";
+        addWidget(layerId,factor);
+
+    }
+
+    function addWidget(layerId, factor) {
+
+        var renderDataParam = new HMap.RenderDataParam({
+            layerId:layerId,
+            xField:"Longitude",
+            yField:"Latitude",
+            valueField: factor,
+            alpha:0.9
+        });
+        var idwModeParam = new HMap.IDWModeParam({
+            gpUrl: "http://192.168.5.150/ArcGIS/rest/services/ChinaIDW/GPServer/ChinaModel",
+            inputPointsName: "points",
+            zvalue: "zvalue",
+            outputDZXName: "rasterresult",
+            outputDZMName: "Contour_rasterr1.shp",
+            Contourinterval: 100,
+            ContourintervalParamName: "Contourinterval"
+
+        });
+        idwModelWidget = new HMap.IDWModelWidget(renderDataParam, idwModeParam);
+        hmap.addControl(idwModelWidget);
+    }
+    function addIDWRender(factor) {
+
+        addWidget(layerId, factor);
+    }
+
+    creatHMap();
+
+</script>
+</html>

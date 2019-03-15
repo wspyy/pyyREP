@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+//
+//	
+// 
+// 	
+//
+////////////////////////////////////////////////////////////////////////////////
+-->
+<configuration>
+	
+	<systemUrl>http://192.168.5.150:8585/HorseMap/API-2.0/</systemUrl>
+	
+	<widgetInterface>
+		<widget name="路径分析模块"
+				id="RoutingAnalysisWidget"
+				url="widget/RoutingAnalysisWidget/RoutingAnalysisWidget.swf"
+				autoLoad="false"
+				/>	
+		<widget name="测量模块"
+				id="MeasureWidget"
+				url="widget/MeasureWidget/MeasureWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="编辑模块"
+				id="EditWidget"
+				url="widget/EditWidget/EditWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="图表模块"
+				id="MapChartWidget"
+				url="widget/MapChartWidget/MapChartWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="导航模块"
+				id="NavigationWidget"
+				url="widget/NavigationWidget/NavigationWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="鹰眼模块"
+				id="OverViewWidget"
+				url="widget/OverViewWidget/OverViewWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="图例模块"
+				id="LegendWidget"
+				url="widget/LegendWidget/LegendWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="动态标绘模块"
+				id="PlotWidget"
+				url="widget/PlotWidget/PlotWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="工具条模块"
+				id="ToolBarWidget"
+				url="widget/ToolBarWidget/ToolBarWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="气模型模块"
+				id="AirModelWidget"
+				url="widget/AirModelWidget/AirModelWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="轨迹回放模块"
+				id="TrackPlayWidget"
+				url="widget/TrackPlayWidget/TrackPlayWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="实时轨迹模块"
+				id="RealTrackWidget"
+				url="widget/RealTrackWidget/RealTrackWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="空气质量区域渲染-IDW模型"
+				id="IDWModelWidget"
+				url="widget/IDWModelWidget/IDWModelWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="综合查询模块"
+				id="QueryWidget"
+				url="widget/QueryWidget/QueryWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="图片播放模块"
+				id="PlayPicWidget"
+				url="widget/PlayPicWidget/PlayPicWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="点缓冲查询"
+				id="PointBufferWidget"
+				url="widget/PointBufferWidget/PointBufferWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="动态标绘模块"
+				id="plotPlusWidget"
+				url="widget/PlotPlus/EnvPlotWidget.swf"
+				autoLoad="false"
+				/> 
+		<widget name="一维水模型测试"
+				id="YWSModelWidget"
+				url="widget/YiweishuiModel/YwsModelWidget.swf"
+				autoLoad="false"
+				/> 
+				
+	</widgetInterface>
+   
+</configuration>

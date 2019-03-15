@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>绘图</title>
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style="position:absolute; top:0px; left:100px;background-color:#BEBE9A;padding:2px; z-index:10000 ">
+        <label for="drawNumber">
+            绘制数量：</label>
+        <input type="text" id="drawNumber" value="1"  style="width: 30px"/>
+        <label for="showTime">
+            显示时间（秒）：</label>
+        <input type="text" id="showTime" value="-1" style="width: 30px" />
+        <button onclick="drawPicturePoint()" >
+            图片符号点</button>
+        <button onclick="drawSimplePoint()" >
+            简单符号点</button>
+        <button onclick="drawPolyline()" >
+            线</button>
+        <button onclick="drawPolygon()" >
+            面</button>
+        <button onclick="drawExtent()" >
+            范围</button>
+        <label for="time">
+            结果Id：</label>
+        <input type="text" id="drawResult" value="" style="width: 80px"/>
+        <button onclick="removeDrawResult()" >
+            移除图形</button>
+    </div>
+    <div style="position: absolute; right: 10px; bottom: 70px; height: 30px; z-index: 9999">
+        <textarea id="drawResults" rows="5" cols="50">结果Id：</textarea>
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://192.168.5.150:8585/HorseMap/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+    var resultId;
+    var drawId;
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781);
+    }
+    //绘制图片符号点状图形
+    function drawPicturePoint() {
+        var pictureUrl = "http://192.168.5.150:8585/HorseMap/Images/pic/water_3.png";
+        var number = drawNumber.value;
+
+        drawId = hmap.addDraw(new HMap.DrawPicturePoint(pictureUrl, number, drawCompleted, { showTime: showTime.value }));
+    }
+    //绘制简单符号点状图形
+    function drawSimplePoint() {
+        var number = drawNumber.value;
+        drawId = hmap.addDraw(new HMap.DrawSimplePoint(number, drawCompleted, { showTime: showTime.value }));
+    }
+
+    //绘制线状图形
+    function drawPolyline() {
+        var number = drawNumber.value;
+        drawId = hmap.addDraw(new HMap.DrawPolyline(number, drawCompleted, { showTime: showTime.value }));
+    }
+
+    //绘制面状图形
+    function drawPolygon() {
+        var number = drawNumber.value;
+        drawId = hmap.addDraw(new HMap.DrawPolygon(number, drawCompleted, { showTime: showTime.value,outLineStyle:"dot" }));
+    }
+
+    //绘制范围图形
+    function drawExtent() {
+        var number = drawNumber.value;
+        drawId = hmap.addDraw(new HMap.DrawExtent(number, drawCompleted, { showTime: showTime.value }));
+    }
+
+    function removeDrawResult() {
+        hmap.removeDrawResult(drawResult.value);
+    }
+
+    function drawCompleted(e) {
+        resultId = drawId;
+        drawResults.value = drawResults.value + "\n" + resultId;
+        drawResult.value = resultId;
+    }
+
+    creatHMap();
+
+</script>
+</html>

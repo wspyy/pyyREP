@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../../Demo/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        html, body {
+            margin: 0px 0px 0px 0px;
+            height: 100%;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+        .tab {
+            word-break: keep-all;
+            border: 1px solid #EBEBEB;
+            border-bottom: none;
+            border-left: none;
+            border-top-left-radius: 6px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+            .tab td {
+                border-bottom: 1px solid #EBEBEB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                color: #41A7E2;
+                cursor: pointer;
+            }
+
+            .tab th {
+                background: #6494BB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                border-bottom: 1px solid #EBEBEB;
+                color: #fff;
+            }
+    </style>
+</head>
+<body style="overflow: auto;">
+
+    <table class="tab">
+        <tr>
+            <th>相关文档</th>
+        </tr>
+        <tr>
+            <td><a href="../Files/重污染天气应急预案（2014.12.12）.doc">重污染天气应急预案（2014.12.12）</a></td>
+        </tr>
+        <tr>
+            <td><a href="../Files/晋城市城市重污染天气应急响应程序图1.doc">晋城市城市重污染天气应急响应程序图</a></td>
+        </tr>
+        <tr>
+            <td><a href="../Files/晋城市市重污染天气预报会商意见.doc">晋城市市重污染天气预报会商意见</a></td>
+        </tr>
+        <tr>
+            <td><a href="../Files/晋城市重污染天气预警信息发布（解除）审批表.doc">晋城市重污染天气预警信息发布（解除）审批表</a></td>
+        </tr>
+        <tr>
+            <td><a href="../Files/晋城市重污染天气应急响应统计表.doc">晋城市重污染天气应急响应统计表</a></td>
+        </tr>
+    </table>
+    <div style="width: 100%; margin: 0 auto;">
+        <img src="../Files/应急响应流程图.png" />
+    </div>
+</body>
+</html>

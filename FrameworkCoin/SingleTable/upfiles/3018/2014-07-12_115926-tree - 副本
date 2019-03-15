@@ -1,0 +1,65 @@
+<div class="portlet-body">
+                            <div id="MyTree3" class="tree tree-solid-line">
+                                <div style="display: none;" class="tree-folder">
+                                    <div class="tree-folder-header">
+                                        <i class="fa fa-folder"></i>
+                                        <div class="tree-folder-name">
+                                        </div>
+                                    </div>
+                                    <div class="tree-folder-content">
+                                    </div>
+                                    <div style="display: none;" class="tree-loader">
+                                    </div>
+                                </div>
+                                <div style="display: none;" class="tree-item">
+                                    <i class="tree-dot"></i>
+                                    <div class="tree-item-name">
+                                    </div>
+                                </div>
+                            <div style="display: block;" class="tree-folder">
+                                    <div class="tree-folder-header">
+                                        <i class="fa fa-folder-open"></i>
+                                        <div class="tree-folder-name">Resources <div class="tree-actions"></div></div>
+                                    </div>
+                                    <div class="tree-folder-content">
+                                    <div style="display: block;" class="tree-folder">
+                                    <div class="tree-folder-header">
+                                        <i class="fa fa-folder"></i>
+                                        <div class="tree-folder-name">Resources <div class="tree-actions"></div></div>
+                                    </div>
+                                    <div class="tree-folder-content">
+                                    </div>
+                                    <div style="display: none;" class="tree-loader"><img src="assets/img/input-spinner.gif"></div>
+                                </div><div style="display: block;" class="tree-folder">
+                                    <div class="tree-folder-header">
+                                        <i class="fa fa-folder"></i>
+                                        <div class="tree-folder-name">Projects <div class="tree-actions"></div></div>
+                                    </div>
+                                    <div class="tree-folder-content">
+                                    </div>
+                                    <div style="display: none;" class="tree-loader"><img src="assets/img/input-spinner.gif"></div>
+                                </div><div style="display: block;" class="tree-item">
+                                    <i class="tree-dot"></i>
+                                    <div class="tree-item-name">Nike Promo 2013</div>
+                                </div><div style="display: block;" class="tree-item">
+                                    <i class="tree-dot"></i>
+                                    <div class="tree-item-name">IPO Reports</div>
+                                </div></div>
+                                    <div style="display: none;" class="tree-loader"><img src="assets/img/input-spinner.gif"></div>
+                                </div><div style="display: block;" class="tree-folder">
+                                    <div class="tree-folder-header">
+                                        <i class="fa fa-folder"></i>
+                                        <div class="tree-folder-name">Projects <div class="tree-actions"></div></div>
+                                    </div>
+                                    <div class="tree-folder-content">
+                                    </div>
+                                    <div style="display: none;" class="tree-loader"><img src="assets/img/input-spinner.gif"></div>
+                                </div><div style="display: block;" class="tree-item">
+                                    <i class="tree-dot"></i>
+                                    <div class="tree-item-name">Nike Promo 2013</div>
+                                </div><div style="display: block;" class="tree-item">
+                                    <i class="tree-dot"></i>
+                                    <div class="tree-item-name">IPO Reports</div>
+                                </div></div>
+                        </div>
+

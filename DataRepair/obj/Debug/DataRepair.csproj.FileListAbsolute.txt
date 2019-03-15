@@ -1,0 +1,16 @@
+E:\pyy\shuozhou\朔州\DataRepair\obj\Debug\DataRepair.csprojResolveAssemblyReference.cache
+E:\pyy\shuozhou\朔州\DataRepair\obj\Debug\DataRepair.Form1.resources
+E:\pyy\shuozhou\朔州\DataRepair\obj\Debug\DataRepair.Properties.Resources.resources
+E:\pyy\shuozhou\朔州\DataRepair\obj\Debug\DataRepair.csproj.GenerateResource.Cache
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\bin\Debug\DataRepair.exe.config
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\bin\Debug\DataRepair.exe
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\bin\Debug\DataRepair.pdb
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\bin\Debug\HtmlAgilityPack.dll
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\bin\Debug\HtmlAgilityPack.pdb
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\bin\Debug\HtmlAgilityPack.xml
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\obj\Debug\DataRepair.csprojResolveAssemblyReference.cache
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\obj\Debug\DataRepair.Form1.resources
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\obj\Debug\DataRepair.Properties.Resources.resources
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\obj\Debug\DataRepair.csproj.GenerateResource.Cache
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\obj\Debug\DataRepair.exe
+F:\公司项目\朔州空气质量\代码\朔州\DataRepair\obj\Debug\DataRepair.pdb

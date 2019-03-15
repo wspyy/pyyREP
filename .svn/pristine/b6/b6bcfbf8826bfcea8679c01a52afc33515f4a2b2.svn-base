@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+ <style>
+        html, body {
+            margin: 0px 0px 0px 0px;
+            height: 100%;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+        .tab {
+            word-break: keep-all;
+            border: 1px solid #EBEBEB;
+            border-bottom: none;
+            border-left: none;
+            border-top-left-radius: 6px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+            .tab td {
+                border-bottom: 1px solid #EBEBEB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                color: #41A7E2;
+                cursor: pointer;
+            }
+
+            .tab th {
+                background: #6494BB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                border-bottom: 1px solid #EBEBEB;
+                color: #fff;
+            }
+    </style>
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../../API-2.0/MapAPI.js"></script>
+    <script src="../js/MapOperation.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            getData();
+        })
+
+        function getData() {
+            var tmpData = [];
+            var imgindex = false;
+            $.ajax({
+                url: "../../Data/GetAirMonitorData.ashx",
+                data: { flag: "tabHour" },
+                dataType: "json",
+                success: function (result) {
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+                        var content = "";
+                        $("#datatime").html(result.DataTable[0]["MoniDate"].toString().replace("T"," "));
+                        for (var i = 0; i < result.DataTable.length; i++) {
+                            content += "<tr><td>" + result.DataTable[i]["StationName"]
+                                + "</td><td>" + result.DataTable[i]["AQI"]
+                                + "</td><td>" + result.DataTable[i]["QualityRome"]
+                                + "</td><td>" + result.DataTable[i]["FirstP"] + "</td></tr>";
+                            tmpData.push(result.DataTable[i]);
+                        }
+                        addPicGraphics(tmpData, 2);
+                        addAirGraphics(tmpData, 1);
+
+                        $("#dtbody").html();
+                        $("#dtbody").append(content);
+
+                        $("#dtable tr:gt(0)").each(function (index) {
+                            $(this).click(function () {
+                                debugger;
+                                $("#dtable tr:gt(0)").css({ background: "#fff" });
+                                $(this).css({ background: "#D2E27D" });
+                                centerPoint(tmpData[index].lon, tmpData[index].lat);
+                                $("#nimg").attr("src", "../img/View/" + tmpData[index].StationCode + ".jpg");
+                                //if (imgindex)
+                                //    $("#nimg").attr("src", "../shuozhou/img/nengjiandu1.jpg");
+                                //else
+                                //    $("#nimg").attr("src", "../shuozhou/img/nengjiandu0.jpg");
+                                imgindex = !imgindex;
+                            });
+                        });
+
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+    </script>
+</head>
+<body style="height: 100%;">
+    <div style="width: 100%; height: 100%; background-color: white;">
+        <table style="width: 100%; height: 100%">
+            <tr>
+                <td>
+                    <div id="flashContent" style="width: 100%; height: 100%;"></div>
+                </td>
+                <td style="width: 350px; vertical-align: top;">
+                    <div id="data" style="float: left; padding-left: 1px;">
+                        <img id="nimg" style="width: 350px; height: 250px;" src="../shuozhou/img/nengjiandu0.jpg" />
+                        <div id="" style="margin-top:10px;">最新监测时间：<span id="datatime"></span></div>
+                        <table id="dtable" class="tab" style="width: 100%;">
+                            <thead id="dthead" >
+                                <tr class="thcss">
+                                    <th>站点名称</th>
+                                    <th>AQI</th>
+                                    <th>指数等级</th>
+                                    <th>首要污染物</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dtbody" class="class="tbcss">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

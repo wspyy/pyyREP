@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>叠加分析</title>
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style="position: absolute; top: 0px; z-index: 10001">
+        <label>点击“用来查询的几何图形”绘制用来查询的几何图形，点击“被查询的几何图形”绘制被查询的几何图形，然后点击叠加分析获取分析结果；点击“Graphic叠加分析”是分别传入的Graphic图形为用来查询的几何图形和被查询的几何图形，并直接分析得到叠加分析结果</label>
+    </div>
+    <div style="position: absolute; top: 40px; left: 100px; background-color: #BEBE9A;
+        padding: 2px; z-index: 10000">
+        <button onclick="drawPolygon()">
+            用来查询的几何图形</button>
+        <button onclick="drawSimplePoint()">
+            被查询的几何图形</button>
+        <button onclick="relation()">
+            叠加分析</button>
+        <button onclick="relationByGraphic()">
+            Graphic叠加分析</button>
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://192.168.5.150:8585/HorseMap/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+    var graphicId;
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781);
+    }
+    //按Graphic叠加对比
+    function relationByGraphic() {
+        var geomtryServerUrl = "http://192.168.5.150/ArcGIS/rest/services/Geometry/GeometryServer";
+        var extentGra = new HMap.ExtentGraphic(100, 33, 110, 38, { fillColor: 0xff0000, data: "addExtentGra!" });
+        var simpleGra1 = new HMap.SimpleGraphic(105, 36);
+        var simpleGra2 = new HMap.SimpleGraphic(107, 37);
+        var simpleGra3 = new HMap.SimpleGraphic(110, 39);
+        var simpleGraphics = [simpleGra1, simpleGra2, simpleGra3];
+        graphicId=hmap.addGraphic(simpleGraphics);
+        hmap.addGraphic([extentGra]);
+        toolRelation = new HMap.Relation(geomtryServerUrl, [extentGra], [simpleGra1, simpleGra2, simpleGra3], onResult, { onFault: onFault });
+        hmap.useTool(toolRelation);
+        
+    }
+
+    //叠加对比
+    function relation() {
+        var geomtryServerUrl = "http://192.168.5.150/ArcGIS/rest/services/Geometry/GeometryServer";
+        toolRelation = new HMap.Relation(geomtryServerUrl, drawResult2, drawResult1, onResult, { onFault: onFault });
+        hmap.useTool(toolRelation);
+
+        hmap.removeDrawResult(drawId1);
+        hmap.removeDrawResult(drawId2);
+    }
+
+    //绘制简单符号点状图形
+    function drawSimplePoint() {
+        drawId1 = hmap.addDraw(new HMap.DrawSimplePoint(3, drawCompleted1, { showTime: -1 }));
+    }
+    function drawCompleted1(e) {
+        drawResult1 = e.result;
+    }
+    //绘制面状图形
+    function drawPolygon() {
+        drawId2 = hmap.addDraw(new HMap.DrawPolygon(1, drawCompleted2, { showTime: -1 }));
+    }
+    function drawCompleted2(e) {
+        drawResult2 = e.result;
+    }
+
+
+    function onResult(e) {
+        if (graphicId) {
+            hmap.removeGraphic(graphicId);
+        }
+        
+        var result = e.result;
+        var graphicArr = new Array();
+        for (var i = 0; i < result.length; i++) {
+            var graphic;
+            if (result[i].Geometry.type == "geometry_mapPoint") {
+                graphic = new HMap.SimpleGraphic(result[i].Geometry.x, result[i].Geometry.y);
+            }
+            if (result[i].Geometry.type == "geometry_polyline") {
+                graphic = new HMap.PolylineGraphic(result[i].Geometry.paths);
+            }
+            if (result[i].Geometry.type == "geometry_polygon") {
+                graphic = new HMap.PolygonGraphic(result[i].Geometry.rings);
+            }
+            if (result[i].Geometry.type == "geometry_extent") {
+                graphic = new HMap.ExtentGraphic(result[i].Geometry.xmin, result[i].Geometry.ymin, result[i].Geometry.xmax, result[i].Geometry.ymax);
+            }
+            graphicArr.push(graphic);
+        }
+        graLayerId = hmap.addGraphic(graphicArr);
+    }
+    function onFault(e) {
+        alert(e.error);
+    }
+
+    creatHMap();
+
+</script>
+</html>

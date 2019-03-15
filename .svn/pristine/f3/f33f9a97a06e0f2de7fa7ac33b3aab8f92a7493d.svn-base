@@ -1,0 +1,123 @@
+﻿<%@ WebHandler Language="C#" Class="GetForecastData_Huish" %>
+
+using System;
+using System.Web;
+using System.Text;
+using Bll.BusinessFun;
+using System.Data;
+public class GetForecastData_Huish : IHttpHandler
+{
+
+    public void ProcessRequest(HttpContext context)
+    {
+        context.Response.ContentType = "text/plain";
+        string time = context.Request["time"];  //监测时间段只针对CMAX和WRF-CHEM统计预报全部计算全天
+        string reportcate = context.Request["cate"];//报表类型城市、区县、点位
+        string Model = context.Request["model"];//预报模型
+        AirForeCast bll = new AirForeCast();
+        DataSet ds = bll.GetAirForecastByCondition(time, reportcate, Model);
+        context.Response.Write(GetReport(ds, Model, time, reportcate));
+    }
+
+
+    private string GetReport(DataSet ds, string Model, string time, string reportcate)
+    {
+        StringBuilder strb = new StringBuilder(); 
+        strb.Append("<table class=\"tab\" cellspacing=\"0\" cellpadding=\"0\" style=\"width: 100%; margin-top:-10px;\">");
+        strb.Append("<tr>");
+        if (reportcate == "city")
+        {
+            strb.Append("<th rowspan=\"2\">城市名称</th>");
+        }
+        else if (reportcate == "region")
+        {
+            strb.Append("<th rowspan=\"2\">点位名称</th>");
+        }
+        else {
+            strb.Append("<th rowspan=\"2\">点位名称</th>");
+        }
+        strb.Append("<th rowspan=\"2\">日期</th>");
+        if (Model != "tj" && time != "0") 
+        {
+            strb.Append("<th rowspan=\"2\">时段</th>");
+        }
+        strb.Append("<th colspan=\"2\">二氧化硫</th>");
+        strb.Append("<th colspan=\"2\">二氧化氮</th>");
+        strb.Append("<th colspan=\"2\">一氧化碳</th>");
+        strb.Append("<th colspan=\"2\">臭氧</th>");
+        strb.Append("<th colspan=\"2\">PM<sub>10</sub></th>");
+        strb.Append("<th colspan=\"2\">PM<sub>2.5</sub></th>");
+        strb.Append("<th rowspan=\"2\">AQI</th>");
+        strb.Append("<th rowspan=\"2\">首要污染物</th>");
+        strb.Append("<th rowspan=\"2\">空气质量指数级别</th>");
+        strb.Append("</tr>");
+        strb.Append("<tr>");
+        strb.Append("<th>浓度</th>");
+        strb.Append("<th>分指数</th>");
+        strb.Append("<th>浓度</th>");
+        strb.Append("<th>分指数</th>");
+        strb.Append("<th>浓度</th>");
+        strb.Append("<th>分指数</th>");
+        strb.Append("<th>浓度</th>");
+        strb.Append("<th>分指数</th>");
+        strb.Append("<th>浓度</th>");
+        strb.Append("<th>分指数</th>");
+        strb.Append("<th>浓度</th>");
+        strb.Append("<th>分指数</th>");
+        strb.Append("</tr>");
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            DataRowCollection rows=ds.Tables[0].Rows;
+            foreach (DataRow row in rows)
+            {
+                strb.Append("<tr>");
+                strb.Append("<td>" + row["Stationname"].ToString() + "</td>");
+                strb.Append("<td>" + Convert.ToDateTime(row["MonitorTime"]).ToString("yyyy-MM-dd") + "</td>");
+                if (Model != "tj" && time != "0")
+                {
+                    strb.Append("<td>" + row["shid"].ToString() + "</td>");
+                }
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["SO2AQI"]),0) + "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["SO2"]),0) + "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["NO2AQI"]),0) + "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["NO2"]),0) + "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["COAQI"]),0) + "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["CO"]),1) + "</td>");
+                strb.Append("<td>" + ((row["O3AQI"] is DBNull)==true?"-":Math.Round(Convert.ToDecimal(row["O3AQI"]),0).ToString()) + "</td>");
+                strb.Append("<td>" + ((row["O3AQI"] is DBNull)==true?"-":Math.Round(Convert.ToDecimal(row["O3"]),0).ToString()) + "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["PM10AQI"]),0) + "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["PM10"]),0) + "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["PM25AQI"]),0) + "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["PM25"]),0)+ "</td>");
+                strb.Append("<td>" + Math.Round(Convert.ToDecimal(row["AQI"]), 0) + "</td>");
+                strb.Append("<td>" + row["FirstP"].ToString() + "</td>");
+                strb.Append("<td>" + row["AirLevel"].ToString() + "</td>");
+                strb.Append("</tr>");
+                if (row["O3AQI"] is DBNull) { }
+            }
+        }
+        else {
+            if (Model == "tj")
+            {
+                strb.Append("<tr><td colspan='17' style='text-align:center; height:40px;'>暂无数据</td></tr>");
+            }
+            else {
+                strb.Append("<tr><td colspan='18' style='text-align:center; height:40px;'>暂无数据</td></tr>");
+            }
+        }
+        
+        strb.Append("</table>");
+
+        return strb.ToString();
+
+    }
+
+    public bool IsReusable
+    {
+        get
+        {
+            return false;
+        }
+    }
+
+}

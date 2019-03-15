@@ -1,0 +1,186 @@
+﻿using Bll.BusinessFun;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+//连接odbc
+using System.Text;
+using System.Data.Odbc;
+using System.IO;
+//OleDb
+using System.Data.OleDb;
+//正则表达式的命名空间
+using System.Text.RegularExpressions;   
+
+public partial class Devoops_MoniData_AirMonitorData : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    Bll.BusinessFun.AirMonitor bll = new Bll.BusinessFun.AirMonitor();
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string beign = BeginTime.Value;
+        string end = EndTime.Value;
+        string station = Station.Value;
+        string item = Items.Value;
+        string type = Type.Value;
+        if (station.Length > 0) station = station.Substring(0, station.Length - 1);
+        if (item.Length > 0)
+        {
+            if (type == "yoy")
+                item = item.Split(',')[0];
+            else
+                item = item.Substring(0, item.Length - 1);
+        }
+        else
+        {
+            if (type == "yoy")
+                item = "AQI";
+        }
+        DataSet ds = bll.GetMonitorData(type, beign, end, station, item) as DataSet;
+        DataTable dt = ds.Tables[0];
+        if (dt != null)
+        {
+            ExportToExcel(dt, "空气质量监测数据", item);
+
+        }
+    }
+
+    public void ExportToExcel(DataTable dtSource, string fileName, string item)
+    {
+        HttpResponse resp = System.Web.HttpContext.Current.Response;
+        resp.Charset = "utf-8";
+        resp.Clear();
+        string filename = fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+        resp.AppendHeader("Content-Disposition", "attachment;filename=" + filename + ".xls");
+        resp.ContentEncoding = System.Text.Encoding.UTF8;
+
+        resp.ContentType = "application/ms-excel";
+        string style = "<meta http-equiv=\"content-type\" content=\"application/ms-excel; charset=utf-8\"/>" + "<style> .table{ font: 9pt Tahoma, Verdana; color: #000000; text-align:center;  background-color:#8ECBE8;  }.table td{text-align:center;height:21px;background-color:#EFF6FF;}.table th{ font: 9pt Tahoma, Verdana; color: #000000; font-weight: bold; background-color: #8ECBEA; height:25px;  text-align:center; padding-left:10px;}</style>";
+        resp.Write(style);
+
+        resp.Write("<table class='table'><thead><tr class=\"thcss\"><th >监测站点</th><th>监测时间</th><th>" + item + "</th></tr></thead>");
+
+        foreach (DataRow tmpRow in dtSource.Rows)
+        {
+            resp.Write("<tr>");
+            resp.Write("<td>" + tmpRow["StationName"] + "</td><td>" + tmpRow["MoniDate"].ToString() + "</td>"
+                + "<td>" + tmpRow[item] + "</td><td>");
+            resp.Write("</tr>");
+        }
+        resp.Write("<table>");
+
+        resp.Flush();
+        resp.End();
+    }
+
+    //导入bdf到数据库
+    protected void Button_Import(object sender, EventArgs e)
+    {
+        HttpContext httpF = System.Web.HttpContext.Current;
+        //ProcessRequest(httpF);
+        //string fileName = FileUpload1.PostedFile.FileName;
+        //string path = Path.GetFullPath(fileName);      
+        string tableName = upName.Value;//"rsz151001";     
+        string defaultDir = httpF.Request.MapPath(@"..\Files\" + tableName);//@"C:\Users\Administrator\Desktop\rsz151001\rsz151001.dbf";
+        //string defaultDir = Process(httpF);
+        //GetDbfDataByODBC(tableName, defaultDir);
+        addToDBbase(tableName, defaultDir);
+    }
+    
+    public DataTable GetDbfDataByODBC(string tableName, string defaultDir)
+    {
+        //OleDbConnection oConn = new System.Data.OleDb.OleDbConnection();
+        //oConn.ConnectionString = @"Provider=VFPOLEDB.1;Data Source=" + defaultDir + ";Collating Sequence=MACHINE";
+        //oConn.Open();
+        //OleDbDataAdapter OleDbDataAdapt = new OleDbDataAdapter("select * from  " + tableName, oConn.ConnectionString);
+        //DataTable dtData = new DataTable();
+        //dtData.TableName = "gb";
+        //OleDbDataAdapt.Fill(dtData);
+        //oConn.Close();
+        DbfReader.TDbfTable dbf = new DbfReader.TDbfTable(defaultDir);
+        return dbf.Table;
+    }
+    public void addToDBbase(string tableName, string defaultDir)
+    {
+        DataTable dt=GetDbfDataByODBC(tableName,defaultDir);
+         
+        for (int i = 0; i < dt.Rows.Count; i++)
+			{
+            string cityname=dt.Rows[i][1].ToString();//CityName
+            string stationname= dt.Rows[i][6].ToString();//stationname
+            string stationcode=dt.Rows[i][5].ToString();//stationcode
+
+                string year = dt.Rows[i][2].ToString();
+                string month = dt.Rows[i][3].ToString();
+                string day = dt.Rows[i][4].ToString();
+                DateTime time = Convert.ToDateTime(year + "-" + month + "-" + day);
+                
+                object s1 = RegexVal(dt.Rows[i][7]);//SO2
+                decimal SO2con = (s1 == "null") ? 0 : Convert.ToDecimal(s1) / 1000;//SO2:mg/cm3
+            
+            object n1 = RegexVal(dt.Rows[i][8]);//NO2
+            decimal NO2con = (n1 == "null") ? 0 : Convert.ToDecimal(n1) / 1000;//NO2:mg/cm3
+
+            object c1 = RegexVal(dt.Rows[i][10]);//CO
+            decimal COcon = (c1 == "null") ? 0 : Convert.ToDecimal(c1);//CO:mg/cm3
+
+            /*decimal o1=Convert.ToDecimal(dt.Rows[i][11]);//O3*/
+            object o1 = RegexVal(dt.Rows[i][11]);//O3
+            decimal O3con = (o1 == "null") ? 0 : Convert.ToDecimal(o1) / 1000;//O3:mg/cm3
+
+            object o8_1 = RegexVal(dt.Rows[i][12]);//O3_8H
+            decimal O3_8con = (o8_1 == "null") ? 0 : Convert.ToDecimal(o8_1) / 1000;//O3_8H:mg/cm3
+
+            object p25 = RegexVal(dt.Rows[i][13]);//PM25
+            decimal PM25con = (p25 == "null") ? 0 : Convert.ToDecimal(p25) / 1000;//PM25:mg/cm3
+
+            object p10 = RegexVal(dt.Rows[i][9]);//PM10
+            decimal PM10con = (p10 == "null") ? 0 : Convert.ToDecimal(p10) / 1000;//PM10:mg/cm3
+
+            string s2 = (s1 == "null") ? "null" : "[dbo].[so22iaqi](" + Convert.ToDecimal(s1) / 1000 + ")";
+            //string s2="[dbo].[so22iaqi]("+s1/1000+")";//SO2AQI
+
+            string n2 = (n1 == "null") ? "null" : "[dbo].[no22iaqi](" + Convert.ToDecimal(n1) / 1000 + ")";//NO2AQI
+            string c2 = (c1 == "null") ? "null" : "[dbo].[co2iaqi](" + c1 + ")";//COAQI
+            string o2 = (o1 == "null") ? "null" : "[dbo].[o32iaqi](" + Convert.ToDecimal(o1) / 1000 + ",1)";//O3AQI,臭氧1小时
+            string o8_2 = (o8_1 == "null") ? "null" : "[dbo].[o32iaqi](" + Convert.ToDecimal(o8_1) / 1000 + ",8)";//O3AQI,臭氧8小时
+            string p25A = (p25 == "null") ? "null" : "[dbo].[pm252iaqi](" + Convert.ToDecimal(p25) / 1000 + ")";//PM25AQI
+            string p10A = (p10 == "null") ? "null" : "[dbo].[pm102iaqi](" + Convert.ToDecimal(p10) / 1000 + ")";//PM10AQI
+
+            string aqi = "[dbo].[GetMaxAQI]([dbo].[so22iaqi](" + SO2con + "),[dbo].[no22iaqi](" + NO2con + "),[dbo].[co2iaqi](" + COcon + "),"
+                + "[dbo].[o32iaqi](" + O3con + ",1),[dbo].[pm252iaqi](" + PM25con + "),[dbo].[pm102iaqi](" + PM10con + "))";//AQI
+            string FirstP = "[dbo].[fun_AQI_FristPollutant](" + COcon + "," + SO2con + "," + NO2con + "," + O3con + "," + O3_8con + "," + PM25con + "," + PM10con + ")";//FirstP
+            
+            string AirLevel="[dbo].[fun_AirAQIdegree]("+aqi+")";//AirLevel
+
+			  
+            /*//直接插入要导入的数据，没有验证是否会重复插入
+            string sql = string.Format("insert into [dbo].[a] (CityName, StationName, StationCode," +
+            "MoniDate, SO2AQI, SO2, NO2AQI, NO2, COAQI, CO, O3AQI, O3,O38AQI, O38,PM25AQI,PM25, PM10AQI, PM10,AQI,FirstP,AirLevel)" +
+            "values ('{0}','{1}','{2}','{3}',{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20})", dt.Rows[i][1].ToString(),
+            dt.Rows[i][6].ToString(), dt.Rows[i][5].ToString(),
+            time, s2, s1, n2, n1, c2, c1, o2, o1, o8_2,o8_1, p25A, p25, p10A, p10, aqi,
+            FirstP, AirLevel);*/
+            //数据存在，不重复插入
+            string SQL = string.Format("insert into [dbo].[T_Mid_AirDayData] select '" + cityname + "','" + stationname + "','" + stationcode + "','" + time + "'," +
+                s2 + "," + s1 + "," + n2 + "," + n1 + "," + c2 + "," + c1 + "," + o2 + "," + o1 + "," + o8_2 + "," + o8_1 + "," + p25A + "," + p25 + "," + p10A + "," + p10 + "," + aqi + "," + FirstP + "," + AirLevel
+                + " where not exists(select *  from [dbo].[a] where StationName='" + stationname
+                + "' and StationCode='" + stationcode + "' and MoniDate='" + time + "')");
+            Bll.SQLHelper sqlH=new Bll.SQLHelper ();
+            sqlH.ExecuteSQLNonQuery(SQL);
+           
+			}
+       
+    }
+
+    public object RegexVal(object val){
+        return Regex.IsMatch(val.ToString(), @"^\d+(\.\d+)?$") == false ? "null" : val;
+        //([0-9]{1,4}\.{0,1}[0-9]{0,2})
+    }
+}

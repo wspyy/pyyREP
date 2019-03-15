@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <style>
+        .fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+    </style>
+
+</head>
+<body>
+<div>
+    <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+<span class="fileUpload btn btn-primary">
+    <span>导入</span>
+    <input id="uploadBtn" type="file" class="upload" />
+</span>
+    </div>
+        <script type="text/javascript">
+            document.getElementById("uploadBtn").onchange = function () {
+                debugger;
+                document.getElementById("uploadFile").value = this.value;
+            };
+        </script>
+</body>
+</html>

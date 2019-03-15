@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JinChDataBaseModelStoreContainer" CdmEntityContainer="JinChDataBaseEntities">
+    <EntitySetMapping Name="Base_AppendProperty">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_AppendProperty">
+        <MappingFragment StoreEntitySet="Base_AppendProperty">
+          <ScalarProperty Name="Property_ID" ColumnName="Property_ID" />
+          <ScalarProperty Name="Property_Function" ColumnName="Property_Function" />
+          <ScalarProperty Name="Property_FunctionUrl" ColumnName="Property_FunctionUrl" />
+          <ScalarProperty Name="Property_Control_ID" ColumnName="Property_Control_ID" />
+          <ScalarProperty Name="Property_Name" ColumnName="Property_Name" />
+          <ScalarProperty Name="Property_Control_Type" ColumnName="Property_Control_Type" />
+          <ScalarProperty Name="Property_Control_DataSource" ColumnName="Property_Control_DataSource" />
+          <ScalarProperty Name="Property_Control_Length" ColumnName="Property_Control_Length" />
+          <ScalarProperty Name="Property_Control_Maxlength" ColumnName="Property_Control_Maxlength" />
+          <ScalarProperty Name="Property_Control_Style" ColumnName="Property_Control_Style" />
+          <ScalarProperty Name="Property_Control_Validator" ColumnName="Property_Control_Validator" />
+          <ScalarProperty Name="Property_Colspan" ColumnName="Property_Colspan" />
+          <ScalarProperty Name="Property_Event" ColumnName="Property_Event" />
+          <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+          <ScalarProperty Name="DeleteMark" ColumnName="DeleteMark" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_AppendPropertyInstance">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_AppendPropertyInstance">
+        <MappingFragment StoreEntitySet="Base_AppendPropertyInstance">
+          <ScalarProperty Name="PropertyInstance_ID" ColumnName="PropertyInstance_ID" />
+          <ScalarProperty Name="Property_Control_ID" ColumnName="Property_Control_ID" />
+          <ScalarProperty Name="PropertyInstance_Value" ColumnName="PropertyInstance_Value" />
+          <ScalarProperty Name="PropertyInstance_Key" ColumnName="PropertyInstance_Key" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_Button">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_Button">
+        <MappingFragment StoreEntitySet="Base_Button">
+          <ScalarProperty Name="Button_ID" ColumnName="Button_ID" />
+          <ScalarProperty Name="Button_Name" ColumnName="Button_Name" />
+          <ScalarProperty Name="Button_Title" ColumnName="Button_Title" />
+          <ScalarProperty Name="Button_Img" ColumnName="Button_Img" />
+          <ScalarProperty Name="Button_Code" ColumnName="Button_Code" />
+          <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+          <ScalarProperty Name="Button_Type" ColumnName="Button_Type" />
+          <ScalarProperty Name="Button_Remak" ColumnName="Button_Remak" />
+          <ScalarProperty Name="DeleteMark" ColumnName="DeleteMark" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_O_A_Setup">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_O_A_Setup">
+        <MappingFragment StoreEntitySet="Base_O_A_Setup">
+          <ScalarProperty Name="Setup_ID" ColumnName="Setup_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Setup_IName" ColumnName="Setup_IName" />
+          <ScalarProperty Name="NavigateUrl" ColumnName="NavigateUrl" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="Setup_Img" ColumnName="Setup_Img" />
+          <ScalarProperty Name="Setup_Remak" ColumnName="Setup_Remak" />
+          <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_Organization">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_Organization">
+        <MappingFragment StoreEntitySet="Base_Organization">
+          <ScalarProperty Name="Organization_ID" ColumnName="Organization_ID" />
+          <ScalarProperty Name="Organization_Code" ColumnName="Organization_Code" />
+          <ScalarProperty Name="Organization_Name" ColumnName="Organization_Name" />
+          <ScalarProperty Name="Organization_InnerPhone" ColumnName="Organization_InnerPhone" />
+          <ScalarProperty Name="Organization_OuterPhone" ColumnName="Organization_OuterPhone" />
+          <ScalarProperty Name="Organization_Manager" ColumnName="Organization_Manager" />
+          <ScalarProperty Name="Organization_AssistantManager" ColumnName="Organization_AssistantManager" />
+          <ScalarProperty Name="Organization_Fax" ColumnName="Organization_Fax" />
+          <ScalarProperty Name="Organization_Zipcode" ColumnName="Organization_Zipcode" />
+          <ScalarProperty Name="Organization_Address" ColumnName="Organization_Address" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Organization_Remark" ColumnName="Organization_Remark" />
+          <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+          <ScalarProperty Name="DeleteMark" ColumnName="DeleteMark" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_Recyclebin">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_Recyclebin">
+        <MappingFragment StoreEntitySet="Base_Recyclebin">
+          <ScalarProperty Name="Recyclebin_ID" ColumnName="Recyclebin_ID" />
+          <ScalarProperty Name="Recyclebin_Name" ColumnName="Recyclebin_Name" />
+          <ScalarProperty Name="Recyclebin_Database" ColumnName="Recyclebin_Database" />
+          <ScalarProperty Name="Recyclebin_Table" ColumnName="Recyclebin_Table" />
+          <ScalarProperty Name="Recyclebin_FieldKey" ColumnName="Recyclebin_FieldKey" />
+          <ScalarProperty Name="Recyclebin_EventField" ColumnName="Recyclebin_EventField" />
+          <ScalarProperty Name="Recyclebin_Remark" ColumnName="Recyclebin_Remark" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_RoleRight">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_RoleRight">
+        <MappingFragment StoreEntitySet="Base_RoleRight">
+          <ScalarProperty Name="RoleRight_ID" ColumnName="RoleRight_ID" />
+          <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
+          <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_Roles">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_Roles">
+        <MappingFragment StoreEntitySet="Base_Roles">
+          <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Roles_Name" ColumnName="Roles_Name" />
+          <ScalarProperty Name="Role_Restriction" ColumnName="Role_Restriction" />
+          <ScalarProperty Name="Roles_Remark" ColumnName="Roles_Remark" />
+          <ScalarProperty Name="AllowEdit" ColumnName="AllowEdit" />
+          <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
+          <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+          <ScalarProperty Name="DeleteMark" ColumnName="DeleteMark" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_StaffOrganize">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_StaffOrganize">
+        <MappingFragment StoreEntitySet="Base_StaffOrganize">
+          <ScalarProperty Name="StaffOrganize_Id" ColumnName="StaffOrganize_Id" />
+          <ScalarProperty Name="Organization_ID" ColumnName="Organization_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_SysMenu">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_SysMenu">
+        <MappingFragment StoreEntitySet="Base_SysMenu">
+          <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Menu_Name" ColumnName="Menu_Name" />
+          <ScalarProperty Name="Menu_Title" ColumnName="Menu_Title" />
+          <ScalarProperty Name="Menu_Img" ColumnName="Menu_Img" />
+          <ScalarProperty Name="Menu_Type" ColumnName="Menu_Type" />
+          <ScalarProperty Name="NavigateUrl" ColumnName="NavigateUrl" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="AllowEdit" ColumnName="AllowEdit" />
+          <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
+          <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+          <ScalarProperty Name="DeleteMark" ColumnName="DeleteMark" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_UserGroup">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_UserGroup">
+        <MappingFragment StoreEntitySet="Base_UserGroup">
+          <ScalarProperty Name="UserGroup_ID" ColumnName="UserGroup_ID" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UserGroup_Code" ColumnName="UserGroup_Code" />
+          <ScalarProperty Name="UserGroup_Name" ColumnName="UserGroup_Name" />
+          <ScalarProperty Name="UserGroup_Remark" ColumnName="UserGroup_Remark" />
+          <ScalarProperty Name="AllowEdit" ColumnName="AllowEdit" />
+          <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
+          <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+          <ScalarProperty Name="DeleteMark" ColumnName="DeleteMark" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_UserGroupRight">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_UserGroupRight">
+        <MappingFragment StoreEntitySet="Base_UserGroupRight">
+          <ScalarProperty Name="UserGroupRight_ID" ColumnName="UserGroupRight_ID" />
+          <ScalarProperty Name="UserGroup_ID" ColumnName="UserGroup_ID" />
+          <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_UserInfo">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_UserInfo">
+        <MappingFragment StoreEntitySet="Base_UserInfo">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+          <ScalarProperty Name="User_Account" ColumnName="User_Account" />
+          <ScalarProperty Name="User_Pwd" ColumnName="User_Pwd" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="User_Sex" ColumnName="User_Sex" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Theme" ColumnName="Theme" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="AnswerQuestion" ColumnName="AnswerQuestion" />
+          <ScalarProperty Name="DeleteMark" ColumnName="DeleteMark" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+          <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+          <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+          <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+          <ScalarProperty Name="User_Remark" ColumnName="User_Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_UserInfoUserGroup">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_UserInfoUserGroup">
+        <MappingFragment StoreEntitySet="Base_UserInfoUserGroup">
+          <ScalarProperty Name="UserInfoUserGroup_ID" ColumnName="UserInfoUserGroup_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="UserGroup_ID" ColumnName="UserGroup_ID" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_UserRight">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_UserRight">
+        <MappingFragment StoreEntitySet="Base_UserRight">
+          <ScalarProperty Name="UserRight_ID" ColumnName="UserRight_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Base_UserRole">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.Base_UserRole">
+        <MappingFragment StoreEntitySet="Base_UserRole">
+          <ScalarProperty Name="UserRole_ID" ColumnName="UserRole_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Roles_ID" ColumnName="Roles_ID" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+          <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_UserPermissionService">
+      <EntityTypeMapping TypeName="JinChDataBaseModel.View_UserPermissionService">
+        <MappingFragment StoreEntitySet="View_UserPermissionService">
+          <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+          <ScalarProperty Name="Menu_Name" ColumnName="Menu_Name" />
+          <ScalarProperty Name="Menu_Title" ColumnName="Menu_Title" />
+          <ScalarProperty Name="Menu_Img" ColumnName="Menu_Img" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="NavigateUrl" ColumnName="NavigateUrl" />
+          <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Menu_Type" ColumnName="Menu_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

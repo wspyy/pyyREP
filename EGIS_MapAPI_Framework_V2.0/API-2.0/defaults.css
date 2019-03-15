@@ -1,0 +1,20 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace WidgetTemplate "com.WidgetTemplate.*";
+@namespace ns "http://www.esri.com/2008/ags";
+
+
+WidgetTemplate|WidgetTemplate
+{
+	skinClass: ClassReference("com.WidgetTemplate.WidgetTemplateSkin")
+}
+
+WidgetTemplate|TitlebarButton
+{
+	skinClass:ClassReference("com.WidgetTemplate.TitlebarButtonSkin")
+}
+ns|ScaleBar
+{
+	skinClass: ClassReference("com.skins.ScaleBarSkin");
+} 

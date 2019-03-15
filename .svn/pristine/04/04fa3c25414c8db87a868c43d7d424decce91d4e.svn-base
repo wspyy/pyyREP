@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <title></title>
+    <meta name="description" content="description">
+    <meta name="author" content="DevOOPS">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--<link href="../plugins/select2/select2.css" rel="stylesheet" />-->
+    <link href="../plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="../plugins/fancybox/jquery.fancybox.css" rel="stylesheet" />
+  
+    
+    <!--<link href="../plugins/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />-->
+    <script src="../js/jquery-1.7.2.js"></script>
+    <script src="../plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js"></script>
+
+
+    <script src="../../Demo/plugins/jquery-ui/i18n/jquery.ui.datepicker-zh-CN.min.js"></script>
+    <script type="text/javascript">
+        var ImgURL;
+        //htmlobj = $.ajax({url:"../../Data/GetImgURL.ashx",async:false});
+        ImgURL = "http://" + document.location.hostname + "/AirData/QxImages/";
+        var ImgClass={
+            imgArray: null,//图片列表
+            CurrImg:0,//当前图片
+            state: 0,//状态
+            cate: 1,//文件类型：1 雷达2卫星云图 3 地面 4 500hpa 5 700hpa 6 850hpa
+            interval:null,//播放控制器
+            PlayImg: function () {//播放方法
+                if (ImgClass.imgArray && ImgClass.imgArray.length>0) {
+                    if (ImgClass.CurrImg >= ImgClass.imgArray.length) {
+                        ImgClass.CurrImg = 0;
+                    }
+                    //setImgUrl("../../" + ImgClass.imgArray[ImgClass.CurrImg].FullFileName, ImgClass.imgArray[ImgClass.CurrImg].FileDate,'next');
+                    setImgUrl(ImgURL+ImgClass.imgArray[ImgClass.CurrImg].FullFileName, ImgClass.imgArray[ImgClass.CurrImg].FileDate, 'next');
+                    ImgClass.CurrImg++;
+                }
+            },
+            PauseImg: function () {//暂停
+                clearInterval(ImgClass.interval);
+                ImgClass.interval = null;
+            },
+            StartPaly: function () {//启动播放
+                var speed = $("#txt_speed").val();
+                if (isNaN(speed)) {
+                    speed = 1000;
+                }
+                if (!ImgClass.interval)
+                ImgClass.interval = setInterval(ImgClass.PlayImg, speed);
+            },
+            //下一张
+            NextImg: function () {
+                //alert(ImgClass.CurrImg)
+         
+                if (ImgClass.imgArray && ImgClass.imgArray.length > 0) {
+                    ImgClass.CurrImg++;
+                    if (ImgClass.CurrImg >= ImgClass.imgArray.length)
+                        ImgClass.CurrImg = 0;
+                    //setImgUrl("../../" + ImgClass.imgArray[ImgClass.CurrImg].FullFileName, ImgClass.imgArray[ImgClass.CurrImg].FileDate,'next');
+                    setImgUrl(ImgURL+ImgClass.imgArray[ImgClass.CurrImg].FullFileName, ImgClass.imgArray[ImgClass.CurrImg].FileDate, 'next');
+                } },
+            //上一张
+            PreImg: function () {
+                //alert(ImgClass.CurrImg);
+                if (ImgClass.imgArray && ImgClass.imgArray.length > 0) {
+                    if (ImgClass.CurrImg - 1>=0)
+                    ImgClass.CurrImg--;
+                    if (ImgClass.CurrImg >= ImgClass.imgArray.length)
+                        ImgClass.CurrImg = 0;
+                    //if (ImgClass.CurrImg<0)
+                    //    ImgClass.CurrImg = ImgClass.imgArray.length - 1;
+                  
+                    //setImgUrl("../../" + ImgClass.imgArray[ImgClass.CurrImg].FullFileName, ImgClass.imgArray[ImgClass.CurrImg].FileDate, 'upone');
+                    setImgUrl(ImgURL+ImgClass.imgArray[ImgClass.CurrImg].FullFileName, ImgClass.imgArray[ImgClass.CurrImg].FileDate, 'upone');
+                }
+            }
+        }
+
+        $(function () {
+            //点击图像弹出
+            $("#imgpplay").fancybox({
+                'overlayShow': true,
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic'
+            });
+
+            //设置Tab高度
+            $("#tabs").tabs({ height: "auto" }).height($(window).height() - 10);
+            $("div[id^=tabs-]").height($(window).height() - 40);
+            $(window).resize(function () {
+                $("#tabs").tabs({ height: "auto" }).height($(window).height() - 10);
+                $("div[id^=tabs-]").height($(window).height() - 40);
+            });
+            //第一个tab增加点击事件
+            $("[href=#tabs-1]").click(function () {
+                $("div[id^=tabs-]").empty();
+                $("#tabs-1").load("RadarImg.html?flag=1", null, function () { SetTime(); InitPage(1); });
+            });
+            
+            $("[href=#tabs-2]").click(function () {
+                $("div[id^=tabs-]").empty();
+                $("#tabs-2").load("RadarImg.html?flag=2", null, function () { SetTime(); InitPage(2); });
+            });
+            $("[href=#tabs-3]").click(function () {
+                $("div[id^=tabs-]").empty();
+                $("#tabs-3").load("GroudImgTabs.html?flag=3", null, function () { });
+            });
+            $("[href=#tabs-4]").click(function () {
+                $("div[id^=tabs-]").empty();
+                $("#tabs-4").load("RadarImg.html?flag=7", null, function () { SetTime(); InitPage(7); });
+            });
+            //页面加载默认显示
+            $("#tabs-1").load("RadarImg.html", null, function () { SetTime(); InitPage(1); });
+        });
+
+        //ReplaceAll
+        String.prototype.replaceAll = function (reallyDo, replaceWith, ignoreCase) {
+            if (!RegExp.prototype.isPrototypeOf(reallyDo)) {
+                return this.replace(new RegExp(reallyDo, (ignoreCase ? "gi" : "g")), replaceWith);
+            } else {
+                return this.replace(reallyDo, replaceWith);
+            }
+        }
+
+        //初始化页面
+        var Imgs;
+        
+        //设置时间段
+        function SetTime() {
+            var datetime = new Date();
+            var curYear = datetime.getFullYear();
+            var curMonth = datetime.getMonth() + 1;
+            var curDate = datetime.getDate();
+            var curtime = curYear;
+            curtime += curMonth < 10 ? "-0" + curMonth : "-" + curMonth;
+            curtime += curDate < 10 ? "-0" + curDate : "-" + curDate;
+            $("#txt_end").val(curtime);
+            var datt = curtime.split('-');
+            var newDate = new Date(datt[0], datt[1] - 1, datt[2]);
+            var befminuts = newDate.getTime() - 1000 * 60 * 60 * 24 * parseInt(2);
+            var beforeDat = new Date;
+            beforeDat.setTime(befminuts);
+            var befMonth = beforeDat.getMonth() + 1;
+            var mon = befMonth >= 10 ? befMonth : '0' + befMonth;
+            var befDate = beforeDat.getDate();
+            var da = befDate >= 10 ? befDate : '0' + befDate;
+            var newDate = beforeDat.getFullYear() + '-' + mon + '-' + da;
+            $("#txt_begin").val(newDate);
+        }
+
+       //点击设置显示图片
+        function setImgUrl(imgurl,data,direc) {
+           // alert(imgurl)
+            $("#imgshow").attr("src", imgurl);// "../../" + result[0].FullFileName
+            $("#imgpplay").attr("href", imgurl);
+            $("#curImg").html("当前显示内容：" + data);
+            if (direc == 'next') {
+                SelectCurImg(data);
+            }
+            else if(direc=="upone") {
+                upcurImg(data);
+            }
+        }
+
+        ///选中当前图片
+        function SelectCurImg(content) {
+            $("#FileList td").css({ "font-weight": "300" }).each(function (index) {
+                
+                if ($(this).text() == content) {
+                  
+                    ImgClass.CurrImg = index;
+                    $(this).css({ "font-weight": "bold" }).focus();
+                }
+            });
+          // $("#FileList td:contains(" + content + ")")
+        }
+        function upcurImg(content){
+            var i = 0;
+            $("#FileList td").css({ "font-weight": "300" }).each(function (index) {
+
+                if ($(this).text() == content) {
+                    i++;
+                    //ImgClass.CurrImg = index-i;
+               
+                    $(this).css({ "font-weight": "bold" }).focus();
+                }
+            });
+            // $("#FileList td:contains(" + content + ")")
+        }
+
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body style="background:#fff; padding:5px;">
+
+    <!--<div class="box">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-desktop"></i>
+                <span style="font-size:14px;">气象实况图</span>
+            </div>
+
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content" style="padding-left:5px; padding-right:5px; padding-bottom:0px;padding-top:5px;">-->
+    <div id="tabs" style="overflow: auto;">
+        <ul>
+            <li><a href="#tabs-1" style="font-weight: 800; color:#456782;">单站雷达</a></li>
+            <li><a href="#tabs-2" style="font-weight: 800; color:#456782;">卫星云图</a></li>
+            <li><a href="#tabs-3" style="font-weight: 800; color:#456782;">天气图分析</a></li>
+            <li><a href="#tabs-4" style="font-weight: 800; color:#456782;">探空图</a></li>
+        </ul>
+        <div id="tabs-1" style="border: 1px solid #d8d8d8; border-top:none; padding: 20px; padding-top:10px;">
+
+            <!---->
+            <!--</div>-->
+        </div>
+
+        <div id="tabs-2" style="border: 1px solid #d8d8d8; border-top: none; padding: 20px; padding-top: 10px;">
+           
+        </div>
+        <div id="tabs-3" style="border: 1px solid #d8d8d8; border-top: none; padding: 20px; padding-top: 10px;">
+
+           
+      </div>
+      <div id="tabs-4" style="border: 1px solid #d8d8d8; border-top: none; padding: 20px; padding-top: 10px;">
+
+           
+      </div>
+        </div>
+</body>
+</html>

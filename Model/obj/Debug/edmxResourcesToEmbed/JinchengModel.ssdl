@@ -1,0 +1,944 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JinchengDB2Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="JinchengDB2ModelStoreContainer">
+    <EntitySet Name="T_Bas_AirStation" EntityType="JinchengDB2Model.Store.T_Bas_AirStation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Bas_Enterprise" EntityType="JinchengDB2Model.Store.T_Bas_Enterprise" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Bas_EnterpriseProduct" EntityType="JinchengDB2Model.Store.T_Bas_EnterpriseProduct" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Bas_QualityStandard" EntityType="JinchengDB2Model.Store.T_Bas_QualityStandard" store:Type="Tables" store:Schema="dbo" store:Name="T_Bas_QualityStandard">
+      <DefiningQuery>SELECT 
+      [T_Bas_QualityStandard].[QualityLevel] AS [QualityLevel], 
+      [T_Bas_QualityStandard].[QualitySymbol] AS [QualitySymbol], 
+      [T_Bas_QualityStandard].[QualityIndex] AS [QualityIndex], 
+      [T_Bas_QualityStandard].[Category] AS [Category], 
+      [T_Bas_QualityStandard].[MinValue] AS [MinValue], 
+      [T_Bas_QualityStandard].[MaxValue] AS [MaxValue], 
+      [T_Bas_QualityStandard].[ColorName] AS [ColorName], 
+      [T_Bas_QualityStandard].[ColorCode] AS [ColorCode], 
+      [T_Bas_QualityStandard].[Affect] AS [Affect], 
+      [T_Bas_QualityStandard].[Proposal] AS [Proposal]
+      FROM [dbo].[T_Bas_QualityStandard] AS [T_Bas_QualityStandard]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T_Bas_QxStation" EntityType="JinchengDB2Model.Store.T_Bas_QxStation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Cod_Folder" EntityType="JinchengDB2Model.Store.T_Cod_Folder" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Cod_OperateType" EntityType="JinchengDB2Model.Store.T_Cod_OperateType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Cod_Region" EntityType="JinchengDB2Model.Store.T_Cod_Region" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Mid_AirDayData" EntityType="JinchengDB2Model.Store.T_Mid_AirDayData" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Mid_AirForeCast" EntityType="JinchengDB2Model.Store.T_Mid_AirForeCast" store:Type="Tables" store:Schema="dbo" store:Name="T_Mid_AirForeCast">
+      <DefiningQuery>SELECT 
+      [T_Mid_AirForeCast].[ID] AS [ID], 
+      [T_Mid_AirForeCast].[StationName] AS [StationName], 
+      [T_Mid_AirForeCast].[StationCode] AS [StationCode], 
+      [T_Mid_AirForeCast].[MonitorTime] AS [MonitorTime], 
+      [T_Mid_AirForeCast].[ForecastTime] AS [ForecastTime], 
+      [T_Mid_AirForeCast].[SO2AQI] AS [SO2AQI], 
+      [T_Mid_AirForeCast].[SO2] AS [SO2], 
+      [T_Mid_AirForeCast].[NO2AQI] AS [NO2AQI], 
+      [T_Mid_AirForeCast].[NO2] AS [NO2], 
+      [T_Mid_AirForeCast].[COAQI] AS [COAQI], 
+      [T_Mid_AirForeCast].[CO] AS [CO], 
+      [T_Mid_AirForeCast].[O3AQI] AS [O3AQI], 
+      [T_Mid_AirForeCast].[O3] AS [O3], 
+      [T_Mid_AirForeCast].[PM25AQI] AS [PM25AQI], 
+      [T_Mid_AirForeCast].[PM25] AS [PM25], 
+      [T_Mid_AirForeCast].[PM10AQI] AS [PM10AQI], 
+      [T_Mid_AirForeCast].[PM10] AS [PM10], 
+      [T_Mid_AirForeCast].[AQI] AS [AQI], 
+      [T_Mid_AirForeCast].[FirstP] AS [FirstP], 
+      [T_Mid_AirForeCast].[AirLevel] AS [AirLevel], 
+      [T_Mid_AirForeCast].[AirLevelDes] AS [AirLevelDes], 
+      [T_Mid_AirForeCast].[AirColor] AS [AirColor], 
+      [T_Mid_AirForeCast].[ForecastModel] AS [ForecastModel]
+      FROM [dbo].[T_Mid_AirForeCast] AS [T_Mid_AirForeCast]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T_Mid_AirForeCastStat" EntityType="JinchengDB2Model.Store.T_Mid_AirForeCastStat" store:Type="Tables" store:Schema="dbo" store:Name="T_Mid_AirForeCastStat">
+      <DefiningQuery>SELECT 
+      [T_Mid_AirForeCastStat].[ID] AS [ID], 
+      [T_Mid_AirForeCastStat].[StationName] AS [StationName], 
+      [T_Mid_AirForeCastStat].[StationCode] AS [StationCode], 
+      [T_Mid_AirForeCastStat].[MonitorTime] AS [MonitorTime], 
+      [T_Mid_AirForeCastStat].[ForecastTime] AS [ForecastTime], 
+      [T_Mid_AirForeCastStat].[SO2AQI] AS [SO2AQI], 
+      [T_Mid_AirForeCastStat].[SO2] AS [SO2], 
+      [T_Mid_AirForeCastStat].[NO2AQI] AS [NO2AQI], 
+      [T_Mid_AirForeCastStat].[NO2] AS [NO2], 
+      [T_Mid_AirForeCastStat].[COAQI] AS [COAQI], 
+      [T_Mid_AirForeCastStat].[CO] AS [CO], 
+      [T_Mid_AirForeCastStat].[O3AQI] AS [O3AQI], 
+      [T_Mid_AirForeCastStat].[O3] AS [O3], 
+      [T_Mid_AirForeCastStat].[PM25AQI] AS [PM25AQI], 
+      [T_Mid_AirForeCastStat].[PM25] AS [PM25], 
+      [T_Mid_AirForeCastStat].[PM10AQI] AS [PM10AQI], 
+      [T_Mid_AirForeCastStat].[PM10] AS [PM10], 
+      [T_Mid_AirForeCastStat].[AQI] AS [AQI], 
+      [T_Mid_AirForeCastStat].[FirstP] AS [FirstP], 
+      [T_Mid_AirForeCastStat].[AirLevel] AS [AirLevel], 
+      [T_Mid_AirForeCastStat].[AirLevelDes] AS [AirLevelDes], 
+      [T_Mid_AirForeCastStat].[AirColor] AS [AirColor], 
+      [T_Mid_AirForeCastStat].[ForecastModel] AS [ForecastModel], 
+      [T_Mid_AirForeCastStat].[TimeType] AS [TimeType]
+      FROM [dbo].[T_Mid_AirForeCastStat] AS [T_Mid_AirForeCastStat]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T_Mid_AirHourData" EntityType="JinchengDB2Model.Store.T_Mid_AirHourData" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Mid_ImgFiles" EntityType="JinchengDB2Model.Store.T_Mid_ImgFiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Mid_QXForeCastData" EntityType="JinchengDB2Model.Store.T_Mid_QXForeCastData" store:Type="Tables" store:Schema="dbo" store:Name="T_Mid_QXForeCastData">
+      <DefiningQuery>SELECT 
+      [T_Mid_QXForeCastData].[ID] AS [ID], 
+      [T_Mid_QXForeCastData].[StationCode] AS [StationCode], 
+      [T_Mid_QXForeCastData].[CreateTime] AS [CreateTime], 
+      [T_Mid_QXForeCastData].[ForeCastTime] AS [ForeCastTime], 
+      [T_Mid_QXForeCastData].[ForeCastHours] AS [ForeCastHours], 
+      [T_Mid_QXForeCastData].[lon] AS [lon], 
+      [T_Mid_QXForeCastData].[lat] AS [lat], 
+      [T_Mid_QXForeCastData].[MaxTemp] AS [MaxTemp], 
+      [T_Mid_QXForeCastData].[MinTemp] AS [MinTemp], 
+      [T_Mid_QXForeCastData].[WeatherCode] AS [WeatherCode], 
+      [T_Mid_QXForeCastData].[WindSpeed] AS [WindSpeed], 
+      [T_Mid_QXForeCastData].[WindDirection] AS [WindDirection]
+      FROM [dbo].[T_Mid_QXForeCastData] AS [T_Mid_QXForeCastData]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T_Mid_QXRealTimeData" EntityType="JinchengDB2Model.Store.T_Mid_QXRealTimeData" store:Type="Tables" store:Schema="dbo" store:Name="T_Mid_QXRealTimeData">
+      <DefiningQuery>SELECT 
+      [T_Mid_QXRealTimeData].[StationNum] AS [StationNum], 
+      [T_Mid_QXRealTimeData].[ObservTimes] AS [ObservTimes], 
+      [T_Mid_QXRealTimeData].[Locat] AS [Locat], 
+      [T_Mid_QXRealTimeData].[InsertTime] AS [InsertTime], 
+      [T_Mid_QXRealTimeData].[WindDirect] AS [WindDirect], 
+      [T_Mid_QXRealTimeData].[WindVelocity] AS [WindVelocity], 
+      [T_Mid_QXRealTimeData].[WindDirect10] AS [WindDirect10], 
+      [T_Mid_QXRealTimeData].[WindVelocity10] AS [WindVelocity10], 
+      [T_Mid_QXRealTimeData].[MaxWindD] AS [MaxWindD], 
+      [T_Mid_QXRealTimeData].[MaxWindV] AS [MaxWindV], 
+      [T_Mid_QXRealTimeData].[TimeMaxWind] AS [TimeMaxWind], 
+      [T_Mid_QXRealTimeData].[InstantWindD] AS [InstantWindD], 
+      [T_Mid_QXRealTimeData].[InstantWindV] AS [InstantWindV], 
+      [T_Mid_QXRealTimeData].[ExMaxWindD] AS [ExMaxWindD], 
+      [T_Mid_QXRealTimeData].[ExMaxWindV] AS [ExMaxWindV], 
+      [T_Mid_QXRealTimeData].[TimeExMaxWind] AS [TimeExMaxWind], 
+      [T_Mid_QXRealTimeData].[PrecipitationAmount] AS [PrecipitationAmount], 
+      [T_Mid_QXRealTimeData].[Precipitation] AS [Precipitation], 
+      [T_Mid_QXRealTimeData].[FellRain] AS [FellRain], 
+      [T_Mid_QXRealTimeData].[DryBulTemp] AS [DryBulTemp], 
+      [T_Mid_QXRealTimeData].[MaxTemp] AS [MaxTemp], 
+      [T_Mid_QXRealTimeData].[TimeMaxTemp] AS [TimeMaxTemp], 
+      [T_Mid_QXRealTimeData].[MinTemp] AS [MinTemp], 
+      [T_Mid_QXRealTimeData].[TimeMinTemp] AS [TimeMinTemp], 
+      [T_Mid_QXRealTimeData].[RelHumidity] AS [RelHumidity], 
+      [T_Mid_QXRealTimeData].[MinRelHumidity] AS [MinRelHumidity], 
+      [T_Mid_QXRealTimeData].[TimeMinRelH] AS [TimeMinRelH], 
+      [T_Mid_QXRealTimeData].[VapourPress] AS [VapourPress], 
+      [T_Mid_QXRealTimeData].[DewTemp] AS [DewTemp], 
+      [T_Mid_QXRealTimeData].[StationPress] AS [StationPress], 
+      [T_Mid_QXRealTimeData].[MaxPSta] AS [MaxPSta], 
+      [T_Mid_QXRealTimeData].[TimeMaxPSta] AS [TimeMaxPSta], 
+      [T_Mid_QXRealTimeData].[MinPSta] AS [MinPSta], 
+      [T_Mid_QXRealTimeData].[TimeMinPSta] AS [TimeMinPSta], 
+      [T_Mid_QXRealTimeData].[SurfaceTemp] AS [SurfaceTemp], 
+      [T_Mid_QXRealTimeData].[SurfaceMaxTemp] AS [SurfaceMaxTemp], 
+      [T_Mid_QXRealTimeData].[TimeSurMaxTemp] AS [TimeSurMaxTemp], 
+      [T_Mid_QXRealTimeData].[SurfaceMinTemp] AS [SurfaceMinTemp], 
+      [T_Mid_QXRealTimeData].[TimeSurMinTemp] AS [TimeSurMinTemp], 
+      [T_Mid_QXRealTimeData].[Temp5cm] AS [Temp5cm], 
+      [T_Mid_QXRealTimeData].[Temp10cm] AS [Temp10cm], 
+      [T_Mid_QXRealTimeData].[Temp15cm] AS [Temp15cm], 
+      [T_Mid_QXRealTimeData].[Temp20cm] AS [Temp20cm], 
+      [T_Mid_QXRealTimeData].[Temp40cm] AS [Temp40cm], 
+      [T_Mid_QXRealTimeData].[Temp80cm] AS [Temp80cm], 
+      [T_Mid_QXRealTimeData].[Temp160cm] AS [Temp160cm], 
+      [T_Mid_QXRealTimeData].[Temp320cm] AS [Temp320cm], 
+      [T_Mid_QXRealTimeData].[EvagaugeAmount] AS [EvagaugeAmount], 
+      [T_Mid_QXRealTimeData].[SeaLevelPress] AS [SeaLevelPress], 
+      [T_Mid_QXRealTimeData].[Visibility] AS [Visibility], 
+      [T_Mid_QXRealTimeData].[CloudAmount] AS [CloudAmount], 
+      [T_Mid_QXRealTimeData].[LowCloudAmount] AS [LowCloudAmount], 
+      [T_Mid_QXRealTimeData].[CloudHigh] AS [CloudHigh], 
+      [T_Mid_QXRealTimeData].[CloudShape] AS [CloudShape]
+      FROM [dbo].[T_Mid_QXRealTimeData] AS [T_Mid_QXRealTimeData]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T_Mid_Report" EntityType="JinchengDB2Model.Store.T_Mid_Report" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Mid_ReportData" EntityType="JinchengDB2Model.Store.T_Mid_ReportData" store:Type="Tables" store:Schema="dbo" store:Name="T_Mid_ReportData">
+      <DefiningQuery>SELECT 
+      [T_Mid_ReportData].[ID] AS [ID], 
+      [T_Mid_ReportData].[ReportCode] AS [ReportCode], 
+      [T_Mid_ReportData].[AQI] AS [AQI], 
+      [T_Mid_ReportData].[TimeType] AS [TimeType]
+      FROM [dbo].[T_Mid_ReportData] AS [T_Mid_ReportData]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T_Oth_Database" EntityType="JinchengDB2Model.Store.T_Oth_Database" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Oth_EnterUpload" EntityType="JinchengDB2Model.Store.T_Oth_EnterUpload" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Oth_Image" EntityType="JinchengDB2Model.Store.T_Oth_Image" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_PC_Department" EntityType="JinchengDB2Model.Store.T_PC_Department" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_PC_Department_Model" EntityType="JinchengDB2Model.Store.T_PC_Department_Model" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_PC_Log" EntityType="JinchengDB2Model.Store.T_PC_Log" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_PC_Role" EntityType="JinchengDB2Model.Store.T_PC_Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_PC_Role_Model" EntityType="JinchengDB2Model.Store.T_PC_Role_Model" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_PC_User" EntityType="JinchengDB2Model.Store.T_PC_User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_PC_User_DataFiltering" EntityType="JinchengDB2Model.Store.T_PC_User_DataFiltering" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_PC_User_Model" EntityType="JinchengDB2Model.Store.T_PC_User_Model" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Sys_CommonTree" EntityType="JinchengDB2Model.Store.T_Sys_CommonTree" store:Type="Tables" store:Schema="dbo" store:Name="T_Sys_CommonTree">
+      <DefiningQuery>SELECT 
+      [T_Sys_CommonTree].[ID] AS [ID], 
+      [T_Sys_CommonTree].[NodeID] AS [NodeID], 
+      [T_Sys_CommonTree].[NodeName] AS [NodeName], 
+      [T_Sys_CommonTree].[NodeParentID] AS [NodeParentID], 
+      [T_Sys_CommonTree].[VisibleType] AS [VisibleType], 
+      [T_Sys_CommonTree].[OrderID] AS [OrderID], 
+      [T_Sys_CommonTree].[OnClick] AS [OnClick], 
+      [T_Sys_CommonTree].[VisibleOpen] AS [VisibleOpen], 
+      [T_Sys_CommonTree].[VisibleQuery] AS [VisibleQuery], 
+      [T_Sys_CommonTree].[SYSBack1] AS [SYSBack1], 
+      [T_Sys_CommonTree].[SYSBack2] AS [SYSBack2], 
+      [T_Sys_CommonTree].[SYSBack3] AS [SYSBack3]
+      FROM [dbo].[T_Sys_CommonTree] AS [T_Sys_CommonTree]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T_Sys_ConfigChart" EntityType="JinchengDB2Model.Store.T_Sys_ConfigChart" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Sys_ConfigField" EntityType="JinchengDB2Model.Store.T_Sys_ConfigField" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Sys_ConfigTable" EntityType="JinchengDB2Model.Store.T_Sys_ConfigTable" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Sys_Exception" EntityType="JinchengDB2Model.Store.T_Sys_Exception" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Sys_Model" EntityType="JinchengDB2Model.Store.T_Sys_Model" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="V_Mid_AirForeCast" EntityType="JinchengDB2Model.Store.V_Mid_AirForeCast" store:Type="Views" store:Schema="dbo" store:Name="V_Mid_AirForeCast">
+      <DefiningQuery>SELECT 
+      [V_Mid_AirForeCast].[ID] AS [ID], 
+      [V_Mid_AirForeCast].[StationName] AS [StationName], 
+      [V_Mid_AirForeCast].[StationCode] AS [StationCode], 
+      [V_Mid_AirForeCast].[MonitorTime] AS [MonitorTime], 
+      [V_Mid_AirForeCast].[ForecastTime] AS [ForecastTime], 
+      [V_Mid_AirForeCast].[SO2AQI] AS [SO2AQI], 
+      [V_Mid_AirForeCast].[SO2] AS [SO2], 
+      [V_Mid_AirForeCast].[NO2AQI] AS [NO2AQI], 
+      [V_Mid_AirForeCast].[NO2] AS [NO2], 
+      [V_Mid_AirForeCast].[COAQI] AS [COAQI], 
+      [V_Mid_AirForeCast].[CO] AS [CO], 
+      [V_Mid_AirForeCast].[O3AQI] AS [O3AQI], 
+      [V_Mid_AirForeCast].[O3] AS [O3], 
+      [V_Mid_AirForeCast].[PM25AQI] AS [PM25AQI], 
+      [V_Mid_AirForeCast].[PM25] AS [PM25], 
+      [V_Mid_AirForeCast].[PM10AQI] AS [PM10AQI], 
+      [V_Mid_AirForeCast].[PM10] AS [PM10], 
+      [V_Mid_AirForeCast].[AQI] AS [AQI], 
+      [V_Mid_AirForeCast].[FirstP] AS [FirstP], 
+      [V_Mid_AirForeCast].[AirLevel] AS [AirLevel], 
+      [V_Mid_AirForeCast].[AirLevelDes] AS [AirLevelDes], 
+      [V_Mid_AirForeCast].[AirColor] AS [AirColor], 
+      [V_Mid_AirForeCast].[ForecastModel] AS [ForecastModel]
+      FROM [dbo].[V_Mid_AirForeCast] AS [V_Mid_AirForeCast]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_Mid_AirForeCastNew" EntityType="JinchengDB2Model.Store.V_Mid_AirForeCastNew" store:Type="Views" store:Schema="dbo" store:Name="V_Mid_AirForeCastNew">
+      <DefiningQuery>SELECT 
+      [V_Mid_AirForeCastNew].[StationCode] AS [StationCode], 
+      [V_Mid_AirForeCastNew].[StationName] AS [StationName], 
+      [V_Mid_AirForeCastNew].[day] AS [day], 
+      [V_Mid_AirForeCastNew].[hour] AS [hour], 
+      [V_Mid_AirForeCastNew].[AQI] AS [AQI], 
+      [V_Mid_AirForeCastNew].[AirLevelDes] AS [AirLevelDes], 
+      [V_Mid_AirForeCastNew].[FirstP] AS [FirstP], 
+      [V_Mid_AirForeCastNew].[AirLevel] AS [AirLevel], 
+      [V_Mid_AirForeCastNew].[PublicTime] AS [PublicTime], 
+      [V_Mid_AirForeCastNew].[MonitorTime] AS [MonitorTime], 
+      [V_Mid_AirForeCastNew].[ForecastTime] AS [ForecastTime], 
+      [V_Mid_AirForeCastNew].[ColorCode] AS [ColorCode], 
+      [V_Mid_AirForeCastNew].[lon] AS [lon], 
+      [V_Mid_AirForeCastNew].[lat] AS [lat]
+      FROM [dbo].[V_Mid_AirForeCastNew] AS [V_Mid_AirForeCastNew]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_Mid_QXForeCast" EntityType="JinchengDB2Model.Store.V_Mid_QXForeCast" store:Type="Views" store:Schema="dbo" store:Name="V_Mid_QXForeCast">
+      <DefiningQuery>SELECT 
+      [V_Mid_QXForeCast].[StationName] AS [StationName], 
+      [V_Mid_QXForeCast].[ID] AS [ID], 
+      [V_Mid_QXForeCast].[StationCode] AS [StationCode], 
+      [V_Mid_QXForeCast].[CreateTime] AS [CreateTime], 
+      [V_Mid_QXForeCast].[ForeCastTime] AS [ForeCastTime], 
+      [V_Mid_QXForeCast].[ForeCastHours] AS [ForeCastHours], 
+      [V_Mid_QXForeCast].[lon] AS [lon], 
+      [V_Mid_QXForeCast].[lat] AS [lat], 
+      [V_Mid_QXForeCast].[MaxTemp] AS [MaxTemp], 
+      [V_Mid_QXForeCast].[MinTemp] AS [MinTemp], 
+      [V_Mid_QXForeCast].[WeatherCode] AS [WeatherCode], 
+      [V_Mid_QXForeCast].[WindSpeed] AS [WindSpeed], 
+      [V_Mid_QXForeCast].[WindDirection] AS [WindDirection], 
+      [V_Mid_QXForeCast].[WeatherName] AS [WeatherName]
+      FROM [dbo].[V_Mid_QXForeCast] AS [V_Mid_QXForeCast]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <EntityType Name="T_Bas_AirStation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RegionName" Type="varchar" MaxLength="50" />
+    <Property Name="StationName" Type="varchar" MaxLength="50" />
+    <Property Name="StationCode" Type="varchar" MaxLength="20" />
+    <Property Name="lon" Type="varchar" MaxLength="50" />
+    <Property Name="lat" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Height" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="Altitude" Type="decimal" Precision="6" Scale="2" />
+  </EntityType>
+  <EntityType Name="T_Bas_Enterprise">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EnterpriseCode" Type="varchar" MaxLength="50" />
+    <Property Name="EnterpriseName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Bas_EnterpriseProduct">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EnterpriseCode" Type="varchar" MaxLength="50" />
+    <Property Name="ProductCode" Type="varchar" MaxLength="50" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.T_Bas_QualityStandard”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="T_Bas_QualityStandard">
+    <Key>
+      <PropertyRef Name="QualityLevel" />
+    </Key>
+    <Property Name="QualityLevel" Type="int" Nullable="false" />
+    <Property Name="QualitySymbol" Type="nvarchar" MaxLength="5" />
+    <Property Name="QualityIndex" Type="varchar" MaxLength="50" />
+    <Property Name="Category" Type="varchar" MaxLength="50" />
+    <Property Name="MinValue" Type="numeric" />
+    <Property Name="MaxValue" Type="numeric" />
+    <Property Name="ColorName" Type="varchar" MaxLength="50" />
+    <Property Name="ColorCode" Type="varchar" MaxLength="50" />
+    <Property Name="Affect" Type="varchar" MaxLength="100" />
+    <Property Name="Proposal" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="T_Bas_QxStation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RegionName" Type="varchar" MaxLength="50" />
+    <Property Name="StationName" Type="varchar" MaxLength="50" />
+    <Property Name="StationCode" Type="varchar" MaxLength="20" />
+    <Property Name="lon" Type="varchar" MaxLength="50" />
+    <Property Name="lat" Type="varchar" MaxLength="50" />
+    <Property Name="StationHeiht" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="StationType" Type="int" />
+  </EntityType>
+  <EntityType Name="T_Cod_Folder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FolderCode" Type="varchar" MaxLength="50" />
+    <Property Name="FolderName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Cod_OperateType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="OperateTypeCode" Type="varchar" MaxLength="50" />
+    <Property Name="OperateTypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Cod_Region">
+    <Key>
+      <PropertyRef Name="RegionCode" />
+    </Key>
+    <Property Name="RegionCode" Type="bigint" Nullable="false" />
+    <Property Name="RegionName" Type="varchar" MaxLength="50" />
+    <Property Name="ParentNode" Type="bigint" />
+    <Property Name="Spell" Type="varchar" MaxLength="50" />
+    <Property Name="Summary" Type="varchar" MaxLength="250" />
+    <Property Name="Type" Type="varchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="T_Mid_AirDayData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StationName" Type="varchar" MaxLength="50" />
+    <Property Name="StationCode" Type="varchar" MaxLength="50" />
+    <Property Name="MoniDate" Type="datetime" />
+    <Property Name="SO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="SO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="int" />
+    <Property Name="FirstP" Type="varchar" MaxLength="50" />
+    <Property Name="AirLevel" Type="varchar" MaxLength="50" />
+    <Property Name="AirLevelDes" Type="varchar" MaxLength="50" />
+    <Property Name="AirColor" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.T_Mid_AirForeCast”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="T_Mid_AirForeCast">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AirLevel" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StationName" Type="varchar" MaxLength="50" />
+    <Property Name="StationCode" Type="varchar" MaxLength="50" />
+    <Property Name="MonitorTime" Type="datetime" />
+    <Property Name="ForecastTime" Type="datetime" />
+    <Property Name="SO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="SO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="int" />
+    <Property Name="FirstP" Type="varchar" MaxLength="50" />
+    <Property Name="AirLevel" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="AirLevelDes" Type="varchar" MaxLength="50" />
+    <Property Name="AirColor" Type="varchar" MaxLength="50" />
+    <Property Name="ForecastModel" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.T_Mid_AirForeCastStat”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="T_Mid_AirForeCastStat">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AirLevel" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StationName" Type="varchar" MaxLength="50" />
+    <Property Name="StationCode" Type="varchar" MaxLength="50" />
+    <Property Name="MonitorTime" Type="datetime" />
+    <Property Name="ForecastTime" Type="datetime" />
+    <Property Name="SO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="SO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="int" />
+    <Property Name="FirstP" Type="varchar" MaxLength="50" />
+    <Property Name="AirLevel" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="AirLevelDes" Type="varchar" MaxLength="50" />
+    <Property Name="AirColor" Type="varchar" MaxLength="50" />
+    <Property Name="ForecastModel" Type="int" />
+    <Property Name="TimeType" Type="int" />
+  </EntityType>
+  <EntityType Name="T_Mid_AirHourData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StationName" Type="varchar" MaxLength="50" />
+    <Property Name="StationCode" Type="varchar" MaxLength="50" />
+    <Property Name="MoniDate" Type="datetime" />
+    <Property Name="SO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="SO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="int" />
+    <Property Name="FirstP" Type="varchar" MaxLength="50" />
+    <Property Name="AirLevel" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="AirLevelDes" Type="varchar" MaxLength="50" />
+    <Property Name="AirColor" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Mid_ImgFiles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="varchar" MaxLength="50" />
+    <Property Name="Cate" Type="int" />
+    <Property Name="FileDate" Type="datetime" />
+    <Property Name="FullFileName" Type="varchar" MaxLength="300" />
+    <Property Name="CreatedTime" Type="datetime" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.T_Mid_QXForeCastData”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="T_Mid_QXForeCastData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StationCode" Type="varchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="ForeCastTime" Type="datetime" />
+    <Property Name="ForeCastHours" Type="int" />
+    <Property Name="lon" Type="decimal" Scale="2" />
+    <Property Name="lat" Type="decimal" Scale="2" />
+    <Property Name="MaxTemp" Type="decimal" Scale="2" />
+    <Property Name="MinTemp" Type="decimal" Scale="2" />
+    <Property Name="WeatherCode" Type="int" />
+    <Property Name="WindSpeed" Type="int" />
+    <Property Name="WindDirection" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.T_Mid_QXRealTimeData”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="T_Mid_QXRealTimeData">
+    <Key>
+      <PropertyRef Name="StationNum" />
+      <PropertyRef Name="ObservTimes" />
+      <PropertyRef Name="Locat" />
+      <PropertyRef Name="InsertTime" />
+    </Key>
+    <Property Name="StationNum" Type="char" Nullable="false" MaxLength="5" />
+    <Property Name="ObservTimes" Type="char" Nullable="false" MaxLength="12" />
+    <Property Name="Locat" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="InsertTime" Type="char" Nullable="false" MaxLength="12" />
+    <Property Name="WindDirect" Type="char" MaxLength="3" />
+    <Property Name="WindVelocity" Type="char" MaxLength="3" />
+    <Property Name="WindDirect10" Type="char" MaxLength="3" />
+    <Property Name="WindVelocity10" Type="char" MaxLength="3" />
+    <Property Name="MaxWindD" Type="char" MaxLength="3" />
+    <Property Name="MaxWindV" Type="char" MaxLength="3" />
+    <Property Name="TimeMaxWind" Type="char" MaxLength="5" />
+    <Property Name="InstantWindD" Type="char" MaxLength="3" />
+    <Property Name="InstantWindV" Type="char" MaxLength="3" />
+    <Property Name="ExMaxWindD" Type="char" MaxLength="3" />
+    <Property Name="ExMaxWindV" Type="char" MaxLength="3" />
+    <Property Name="TimeExMaxWind" Type="char" MaxLength="5" />
+    <Property Name="PrecipitationAmount" Type="char" MaxLength="120" />
+    <Property Name="Precipitation" Type="char" MaxLength="4" />
+    <Property Name="FellRain" Type="char" MaxLength="1" />
+    <Property Name="DryBulTemp" Type="char" MaxLength="4" />
+    <Property Name="MaxTemp" Type="char" MaxLength="4" />
+    <Property Name="TimeMaxTemp" Type="char" MaxLength="5" />
+    <Property Name="MinTemp" Type="char" MaxLength="4" />
+    <Property Name="TimeMinTemp" Type="char" MaxLength="5" />
+    <Property Name="RelHumidity" Type="char" MaxLength="3" />
+    <Property Name="MinRelHumidity" Type="char" MaxLength="3" />
+    <Property Name="TimeMinRelH" Type="char" MaxLength="5" />
+    <Property Name="VapourPress" Type="char" MaxLength="4" />
+    <Property Name="DewTemp" Type="char" MaxLength="4" />
+    <Property Name="StationPress" Type="char" MaxLength="5" />
+    <Property Name="MaxPSta" Type="char" MaxLength="5" />
+    <Property Name="TimeMaxPSta" Type="char" MaxLength="5" />
+    <Property Name="MinPSta" Type="char" MaxLength="5" />
+    <Property Name="TimeMinPSta" Type="char" MaxLength="5" />
+    <Property Name="SurfaceTemp" Type="char" MaxLength="4" />
+    <Property Name="SurfaceMaxTemp" Type="char" MaxLength="4" />
+    <Property Name="TimeSurMaxTemp" Type="char" MaxLength="5" />
+    <Property Name="SurfaceMinTemp" Type="char" MaxLength="4" />
+    <Property Name="TimeSurMinTemp" Type="char" MaxLength="5" />
+    <Property Name="Temp5cm" Type="char" MaxLength="4" />
+    <Property Name="Temp10cm" Type="char" MaxLength="4" />
+    <Property Name="Temp15cm" Type="char" MaxLength="4" />
+    <Property Name="Temp20cm" Type="char" MaxLength="4" />
+    <Property Name="Temp40cm" Type="char" MaxLength="4" />
+    <Property Name="Temp80cm" Type="char" MaxLength="4" />
+    <Property Name="Temp160cm" Type="char" MaxLength="4" />
+    <Property Name="Temp320cm" Type="char" MaxLength="4" />
+    <Property Name="EvagaugeAmount" Type="char" MaxLength="4" />
+    <Property Name="SeaLevelPress" Type="char" MaxLength="5" />
+    <Property Name="Visibility" Type="char" MaxLength="3" />
+    <Property Name="CloudAmount" Type="char" MaxLength="3" />
+    <Property Name="LowCloudAmount" Type="char" MaxLength="3" />
+    <Property Name="CloudHigh" Type="char" MaxLength="30" />
+    <Property Name="CloudShape" Type="char" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="T_Mid_Report">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ReportCode" Type="int" />
+    <Property Name="ReportTime" Type="date" />
+    <Property Name="QXText" Type="nvarchar" MaxLength="1000" />
+    <Property Name="QXUser" Type="int" />
+    <Property Name="QXSubmit" Type="int" />
+    <Property Name="JCUser" Type="int" />
+    <Property Name="JCSubmit" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.T_Mid_ReportData”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="T_Mid_ReportData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ReportCode" Type="int" />
+    <Property Name="AQI" Type="int" />
+    <Property Name="TimeType" Type="int" />
+  </EntityType>
+  <EntityType Name="T_Oth_Database">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FileData" Type="image" />
+    <Property Name="imgFormat" Type="varchar" MaxLength="50" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Oth_EnterUpload">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UploadEnter" Type="nvarchar" MaxLength="50" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FileUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="Folder" Type="nvarchar" MaxLength="50" />
+    <Property Name="imgFormat" Type="varchar" MaxLength="50" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="50" />
+    <Property Name="CheckType" Type="varchar" MaxLength="50" />
+    <Property Name="CheckMessage" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="T_Oth_Image">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FileUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="Folder" Type="nvarchar" MaxLength="50" />
+    <Property Name="imgFormat" Type="varchar" MaxLength="50" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+    <Property Name="Tag" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_PC_Department">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentID" Type="varchar" MaxLength="50" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="T_PC_Department_Model">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModelID" Type="varchar" Nullable="false" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="T_PC_Log">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="OperateUser" Type="varchar" MaxLength="50" />
+    <Property Name="OperateUserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="OperateType" Type="nvarchar" MaxLength="50" />
+    <Property Name="OperateObject" Type="nvarchar" MaxLength="50" />
+    <Property Name="OperateDesc" Type="nvarchar" MaxLength="200" />
+    <Property Name="Sys_DateTime" Type="datetime" />
+    <Property Name="LocalIP" Type="varchar" MaxLength="200" />
+    <Property Name="MacAddress" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_PC_Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="varchar" MaxLength="50" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="T_PC_Role_Model">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModelID" Type="varchar" Nullable="false" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="T_PC_User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="U_LoginName" Type="nvarchar" MaxLength="50" />
+    <Property Name="U_Password" Type="nvarchar" MaxLength="200" />
+    <Property Name="U_Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="U_Role" Type="nvarchar" MaxLength="50" />
+    <Property Name="U_Sex" Type="nvarchar" MaxLength="50" />
+    <Property Name="U_HomeTel" Type="nvarchar" MaxLength="50" />
+    <Property Name="U_Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="U_RealName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DepartmentID" Type="nvarchar" MaxLength="50" />
+    <Property Name="RegionCode" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="T_PC_User_DataFiltering">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ConfigID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SqlWhere" Type="varchar" Nullable="false" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="T_PC_User_Model">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModelID" Type="varchar" Nullable="false" MaxLength="2000" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.T_Sys_CommonTree”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="T_Sys_CommonTree">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NodeID" Type="nvarchar" MaxLength="300" />
+    <Property Name="NodeName" Type="nvarchar" MaxLength="300" />
+    <Property Name="NodeParentID" Type="nvarchar" MaxLength="300" />
+    <Property Name="VisibleType" Type="bit" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="OnClick" Type="nvarchar" MaxLength="300" />
+    <Property Name="VisibleOpen" Type="bit" />
+    <Property Name="VisibleQuery" Type="bit" />
+    <Property Name="SYSBack1" Type="nvarchar" MaxLength="255" />
+    <Property Name="SYSBack2" Type="nvarchar" MaxLength="255" />
+    <Property Name="SYSBack3" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="T_Sys_ConfigChart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CONFIG_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Chart_Style" Type="varchar" MaxLength="50" />
+    <Property Name="Chart_Type" Type="varchar" MaxLength="50" />
+    <Property Name="Chart_Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Chart_Table" Type="varchar" MaxLength="50" />
+    <Property Name="X_Axis" Type="varchar" MaxLength="50" />
+    <Property Name="Y_Axis" Type="varchar" MaxLength="50" />
+    <Property Name="Y_Axis_Sql" Type="varchar" MaxLength="200" />
+    <Property Name="Y_Value" Type="varchar" MaxLength="50" />
+    <Property Name="Y_Dimension" Type="nvarchar" MaxLength="50" />
+    <Property Name="SYSBack1" Type="varchar" MaxLength="50" />
+    <Property Name="SYSBack2" Type="varchar" MaxLength="50" />
+    <Property Name="SYSBack3" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Sys_ConfigField">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CONFIG_ID" Type="varchar" MaxLength="50" />
+    <Property Name="FIELD_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="FIELD_NAME_CN" Type="nvarchar" MaxLength="50" />
+    <Property Name="CONTROL_ID" Type="varchar" MaxLength="50" />
+    <Property Name="DISPLAY_CTRL" Type="nvarchar" MaxLength="50" />
+    <Property Name="SHOW_INDEX" Type="int" />
+    <Property Name="CONTROL_WIDTH" Type="varchar" MaxLength="50" />
+    <Property Name="CONTROL_HEIGHT" Type="varchar" MaxLength="50" />
+    <Property Name="IS_MULTILINE" Type="int" />
+    <Property Name="IS_PRIMARY_KEY" Type="int" />
+    <Property Name="IS_COMPOSITE_KEY" Type="int" />
+    <Property Name="IS_FOREIGN_KEY" Type="int" />
+    <Property Name="FOREIGN_KEY_TBNAME" Type="varchar" MaxLength="50" />
+    <Property Name="FOREIGN_KEY_TEXT" Type="varchar" MaxLength="50" />
+    <Property Name="FOREIGN_KEY_VALUE" Type="varchar" MaxLength="50" />
+    <Property Name="FOREIGN_ORDER_BY" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ENUM" Type="int" />
+    <Property Name="ENUM_TEXT" Type="nvarchar" MaxLength="50" />
+    <Property Name="DATE_FORMAT" Type="nvarchar" MaxLength="50" />
+    <Property Name="CK_RAD_COLCOUNT" Type="int" />
+    <Property Name="LISTVIEW_ISSHOW" Type="int" />
+    <Property Name="FORMVIEW_ISSHOW" Type="int" />
+    <Property Name="FORMVIEW_ISEDIT" Type="int" />
+    <Property Name="IS_QUERY" Type="int" />
+    <Property Name="IS_EXPORT" Type="int" />
+    <Property Name="IS_CUSTOM" Type="int" />
+    <Property Name="IS_MD5" Type="int" />
+    <Property Name="IS_ImportCheckDuplicate" Type="int" />
+    <Property Name="CustomRules" Type="varchar" MaxLength="50" />
+    <Property Name="MAX_LENGTH" Type="int" />
+    <Property Name="CustomValidation" Type="varchar" MaxLength="100" />
+    <Property Name="SYSBack1" Type="varchar" MaxLength="50" />
+    <Property Name="SYSBack2" Type="varchar" MaxLength="50" />
+    <Property Name="SYSBack3" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Sys_ConfigTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CONFIG_ID" Type="varchar" MaxLength="50" />
+    <Property Name="DT_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DT_NAME_CN" Type="nvarchar" MaxLength="50" />
+    <Property Name="IS_QUERY" Type="int" />
+    <Property Name="IS_EXPORT" Type="int" />
+    <Property Name="IS_EDIT" Type="int" />
+    <Property Name="IS_IMPORT" Type="int" />
+    <Property Name="ORDERBY" Type="varchar" MaxLength="50" />
+    <Property Name="SYSBack1" Type="varchar" MaxLength="50" />
+    <Property Name="SYSBack2" Type="varchar" MaxLength="50" />
+    <Property Name="SYSBack3" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Sys_Exception">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ExceptionPage" Type="varchar" MaxLength="100" />
+    <Property Name="ExceptionFunction" Type="varchar" MaxLength="100" />
+    <Property Name="ExceptionParameter" Type="text" />
+    <Property Name="ExceptionSource" Type="text" />
+    <Property Name="ExceptionDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="T_Sys_Model">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleID" Type="nvarchar" MaxLength="300" />
+    <Property Name="ModuleName" Type="nvarchar" MaxLength="300" />
+    <Property Name="ModuleParentID" Type="nvarchar" MaxLength="300" />
+    <Property Name="VisibleType" Type="int" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="IconUrl" Type="nvarchar" MaxLength="300" />
+    <Property Name="ModuleURL" Type="nvarchar(max)" />
+    <Property Name="OnClick" Type="nvarchar(max)" />
+    <Property Name="SystemName" Type="nvarchar" MaxLength="300" />
+    <Property Name="SYSBack1" Type="nvarchar" MaxLength="255" />
+    <Property Name="SYSBack2" Type="nvarchar" MaxLength="255" />
+    <Property Name="SYSBack3" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.V_Mid_AirForeCast”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="V_Mid_AirForeCast">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AirLevel" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="StationName" Type="varchar" MaxLength="50" />
+    <Property Name="StationCode" Type="varchar" MaxLength="50" />
+    <Property Name="MonitorTime" Type="datetime" />
+    <Property Name="ForecastTime" Type="datetime" />
+    <Property Name="SO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="SO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="NO2" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="COAQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CO" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="O3" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM25" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10AQI" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PM10" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="AQI" Type="int" />
+    <Property Name="FirstP" Type="varchar" MaxLength="50" />
+    <Property Name="AirLevel" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="AirLevelDes" Type="varchar" MaxLength="50" />
+    <Property Name="AirColor" Type="varchar" MaxLength="50" />
+    <Property Name="ForecastModel" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.V_Mid_AirForeCastNew”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="V_Mid_AirForeCastNew">
+    <Key>
+      <PropertyRef Name="AirLevel" />
+    </Key>
+    <Property Name="StationCode" Type="varchar" MaxLength="50" />
+    <Property Name="StationName" Type="varchar" MaxLength="50" />
+    <Property Name="day" Type="varchar" MaxLength="4" />
+    <Property Name="hour" Type="varchar" MaxLength="4" />
+    <Property Name="AQI" Type="int" />
+    <Property Name="AirLevelDes" Type="varchar" MaxLength="50" />
+    <Property Name="FirstP" Type="varchar" MaxLength="50" />
+    <Property Name="AirLevel" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="PublicTime" Type="varchar" MaxLength="100" />
+    <Property Name="MonitorTime" Type="datetime" />
+    <Property Name="ForecastTime" Type="datetime" />
+    <Property Name="ColorCode" Type="varchar" MaxLength="50" />
+    <Property Name="lon" Type="varchar" MaxLength="50" />
+    <Property Name="lat" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“JinchengDB2.dbo.V_Mid_QXForeCast”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="V_Mid_QXForeCast">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="StationName" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="StationCode" Type="varchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="ForeCastTime" Type="datetime" />
+    <Property Name="ForeCastHours" Type="int" />
+    <Property Name="lon" Type="decimal" Scale="2" />
+    <Property Name="lat" Type="decimal" Scale="2" />
+    <Property Name="MaxTemp" Type="decimal" Scale="2" />
+    <Property Name="MinTemp" Type="decimal" Scale="2" />
+    <Property Name="WeatherCode" Type="int" />
+    <Property Name="WindSpeed" Type="int" />
+    <Property Name="WindDirection" Type="int" />
+    <Property Name="WeatherName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6013: 表/视图“JinchengDB2.dbo.T_Cod_ModelType”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+      
+      <EntityType Name="T_Cod_ModelType">
+        <Property Name="ModelTypeCode" Type="int" />
+        <Property Name="ModelTypeName" Type="varchar" MaxLength="20" />
+      </EntityType>
+      生成过程中发现错误:
+      警告 6013: 表/视图“JinchengDB2.dbo.T_Cod_TimeType”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+      
+      <EntityType Name="T_Cod_TimeType">
+        <Property Name="TimeTypeCode" Type="int" />
+        <Property Name="TimeTypeName" Type="varchar" MaxLength="10" />
+      </EntityType>
+      生成过程中发现错误:
+      警告 6013: 表/视图“JinchengDB2.dbo.T_Cod_Weather”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+      
+      <EntityType Name="T_Cod_Weather">
+        <Property Name="WeatherCode" Type="int" />
+        <Property Name="WeatherName" Type="varchar" MaxLength="50" />
+        <Property Name="EName" Type="varchar" MaxLength="50" />
+      </EntityType>
+      生成过程中发现错误:
+      警告 6013: 表/视图“JinchengDB2.dbo.V_Mid_DataContrast”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+      
+      <EntityType Name="V_Mid_DataContrast">
+        <Property Name="StationCode" Type="varchar" MaxLength="50" />
+        <Property Name="StationName" Type="varchar" MaxLength="50" />
+        <Property Name="MonitorTime" Type="datetime" />
+        <Property Name="SAQI" Type="int" />
+        <Property Name="TAQI" Type="int" />
+        <Property Name="CAQI" Type="int" />
+        <Property Name="WAQI" Type="int" />
+      </EntityType>-->
+</Schema>

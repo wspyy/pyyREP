@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jsmin js压缩工具</title>
+    <link rel="stylesheet" type="text/css" href="jsmin/style.css" />
+    <script type="text/javascript" src="jsmin/js.js"></script>
+    <script type="text/javascript" src="jsmin/jsmin.js"></script>
+    <script type="text/javascript">
+        function $(i) {
+            return document.getElementById(i);
+        }
+        function go() {
+            $('output').value = jsmin($('comment').value, $('input').value, $('level').value);
+            $('outputtitle').style.display = $('output').style.display = $('statstitle').style.display = $('stats').style.display = 'block';
+            $('oldsize').value = jsmin.oldSize;
+            $('newsize').value = jsmin.newSize;
+            $('ratio').value = (Math.round(jsmin.newSize / jsmin.oldSize * 1000) / 10) + '%';
+        }
+        function bw() {
+            $('comment').value = $('input').value = $('output').value = '';
+            $('outputtitle').style.display = $('output').style.display = $('statstitle').style.display = $('stats').style.display = 'none';
+        }
+    </script>
+    <style type="text/css">
+        #comment
+        {
+            width: 95%;
+            height: 4em;
+        }
+        #input
+        {
+            width: 95%;
+            height: 10em;
+        }
+        #go
+        {
+            font-weight: bold;
+        }
+        #outputtitle, #statstitle, #stats
+        {
+            display: none;
+        }
+        #oldsize, #newsize, #ratio
+        {
+            text-align: right;
+            width: 4em;
+        }
+        #output
+        {
+            width: 95%;
+            height: 10em;
+            display: none;
+        }
+        h2
+        {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 内容框 中 -->
+    <div class="neirongkuang">
+        <div class="neirongkuang_quan">
+            <p>
+                预先给出了一段测试代码. 点击 <b>JSMin压缩</b> 就会在下面得到压缩后的代码.</p>
+            <h2>
+                Comments</h2>
+            <textarea id="comment" name="comment"></textarea>
+            <h2>
+                你想要压缩的代码，拷贝到下面的框中</h2>
+            <textarea id="input" name="input">// is.js
+
+// (c) 2001 Douglas Crockford
+// 2001 June 3
+
+
+// is
+
+// The -is- object is used to identify the browser.  Every browser edition
+// identifies itself, but there is no standard way of doing it, and some of
+// the identification is deceptive. This is because the authors of web
+// browsers are liars. For example, Microsoft's IE browsers claim to be
+// Mozilla 4. Netscape 6 claims to be version 5.
+
+var is = {
+    ie:      navigator.appName == 'Microsoft Internet Explorer',
+    java:    navigator.javaEnabled(),
+    ns:      navigator.appName == 'Netscape',
+    ua:      navigator.userAgent.toLowerCase(),
+    version: parseFloat(navigator.appVersion.substr(21)) ||
+             parseFloat(navigator.appVersion),
+    win:     navigator.platform == 'Win32'
+}
+is.mac = is.ua.indexOf('mac') &gt;= 0;
+if (is.ua.indexOf('opera') &gt;= 0) {
+    is.ie = is.ns = false;
+    is.opera = true;
+}
+if (is.ua.indexOf('gecko') &gt;= 0) {
+    is.ie = is.ns = false;
+    is.gecko = true;
+}</textarea><br>
+            <br>
+            <center>
+                Level:&nbsp;
+                <select id="level">
+                    <option value="1">最小压缩</option>
+                    <option selected="selected" value="2">普通压缩</option>
+                    <option value="3">超级压缩</option>
+                </select>
+                &nbsp;&nbsp;
+                <input id="go" onclick="go();return false;" value="JSMin压缩" type="submit" />
+                &nbsp;&nbsp;
+                <input onclick="bw();return false;" value="清除" type="submit" /><br>
+                <br>
+            </center>
+            <h2 id="outputtitle">
+                压缩后代码</h2>
+            <textarea id="output" name="output"></textarea>
+            <h2 id="statstitle">
+                状态提示</h2>
+            <div id="stats">
+                原来大小:
+                <input id="oldsize">
+                压缩后大小:
+                <input id="newsize">
+                压缩率:
+                <input id="ratio"></div>
+            <div style="text-align: center; padding-top: 8px;">
+                <span id="ggwz_920x90"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

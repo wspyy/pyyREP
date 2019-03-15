@@ -1,0 +1,47 @@
+﻿using Model;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bll.BusinessFun
+{
+   public class QxMonitor
+    {
+       /// <summary>
+       /// 返回最新气象监测数据
+       /// </summary>
+       /// <returns></returns>
+       public DataSet GetQxRealTimeData(string sqlwhere) 
+       {
+           SQLHelper sqlh = new SQLHelper();
+           string sql = @"select * from V_Mid_QxRealTimeData
+                          where ObservTimes = ( 
+                          select max(ObservTimes) from [T_Mid_QXRealTimeData] " + sqlwhere + ")";
+          return  sqlh.ExecuteSQLDataSet(sql);
+       }
+
+       /// <summary>
+       /// 返回时间段内气监测数据
+       /// </summary>
+       /// <returns></returns>
+       public DataSet GetQxRealTimeDataByDate(string StationName,string begin,string end) 
+       {
+           return null;
+       }
+
+       /// <summary>
+       /// 查询气象数据历史数据
+       /// </summary>
+       /// <param name="sqlwhere"></param>
+       /// <returns></returns>
+       public object GetQxHistData(string sqlwhere)
+       {
+           SQLHelper sqlh = new SQLHelper();
+           string sql = @"select * from V_Mid_QxRealTimeData " + sqlwhere;
+           return sqlh.ExecuteSQLDataSet(sql);
+       }
+    }
+}

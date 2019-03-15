@@ -1,0 +1,318 @@
+﻿namespace DataRepair
+{
+    partial class Form1
+    {
+        /// <summary>
+        /// 必需的设计器变量。
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// 清理所有正在使用的资源。
+        /// </summary>
+        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows 窗体设计器生成的代码
+
+        /// <summary>
+        /// 设计器支持所需的方法 - 不要
+        /// 使用代码编辑器修改此方法的内容。
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.btnStart = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbQxTj = new System.Windows.Forms.RadioButton();
+            this.rbCityAir = new System.Windows.Forms.RadioButton();
+            this.rbQxImg = new System.Windows.Forms.RadioButton();
+            this.rbQxFile = new System.Windows.Forms.RadioButton();
+            this.rbQxForCast = new System.Windows.Forms.RadioButton();
+            this.rbQxMon = new System.Windows.Forms.RadioButton();
+            this.rbAirForCast = new System.Windows.Forms.RadioButton();
+            this.rbAirMon = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnBegin = new System.Windows.Forms.Button();
+            this.txtPath = new System.Windows.Forms.TextBox();
+            this.btnOpen = new System.Windows.Forms.Button();
+            this.rbOld = new System.Windows.Forms.RadioButton();
+            this.rbNew = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.timeEnd = new System.Windows.Forms.DateTimePicker();
+            this.timeStart = new System.Windows.Forms.DateTimePicker();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(421, 71);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.TabIndex = 0;
+            this.btnStart.Text = "开始";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbQxTj);
+            this.groupBox1.Controls.Add(this.rbCityAir);
+            this.groupBox1.Controls.Add(this.rbQxImg);
+            this.groupBox1.Controls.Add(this.rbQxFile);
+            this.groupBox1.Controls.Add(this.rbQxForCast);
+            this.groupBox1.Controls.Add(this.rbQxMon);
+            this.groupBox1.Controls.Add(this.rbAirForCast);
+            this.groupBox1.Controls.Add(this.rbAirMon);
+            this.groupBox1.Location = new System.Drawing.Point(12, 21);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(590, 104);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "数据项";
+            // 
+            // rbQxTj
+            // 
+            this.rbQxTj.AutoSize = true;
+            this.rbQxTj.Location = new System.Drawing.Point(165, 57);
+            this.rbQxTj.Name = "rbQxTj";
+            this.rbQxTj.Size = new System.Drawing.Size(95, 16);
+            this.rbQxTj.TabIndex = 7;
+            this.rbQxTj.TabStop = true;
+            this.rbQxTj.Text = "统计预报数据";
+            this.rbQxTj.UseVisualStyleBackColor = true;
+            // 
+            // rbCityAir
+            // 
+            this.rbCityAir.AutoSize = true;
+            this.rbCityAir.Location = new System.Drawing.Point(18, 57);
+            this.rbCityAir.Name = "rbCityAir";
+            this.rbCityAir.Size = new System.Drawing.Size(95, 16);
+            this.rbCityAir.TabIndex = 6;
+            this.rbCityAir.TabStop = true;
+            this.rbCityAir.Text = "全国空气质量";
+            this.rbCityAir.UseVisualStyleBackColor = true;
+            // 
+            // rbQxImg
+            // 
+            this.rbQxImg.AutoSize = true;
+            this.rbQxImg.Location = new System.Drawing.Point(340, 25);
+            this.rbQxImg.Name = "rbQxImg";
+            this.rbQxImg.Size = new System.Drawing.Size(71, 16);
+            this.rbQxImg.TabIndex = 5;
+            this.rbQxImg.TabStop = true;
+            this.rbQxImg.Text = "气象图片";
+            this.rbQxImg.UseVisualStyleBackColor = true;
+            // 
+            // rbQxFile
+            // 
+            this.rbQxFile.AutoSize = true;
+            this.rbQxFile.Location = new System.Drawing.Point(340, 57);
+            this.rbQxFile.Name = "rbQxFile";
+            this.rbQxFile.Size = new System.Drawing.Size(71, 16);
+            this.rbQxFile.TabIndex = 4;
+            this.rbQxFile.TabStop = true;
+            this.rbQxFile.Text = "气象资料";
+            this.rbQxFile.UseVisualStyleBackColor = true;
+            // 
+            // rbQxForCast
+            // 
+            this.rbQxForCast.AutoSize = true;
+            this.rbQxForCast.Location = new System.Drawing.Point(463, 25);
+            this.rbQxForCast.Name = "rbQxForCast";
+            this.rbQxForCast.Size = new System.Drawing.Size(95, 16);
+            this.rbQxForCast.TabIndex = 3;
+            this.rbQxForCast.TabStop = true;
+            this.rbQxForCast.Text = "气象预报数据";
+            this.rbQxForCast.UseVisualStyleBackColor = true;
+            // 
+            // rbQxMon
+            // 
+            this.rbQxMon.AutoSize = true;
+            this.rbQxMon.Location = new System.Drawing.Point(463, 57);
+            this.rbQxMon.Name = "rbQxMon";
+            this.rbQxMon.Size = new System.Drawing.Size(95, 16);
+            this.rbQxMon.TabIndex = 2;
+            this.rbQxMon.TabStop = true;
+            this.rbQxMon.Text = "气象监测数据";
+            this.rbQxMon.UseVisualStyleBackColor = true;
+            // 
+            // rbAirForCast
+            // 
+            this.rbAirForCast.AutoSize = true;
+            this.rbAirForCast.Location = new System.Drawing.Point(165, 25);
+            this.rbAirForCast.Name = "rbAirForCast";
+            this.rbAirForCast.Size = new System.Drawing.Size(119, 16);
+            this.rbAirForCast.TabIndex = 1;
+            this.rbAirForCast.TabStop = true;
+            this.rbAirForCast.Text = "空气质量预报数据";
+            this.rbAirForCast.UseVisualStyleBackColor = true;
+            // 
+            // rbAirMon
+            // 
+            this.rbAirMon.AutoSize = true;
+            this.rbAirMon.Location = new System.Drawing.Point(18, 25);
+            this.rbAirMon.Name = "rbAirMon";
+            this.rbAirMon.Size = new System.Drawing.Size(95, 16);
+            this.rbAirMon.TabIndex = 0;
+            this.rbAirMon.TabStop = true;
+            this.rbAirMon.Text = "子站空气质量";
+            this.rbAirMon.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnBegin);
+            this.groupBox2.Controls.Add(this.txtPath);
+            this.groupBox2.Controls.Add(this.btnOpen);
+            this.groupBox2.Controls.Add(this.btnStart);
+            this.groupBox2.Controls.Add(this.rbOld);
+            this.groupBox2.Controls.Add(this.rbNew);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.timeEnd);
+            this.groupBox2.Controls.Add(this.timeStart);
+            this.groupBox2.Location = new System.Drawing.Point(12, 131);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(590, 110);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "时间段";
+            // 
+            // btnBegin
+            // 
+            this.btnBegin.Location = new System.Drawing.Point(502, 71);
+            this.btnBegin.Name = "btnBegin";
+            this.btnBegin.Size = new System.Drawing.Size(75, 23);
+            this.btnBegin.TabIndex = 4;
+            this.btnBegin.Text = "补数";
+            this.btnBegin.UseVisualStyleBackColor = true;
+            this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
+            // 
+            // txtPath
+            // 
+            this.txtPath.Location = new System.Drawing.Point(131, 71);
+            this.txtPath.Name = "txtPath";
+            this.txtPath.Size = new System.Drawing.Size(284, 21);
+            this.txtPath.TabIndex = 6;
+            // 
+            // btnOpen
+            // 
+            this.btnOpen.Location = new System.Drawing.Point(18, 71);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnOpen.TabIndex = 5;
+            this.btnOpen.Text = "选择文件";
+            this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+            // 
+            // rbOld
+            // 
+            this.rbOld.AutoSize = true;
+            this.rbOld.Location = new System.Drawing.Point(511, 26);
+            this.rbOld.Name = "rbOld";
+            this.rbOld.Size = new System.Drawing.Size(47, 16);
+            this.rbOld.TabIndex = 4;
+            this.rbOld.Text = "历史";
+            this.rbOld.UseVisualStyleBackColor = true;
+            // 
+            // rbNew
+            // 
+            this.rbNew.AutoSize = true;
+            this.rbNew.Checked = true;
+            this.rbNew.Location = new System.Drawing.Point(434, 28);
+            this.rbNew.Name = "rbNew";
+            this.rbNew.Size = new System.Drawing.Size(47, 16);
+            this.rbNew.TabIndex = 3;
+            this.rbNew.TabStop = true;
+            this.rbNew.Text = "最新";
+            this.rbNew.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(205, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 12);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "至";
+            // 
+            // timeEnd
+            // 
+            this.timeEnd.Location = new System.Drawing.Point(253, 24);
+            this.timeEnd.Name = "timeEnd";
+            this.timeEnd.Size = new System.Drawing.Size(158, 21);
+            this.timeEnd.TabIndex = 1;
+            // 
+            // timeStart
+            // 
+            this.timeStart.Location = new System.Drawing.Point(18, 24);
+            this.timeStart.Name = "timeStart";
+            this.timeStart.Size = new System.Drawing.Size(158, 21);
+            this.timeStart.TabIndex = 0;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Items.AddRange(new object[] {
+            "请选择修复配置......"});
+            this.listBox1.Location = new System.Drawing.Point(12, 259);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(590, 172);
+            this.listBox1.TabIndex = 3;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(609, 456);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "Form1";
+            this.Text = "数据修复程序";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbQxImg;
+        private System.Windows.Forms.RadioButton rbQxFile;
+        private System.Windows.Forms.RadioButton rbQxForCast;
+        private System.Windows.Forms.RadioButton rbQxMon;
+        private System.Windows.Forms.RadioButton rbAirForCast;
+        private System.Windows.Forms.RadioButton rbAirMon;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker timeEnd;
+        private System.Windows.Forms.DateTimePicker timeStart;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnBegin;
+        private System.Windows.Forms.RadioButton rbOld;
+        private System.Windows.Forms.RadioButton rbNew;
+        private System.Windows.Forms.RadioButton rbCityAir;
+
+        private System.Windows.Forms.Button btnOpen;
+        private System.Windows.Forms.TextBox txtPath;
+        private System.Windows.Forms.RadioButton rbQxTj;
+
+    }
+}
+

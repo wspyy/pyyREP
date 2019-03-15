@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bll.BusinessFun
+{
+   public class Pollution
+    {
+       /// <summary>
+       /// 获取污染物排放数据
+       /// </summary>
+       /// <returns></returns>
+       public DataSet GetPollutionSourceList(string sqlWhere)
+       {
+           SQLHelper sqlh = new SQLHelper();
+           string sql = "select p.* ,e.[EnterpriseName],e.[IndustryName],e.[EnterpriseAddress],e.[DelFlag] from T_Mid_PollutionSources as p  inner join T_Bas_Enterprise as e on p.[LegalPersonCode]=e.[EnterpriseCode] where p.[LegalPersonCode]=" + "'" + sqlWhere + "'";
+           return sqlh.ExecuteSQLDataSet(sql);
+       }
+       /// <summary>
+       /// 获取空气质量日报数据
+       /// </summary>
+       /// <param name="sqlwhere"></param>
+       /// <returns></returns>
+       public DataSet GetEntList() 
+       {
+           SQLHelper sqlh = new SQLHelper();
+           string sql = @"SELECT *  FROM [dbo].[T_Bas_Enterprise]";
+           return sqlh.ExecuteSQLDataSet(sql);
+       }
+
+       /// <summary>
+       /// 获取空气质量小时数据
+       /// </summary>
+       /// <param name="sqlwhere"></param>
+       /// <returns></returns>
+       public DataSet GetHourAirMonitDataByWhere(string sqlwhere) 
+       {
+           SQLHelper sqlh = new SQLHelper();
+           string sql = @"select a.StationName,a.StationCode,lon,lat,[SO2],[SO2AQI],[NO2AQI],[NO2],[COAQI],[CO],[O3AQI],[O3],[PM25AQI],[PM25],[PM10AQI],[PM10],[AQI],[FirstP],[AirLevel],[AirLevelDes],[AirColor],c.* 
+                        from dbo.T_Bas_AirStation a 
+                        left join dbo.T_Mid_AirHourData b on a.StationName=b.StationName 
+                        left join [dbo].[T_Bas_QualityStandard] c on b.AirLevel = c.QualitySymbol
+                        " + sqlwhere + " order by OrderID";
+           return sqlh.ExecuteSQLDataSet(sql);
+       }
+       /// <summary>
+       /// 获取最新日数据
+       /// </summary>
+       /// <param name="sqlwhere"></param>
+       /// <returns></returns>
+       public object GetAirDayMonitData(string sqlwhere)
+       {
+           SQLHelper sqlh = new SQLHelper();
+           string sql = @"select * from  V_Mid_AirDayDataNew order by OrderID";
+           return sqlh.ExecuteSQLDataSet(sql);
+       }
+       /// <summary>
+       /// 获取最新小时数据
+       /// </summary>
+       /// <param name="sqlwhere"></param>
+       /// <returns></returns>
+       public object GetHourAirMonitData(string sqlwhere)
+       {
+           SQLHelper sqlh = new SQLHelper();
+           string sql = @"select * from  V_Mid_AirHourDataNew order by OrderID";
+           return sqlh.ExecuteSQLDataSet(sql);
+       }
+       /// <summary>
+       /// 日数据展示
+       /// </summary>
+       /// <param name="sqlwhere"></param>
+       /// <returns></returns>
+       public object GetAirDayMonitDataDay(string sqlwhere)
+       {
+           SQLHelper sqlh = new SQLHelper();
+           string sql = @"SELECT top 1  a.QualitySymbol [AirLevel] ,
+        a.Category [AirLevelDes] ,
+        b.AQI [AQI] ,
+        b.FirstP [FirstP] ,
+        CONVERT(VARCHAR(10), b.MoniDate, 120) [MoniDate]
+FROM    dbo.T_Bas_QualityStandard a
+        JOIN ( SELECT   *
+               FROM     ( SELECT    * ,
+                                    ROW_NUMBER() OVER ( ORDER BY MoniDate DESC ) AS rowno
+                          FROM      T_Mid_AirDayData
+                        ) t
+               WHERE    rowno = 1
+                        AND t.StationCode = 0
+             ) b ON b.AQI >= a.MinValue
+                    AND b.AQI <= a.MaxValue " + sqlwhere;
+           return sqlh.ExecuteSQLDataSet(sql);
+       }
+    }
+}

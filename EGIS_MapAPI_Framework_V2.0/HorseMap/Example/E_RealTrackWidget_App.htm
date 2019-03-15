@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>实时轨迹</title>
+    <style type="text/css" media="screen">
+        html, body{height: 100%;}
+        body{margin: 0;padding: 0; overflow: auto; text-align: center;background-color: #ffffff;}
+    </style>
+    
+</head>
+<body>
+    <div style="position: absolute; top: 0px; left: 100px; background-color: #BEBE9A;
+        padding: 2px; z-index: 10000">
+        <input type="button" value="开始" onclick="addLocation()" />
+        <input type="button" value="清除所有" onclick="clear()" />
+        <input type="button" value="清除车辆" onclick="clearCar()" />
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://192.168.5.150:8585/HorseMap/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(111.80845798483, 35.0956978538922, 113.66246838483, 36.1762787656687);
+        addWidget();
+        trackID=0;
+    }
+
+    function addWidget() {
+
+        var trackLineSymbol = new HMap.SimpleLineSymbol({ color: 0xffff00 });
+        var trackMoveImg = "http://192.168.5.150:8585/HorseMap/Images/pic/water_3.png";
+
+        var trackMoveInfo = new HMap.InfoSymbol("name:car1");
+        var trackMoveInfo2 = new HMap.InfoSymbol("name:{carID}\nlongitude:{longitude}\nlatitude:{latitude}");
+
+        var realTrackInfo = new HMap.RealTrackInfo({
+            carID: "car1",
+            carName: "car1",
+            trackLineSymbol: trackLineSymbol,
+            trackMoveImg: trackMoveImg,
+            trackMoveInfo: trackMoveInfo,
+            isShowTrackMoveInfo:false,
+            isTrackDisplay: true
+        });
+        var realTrackInfo1 = new HMap.RealTrackInfo({
+            carID: "car2",
+            carName: "car2",
+            trackMoveInfo: trackMoveInfo2,
+            isTrackDisplay: true
+        });
+
+        realTrackWidget = new HMap.RealTrackWidget([realTrackInfo, realTrackInfo1]);
+        hmap.addControl(realTrackWidget);
+    }
+
+    function addLocation() {
+        var realPointInfo1 = new HMap.RealPointInfo("car1", 112.861052, 35.49524, "2014-7-30 09:55:20", 20);
+        var realPointInfo2 = new HMap.RealPointInfo("car1", 112.871052, 35.50524, "2014-7-30 09:56:20", 20);
+        var realPointInfo3 = new HMap.RealPointInfo("car1", 112.891052, 35.50524, "2014-7-30 09:57:20", 20);
+        var realPointInfo4 = new HMap.RealPointInfo("car1", 112.931052, 35.52524, "2014-7-30 09:58:20", 20);
+        var realPointInfo5 = new HMap.RealPointInfo("car1", 112.901052, 35.55524, "2014-7-30 09:59:20", 20);
+        var realPointInfo6 = new HMap.RealPointInfo("car1", 112.921052, 35.55524, "2014-7-30 10:00:20", 20);
+        var realPointInfo7 = new HMap.RealPointInfo("car1", 112.931052, 35.56524, "2014-7-30 10:01:20", 20);
+        var realPointInfo8 = new HMap.RealPointInfo("car1", 112.921052, 35.58524, "2014-7-30 10:02:20", 20);
+        var realPointInfo9 = new HMap.RealPointInfo("car1", 112.951052, 35.58524, "2014-7-30 10:03:20", 20);
+        var realPointInfo10 = new HMap.RealPointInfo("car1", 112.941052, 35.59524, "2014-7-30 10:04:20", 20);
+        realPointInfos = [realPointInfo1, realPointInfo2, realPointInfo3, realPointInfo4, realPointInfo5,
+        realPointInfo6, realPointInfo7, realPointInfo8, realPointInfo9, realPointInfo10];
+        var realPointInfo11 = new HMap.RealPointInfo("car2", 112.869052, 35.49524, "2014-7-30 09:55:20", 20);
+        var realPointInfo12 = new HMap.RealPointInfo("car2", 112.879052, 35.50524, "2014-7-30 09:56:20", 20);
+        var realPointInfo13 = new HMap.RealPointInfo("car2", 112.899052, 35.50524, "2014-7-30 09:57:20", 20);
+        var realPointInfo14 = new HMap.RealPointInfo("car2", 112.939052, 35.52524, "2014-7-30 09:58:20", 20);
+        var realPointInfo15 = new HMap.RealPointInfo("car2", 112.909052, 35.55524, "2014-7-30 09:59:20", 20);
+        var realPointInfo16 = new HMap.RealPointInfo("car2", 112.929052, 35.55524, "2014-7-30 10:00:20", 20);
+        var realPointInfo17 = new HMap.RealPointInfo("car2", 112.939052, 35.56524, "2014-7-30 10:01:20", 20);
+        var realPointInfo18 = new HMap.RealPointInfo("car2", 112.929052, 35.58524, "2014-7-30 10:02:20", 20);
+        var realPointInfo19 = new HMap.RealPointInfo("car2", 112.959052, 35.58524, "2014-7-30 10:03:20", 20);
+        var realPointInfo110 = new HMap.RealPointInfo("car2", 112.949052, 35.59524, "2014-7-30 10:04:20", 20);
+        realPointInfos1 = [realPointInfo11, realPointInfo12, realPointInfo13, realPointInfo14, realPointInfo15,
+        realPointInfo16, realPointInfo17, realPointInfo18, realPointInfo19, realPointInfo110];
+        
+        setInterval("myInterval()", 2000); //1000为1秒钟
+    }
+    
+    function myInterval() {
+        realTrackWidget.getLocation(realPointInfos[trackID]);
+        realTrackWidget.getLocation(realPointInfos1[trackID]);
+        trackID = trackID + 1;
+    }
+
+    function clear() {
+        realTrackWidget.clearTrackResult();
+    }
+    function clearCar() {
+        realTrackWidget.clearTrackResult("car1");
+    }
+
+    creatHMap();
+
+</script>
+</html>

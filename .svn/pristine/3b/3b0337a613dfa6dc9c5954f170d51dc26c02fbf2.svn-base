@@ -1,0 +1,575 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Devoops_Publish_Index" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <style>
+        body {
+            margin: 0px;
+            background: url(back.jpg);
+            background-attachment: fixed;
+        }
+
+        #main {
+            width: 1000px;
+            margin: auto;
+            background: rgba(256,256,256,0.8);
+        }
+
+        #header {
+            height: 150px;
+            margin: auto;
+        }
+
+        #logos {
+            width: 100%;
+            float: left;
+            padding-left: 50px;
+        }
+
+        #group {
+            width: 100%;
+            float: right;
+        }
+
+        #forecast {
+            height: 370px;
+        }      
+        .day {
+            font-weight: bold;
+            font-size: 16px;
+            font-family: '微软雅黑';
+            float: left;
+            text-align: center;
+            width: 100%;
+        }
+
+        .date {
+            font-family: '微软雅黑';
+            text-align: center;
+            float: left;
+            width: 100%;
+        }
+
+
+        .today {
+            height: 360px;
+            width: 310px;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+            /*border-bottom:1px solid gray;
+            border-top:1px solid gray;*/
+            float: left;
+            padding-left: 10px;
+        }        
+            .today:hover {
+                FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#b8c4cb,endColorStr=red); /*IE 6 7 8*/
+                background: -ms-linear-gradient(top, #fff, #0000ff); /* IE 10 */
+                background: -moz-linear-gradient(top,#b8c4cb,#f6f6f8); /*火狐*/                           
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#b8c4cb), to(#f6f6f8)); /*谷歌*/
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#0000ff)); /* Safari 4-5, Chrome 1-9*/
+                background: -webkit-linear-gradient(top, rgba(256,256,256,0),rgba(62,150,158,0.5)); /*Safari5.1 Chrome 10+*/
+                background: -o-linear-gradient(top, #fff, #0000ff); /*Opera 11.10+*/
+
+            }
+           
+        .future {
+            height: 365px;
+            width: 225px;
+            border-right: 1px solid gray;
+            float: left;
+            margin-left: 5px;
+            padding-right: 5px;
+        }
+
+            .future:hover {
+                background: -webkit-linear-gradient(top, rgba(256,256,256,0),rgba(62,150,158,0.5)); /*Safari5.1 Chrome 10+*/
+            }
+
+        .AQI {
+            font-family: impact;
+            font-weight: normal;
+            font-size: 60px;
+            line-height: 50px;
+            margin-left: 45px;
+            color: green;
+        }
+
+        .category {
+            font-size: 23px;
+            font-family: '微软雅黑';
+            font-weight: bold;
+            padding-left: 5px;
+            color: green;
+        }
+
+        .tipItem {
+            font-weight: bolder;
+            height: 30px;
+            font-size: 13px;
+            font-family: '微软雅黑';
+        }
+
+        .tipVaule {
+            height: 30px;
+            font-size: 13px;
+            font-family: '微软雅黑';
+        }
+
+        table {
+            width: 100%;
+            
+        }
+
+        .big {
+            font-size: 85px;
+        }
+
+        .divShadow {
+            filter: progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=3); /*ie*/
+            -moz-box-shadow: 2px 2px 10px #909090; /*firefox*/
+            -webkit-box-shadow: 2px 2px 10px #909090; /*safari或chrome*/
+            box-shadow: 2px 2px 10px #909090; /*opera或ie9*/
+        }
+    </style>
+    <script>
+       
+        $(function () {
+            //测试时间，改
+            
+            //获得当前时间
+            var myDate = new Date();
+            var date = myDate.getFullYear() + "-" + ((myDate.getMonth()+1) < 10 ? ("0" + (myDate.getMonth() + 1)) : (myDate.getMonth() + 1)) + "-" + myDate.getDate();
+            loadStandardData(date);
+            $(".today").click(function () {
+                var date = $(this).find(".date").html();//'2015-04-02'
+                $("#span1").css("display", "block").parent().siblings().find("table").siblings().css("display", "none");
+                loadChar(date);
+            });
+            $(".future").click(function () {
+                var date = $(this).find(".date").html();//'2015-04-02'
+                $(this).find("table").siblings().css("display", "block").parent().siblings().find("table").siblings().css("display", "none");
+                loadChar(date);
+            });
+            //测试时间，改 
+            loadChar(date);
+            $("#span1").css("display", "block");
+        });
+        //加载空气质量标准数据
+        function loadStandardData(date) {
+            $.post("../../Data/GetStandardData.ashx", { date: date }, function (result) {
+                if (result && result.DataTable && result.DataTable.length > 0) {
+                    //今天
+                    if (result.DataTable[0].Aqi!="") {
+                        $("<tr><td style='height: 95px;'><span class='big AQI'>" + result.DataTable[0].Aqi + "</span><span class='category'>" + result.DataTable[0].Category +
+                              "</span></td></tr><tr class='tipItem'><td>首要污染物：</td></tr><tr class='tipVaule'>" +
+                          "<td>" + result.DataTable[0].FirstP + "</td></tr> <tr class='tipItem'><td>对健康的影响：</td></tr><tr class='tipVaule'>" +
+                          "<td>" + result.DataTable[0].Affect + "</td></tr><tr class='tipItem'><td>建议措施：</td></tr>" +
+                      "<tr class='tipVaule'><td>" + result.DataTable[0].Proposal + "</td></tr>").appendTo("#jin");
+                    } else {
+                        $("#span1").hide();
+                        $("<span style='font-weight:bolder;font-size:x-large'>暂无数据！</span>").appendTo("#jin");
+                    }
+                  
+                    //第二天
+                    if (result.DataTable[1].Aqi!="") {
+                        $("<tr><td style='height: 95px;'><span class='AQI'>" + result.DataTable[1].Aqi + "</span><span class='category'>" + result.DataTable[1].Category +
+                               "</span></td></tr><tr class='tipItem'><td>首要污染物：</td></tr><tr class='tipVaule'>" +
+                           "<td>" + result.DataTable[1].FirstP + "</td></tr> <tr class='tipItem'><td>对健康的影响：</td></tr><tr class='tipVaule'>" +
+                           "<td>" + result.DataTable[1].Affect + "</td></tr><tr class='tipItem'><td>建议措施：</td></tr>" +
+                       "<tr class='tipVaule'><td>" + result.DataTable[1].Proposal + "</td></tr>").appendTo("#ming");
+                    }else{
+                        $("<span style='font-weight:bolder;font-size:x-large'>暂无数据！</span>").appendTo("#ming");
+                    }
+                   
+                    //第三天
+                    if (result.DataTable[2].Aqi!="") {
+                        $("<tr><td style='height: 95px;'><span class='AQI'>" + result.DataTable[2].Aqi + "</span><span class='category'>" + result.DataTable[2].Category +
+                                "</span></td></tr><tr class='tipItem'><td>首要污染物：</td></tr><tr class='tipVaule'>" +
+                            "<td>" + result.DataTable[2].FirstP + "</td></tr> <tr class='tipItem'><td>对健康的影响：</td></tr><tr class='tipVaule'>" +
+                            "<td>" + result.DataTable[2].Affect + "</td></tr><tr class='tipItem'><td>建议措施：</td></tr>" +
+                        "<tr class='tipVaule'><td>" + result.DataTable[2].Proposal + "</td></tr>").appendTo("#hou");
+                    } else {
+                        $("<span style='font-weight:bolder;font-size:x-large'>暂无数据！</span>").appendTo("#hou");
+                    }
+                    
+                    //第四天
+                    if (result.DataTable[3].Aqi!="") {
+                        $("<tr><td style='height: 95px;'><span class='AQI'>" + result.DataTable[3].Aqi + "</span><span class='category'>" + result.DataTable[3].Category +
+                               "</span></td></tr><tr class='tipItem'><td>首要污染物：</td></tr><tr class='tipVaule'>" +
+                           "<td>" + result.DataTable[3].FirstP + "</td></tr> <tr class='tipItem'><td>对健康的影响：</td></tr><tr class='tipVaule'>" +
+                           "<td>" + result.DataTable[3].Affect + "</td></tr><tr class='tipItem'><td>建议措施：</td></tr>" +
+                       "<tr class='tipVaule'><td>" + result.DataTable[3].Proposal + "</td></tr>").appendTo("#wl");
+                    } else {
+                        $("<span style='font-weight:bolder;font-size:x-large'>暂无数据！</span>").appendTo("#wl");
+                    }
+                    
+                } else {
+                    $("#span1").hide();
+                    $("<span style='font-weight:bolder;font-size:x-large'>暂无数据！</span>").appendTo("#jin");
+                    $("<span style='font-weight:bolder;font-size:x-large'>暂无数据！</span>").appendTo("#ming");
+                    $("<span style='font-weight:bolder;font-size:x-large'>暂无数据！</span>").appendTo("#hou");
+                    $("<span style='font-weight:bolder;font-size:x-large'>暂无数据！</span>").appendTo("#wl");
+                }
+            }, "json");
+        };
+        //加载折线图和柱状图
+        function loadChar(date) {
+            var xData = new Array();
+            var yData = new Array();
+
+            $.post("../../Data/GetHourData.ashx", { date: date }, function (result) {
+                if (result && result.DataTable && result.DataTable.length > 0) {
+                    //var xData = new Array();
+                    //var yData = new Array();
+                    $.each(result.DataTable, function (index, item) {
+                        xData.push(item.MonitorTime.substr(5, 8));
+                        yData.push(item.Aqi);
+                    })
+                    setLineChar(xData, yData, date);
+                }
+            }, "json");
+            $.post("../../Data/GetData.ashx", { date: date }, function (result) {
+                if (result && result.DataTable && result.DataTable.length > 0) {
+                    var station = new Array();
+                    var dataObj = new Array();
+                    var color = new Array(); 
+                    $.each(result.DataTable, function (index, item) {
+                        // var datas = { y: '', color: '', drilldown: { categories: [], data: [], color: '' } };
+                        station.push(item.StationName);
+                        dataObj.push(item.Aqi);
+                        color.push(columsColor(item.Aqi));
+                        //datas.y=item.Aqi;
+                        //datas.color = columsColor(item.Aqi);
+                        ////data.drilldown.name.push()  
+                        ////datas.drilldown.categories.clear();
+                        ////datas.drilldown.data.clear();                       
+                        //datas.drilldown.categories.push(xData);
+                        //datas.drilldown.data.push(yData);
+                        //datas.drilldown.color = columsColor(item.Aqi);
+                        //data.push(datas);
+                    })
+                    setColumsChar(station, date, dataObj, color);
+
+
+                }
+            }, "json");
+        }
+        //柱子颜色
+        function columsColor(value) {
+            var color = "";
+            if (value > 0 && value <= 50) {
+                color = 'lightgreen';
+            } else if (value > 50 && value <= 100) {
+                color = 'lightblue';
+            } else if (value > 100 && value <= 150) {
+                color = 'lightyellow';
+            } else if (value > 150 && value <= 200) {
+                color = 'orange';
+            } else {
+                color = 'red';
+            }
+            return color;
+        };
+        //站点空气质量柱状图
+        function setColumsChar(xdata, date, dataObj, color) {
+            //柱状图单击代码
+            //     var categories = xdata,
+            //name = 'Browser brands',
+            //data = data;
+            //     function setChart(name, categories, data, color) {
+            //         chart.xAxis[0].setCategories(categories, false);
+            //         chart.series[0].remove(false);
+            //         chart.addSeries({
+            //             name: name,
+            //             data: data,
+            //             color: color || 'white'
+            //         }, false);
+            //         chart.redraw();
+            //     }
+
+            //     var chart = $('#statoin').highcharts({
+            //         chart: {
+            //             type: 'column'
+            //         },
+            //         title: {
+            //             text: 'Browser market share, April, 2011'
+            //         },
+            //         subtitle: {
+            //             text: 'Click the columns to view versions. Click again to view brands.'
+            //         },
+            //         xAxis: {
+            //             categories: categories
+            //         },
+            //         yAxis: {
+            //             title: {
+            //                 text: 'Total percent market share'
+            //             }
+            //         },
+            //         plotOptions: {
+            //             column: {
+            //                 cursor: 'pointer',
+            //                 point: {
+            //                     events: {
+            //                         click: function () {
+            //                             var drilldown = this.drilldown;
+            //                             if (drilldown) { // drill down
+            //                                 setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
+            //                             } else { // restore
+            //                                 setChart(name, categories, data);
+            //                             }
+            //                         }
+            //                     }
+            //                 },
+            //                 dataLabels: {
+            //                     enabled: true,
+            //                    color:'white' ,
+            //                     style: {
+            //                         fontWeight: 'bold'
+            //                     },
+            //                     formatter: function () {
+            //                         return this.y;
+            //                     }
+            //                 }
+            //             }
+            //         },
+            //         tooltip: {
+            //             formatter: function () {
+            //                 var point = this.point,
+            //                     s = this.x + ':<b>' + this.y + '% market share</b><br/>';
+            //                 if (point.drilldown) {
+            //                     s += '单击查看' + point.category +date +'小时数据';
+            //                 } else {
+            //                     s += '单击返回日数据';
+            //                 }
+            //                 return s;
+            //             }
+            //         },
+            //         series: [{
+            //             name: name,
+            //             data: data,
+            //             color: 'white'
+            //         }],
+            //         exporting: {
+            //             enabled: false
+            //         }
+            //     })
+            //     .highcharts(); // return chart           
+            $('#statoin').highcharts({
+                chart: {
+                    type: 'column',
+                    margin: [50, 50, 100, 80]
+                },
+                title: {
+                    text: '站点空气质量状况(' + date + ')'
+                },
+                xAxis: {
+                    categories: xdata
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'AQI'
+                    }
+                },
+                colors: color,
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: '<b>{point.y:.1f}</b>',
+                },
+                series: [{
+                    name: 'Population',
+                    data: dataObj,
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        x: 4,
+                        y: 10,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif',
+                            textShadow: '0 0 3px black'
+                        }
+                    }
+                }]
+            });
+        };
+        //空气质量小时折线图
+        function setLineChar(x, y, date) {
+            $('#trend').highcharts({
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: '空气质量趋势'
+                },
+                subtitle: {
+                    text: date + ' AQI走向'
+                },
+                xAxis: {
+                    categories: x
+                },
+                yAxis: {
+                    title: {
+                        text: 'AQI'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    enabled: false,
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br>' + this.x + ': ' + this.y + '°C';
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                    //name: 'Tokyo',
+                    data: y
+                }]
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <form id="form1" runat="server">        
+        <div id="main">
+            <div id="header">
+                <div id="logos">
+                    <h1 style="margin-left: 200px;">朔州市空气质量预测发布系统</h1>
+                </div>
+                <div id="group">
+                    <p style="margin-left: 320px;">朔州市环境质量监测站（<%=DateTime.Now.Month.ToString() %>月<%=DateTime.Now.Day.ToString() %>日<%=DateTime.Now.Hour.ToString() %>时发布）</p>
+                </div>
+                <hr />
+            </div>
+            <div id="forecast">
+                
+                <div class="today">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tbody id="jin">
+                            <tr>
+                                <td>
+                                    <div class="day">
+                                        今天&nbsp;
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="date"><%=DateTime.Now.Month.ToString() %>月 <%=DateTime.Now.Day.ToString() %>日</div>
+                                </td>
+                            </tr>
+                            <tr class="tipItem">
+                                <td>空气质量指数：
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  <span id="span1" class="glyphicon glyphicon-hand-down" aria-hidden="true" style="float:left;margin-top:526px;margin-left:130px ;position:absolute;display:none"></span>
+                </div>                              
+                <div class="future">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tbody id="ming">
+                            <tr>
+                                <td>
+                                    <div class="day">
+                                        <%=System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.AddDays(1).DayOfWeek) %>&nbsp;
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="date"><%=DateTime.Now.Month.ToString() %>月 <%=DateTime.Now.AddDays(1).Day.ToString() %>日</div>
+                                    <%-- <%=DateTime.Now.Month.ToString() %>月 <%=DateTime.Now.AddDays(1).Day.ToString() %>日--%>
+                                </td>
+                            </tr>
+                            <tr class="tipItem">
+                                <td>空气质量指数：
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <span class="glyphicon glyphicon-hand-down" aria-hidden="true" style="margin-top:535px;margin-left:95px ;position:absolute;display:none;"></span>
+                </div>
+            
+                <div class="future">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tbody id="hou">
+                            <tr>
+                                <td>
+                                    <div class="day">
+                                        <%=System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.AddDays(2).DayOfWeek)%>&nbsp;
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="date"><%=DateTime.Now.AddDays(2).ToString("MM-dd").Replace("-","月") %>日</div>
+
+
+                                    <%-- <%=DateTime.Now.AddDays(2).ToString("MM-dd").Replace("-","月") %>日--%>
+                                </td>
+                            </tr>
+                            <tr class="tipItem">
+                                <td>空气质量指数：
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <span class="glyphicon glyphicon-hand-down" aria-hidden="true" style="float:left;margin-top:535px;position:absolute;margin-left:95px;display:none"></span>
+                </div>              
+                <div class="future">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tbody id="wl">
+                            <tr>
+                                <td>
+                                    <div class="day">
+                                        <%=System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.AddDays(3).DayOfWeek)%>&nbsp;
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                   <div class="date"><%=DateTime.Now.AddDays(3).ToString("MM-dd").Replace("-","月") %>日</div>
+                                </td>
+                            </tr>
+
+                            <tr class="tipItem">
+                                <td>空气质量指数：
+                                </td>
+                            </tr>                          
+                        </tbody>
+                    </table>
+                     <span class="glyphicon glyphicon-hand-down" aria-hidden="true" style="float:left;margin-top:535px;position:absolute;margin-left:95px;display:none"></span>
+                </div>
+            </div>
+            <div id="trend" style="margin-top: 10px;" class="divShadow"></div>
+            <div id="statoin" style="margin-top: 30px;" class="divShadow"></div>
+
+        </div>
+    </form>
+</body>
+</html>

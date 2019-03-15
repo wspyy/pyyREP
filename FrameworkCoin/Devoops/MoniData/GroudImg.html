@@ -1,0 +1,80 @@
+﻿<div class="row" style="padding:5px;">
+    <div class="col-xs-6 col-sm-9 col-md-8">
+        <a id="imgpplay" href="images/zanwu.jpg">
+            <img id="imgshow" src="images/zanwu.jpg" style="border: none; width:100%; height:70%; border-radius: 5px;" />
+        </a>
+       
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 " style=" padding-right: 20px;">    
+          
+        <div class="box" style="height:100%" >
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-list"></i>
+                    <span style="font-size:12px; ">资源列表</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content" style="padding-left:5px; padding-right:5px; padding-bottom:0px;padding-top:5px; ">
+                <table style="width:100%;">
+                    <tr><td style="height: 40px; border-bottom: 2px dashed #4DA9E2; font-size: 14px; text-align: center; " id="curImg">当前显示内容： 20140920 20:00 </td></tr>
+                    <tr>
+                        <td style=" font-size: 14px; text-align: left; vertical-align:top; ">
+                           
+                                <table class="table">
+                                    <tbody id="FileList"></tbody>
+                                </table>
+                           
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function InitGroudPage(cate) {
+        var ImgURL;
+        ImgURL = "http://" + document.location.host + "/AirData/QxImages/";
+        ImgClass.cate = cate;
+        if (ImgClass.interval) {
+            clearInterval(ImgClass.interval);
+        }
+        ImgClass.imgArray = {};
+        ImgClass.PauseImg();
+        ImgClass.CurrImg = 0;
+        $.ajax({
+            dataType: "json",
+            url: "../ajax/MoniRadarImg.ashx",
+            data: { flag: cate, begin: $("#txt_begin").val(), end: $("#txt_end").val() },
+            success: function (result) {
+                if (result == null || result.length == 0) {
+                    ImgClass.imgArray = {};
+                    setImgUrl("images/zanwu.jpg", "暂无相关数据");
+                    $("#FileList").html("");
+                } else {
+                    ImgClass.imgArray = result;
+                    //setImgUrl("../../" + result[0].FullFileName, result[0].FileDate);
+                    setImgUrl(ImgURL + result[0].FullFileName, result[0].FileDate);
+                    var htmlText = "";
+                    for (var i = 0; i < result.length; i++) {
+                        if (i % 2 == 0) {
+                            //htmlText += "<tr><td><a href='javascript:void(0)' onclick='setImgUrl(\"" + "../../" + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td>";
+                            htmlText += "<tr><td><a href='javascript:void(0)' onclick='setImgUrl(\"" + ImgURL + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td>";
+                        } else if (i % 2 == 1) {
+                            //htmlText += "<td><a href='javascript:void(0)' onclick='setImgUrl(\"" + "../../" + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td></tr>";
+                            htmlText += "<td><a href='javascript:void(0)' onclick='setImgUrl(\"" + ImgURL + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td></tr>";
+                        } 
+                    }
+                    if (result.length%2> 0) {
+                        htmlText += "<td></td></tr>";
+                    }
+                    $("#FileList").html(htmlText);
+                    SelectCurImg(result[0].FileDate);
+                }
+            }
+        });
+    }
+
+</script>

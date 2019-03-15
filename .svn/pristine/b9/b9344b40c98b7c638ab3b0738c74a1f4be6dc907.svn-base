@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<configuration>
+  <connectionStrings>
+    <add name="MetaDB" connectionString="Data Source=YUTU845\DUY;Initial Catalog=JinchengDB2;Persist Security Info=True;User ID=sa;Password=yutu" providerName="System.Data.SqlClient" />
+    <add name="JinChDataBaseEntities" connectionString="metadata=res://*/JinChModel.csdl|res://*/JinChModel.ssdl|res://*/JinChModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=YUTU845\DUY;initial catalog=JinChDataBase;persist security info=True;user id=sa;password=yutu;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0"/>
+  </system.web>
+</configuration>

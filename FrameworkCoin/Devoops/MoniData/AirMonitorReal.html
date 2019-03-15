@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <style>
+        html, body {
+            margin: 0px 0px 0px 0px;
+            height: 100%;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+        .tab {
+            word-break: keep-all;
+            border: 1px solid #EBEBEB;
+            border-bottom: none;
+            border-left: none;
+            border-top-left-radius: 6px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+            .tab td {
+                border-bottom: 1px solid #EBEBEB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                color: #41A7E2;
+                cursor: pointer;
+            }
+
+            .tab th {
+                background: #6494BB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                border-bottom: 1px solid #EBEBEB;
+                color: #fff;
+            }
+
+
+        .AQI {
+            font-family: impact;
+            font-weight: normal;
+            font-size: 60px;
+            line-height: 50px;
+            margin-left: 45px;
+            color: green;
+        }
+
+        .category {
+            font-size: 23px;
+            font-family: '微软雅黑';
+            font-weight: bold;
+            padding-left: 5px;
+            color: green;
+        }
+
+        .tipItem {
+            font-weight: bolder;
+            height: 30px;
+            font-size: 13px;
+            font-family: '微软雅黑';
+        }
+
+        .tipVaule {
+            height: 30px;
+            font-size: 13px;
+            font-family: '微软雅黑';
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .big {
+            font-size: 85px;
+        }
+    </style>
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../../API-2.0/MapAPI.js"></script>
+    <script src="../js/MapOperation.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            getData();
+        })
+
+        function getData() {
+            var tmpData = [];
+            var imgindex = false;
+            $.ajax({
+                url: "../../Data/GetAirMonitorData.ashx",
+                data: { flag: "tabHour" },
+                dataType: "json",
+                success: function (result) {
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+                        var content = "";
+                        $("#datatime").html(result.DataTable[0]["MoniDate"].toString().replace("T", " "));
+                        $("#pStationName").html(result.DataTable[0].StationName + "：");
+                        $("#pAQI").html(result.DataTable[0].AQI);
+                        $("#pCategory").html(result.DataTable[0].Category);
+                        $("#pPollItem").html(result.DataTable[0].FirstP);
+                        $("#pAffect").html(result.DataTable[0].Affect);
+                        $("#pProposal").html(result.DataTable[0].Proposal);
+                        debugger;
+                        $(".AQI").css("color", result.DataTable[0].ColorCode);
+                        $(".category").css("color", result.DataTable[0].ColorCode);
+                        for (var i = 0; i < result.DataTable.length; i++) {
+                            content += "<tr><td>" + result.DataTable[i]["StationName"]
+                                + "</td><td>" + result.DataTable[i]["AQI"]
+                                + "</td><td>" + result.DataTable[i]["QualityRome"]
+                                + "</td><td>" + result.DataTable[i]["FirstP"] + "</td></tr>";
+                            tmpData.push(result.DataTable[i]);
+                        }
+                        addPicGraphics(tmpData, 2);
+                        addAirGraphics(tmpData, 1);
+
+                        $("#dtbody").html();
+                        $("#dtbody").append(content);
+
+                        $("#dtable tr:gt(0)").each(function (index) {
+                            $(this).click(function () {
+                                debugger;
+                                $("#dtable tr:gt(0)").css({ background: "#fff" });
+                                $(this).css({ background: "#D2E27D" });
+                                centerPoint(tmpData[index].lon, tmpData[index].lat);
+                                $("#pStationName").html(tmpData[index].StationName + "：");
+                                $("#pAQI").html(tmpData[index].AQI);
+                                $("#pCategory").html(tmpData[index].Category);
+                                $("#pPollItem").html(tmpData[index].FirstP);
+                                $("#pAffect").html(tmpData[index].Affect);
+                                $("#pProposal").html(tmpData[index].Proposal);
+                                $(".AQI").css("color", tmpData[index].ColorCode);
+                                $(".category").css("color", tmpData[index].ColorCode);
+                                imgindex = !imgindex;
+                            });
+                        });
+
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+    </script>
+</head>
+<body style="height: 100%;">
+    <div style="width: 100%; height: 100%; background-color: white;">
+        <table style="width: 100%; height: 100%">
+            <tr>
+                <td>
+                    <div id="flashContent" style="width: 100%; height: 100%;"></div>
+                </td>
+                <td style="width: 350px; vertical-align: top;">
+                    <div id="dataAQI" style="float: left; padding-left: 1px; width: 100%;">
+                        <table style="width: 100%; margin-left: 10px;">
+                            <tbody>
+                                <tr>
+                                    <td class="tipItem"><span id="pStationName">朔州市：</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td id="tdAQI" style="height: 95px; padding-left: 20px;" colspan="2">
+                                        <span class="big AQI"><span id="pAQI">43</span>
+                                        </span>
+                                        <span class="category"><span id="pCategory">优</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tipItem">监测时间：</td>
+                                    <td><span id="datatime"></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="tipItem" style="width: 100px;">首要污染物：
+                                    </td>
+                                    <td><span id="pPollItem"></span>
+                                    </td>
+                                </tr>
+                                <tr style="height: 55px;">
+                                    <td class="tipItem">对健康的影响：
+                                    </td>
+                                    <td><span id="pAffect"></span>
+                                    </td>
+                                </tr>
+                                <tr style="height: 55px;">
+                                    <td class="tipItem">建议措施：
+                                    </td>
+                                    <td><span id="pProposal"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table id="dtable" class="tab" style="width: 100%;overflow-y:auto;">
+                            <thead id="dthead">
+                                <tr class="thcss">
+                                    <th>站点名称</th>
+                                    <th>AQI</th>
+                                    <th>指数等级</th>
+                                    <th>首要污染物</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dtbody" class="tbcss">
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

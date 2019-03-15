@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>highcharts 图表生成页面</title>
+</head>
+<body>
+    <div id="containerStatic">
+    </div>
+    <div id="container">
+    </div>
+    <script src="../../../plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <!--<script src="jquery-1.7.2.js" type="text/javascript"></script>-->
+
+    <script src="highcharts.js" type="text/javascript"></script>
+    <script src="exporting.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            StaticChart(); //json数据 demo
+            DynamicChart(); //动态数据 demo
+        })
+
+        function StaticChart() {
+            var data = {
+                "ChartTime": ["2013-08-08", "2013-08-09", "2013-08-10", "2013-08-12", "2013-08-14"],
+                "ChartValue": [
+                     { "name": "Add(次数)", "data": [0, 2, 3, 0, 1] },
+                     { "name": "Delete(次数)", "data": [0, 130, 6, 1, 5] },
+                     { "name": "Login(次数)", "data": [28, 6, 5, 36, 1] }
+                ]
+            };
+            //json to string 反序列化
+            data = JSON.stringify(data);
+            var chartTitle = "操作次数";
+            var chartHeight = 300;
+            var chartType = "line"; //line column
+            var yTitle = "次";
+            var yStep = 2;
+            DataToChart("containerStatic",data, chartTitle, chartHeight, chartType, yTitle, yStep);
+        }
+
+        function DynamicChart() {
+            //数据库获取数据
+            var strSql = "select X,max(case XType when 'Add' then Y end ) as 'Add(次数)'," +
+                        "max(case XType when 'Delete' then Y end ) as 'Delete(次数)'," +
+                        "max(case XType when 'Login' then Y end ) as 'Login(次数)' from " +
+                "(select convert(VARCHAR(10),Sys_DateTime,120) as X,OperateType as XType,count(ID) as Y from " +
+                "T_PC_Log  group by convert(VARCHAR(10),Sys_DateTime,120),OperateType)a group by X";
+
+            $.ajax({
+                url: '../../Data/GetChartData.ashx',
+                method: 'post',
+                data: { sql: strSql },
+                cache: false,
+                beforSend: function () { $("#container").html("图表加载中......") },
+                success: function (data) {
+
+                    var chartTitle = "操作次数";
+                    var chartHeight = 300;
+                    var chartType = "line"; //line column
+                    var yTitle = "次";
+                    var yStep = 2;
+                    DataToChart("container", data, chartTitle, chartHeight, chartType, yTitle, yStep);
+
+                },
+                error: function () { $("#container").html("") }
+            })
+        }
+
+        function DataToChart(div, data, title, height, type, yTitle, yStep) {
+            //string To json 序列化
+            var json = JSON.parse(data);
+            var chart = new Highcharts.Chart({
+                chart: {
+                    zoomType: 'x',
+                    spacingRight: 20,
+                    renderTo: div,
+                    height: height,
+                    type: type
+                },
+                title: {
+                    text: title
+                },
+                xAxis: {
+                    categories: json.ChartTime,
+                    labels: {
+                        step: yStep
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: yTitle
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value;
+                        }
+                    }
+                },
+                legend: {
+                    backgroundColor: '#FFFFFF',
+                    floating: false,
+                    shadow: false
+                },
+                tooltip: {
+                    crosshairs: true,
+                    formatter: function () {
+                        return '' + this.series.name + ':' + this.y + yTitle + '<br/>' + this.x;
+                    }
+                },
+                exporting: {
+                    url: 'HighChartExport.aspx',
+                    width: 1200
+                },
+                plotOptions: {
+                    column: { borderWidth: 0 }
+                },
+
+                series: json.ChartValue
+            })
+        }
+
+        function loadChart(divID, sql, title, ytitle, type, width, height) {
+            $.ajax({
+                url: '../../Data/GetChartData.ashx',
+                method: 'post',
+                data: { chartName: 'highcharts', sql: sql, type: type, title: title, avgLineName: avgLineName, avgLineValue: avgLineValue },
+                cache: false,
+                beforSend: function () { $("#container").html("图表加载中......") },
+                success: function (data) {
+                    var yText = ytitle;
+                    var json = eval("(" + data + ")");
+                    var chart = new Highcharts.Chart({
+                        chart: {
+                            zoomType: 'x',
+                            spacingRight: 20,
+                            renderTo: "container",
+                            height: height,
+                            type: type
+                        },
+                        title: {
+                            text: title
+                        },
+                        xAxis: {
+                            categories: json.ChartTime,
+                            labels: {
+                                rotation: -25,
+                                step: 2
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: yText
+                            },
+                            labels: {
+                                formatter: function () {
+                                    return this.value;
+                                }
+                            }
+                        },
+                        legend: {
+                            backgroundColor: '#FFFFFF',
+                            floating: false,
+                            shadow: false
+                        },
+                        tooltip: {
+                            crosshairs: true,
+                            formatter: function () {
+                                return '' + this.series.name + ':' + this.y + yText + '<br/>' + this.x;
+                            }
+                        },
+                        exporting: {
+                            url: 'HighChartExport.aspx',
+                            width: 1200
+                        },
+                        plotOptions: {
+                            column: { borderWidth: 0 }
+                        },
+
+                        series: json.ChartValue
+                    })
+                },
+                error: function () { $("#container").html("") }
+            });
+        }
+    </script>
+</body>
+</html>

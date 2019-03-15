@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>地图</title>
+    <link href="../plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-1.7.2.js"></script>
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+  <script src="../../API-2.0/MapAPI.js"></script>
+    <script src="../js/MapOperation.js"></script>
+    <script src="../plugins/data-tables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../js/method.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+   
+    <script src="../plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js"></script>
+    <script src="../../Demo/plugins/jquery-ui/i18n/jquery.ui.datepicker-zh-CN.min.js"></script>
+    <style>
+        html, body {
+            margin: 0px 0px 0px 0px;
+            height: 100%;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+        .tab {
+            word-break: keep-all;
+            border: 1px solid #EBEBEB;
+            border-bottom: none;
+            border-left: none;
+            border-top-left-radius: 6px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+            .tab td {
+                border-bottom: 1px solid #EBEBEB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                color: #41A7E2;
+                cursor: pointer;
+            }
+
+            .tab th {
+                background: #6494BB;
+                border-left: 1px solid #EBEBEB;
+                padding: 5px;
+                line-height: 25px;
+                border-bottom: 1px solid #EBEBEB;
+                color: #fff;
+            }
+    </style>
+    <script>
+        var DataObj;
+        function LoadData(wtitle) {
+            var url = "AirHourHistData.aspx";
+            if (wtitle == "空气质量日数据")
+            {
+                url = "AirHistData.aspx";
+            }
+            $("#dialog").load(url, function () {
+                $("#dialog").dialog({
+                    autoOpen: false,
+                    width: "100%",
+                    title: wtitle,
+                    closeText: "关闭",
+                    height: document.body.clientHeight,
+                    position: {
+                        my: "right",
+                        at: "top"
+                    },
+                    show: { effect: "blind", duration: 500 },
+                    hide: { effect: "blind", duration: 500 }//explode
+                });
+                $('#txt_begin').datepicker({ showOn: "click" });
+
+                $("#dialog").dialog("open");
+            });
+        }
+    $(function () {
+
+        $("#opener").click(function () {
+            LoadData("空气质量日数据")
+        });
+        $("#openerhour").click(function () { LoadData("空气质量小时数据") });
+   
+
+        $("#tabs").tooltip();
+        //设置Tab高度
+        $("#tabs").tabs({ height: "auto" }).height($(window).height() - 50);
+        $("div[id^=tabs-]").height($(window).height() - 100);
+        $(window).resize(function () {
+            $(".box").css({ left: $(window).width() - $(".box").width() - 8 + "px" });
+            $(".box-content").css({ height: $(window).height() - 50 });
+            $("#tabs").tabs({ height: "auto" }).height($(window).height() - 50);
+            $("div[id^=tabs-]").height($(window).height() - 100);
+        });
+        $(".box").css({ left: $(window).width() - $(".box").width() - 8 + "px" });
+        $(".box-content").css({ height: $(window).height() - 50 });
+
+        $("body").on('click', '.collapse-link', function (e) {
+            e.preventDefault();
+            var box = $(this).closest('div.box');
+            var button = $(this).find('i');
+            var content = box.find('div.box-content');
+            content.slideToggle('fast');
+            box.css({ "height": "auto" });
+            button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+            setTimeout(function () {
+                box.resize();
+                box.find('[id^=map-]').resize();
+            }, 50);
+        })
+    .on('click', '.close-link', function (e) {
+        e.preventDefault();
+        var content = $(this).closest('div.box');
+        content.remove();
+    });
+        //ShowData("tabDay");
+        InitData("tabDay");
+
+
+    });
+
+    function InitData(objID) {
+        
+        $.ajax({
+            url: "../../Data/GetAirMonitorData.ashx",
+            dataType: "json",
+            data:{flag:objID},
+            success: function (result) {
+                if (result && result.DataTable && result.DataTable.length > 0) {
+                    DataObj = result.DataTable;
+                    changeTable(1, objID);
+                } else {
+                    $("#" + objID).append($("<tr><td colspan='5' style='text-align:center; height:40px;'>暂无数据</td></tr>"));
+                }
+            }
+        });
+    }
+
+    function ShowTotal() {
+        $("#Text_Today").html("");
+        $("#Text_Level").html("暂无数据");
+        $("#Text_ZS").html("暂无数据");
+        $("#Text_Item").html("暂无数据");
+        $("#Text_LB").html("暂无数据");
+
+        $("#Text_Today_Hour").html("");
+        $("#Text_Level_Hour").html("暂无数据");
+        $("#Text_ZS_Hour").html("暂无数据");
+        $("#Text_Item_Hour").html("暂无数据");
+        $("#Text_LB_Hour").html("暂无数据");
+ 
+        for (var i = 0; i < DataObj.length; i++) {
+            if (DataObj[i]["StationCode"] == 0) {
+                var time = DataObj[i]["MoniDate"].split("T")[0];//.replace("-", "年").replace("-", "月") + "日";
+                $("#Text_Today").html(DataObj[i]["MoniDate"].split("T")[0]);
+                $("#Text_Level").html(DataObj[i]["QualityRome"]);
+                $("#Text_ZS").html(DataObj[i]["AQI"]);
+                $("#Text_Item").html(DataObj[i]["FirstP"]);
+                $("#Text_LB").html(DataObj[i]["Category"]);
+                $("#Text_Today_Hour").html(DataObj[i]["MoniDate"].replace("T", " "));
+                $("#Text_Level_Hour").html(DataObj[i]["QualityRome"]);
+                $("#Text_ZS_Hour").html(DataObj[i]["AQI"]);
+                $("#Text_Item_Hour").html(DataObj[i]["FirstP"]);
+                $("#Text_LB_Hour").html(DataObj[i]["Category"]);
+            }
+        }
+    }
+
+    function changeTable(type, objID)
+    {
+        $("#" + objID).html("");
+        $("#" + objID).append("<tr><th>站点名称</th><th>AQI</th><th>指数级别</th><th>指数类别</th><th style='width:90px;'>首要污染物 </th></tr>");
+        var tmpData = [];
+        for (var i = 0; i < DataObj.length; i++) {
+            if (DataObj[i]["StationType"] == type) {
+                var contents = "<tr>"
+                + "<td>" + DataObj[i]["StationName"] + "</td><td>" + DataObj[i]["AQI"]
+                + "</td><td>" + DataObj[i]["QualityRome"] + "</td><td>" + DataObj[i]["Category"]
+                + "</td><td>" + DataObj[i]["FirstP"] + "</td>"
+                + "</tr>";
+                $("#" + objID).append(contents);
+                tmpData.push(DataObj[i]);
+            }
+        }
+        addPicGraphics(tmpData, 2);
+        addAirGraphics(tmpData, 1);
+
+        $("#" + objID + " tr:gt(0)").each(function (index) {
+            $(this).click(function () {
+                $("#" + objID + " tr:gt(0)").css({ background: "#fff" });
+                $(this).css({ background: "#D2E27D" });
+                centerPoint(tmpData[index].lon, tmpData[index].lat);
+
+            });
+        });
+        ShowTotal();
+    }
+    </script>
+</head>
+<body>
+
+
+    <div class="box ui-draggable ui-droppable" style=" border:2px solid #6494BB  ; width:380px; position:absolute; z-index:0;   left:100px; top:5px;">
+        <div class="box-header" style="background:#6494BB;">
+            <div class="box-name" style="color:#fff;font-size:12px; font-weight:bold;">
+                <i class="fa fa-bar-chart-o"></i>&nbsp;&nbsp;空气质量监测
+            </div>
+
+            <div class="box-icons">
+                <a class="collapse-link" style="border:none;">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+
+                <a class="close-link" style="border:none;">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content" style="overflow:auto; padding:2px; background:#fff;">
+
+            <div id="tabs">
+                <ul>
+                    <li onclick="InitData('tabDay');"><a href="#tabs-1" style="font-weight: 800; color:#456782;">空气质量日数据</a></li>
+                    <li onclick="InitData('tabHour');"><a href="#tabs-2" style="font-weight: 800; color:#456782;">空气质量小时数据</a></li>
+                    <li style=""></li>
+                </ul>
+                <div id="tabs-1" style="border: 1px solid #d8d8d8; border-top:none;  padding-top:10px; overflow:auto;">
+                    <div style="padding-left:16px;">
+                        <table cellpadding="0" cellspacing="0" style="line-height: 25px; color: #456782; width:100%;">
+                            <tr>
+                                <td>发布日期：</td>
+                                <td>
+                               <label id="Text_Today"/>
+                                </td><td></td>
+                                <td style="text-align:right; padding-right:5px; text-decoration-style:none;">
+                                    <img src="../img/17759.gif" id="opener" style="cursor:pointer;" title="查看历史数据" />
+                                </td>
+                            </tr>
+                            <tr><td>空气质量指数：</td><td><label id="Text_ZS"></label></td><td></td></tr>
+                            <tr><td>指数级别：</td><td><label id="Text_Level"></label></td><td></td></tr>
+                            <tr><td>指数类别：</td><td><label id="Text_LB"></label></td><td></td></tr>
+                            <tr><td>首要污染物：</td><td><label id="Text_Item"></label></td><td></td></tr>
+                        </table>
+                    </div>
+                    <div style="padding-left:10px;color: #456782;">
+                        <input type="button" value="各县" style="cursor:pointer;" onclick="changeTable(2, 'tabDay')" />
+                        <input type="button" value="市区" style="cursor:pointer;" onclick="changeTable(1, 'tabDay')" />
+                    </div>
+                    
+                    <table class="tab" id="tabDay" cellspacing="0" cellpadding="0">
+
+                    </table>
+                </div>
+
+                <div id="tabs-2" style="border: 1px solid #d8d8d8; border-top: none; padding-top: 5px; overflow: auto;">
+                    <div style="padding-left:16px;">
+                        <table cellpadding="0" cellspacing="0" style="line-height: 25px; color: #456782; width:100%;">
+                            <tr><td>发布日期：</td><td><label id="Text_Today_Hour"/></td><td style="text-align:right; padding-right:5px; text-decoration-style:none;"><img src="../img/17759.gif" id="openerhour" style="cursor:pointer;" title="查看历史数据" /></td></tr>
+                            <tr><td>空气质量指数：</td><td><label id="Text_ZS_Hour"/></td><td></td></tr>
+                            <tr><td>指数级别：</td><td><label id="Text_Level_Hour"/></td><td></td></tr>
+                            <tr><td>指数类别：</td><td><label id="Text_LB_Hour"/></td><td></td></tr>
+                            <tr><td>首要污染物：</td><td><label id="Text_Item_Hour"/></td><td></td></tr>
+                        </table>
+                    </div>
+                    <table class="tab" id="tabHour" cellspacing="0" cellpadding="0">
+                      
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%;"></div>
+    <div id="dialog" ></div>
+</body>
+</html>

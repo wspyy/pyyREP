@@ -1,0 +1,149 @@
+﻿
+<div style="height: 40px;  border: 1px solid #EBEBEB; border-radius: 7px; padding-left: 15px; padding-top:6px; ">
+    <form class="form-horizontal" role="form">
+        <div class="form-group  has-feedback">
+            <label class="col-sm-1 control-label" style="width:98px; padding-right:0px;">时间范围：</label>
+            <div class="col-sm-2" style="padding-left:0px; ">
+                <input type="text" id="txt_begin" class="form-control" placeholder="Date">
+                <span class="fa fa-calendar form-control-feedback"></span>
+
+            </div>
+            <label class="col-sm-1 control-label" style="width:10px; padding-left:0px;">至</label>
+            <div class="col-sm-2" style="padding-left:8px;">
+                <input type="text" id="txt_end" class="form-control" placeholder="Date">
+                <span class="fa fa-calendar form-control-feedback"></span>
+            </div>
+            <label class="col-sm-1 control-label" style="width:70px; padding-right:0px; padding-left:0px;">播放速度：</label>
+            <div class="col-sm-2" style="padding-left:0px;width:120px;" >
+                <input style="width:120px;" class="form-control" id="txt_speed" value="800" />
+            </div>
+            <label class="col-sm-1 control-label" style="width:50px; padding-left:0px;text-align:left;">毫秒</label>
+            <button class="btn btn-success btn-label-left" id="btn_SetUp" type="button">
+                启用设置
+            </button>
+            <button class="btn btn-primary btn-label-left" id="imgPaly" type="button">
+                播放
+            </button>
+            <button class="btn btn-primary btn-label-left" id="PauseImg" type="button">
+                暂停
+            </button>
+            <button class="btn btn-primary btn-label-left" id="PreImg" type="button">
+                上一张
+            </button>
+            <button class="btn btn-primary btn-label-left" id="NextImg" type="button">
+                下一张
+            </button>
+        </div>
+    </form>
+</div>
+<div style="margin-top: 10px;">
+    <div style="float:left; ">
+        <a id="imgpplay" href="images/zanwu.jpg">
+            <img id="imgshow" src="images/zanwu.jpg" style="border: none; border-radius: 5px; width:640px; height: 445px" />
+        </a>
+    </div>
+    <div class="box" style="margin-left: 650px; height: 445px; ">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-list"></i>
+                <span style="font-size:12px; ">资源列表</span>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content" style="padding-left:5px; padding-right:5px; padding-bottom:0px;padding-top:5px; ">
+            <table style="width:100%;">
+                <tr><td style="height: 40px; border-bottom: 2px dashed #4DA9E2; font-size: 14px; text-align: center; " id="curImg">当前显示内容： 20140920 20:00 </td></tr>
+                <tr>
+                    <td style=" font-size: 14px; text-align: left; vertical-align:top; ">
+                        <div style="overflow: auto; height: 368px;">
+                            <table class="table">
+                                <tbody id="FileList"></tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function InitPage(cate) {
+        $('#txt_begin').datepicker({ setDate: new Date() });
+        $('#txt_end').datepicker({ setDate: new Date() });
+        var ImgURL;
+        ImgURL = "http://" + document.location.hostname + "/AirData/QxImages/";
+        ImgClass.cate = cate;
+        if (ImgClass.interval) {
+            clearInterval(ImgClass.interval);
+        }
+        ImgClass.imgArray = {};
+        ImgClass.PauseImg();
+        ImgClass.CurrImg = 0;
+        $.ajax({
+            dataType: "json",
+            url: "../ajax/MoniRadarImg.ashx",
+            data: { flag: cate, begin: $("#txt_begin").val(), end: $("#txt_end").val() },
+            success: function (result) {
+                if (result == null || result.length == 0) {
+                    ImgClass.imgArray = {};
+                    setImgUrl("images/zanwu.jpg", "暂无相关数据");
+                    $("#FileList").html("");
+                } else {
+                    ImgClass.imgArray = result;
+                    //setImgUrl("../../" + result[0].FullFileName, result[0].FileDate);
+                    setImgUrl(ImgURL + result[0].FullFileName, result[0].FileDate);
+
+                    var htmlText = "";
+                    for (var i = 0; i < result.length; i++) {
+                        if (i % 3 == 0) {
+                            //htmlText += "<tr><td><a href='javascript:void(0)' onclick='setImgUrl(\"" + "../../" + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td>";
+                            htmlText += "<tr><td><a href='javascript:void(0)' onclick='setImgUrl(\"" + ImgURL + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td>";
+                        } else if (i % 3 == 2) {
+                            //htmlText += "<td><a href='javascript:void(0)' onclick='setImgUrl(\"" + "../../" + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td></tr>";
+                            htmlText += "<td><a href='javascript:void(0)' onclick='setImgUrl(\"" + ImgURL + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td></tr>";
+                        } else {
+
+                            //htmlText += "<td><a href='javascript:void(0)' onclick='setImgUrl(\"" + "../../" + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td>";
+                            htmlText += "<td><a href='javascript:void(0)' onclick='setImgUrl(\"" + ImgURL + result[i].FullFileName.replace(/\\/g, "/") + "\",\"" + result[i].FileDate + "\")'>" + result[i].FileDate + "</a></td>";
+                        }
+                    }
+                    var Yus = 3 - result.length % 3;
+                    for (var k = 0; k < Yus; k++) {
+                        htmlText += "<td></td>";
+                    }
+                    if (Yus > 0) {
+                        htmlText += "</tr>";
+                    }
+                    $("#FileList").html(htmlText);
+                    SelectCurImg(result[0].FileDate);
+                }
+            }
+        });
+      
+    }
+
+    $(function () {
+        //点击播放按钮
+        $("#imgPaly").click(function () {
+            ImgClass.StartPaly();
+        });
+        //暂停
+        $("#PauseImg").click(function () {
+            ImgClass.PauseImg();
+        });
+        //下一张
+        $("#NextImg").click(function () {
+           
+            ImgClass.NextImg();
+        });
+        //上一张
+        $("#PreImg").click(function () {
+            ImgClass.PreImg();
+        });
+
+        //启用设置
+        $("#btn_SetUp").click(function () {
+            InitPage(ImgClass.cate);
+        });
+    });
+</script>

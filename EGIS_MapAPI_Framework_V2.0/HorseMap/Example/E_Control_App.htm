@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>控件配置</title>
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style="position: absolute; top: 0px; left: 100px; background-color: #BEBE9A;
+        padding: 2px; z-index: 10000">
+        <input type="button" value="添加图片" onclick="addImage()" />
+        <input type="button" value="添加导航" onclick="addNavigation()" />
+        <input type="button" value="添加鹰眼" onclick="addOverView()" />
+        <input type="button" value="移除控件" onclick="removeControl()" />
+        
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://localhost/EGIS_Map_API_2.0/EGIS_MapAPI_Framework_V2.0/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781);
+    }
+
+    //添加图片
+    function addImage() {
+        control = hmap.addControl(new HMap.Image("http://192.168.5.150:8585/HorseMap/Images/pic/AQI.png", { right: 0, bottom: 30 }));
+    }
+
+    //添加导航
+    function addNavigation() {
+        control = hmap.addControl(new HMap.Navigation(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781, { visible: true, alpha: 0.8, right: 30, top: 30, isShowButtonBar: true, backgroudColor: "0x1497D6", mouseOverColor: "0x0000ff", selectionColor: "0xfbd860", innerBtnColor: "0x052393" }));
+    }
+
+    //添加鹰眼
+    function addOverView() {
+        var ov = new HMap.OverView(0, 0, 100, 100);
+        control = hmap.addControl(ov);
+    }
+
+    //移除控件
+    function removeControl() {
+        hmap.removeControl(control);
+    }
+
+    creatHMap();
+
+</script>
+</html>

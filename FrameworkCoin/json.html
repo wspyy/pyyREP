@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="Devoops/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="Devoops/plugins/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="Devoops/js/jquery-1.7.2.js"></script>
+    <script src="Devoops/plugins/data-tables/jquery.dataTables.js" type="text/javascript"></script>
+    
+</head>
+<body>
+    <textarea id="txt" style="width:100%;"></textarea>
+    <input id="btn" type="button" value="转为Table" onclick="changeTable()" />
+    <hr />
+    <table id="table" style="width:100%;">
+        <tr><td>id</td><td>x</td><td>y</td><td>EnterName</td><td>Value</td></tr>
+    </table>
+
+    <script type="text/javascript">
+        function changeTable() {
+            var result = $("#txt").val();
+            var data = eval(result);
+            debugger;
+            for (var i = 0; i < data.length; i++) {
+                var contents = $("<tr><td>"
+                               + data[i].attributes["id"] + "</td><td>"
+                               + data[i].attributes["x"] + "</td><td>"
+                               + data[i].attributes["y"] + "</td><td>"
+                               + data[i].attributes["EnterName"] + "</td><td>"
+                               + data[i].attributes["Value"] + "</td>"
+                               + "</tr>");
+                $("#table").append(contents);
+            }
+        }
+    </script>
+</body>
+</html>

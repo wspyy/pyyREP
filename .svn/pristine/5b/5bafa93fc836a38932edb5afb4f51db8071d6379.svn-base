@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JinchengDB2ModelStoreContainer" CdmEntityContainer="JinchengDB2">
+    <EntitySetMapping Name="T_Bas_AirStation">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Bas_AirStation">
+        <MappingFragment StoreEntitySet="T_Bas_AirStation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Altitude" ColumnName="Altitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Bas_Enterprise">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Bas_Enterprise">
+        <MappingFragment StoreEntitySet="T_Bas_Enterprise">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EnterpriseCode" ColumnName="EnterpriseCode" />
+          <ScalarProperty Name="EnterpriseName" ColumnName="EnterpriseName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Bas_EnterpriseProduct">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Bas_EnterpriseProduct">
+        <MappingFragment StoreEntitySet="T_Bas_EnterpriseProduct">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EnterpriseCode" ColumnName="EnterpriseCode" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Bas_QualityStandard">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Bas_QualityStandard">
+        <MappingFragment StoreEntitySet="T_Bas_QualityStandard">
+          <ScalarProperty Name="QualityLevel" ColumnName="QualityLevel" />
+          <ScalarProperty Name="QualitySymbol" ColumnName="QualitySymbol" />
+          <ScalarProperty Name="QualityIndex" ColumnName="QualityIndex" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+          <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+          <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+          <ScalarProperty Name="Affect" ColumnName="Affect" />
+          <ScalarProperty Name="Proposal" ColumnName="Proposal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Bas_QxStation">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Bas_QxStation">
+        <MappingFragment StoreEntitySet="T_Bas_QxStation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="StationHeiht" ColumnName="StationHeiht" />
+          <ScalarProperty Name="StationType" ColumnName="StationType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Cod_Folder">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Cod_Folder">
+        <MappingFragment StoreEntitySet="T_Cod_Folder">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FolderCode" ColumnName="FolderCode" />
+          <ScalarProperty Name="FolderName" ColumnName="FolderName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Cod_OperateType">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Cod_OperateType">
+        <MappingFragment StoreEntitySet="T_Cod_OperateType">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OperateTypeCode" ColumnName="OperateTypeCode" />
+          <ScalarProperty Name="OperateTypeName" ColumnName="OperateTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Cod_Region">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Cod_Region">
+        <MappingFragment StoreEntitySet="T_Cod_Region">
+          <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+          <ScalarProperty Name="ParentNode" ColumnName="ParentNode" />
+          <ScalarProperty Name="Spell" ColumnName="Spell" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Mid_AirDayData">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Mid_AirDayData">
+        <MappingFragment StoreEntitySet="T_Mid_AirDayData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="MoniDate" ColumnName="MoniDate" />
+          <ScalarProperty Name="SO2" ColumnName="SO2" />
+          <ScalarProperty Name="SO2AQI" ColumnName="SO2AQI" />
+          <ScalarProperty Name="NO2AQI" ColumnName="NO2AQI" />
+          <ScalarProperty Name="NO2" ColumnName="NO2" />
+          <ScalarProperty Name="COAQI" ColumnName="COAQI" />
+          <ScalarProperty Name="CO" ColumnName="CO" />
+          <ScalarProperty Name="O3AQI" ColumnName="O3AQI" />
+          <ScalarProperty Name="O3" ColumnName="O3" />
+          <ScalarProperty Name="PM25AQI" ColumnName="PM25AQI" />
+          <ScalarProperty Name="PM25" ColumnName="PM25" />
+          <ScalarProperty Name="PM10AQI" ColumnName="PM10AQI" />
+          <ScalarProperty Name="PM10" ColumnName="PM10" />
+          <ScalarProperty Name="AQI" ColumnName="AQI" />
+          <ScalarProperty Name="FirstP" ColumnName="FirstP" />
+          <ScalarProperty Name="AirLevel" ColumnName="AirLevel" />
+          <ScalarProperty Name="AirLevelDes" ColumnName="AirLevelDes" />
+          <ScalarProperty Name="AirColor" ColumnName="AirColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Mid_AirForeCast">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Mid_AirForeCast">
+        <MappingFragment StoreEntitySet="T_Mid_AirForeCast">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="MonitorTime" ColumnName="MonitorTime" />
+          <ScalarProperty Name="ForecastTime" ColumnName="ForecastTime" />
+          <ScalarProperty Name="SO2AQI" ColumnName="SO2AQI" />
+          <ScalarProperty Name="SO2" ColumnName="SO2" />
+          <ScalarProperty Name="NO2AQI" ColumnName="NO2AQI" />
+          <ScalarProperty Name="NO2" ColumnName="NO2" />
+          <ScalarProperty Name="COAQI" ColumnName="COAQI" />
+          <ScalarProperty Name="CO" ColumnName="CO" />
+          <ScalarProperty Name="O3AQI" ColumnName="O3AQI" />
+          <ScalarProperty Name="O3" ColumnName="O3" />
+          <ScalarProperty Name="PM25AQI" ColumnName="PM25AQI" />
+          <ScalarProperty Name="PM25" ColumnName="PM25" />
+          <ScalarProperty Name="PM10AQI" ColumnName="PM10AQI" />
+          <ScalarProperty Name="PM10" ColumnName="PM10" />
+          <ScalarProperty Name="AQI" ColumnName="AQI" />
+          <ScalarProperty Name="FirstP" ColumnName="FirstP" />
+          <ScalarProperty Name="AirLevel" ColumnName="AirLevel" />
+          <ScalarProperty Name="AirLevelDes" ColumnName="AirLevelDes" />
+          <ScalarProperty Name="AirColor" ColumnName="AirColor" />
+          <ScalarProperty Name="ForecastModel" ColumnName="ForecastModel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Mid_AirForeCastStat">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Mid_AirForeCastStat">
+        <MappingFragment StoreEntitySet="T_Mid_AirForeCastStat">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="MonitorTime" ColumnName="MonitorTime" />
+          <ScalarProperty Name="ForecastTime" ColumnName="ForecastTime" />
+          <ScalarProperty Name="SO2AQI" ColumnName="SO2AQI" />
+          <ScalarProperty Name="SO2" ColumnName="SO2" />
+          <ScalarProperty Name="NO2AQI" ColumnName="NO2AQI" />
+          <ScalarProperty Name="NO2" ColumnName="NO2" />
+          <ScalarProperty Name="COAQI" ColumnName="COAQI" />
+          <ScalarProperty Name="CO" ColumnName="CO" />
+          <ScalarProperty Name="O3AQI" ColumnName="O3AQI" />
+          <ScalarProperty Name="O3" ColumnName="O3" />
+          <ScalarProperty Name="PM25AQI" ColumnName="PM25AQI" />
+          <ScalarProperty Name="PM25" ColumnName="PM25" />
+          <ScalarProperty Name="PM10AQI" ColumnName="PM10AQI" />
+          <ScalarProperty Name="PM10" ColumnName="PM10" />
+          <ScalarProperty Name="AQI" ColumnName="AQI" />
+          <ScalarProperty Name="FirstP" ColumnName="FirstP" />
+          <ScalarProperty Name="AirLevel" ColumnName="AirLevel" />
+          <ScalarProperty Name="AirLevelDes" ColumnName="AirLevelDes" />
+          <ScalarProperty Name="AirColor" ColumnName="AirColor" />
+          <ScalarProperty Name="ForecastModel" ColumnName="ForecastModel" />
+          <ScalarProperty Name="TimeType" ColumnName="TimeType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Mid_AirHourData">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Mid_AirHourData">
+        <MappingFragment StoreEntitySet="T_Mid_AirHourData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="MoniDate" ColumnName="MoniDate" />
+          <ScalarProperty Name="SO2AQI" ColumnName="SO2AQI" />
+          <ScalarProperty Name="SO2" ColumnName="SO2" />
+          <ScalarProperty Name="NO2AQI" ColumnName="NO2AQI" />
+          <ScalarProperty Name="NO2" ColumnName="NO2" />
+          <ScalarProperty Name="COAQI" ColumnName="COAQI" />
+          <ScalarProperty Name="CO" ColumnName="CO" />
+          <ScalarProperty Name="O3AQI" ColumnName="O3AQI" />
+          <ScalarProperty Name="O3" ColumnName="O3" />
+          <ScalarProperty Name="PM25AQI" ColumnName="PM25AQI" />
+          <ScalarProperty Name="PM25" ColumnName="PM25" />
+          <ScalarProperty Name="PM10AQI" ColumnName="PM10AQI" />
+          <ScalarProperty Name="PM10" ColumnName="PM10" />
+          <ScalarProperty Name="AQI" ColumnName="AQI" />
+          <ScalarProperty Name="FirstP" ColumnName="FirstP" />
+          <ScalarProperty Name="AirLevel" ColumnName="AirLevel" />
+          <ScalarProperty Name="AirLevelDes" ColumnName="AirLevelDes" />
+          <ScalarProperty Name="AirColor" ColumnName="AirColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Mid_ImgFiles">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Mid_ImgFiles">
+        <MappingFragment StoreEntitySet="T_Mid_ImgFiles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Cate" ColumnName="Cate" />
+          <ScalarProperty Name="FileDate" ColumnName="FileDate" />
+          <ScalarProperty Name="FullFileName" ColumnName="FullFileName" />
+          <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Mid_QXForeCastData">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Mid_QXForeCastData">
+        <MappingFragment StoreEntitySet="T_Mid_QXForeCastData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="ForeCastTime" ColumnName="ForeCastTime" />
+          <ScalarProperty Name="ForeCastHours" ColumnName="ForeCastHours" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
+          <ScalarProperty Name="MinTemp" ColumnName="MinTemp" />
+          <ScalarProperty Name="WeatherCode" ColumnName="WeatherCode" />
+          <ScalarProperty Name="WindSpeed" ColumnName="WindSpeed" />
+          <ScalarProperty Name="WindDirection" ColumnName="WindDirection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Mid_QXRealTimeData">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Mid_QXRealTimeData">
+        <MappingFragment StoreEntitySet="T_Mid_QXRealTimeData">
+          <ScalarProperty Name="StationNum" ColumnName="StationNum" />
+          <ScalarProperty Name="ObservTimes" ColumnName="ObservTimes" />
+          <ScalarProperty Name="Locat" ColumnName="Locat" />
+          <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+          <ScalarProperty Name="WindDirect" ColumnName="WindDirect" />
+          <ScalarProperty Name="WindVelocity" ColumnName="WindVelocity" />
+          <ScalarProperty Name="WindDirect10" ColumnName="WindDirect10" />
+          <ScalarProperty Name="WindVelocity10" ColumnName="WindVelocity10" />
+          <ScalarProperty Name="MaxWindD" ColumnName="MaxWindD" />
+          <ScalarProperty Name="MaxWindV" ColumnName="MaxWindV" />
+          <ScalarProperty Name="TimeMaxWind" ColumnName="TimeMaxWind" />
+          <ScalarProperty Name="InstantWindD" ColumnName="InstantWindD" />
+          <ScalarProperty Name="InstantWindV" ColumnName="InstantWindV" />
+          <ScalarProperty Name="ExMaxWindD" ColumnName="ExMaxWindD" />
+          <ScalarProperty Name="ExMaxWindV" ColumnName="ExMaxWindV" />
+          <ScalarProperty Name="TimeExMaxWind" ColumnName="TimeExMaxWind" />
+          <ScalarProperty Name="PrecipitationAmount" ColumnName="PrecipitationAmount" />
+          <ScalarProperty Name="Precipitation" ColumnName="Precipitation" />
+          <ScalarProperty Name="FellRain" ColumnName="FellRain" />
+          <ScalarProperty Name="DryBulTemp" ColumnName="DryBulTemp" />
+          <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
+          <ScalarProperty Name="TimeMaxTemp" ColumnName="TimeMaxTemp" />
+          <ScalarProperty Name="MinTemp" ColumnName="MinTemp" />
+          <ScalarProperty Name="TimeMinTemp" ColumnName="TimeMinTemp" />
+          <ScalarProperty Name="RelHumidity" ColumnName="RelHumidity" />
+          <ScalarProperty Name="MinRelHumidity" ColumnName="MinRelHumidity" />
+          <ScalarProperty Name="TimeMinRelH" ColumnName="TimeMinRelH" />
+          <ScalarProperty Name="VapourPress" ColumnName="VapourPress" />
+          <ScalarProperty Name="DewTemp" ColumnName="DewTemp" />
+          <ScalarProperty Name="StationPress" ColumnName="StationPress" />
+          <ScalarProperty Name="MaxPSta" ColumnName="MaxPSta" />
+          <ScalarProperty Name="TimeMaxPSta" ColumnName="TimeMaxPSta" />
+          <ScalarProperty Name="MinPSta" ColumnName="MinPSta" />
+          <ScalarProperty Name="TimeMinPSta" ColumnName="TimeMinPSta" />
+          <ScalarProperty Name="SurfaceTemp" ColumnName="SurfaceTemp" />
+          <ScalarProperty Name="SurfaceMaxTemp" ColumnName="SurfaceMaxTemp" />
+          <ScalarProperty Name="TimeSurMaxTemp" ColumnName="TimeSurMaxTemp" />
+          <ScalarProperty Name="SurfaceMinTemp" ColumnName="SurfaceMinTemp" />
+          <ScalarProperty Name="TimeSurMinTemp" ColumnName="TimeSurMinTemp" />
+          <ScalarProperty Name="Temp5cm" ColumnName="Temp5cm" />
+          <ScalarProperty Name="Temp10cm" ColumnName="Temp10cm" />
+          <ScalarProperty Name="Temp15cm" ColumnName="Temp15cm" />
+          <ScalarProperty Name="Temp20cm" ColumnName="Temp20cm" />
+          <ScalarProperty Name="Temp40cm" ColumnName="Temp40cm" />
+          <ScalarProperty Name="Temp80cm" ColumnName="Temp80cm" />
+          <ScalarProperty Name="Temp160cm" ColumnName="Temp160cm" />
+          <ScalarProperty Name="Temp320cm" ColumnName="Temp320cm" />
+          <ScalarProperty Name="EvagaugeAmount" ColumnName="EvagaugeAmount" />
+          <ScalarProperty Name="SeaLevelPress" ColumnName="SeaLevelPress" />
+          <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+          <ScalarProperty Name="CloudAmount" ColumnName="CloudAmount" />
+          <ScalarProperty Name="LowCloudAmount" ColumnName="LowCloudAmount" />
+          <ScalarProperty Name="CloudHigh" ColumnName="CloudHigh" />
+          <ScalarProperty Name="CloudShape" ColumnName="CloudShape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Mid_Report">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Mid_Report">
+        <MappingFragment StoreEntitySet="T_Mid_Report">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReportCode" ColumnName="ReportCode" />
+          <ScalarProperty Name="ReportTime" ColumnName="ReportTime" />
+          <ScalarProperty Name="QXText" ColumnName="QXText" />
+          <ScalarProperty Name="QXUser" ColumnName="QXUser" />
+          <ScalarProperty Name="QXSubmit" ColumnName="QXSubmit" />
+          <ScalarProperty Name="JCUser" ColumnName="JCUser" />
+          <ScalarProperty Name="JCSubmit" ColumnName="JCSubmit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Mid_ReportData">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Mid_ReportData">
+        <MappingFragment StoreEntitySet="T_Mid_ReportData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReportCode" ColumnName="ReportCode" />
+          <ScalarProperty Name="AQI" ColumnName="AQI" />
+          <ScalarProperty Name="TimeType" ColumnName="TimeType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Oth_Database">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Oth_Database">
+        <MappingFragment StoreEntitySet="T_Oth_Database">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileData" ColumnName="FileData" />
+          <ScalarProperty Name="imgFormat" ColumnName="imgFormat" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Tag" ColumnName="Tag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Oth_EnterUpload">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Oth_EnterUpload">
+        <MappingFragment StoreEntitySet="T_Oth_EnterUpload">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UploadEnter" ColumnName="UploadEnter" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+          <ScalarProperty Name="Folder" ColumnName="Folder" />
+          <ScalarProperty Name="imgFormat" ColumnName="imgFormat" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Tag" ColumnName="Tag" />
+          <ScalarProperty Name="CheckType" ColumnName="CheckType" />
+          <ScalarProperty Name="CheckMessage" ColumnName="CheckMessage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Oth_Image">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Oth_Image">
+        <MappingFragment StoreEntitySet="T_Oth_Image">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+          <ScalarProperty Name="Folder" ColumnName="Folder" />
+          <ScalarProperty Name="imgFormat" ColumnName="imgFormat" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Tag" ColumnName="Tag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PC_Department">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_PC_Department">
+        <MappingFragment StoreEntitySet="T_PC_Department">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PC_Department_Model">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_PC_Department_Model">
+        <MappingFragment StoreEntitySet="T_PC_Department_Model">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PC_Log">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_PC_Log">
+        <MappingFragment StoreEntitySet="T_PC_Log">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OperateUser" ColumnName="OperateUser" />
+          <ScalarProperty Name="OperateUserName" ColumnName="OperateUserName" />
+          <ScalarProperty Name="OperateType" ColumnName="OperateType" />
+          <ScalarProperty Name="OperateObject" ColumnName="OperateObject" />
+          <ScalarProperty Name="OperateDesc" ColumnName="OperateDesc" />
+          <ScalarProperty Name="Sys_DateTime" ColumnName="Sys_DateTime" />
+          <ScalarProperty Name="LocalIP" ColumnName="LocalIP" />
+          <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PC_Role">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_PC_Role">
+        <MappingFragment StoreEntitySet="T_PC_Role">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PC_Role_Model">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_PC_Role_Model">
+        <MappingFragment StoreEntitySet="T_PC_Role_Model">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PC_User">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_PC_User">
+        <MappingFragment StoreEntitySet="T_PC_User">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="U_LoginName" ColumnName="U_LoginName" />
+          <ScalarProperty Name="U_Password" ColumnName="U_Password" />
+          <ScalarProperty Name="U_Email" ColumnName="U_Email" />
+          <ScalarProperty Name="U_Role" ColumnName="U_Role" />
+          <ScalarProperty Name="U_Sex" ColumnName="U_Sex" />
+          <ScalarProperty Name="U_HomeTel" ColumnName="U_HomeTel" />
+          <ScalarProperty Name="U_Phone" ColumnName="U_Phone" />
+          <ScalarProperty Name="U_RealName" ColumnName="U_RealName" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PC_User_DataFiltering">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_PC_User_DataFiltering">
+        <MappingFragment StoreEntitySet="T_PC_User_DataFiltering">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+          <ScalarProperty Name="SqlWhere" ColumnName="SqlWhere" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PC_User_Model">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_PC_User_Model">
+        <MappingFragment StoreEntitySet="T_PC_User_Model">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Sys_CommonTree">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Sys_CommonTree">
+        <MappingFragment StoreEntitySet="T_Sys_CommonTree">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+          <ScalarProperty Name="NodeName" ColumnName="NodeName" />
+          <ScalarProperty Name="NodeParentID" ColumnName="NodeParentID" />
+          <ScalarProperty Name="VisibleType" ColumnName="VisibleType" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="OnClick" ColumnName="OnClick" />
+          <ScalarProperty Name="VisibleOpen" ColumnName="VisibleOpen" />
+          <ScalarProperty Name="VisibleQuery" ColumnName="VisibleQuery" />
+          <ScalarProperty Name="SYSBack1" ColumnName="SYSBack1" />
+          <ScalarProperty Name="SYSBack2" ColumnName="SYSBack2" />
+          <ScalarProperty Name="SYSBack3" ColumnName="SYSBack3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Sys_ConfigChart">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Sys_ConfigChart">
+        <MappingFragment StoreEntitySet="T_Sys_ConfigChart">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CONFIG_ID" ColumnName="CONFIG_ID" />
+          <ScalarProperty Name="Chart_Style" ColumnName="Chart_Style" />
+          <ScalarProperty Name="Chart_Type" ColumnName="Chart_Type" />
+          <ScalarProperty Name="Chart_Title" ColumnName="Chart_Title" />
+          <ScalarProperty Name="Chart_Table" ColumnName="Chart_Table" />
+          <ScalarProperty Name="X_Axis" ColumnName="X_Axis" />
+          <ScalarProperty Name="Y_Axis" ColumnName="Y_Axis" />
+          <ScalarProperty Name="Y_Axis_Sql" ColumnName="Y_Axis_Sql" />
+          <ScalarProperty Name="Y_Value" ColumnName="Y_Value" />
+          <ScalarProperty Name="Y_Dimension" ColumnName="Y_Dimension" />
+          <ScalarProperty Name="SYSBack1" ColumnName="SYSBack1" />
+          <ScalarProperty Name="SYSBack2" ColumnName="SYSBack2" />
+          <ScalarProperty Name="SYSBack3" ColumnName="SYSBack3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Sys_ConfigField">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Sys_ConfigField">
+        <MappingFragment StoreEntitySet="T_Sys_ConfigField">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CONFIG_ID" ColumnName="CONFIG_ID" />
+          <ScalarProperty Name="FIELD_NAME" ColumnName="FIELD_NAME" />
+          <ScalarProperty Name="FIELD_NAME_CN" ColumnName="FIELD_NAME_CN" />
+          <ScalarProperty Name="CONTROL_ID" ColumnName="CONTROL_ID" />
+          <ScalarProperty Name="DISPLAY_CTRL" ColumnName="DISPLAY_CTRL" />
+          <ScalarProperty Name="SHOW_INDEX" ColumnName="SHOW_INDEX" />
+          <ScalarProperty Name="CONTROL_WIDTH" ColumnName="CONTROL_WIDTH" />
+          <ScalarProperty Name="CONTROL_HEIGHT" ColumnName="CONTROL_HEIGHT" />
+          <ScalarProperty Name="IS_MULTILINE" ColumnName="IS_MULTILINE" />
+          <ScalarProperty Name="IS_PRIMARY_KEY" ColumnName="IS_PRIMARY_KEY" />
+          <ScalarProperty Name="IS_COMPOSITE_KEY" ColumnName="IS_COMPOSITE_KEY" />
+          <ScalarProperty Name="IS_FOREIGN_KEY" ColumnName="IS_FOREIGN_KEY" />
+          <ScalarProperty Name="FOREIGN_KEY_TBNAME" ColumnName="FOREIGN_KEY_TBNAME" />
+          <ScalarProperty Name="FOREIGN_KEY_TEXT" ColumnName="FOREIGN_KEY_TEXT" />
+          <ScalarProperty Name="FOREIGN_KEY_VALUE" ColumnName="FOREIGN_KEY_VALUE" />
+          <ScalarProperty Name="FOREIGN_ORDER_BY" ColumnName="FOREIGN_ORDER_BY" />
+          <ScalarProperty Name="IS_ENUM" ColumnName="IS_ENUM" />
+          <ScalarProperty Name="ENUM_TEXT" ColumnName="ENUM_TEXT" />
+          <ScalarProperty Name="DATE_FORMAT" ColumnName="DATE_FORMAT" />
+          <ScalarProperty Name="CK_RAD_COLCOUNT" ColumnName="CK_RAD_COLCOUNT" />
+          <ScalarProperty Name="LISTVIEW_ISSHOW" ColumnName="LISTVIEW_ISSHOW" />
+          <ScalarProperty Name="FORMVIEW_ISSHOW" ColumnName="FORMVIEW_ISSHOW" />
+          <ScalarProperty Name="FORMVIEW_ISEDIT" ColumnName="FORMVIEW_ISEDIT" />
+          <ScalarProperty Name="IS_QUERY" ColumnName="IS_QUERY" />
+          <ScalarProperty Name="IS_EXPORT" ColumnName="IS_EXPORT" />
+          <ScalarProperty Name="IS_CUSTOM" ColumnName="IS_CUSTOM" />
+          <ScalarProperty Name="IS_MD5" ColumnName="IS_MD5" />
+          <ScalarProperty Name="IS_ImportCheckDuplicate" ColumnName="IS_ImportCheckDuplicate" />
+          <ScalarProperty Name="CustomRules" ColumnName="CustomRules" />
+          <ScalarProperty Name="MAX_LENGTH" ColumnName="MAX_LENGTH" />
+          <ScalarProperty Name="CustomValidation" ColumnName="CustomValidation" />
+          <ScalarProperty Name="SYSBack1" ColumnName="SYSBack1" />
+          <ScalarProperty Name="SYSBack2" ColumnName="SYSBack2" />
+          <ScalarProperty Name="SYSBack3" ColumnName="SYSBack3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Sys_ConfigTable">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Sys_ConfigTable">
+        <MappingFragment StoreEntitySet="T_Sys_ConfigTable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CONFIG_ID" ColumnName="CONFIG_ID" />
+          <ScalarProperty Name="DT_NAME" ColumnName="DT_NAME" />
+          <ScalarProperty Name="DT_NAME_CN" ColumnName="DT_NAME_CN" />
+          <ScalarProperty Name="IS_QUERY" ColumnName="IS_QUERY" />
+          <ScalarProperty Name="IS_EXPORT" ColumnName="IS_EXPORT" />
+          <ScalarProperty Name="IS_EDIT" ColumnName="IS_EDIT" />
+          <ScalarProperty Name="IS_IMPORT" ColumnName="IS_IMPORT" />
+          <ScalarProperty Name="ORDERBY" ColumnName="ORDERBY" />
+          <ScalarProperty Name="SYSBack1" ColumnName="SYSBack1" />
+          <ScalarProperty Name="SYSBack2" ColumnName="SYSBack2" />
+          <ScalarProperty Name="SYSBack3" ColumnName="SYSBack3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Sys_Exception">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Sys_Exception">
+        <MappingFragment StoreEntitySet="T_Sys_Exception">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ExceptionPage" ColumnName="ExceptionPage" />
+          <ScalarProperty Name="ExceptionFunction" ColumnName="ExceptionFunction" />
+          <ScalarProperty Name="ExceptionParameter" ColumnName="ExceptionParameter" />
+          <ScalarProperty Name="ExceptionSource" ColumnName="ExceptionSource" />
+          <ScalarProperty Name="ExceptionDateTime" ColumnName="ExceptionDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Sys_Model">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Sys_Model">
+        <MappingFragment StoreEntitySet="T_Sys_Model">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="ModuleParentID" ColumnName="ModuleParentID" />
+          <ScalarProperty Name="VisibleType" ColumnName="VisibleType" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="IconUrl" ColumnName="IconUrl" />
+          <ScalarProperty Name="ModuleURL" ColumnName="ModuleURL" />
+          <ScalarProperty Name="OnClick" ColumnName="OnClick" />
+          <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+          <ScalarProperty Name="SYSBack1" ColumnName="SYSBack1" />
+          <ScalarProperty Name="SYSBack2" ColumnName="SYSBack2" />
+          <ScalarProperty Name="SYSBack3" ColumnName="SYSBack3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Mid_AirForeCast">
+      <EntityTypeMapping TypeName="JinchengDB2Model.V_Mid_AirForeCast">
+        <MappingFragment StoreEntitySet="V_Mid_AirForeCast">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="MonitorTime" ColumnName="MonitorTime" />
+          <ScalarProperty Name="ForecastTime" ColumnName="ForecastTime" />
+          <ScalarProperty Name="SO2AQI" ColumnName="SO2AQI" />
+          <ScalarProperty Name="SO2" ColumnName="SO2" />
+          <ScalarProperty Name="NO2AQI" ColumnName="NO2AQI" />
+          <ScalarProperty Name="NO2" ColumnName="NO2" />
+          <ScalarProperty Name="COAQI" ColumnName="COAQI" />
+          <ScalarProperty Name="CO" ColumnName="CO" />
+          <ScalarProperty Name="O3AQI" ColumnName="O3AQI" />
+          <ScalarProperty Name="O3" ColumnName="O3" />
+          <ScalarProperty Name="PM25AQI" ColumnName="PM25AQI" />
+          <ScalarProperty Name="PM25" ColumnName="PM25" />
+          <ScalarProperty Name="PM10AQI" ColumnName="PM10AQI" />
+          <ScalarProperty Name="PM10" ColumnName="PM10" />
+          <ScalarProperty Name="AQI" ColumnName="AQI" />
+          <ScalarProperty Name="FirstP" ColumnName="FirstP" />
+          <ScalarProperty Name="AirLevel" ColumnName="AirLevel" />
+          <ScalarProperty Name="AirLevelDes" ColumnName="AirLevelDes" />
+          <ScalarProperty Name="AirColor" ColumnName="AirColor" />
+          <ScalarProperty Name="ForecastModel" ColumnName="ForecastModel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Mid_AirForeCastNew">
+      <EntityTypeMapping TypeName="JinchengDB2Model.V_Mid_AirForeCastNew">
+        <MappingFragment StoreEntitySet="V_Mid_AirForeCastNew">
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="hour" ColumnName="hour" />
+          <ScalarProperty Name="AQI" ColumnName="AQI" />
+          <ScalarProperty Name="AirLevelDes" ColumnName="AirLevelDes" />
+          <ScalarProperty Name="FirstP" ColumnName="FirstP" />
+          <ScalarProperty Name="AirLevel" ColumnName="AirLevel" />
+          <ScalarProperty Name="PublicTime" ColumnName="PublicTime" />
+          <ScalarProperty Name="MonitorTime" ColumnName="MonitorTime" />
+          <ScalarProperty Name="ForecastTime" ColumnName="ForecastTime" />
+          <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Mid_QXForeCast">
+      <EntityTypeMapping TypeName="JinchengDB2Model.V_Mid_QXForeCast">
+        <MappingFragment StoreEntitySet="V_Mid_QXForeCast">
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StationCode" ColumnName="StationCode" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="ForeCastTime" ColumnName="ForeCastTime" />
+          <ScalarProperty Name="ForeCastHours" ColumnName="ForeCastHours" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
+          <ScalarProperty Name="MinTemp" ColumnName="MinTemp" />
+          <ScalarProperty Name="WeatherCode" ColumnName="WeatherCode" />
+          <ScalarProperty Name="WindSpeed" ColumnName="WindSpeed" />
+          <ScalarProperty Name="WindDirection" ColumnName="WindDirection" />
+          <ScalarProperty Name="WeatherName" ColumnName="WeatherName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

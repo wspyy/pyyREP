@@ -1,0 +1,109 @@
+﻿<div style="height: 40px;  border: 1px solid #EBEBEB; border-radius: 7px; padding-left: 15px; padding-top:6px; ">
+    <form class="form-horizontal" role="form">
+        <div class="form-group  has-feedback">
+            <label class="col-sm-1 control-label" style="width:98px; padding-right:0px;">时间范围：</label>
+            <div class="col-sm-2" style="padding-left:0px; ">
+                <input type="text" id="txt_begin" class="form-control" placeholder="Date"/>
+                <span class="fa fa-calendar form-control-feedback"></span>
+            </div>
+            <label class="col-sm-1 control-label" style="width:10px; padding-left:0px;">至</label>
+            <div class="col-sm-2" style="padding-left:8px;">
+                <input type="text" id="txt_end" class="form-control" placeholder="Date"/>
+                <span class="fa fa-calendar form-control-feedback"></span>
+            </div>
+            <label class="col-sm-1 control-label" style="width:70px; padding-right:0px; padding-left:0px;">播放速度：</label>
+            <div class="col-sm-2" style="width:120px;" >
+                <input  style="width:100px;" class="form-control" id="txt_speed" value="800" />
+            </div>
+            <label class="col-sm-1 control-label" style="width:50px; padding-left:0px;text-align:left;">毫秒</label>
+            <button class="btn btn-success btn-label-left" id="btn_SetUp" type="button">
+                启用设置
+            </button>
+            <button class="btn btn-primary btn-label-left" id="imgPaly" type="button">
+                播放
+            </button>
+            <button class="btn btn-primary btn-label-left" id="PauseImg" type="button">
+                暂停
+            </button>
+            <button class="btn btn-primary btn-label-left" id="PreImg" type="button">
+                上一张
+            </button>
+            <button class="btn btn-primary btn-label-left" id="NextImg" type="button">
+                下一张
+            </button>
+        </div>
+    </form>
+</div>
+<div class="row-fluid" style="margin-top:5px;">
+    <div id="dashboard_links" class="col-xs-12 col-sm-2 pull-right">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#" class="tab-link" id="3">亚欧地面分析</a></li>
+            <li><a href="#" class="tab-link" id="4">亚欧高空分析500hPa </a></li>
+            <li><a href="#" class="tab-link" id="5">亚欧高空分析700hPa </a></li>
+            <li><a href="#" class="tab-link" id="6">亚欧高空分析850hPa </a></li>
+        </ul>
+    </div>
+</div>
+<div id="dashboard_tabs" class="col-xs-12 col-sm-10" >
+    <div id="dashboard-3" class="row" style="visibility: visible; position: relative;">
+       sdsdf
+    </div>
+    <div id="dashboard-4" class="row" style="visibility: hidden; position: absolute;">
+        <div class="col-xs-12 col-sm-6 col-md-8 ow-server">
+            11111
+        </div>
+    </div>
+    <div id="dashboard-5" class="row" style=" visibility: hidden; position: absolute;">
+        70
+    </div>
+    <div id="dashboard-6" class="row" style="visibility: hidden; position: absolute;">
+        80
+    </div>
+</div>
+<script>
+    function TabImgs() {
+        $('#tabs-3').on('click', 'a.tab-link', function (e) {
+            e.preventDefault();
+            $('div#dashboard_tabs').find('div[id^=dashboard]').each(function () {
+                $(this).css('visibility', 'hidden').css('position', 'absolute').empty();
+
+            });
+            var attr = $(this).attr('id');
+            $('#' + 'dashboard-' + attr).css('visibility', 'visible').css('position', 'relative').load("GroudImg.html", null, function () {  InitGroudPage(attr); });
+            $(this).closest('.nav').find('li').removeClass('active');
+            $(this).closest('li').addClass('active');
+
+        });
+    }
+
+    $(function () {
+        TabImgs();
+        $('#txt_begin').datepicker({ setDate: new Date() });
+        $('#txt_end').datepicker({ setDate: new Date() });
+        SetTime();
+        //点击播放按钮
+        $("#imgPaly").click(function () {
+            ImgClass.StartPaly();
+        });
+        //暂停
+        $("#PauseImg").click(function () {
+            ImgClass.PauseImg();
+        });
+        //下一张
+        $("#NextImg").click(function () {
+            ImgClass.NextImg();
+        });
+        //上一张
+        $("#PreImg").click(function () {
+          
+            ImgClass.PreImg();
+        });
+
+        //启用设置
+        $("#btn_SetUp").click(function () {
+            InitGroudPage(ImgClass.cate);
+        });
+
+        $("#3").trigger("click");
+    });
+</script>

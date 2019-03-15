@@ -1,0 +1,204 @@
+﻿<%@ WebHandler Language="C#" Class="GetAirForeCastData" %>
+
+using System;
+using System.Web;
+using Bll.BusinessFun;
+using System.IO;
+using System.Data;
+
+public class GetAirForeCastData : IHttpHandler
+{
+
+    public void ProcessRequest(HttpContext context)
+    {
+        
+        context.Response.ContentType = "text/plain";
+        string flag = context.Request["flag"];
+        string Date = context.Request["date"];
+        string StationCode = context.Request["StationCode"];
+        string PollItem = context.Request["PollItem"];
+       
+        
+        //Bll.BusinessFun.AirMonitor bll = new Bll.BusinessFun.AirMonitor();
+        AirForeCast bll = new AirForeCast();
+        string strContent = "";
+        if (flag == "new")
+        {
+            int num = int.Parse( context.Request["num"]);
+            string date = DateTime.Now.AddDays(num).ToString("yyyy-MM-dd");
+            //string sqlwhere = " WHERE   CONVERT(VARCHAR(100), t.MonitorTime, 23) <= '" + date.ToString("yyyy-MM-dd") + "' and t.rowno= " + num;
+            //sqlwhere = "";
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetAirForeCastNew(date)).Replace("null", "\"--\"");
+            context.Response.Write(strContent);
+        }
+        else if (flag == "newnum")
+        {
+            int num = int.Parse(context.Request["num"]);
+            int datatype = int.Parse(context.Request["datatype"]);
+            int hourtime = int.Parse(context.Request["hourtime"]);
+            string date = DateTime.Now.AddDays(num).ToString("yyyy-MM-dd ") + hourtime.ToString() + ":00:00" ;
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetAirForeCastNumNew(date,datatype)).Replace("null", "\"--\"");
+            context.Response.Write(strContent);
+        }
+        else if (flag == "single")
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetAirForeCastByStation(StationCode)).Replace("null", "--");
+        else if (flag == "all")
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetAirForeCastAll()).Replace("null", "--");
+        else if (flag == "four")
+        {
+            if (context.Request["Strtime"] != null && context.Request["Endtime"] != null && context.Request["datatype"] != null)
+            {
+
+                DateTime StrTime = Convert.ToDateTime(context.Request["Strtime"] + ":00" + ":00");
+                DateTime EndTime = Convert.ToDateTime(context.Request["Endtime"] + ":00" + ":00");
+                strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetAirContrastData(StationCode, PollItem, StrTime, EndTime, context.Request["datatype"].ToString())).Replace("null", "0");
+                context.Response.Write(strContent);
+            }
+        }
+        else if (flag == "AirForeCastStat")
+        {
+            DateTime StrTime = Convert.ToDateTime(context.Request["Strtime"] + " 00:00:00");
+            DateTime EndTime = Convert.ToDateTime(context.Request["Endtime"] + " 23:59:59");
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetAirContrastStatData(StrTime, EndTime)).Replace("null", "0");
+            context.Response.Write(strContent);
+        }
+        else if (flag == "AirForeCastWeight")
+        {
+            string StrTime = context.Request["Strtime"].ToString();
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetAirForeCastByDate(StrTime)).Replace("null", "0");
+            context.Response.Write(strContent);
+        }
+        else if (flag == "weatherForecast")
+        {
+            string date = DateTime.Now.ToString("yyyy-MM-dd ");
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetWeatherForeCastByDate(date)).Replace("null", "0");
+            context.Response.Write(strContent);
+        }
+        else if (flag == "weatherDetail")
+        {
+            int num = int.Parse(context.Request["num"]);
+            string date = DateTime.Now.ToString("yyyy-MM-dd ");
+            string foredate = DateTime.Now.AddDays(num).ToString("yyyy-MM-dd ");
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetWeatherDetailByDate(date, foredate)).Replace("null", "0");
+            context.Response.Write(strContent);
+        }
+        else if (flag == "SaveWeight")
+        {
+            string ssci = context.Request["ssci"].ToString();
+            string cmaq = context.Request["cmaq"].ToString();
+            string wrf = context.Request["wrf"].ToString();
+            strContent = bll.SetModelWeight(int.Parse(ssci), Int32.Parse(cmaq), Int32.Parse(wrf)).ToString();
+            context.Response.Write(strContent);
+        }
+        else if (flag == "ssci")
+        {
+            string type = context.Request["type"];
+            string beign = context.Request["begin"];
+            string end = context.Request["end"];
+            string station = context.Request["station"];
+            string item = context.Request["item"];
+            if (station.Length > 0) station = station.Substring(0, station.Length - 1);
+            //if (item.Length > 0) item = item.Substring(0, item.Length - 1);                   
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetAirForeCastDataSSCI(beign, end, station, item)).Replace("null", "\"--\"");
+            context.Response.Write(strContent);
+        }
+        else if (flag == "Img")
+        {
+            string imgpath = System.Configuration.ConfigurationManager.AppSettings["ImgLocalPath"].ToString() + "\\CMAQ\\2014121320jc";
+            DirectoryInfo di = new DirectoryInfo(imgpath);
+            DataTable dt = new DataTable();
+            dt.Columns.Add("imgurl", typeof(String));
+            //向其加入一列数据，列名为：imgurl，以后添加的该列列值必须为String类的值。
+            string item = context.Request["item"];
+            foreach (FileInfo fi in di.GetFiles())
+            {
+                if (fi.Name.Split('.')[fi.Name.Split('.').Length - 1] == "png" && fi.Name.Split('.')[0].IndexOf(item) > -1)
+                {
+                    DataRow dr = dt.NewRow();//DataTable的一行数据
+                    dr[0] = fi.Name;
+                    dt.Rows.Add(dr);
+                }
+            }
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
+            context.Response.Write(strContent);
+        }
+        //AirForecastNum1.aspx
+        else if (flag == "picture")
+        {
+            string picpath = System.Configuration.ConfigurationManager.AppSettings["ImgLocalPath"].ToString() + "\\CMAQ";
+            DirectoryInfo di = new DirectoryInfo(picpath);
+            DirectoryInfo[] subfile = di.GetDirectories();//该路径下的所有子文件夹
+            DataTable dt = new DataTable();
+            dt.Columns.Add("imgurl", typeof(String));
+            string item = context.Request["item"];//?
+            string date = context.Request["date"];
+            int n = 0;
+            foreach (var subf in subfile)
+            {
+                var subfName = subf.Name;//子文件夹的名字
+                if (subfName.IndexOf(date) > -1)
+                { //文件夹名字的日期与选择的日期一致
+                    foreach (FileInfo fi in subf.GetFiles())
+                    {//子文件夹下的所有文件
+                        if (fi.Name.Split('.')[fi.Name.Split('.').Length - 1] == "png" && fi.Name.Split('.')[0].IndexOf(item) > -1
+                            && fi.Name.Split('.')[fi.Name.Split('.').Length - 2].IndexOf(date) > -1)
+                        //PM2.5的图片名称里有'.'
+                        {
+                            DataRow dr = dt.NewRow();//DataTable的一行数据
+                            dr[0] = subfName + "/" + fi.Name;
+                            dt.Rows.Add(dr);
+                            n++;
+                        }
+                        //http://localhost/JcData/AirForeCastData/CMAQ/Z_SEVP_C_SXJC_P_MSP3_JC_ENVAQFC_AQI_AJC_L88_PB_201412092007200.png
+                        //没有获取到子文件夹得名字
+                        if (n == 85)
+                        { break; }//取到目标图片后，结束循环
+                    }
+                }
+            }
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
+            context.Response.Write(strContent);
+        }
+        //ACCAnalysis
+        else if (flag == "AAS")
+        {
+            string station = context.Request["station"];
+            string model = context.Request["model"];
+            string item = context.Request["item"];
+            string year = context.Request["year"];
+            string month = context.Request["month"];
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetACCAnalysis(station, model, item, year, month)).Replace("null", "\"--\"");
+            context.Response.Write(strContent);
+        }
+        //ACCAnalysis--统计图（pie）
+        else if (flag == "pie")
+        {
+            string station = context.Request["station"];
+            string item = context.Request["item"];
+            string year = context.Request["year"];
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetACCAnalysisPie(station, item, year)).Replace("null", "\"--\"");
+            context.Response.Write(strContent);
+        }
+        //SystemEvaluate
+        else if (flag == "SE")
+        {
+            string station = context.Request["station"];//站点
+            string model = context.Request["model"];//参考模型
+            string item = context.Request["item"];//统计方式
+            string validTime = context.Request["validTime"];
+            string begintime = context.Request["begin"];//开始时间
+            string endtime = context.Request["end"];//结束时间
+            strContent = Newtonsoft.Json.JsonConvert.SerializeObject(bll.GetSystemEvaluate(station, model, item, validTime, begintime, endtime)).Replace("null", "\"--\"");
+            context.Response.Write(strContent);
+        }
+    }
+
+    public bool IsReusable
+    {
+        get
+        {
+            return false;
+        }
+    }
+
+}

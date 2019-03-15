@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+
+   
+    <link href="../../Controls/zTree/css/demo.css" rel="stylesheet" />
+    <link href="../../Controls/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="../../Controls/zTree/js/jquery-1.4.4.min.js"></script>
+
+    <script src="../../Controls/zTree/js/jquery.ztree.core-3.5.js"></script>
+    <script src="../../Controls/zTree/js/jquery.ztree.excheck-3.5.js"></script>
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <script src="../js/SingleTable.js"></script>
+
+    <link href="../css/thems/easyui.css" rel="stylesheet" />
+    <link href="../css/easyui0925.css" rel="stylesheet" />
+    <script src="../js/easyui-lang-zh_CN.js"></script>
+    <script src="../js/jquery.easyui.min.js"></script>
+
+     <link href="../../Demo/plugins/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/newbootstrap303.js"></script>
+
+
+
+
+    <style>
+        body, div {
+            background-color: white;
+            width: 100%;
+        }
+
+        td {
+        }
+
+        .easyui-layout {
+            width: 1250px;
+            text-align: center;
+            z-index: 0;
+            position: absolute;
+        }
+
+        #text1, #content_text {
+            border: 1px solid gray;
+            text-align: left;
+            width: 1250px;
+            height: 150px;
+        }
+
+        /*#EditorPeople {
+            width: 1250px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }*/
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            getUserList();
+            $("#ck_All").click(function () {
+                $("input[name='users']").each(function () {
+                    if (this.checked) {
+                        this.checked = false;
+                    }
+                    else {
+                        this.checked = true;
+                    }
+                });
+            });
+            $("#content_text").keyup(function () {
+                //var textLength = 70 - $(this).val().length;
+                var textLength = 700 - $(this).val().length;
+                var textNum = parseInt(($(this).val().length % 70) == 0 ? ($(this).val().length / 70) : ($(this).val().length / 70) + 1);
+                var num = ($(this).val().length % 70) == 0 ? 0 : (70 - $(this).val().length % 70);
+                if (textLength >= 0) {
+                    $("#textspan").css('color', 'black').html('您已输入<em>' + $(this).val().length + '<em>个字[<em>' + textNum + '<em>（差<em>' + num + '<em>字)条],还能输入<em>' + textLength + '<em>字');
+                }
+                else {
+
+                    $("#textspan").css('color', 'red').html('已经超过<em>' + (textLength - 700) + '<em>字');
+
+                }
+            })
+        })
+
+        //获取监测站点
+        function getUserList() {
+
+            $.ajax({
+                url: "../../Data/GetBaseData.ashx",
+                data: { flag: "SMSUserList" },
+                dataType: "json",
+                success: function (result) {
+                    debugger;
+                    var content = "";
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+                        for (var i = 0; i < result.DataTable.length; i++) {
+                            content += "<tr style='height:30px;'><td><input type='checkbox' name='users'/></td><td>" + result.DataTable[i]["U_RealName"] + "</td><td>" + result.DataTable[i]["U_Phone"] + "</td></tr>";
+                        }
+                        $("#tbody").append(content);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    debugger;
+                }
+            });
+        }
+
+        //
+
+    </script>
+</head>
+
+
+<body>
+    <div class="easyui-layout" data-options="fit:true">
+        <div>
+            <div style="width: 100%">
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="float:left;">
+  通知人员
+</button>
+                <!--<input id="people" type="button" value=" 通知人员" style="float: left;" />-->
+            </div>
+            <div>
+                <textarea id="text1"></textarea>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <div style="width: 100%">
+                    <span style="float: left">请输入短信内容：</span>
+                </div>
+                <div style="text-align: center">
+                    <textarea id="content_text"> </textarea><div style="width: 1250px; text-align: center;">
+                        <span id="textspan">您已经输入了<em>0</em>个字，每条短信字数为70</span>
+                    </div>
+                </div>
+                <div style="width: 100%">
+                </div>
+            </div>
+            <button id="send" type="button" class="btn btn-primary btn-label-left" onclick="jumpAdd();"><span><i class="fa fa-clock-o"></i></span>发 送</button>
+        </div>
+    </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="H1">
+               联系人目录
+            </h4>
+         </div>
+         <div class="modal-body">
+            <table id="dataTable" style="width: 100%; margin: 10px; height: 100%;">
+                <thead>
+                    <tr style="font-weight: bolder; height: 30px;">
+                        <th>
+                            <div class="checker">
+                                <span>
+                                    <input type="checkbox" id="ck_All" onclick="selectAll();"></span>
+                            </div>
+                        </th>
+                        <th>姓名
+                        </th>
+                        <th>联系方式&nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div> 
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">关闭
+            </button>
+            <button type="button" class="btn btn-primary">
+               提交
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+
+</body>
+</html>

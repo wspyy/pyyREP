@@ -1,0 +1,36 @@
+﻿正在安装程序集“D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   logfile = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.InstallLog
+   assemblypath = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe
+正在回滚程序集“D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   logfile = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.InstallLog
+   assemblypath = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe
+正在安装程序集“D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   logfile = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.InstallLog
+   assemblypath = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe
+正在安装服务 AirDataGather...
+已成功安装服务 AirDataGather。
+正在日志 Application 中创建 EventLog 源 AirDataGather...
+正在提交程序集“D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   logfile = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.InstallLog
+   assemblypath = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe
+正在安装程序集“D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   logfile = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.InstallLog
+   assemblypath = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe
+正在安装服务 AirDataGather...
+已成功安装服务 AirDataGather。
+正在日志 Application 中创建 EventLog 源 AirDataGather...
+正在提交程序集“D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   logfile = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.InstallLog
+   assemblypath = D:\yutu_code\AirDataService\AirDataService\bin\Debug\AirDataService.exe

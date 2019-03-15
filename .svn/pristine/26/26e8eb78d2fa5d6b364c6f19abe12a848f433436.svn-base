@@ -1,0 +1,37 @@
+﻿<%@ WebHandler Language="C#" Class="DataUpload" %>
+
+using System;
+using System.Web;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+public class DataUpload : IHttpHandler {
+    
+    public void ProcessRequest (HttpContext context) {
+        context.Response.ContentType = "text/plain";
+        //context.Response.Write("Hello World");
+        DateTime reportTime = Convert.ToDateTime(context.Request["reportTime"]);
+        string contentTxt = context.Request["contentTxt"];
+       string path = "../Devoops/Files/" ;
+        if (!Directory.Exists(context.Request.MapPath("../Devoops/Files/")))
+        {
+            Directory.CreateDirectory(context.Request.MapPath("../Devoops/Files/"));
+        }
+       string  newPath ="sz" + reportTime.ToString("yyyyMMdd") + "huish.txt";
+       FileStream fs = new FileStream(context.Request.MapPath("../Devoops/Files/" + newPath), FileMode.Append);
+        StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.GetEncoding("GB2312"));
+        //DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "  " +
+        sw.WriteLine(contentTxt);
+        sw.Close();
+        fs.Close();
+
+    }
+
+    public bool IsReusable {
+        get {
+            return false;
+        }
+    }
+
+}

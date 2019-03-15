@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+		
+		
+		<!-- 1. Add these JavaScript inclusions in the head of your page -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/highcharts.js"></script>
+		
+		<!-- 1a) Optional: add a theme file -->
+		<!--
+			<script type="text/javascript" src="../js/themes/gray.js"></script>
+		-->
+		
+		<!-- 1b) Optional: the exporting module -->
+		<script type="text/javascript" src="../js/modules/exporting.js"></script>
+		
+		
+		<!-- 2. Add the JavaScript to initialize the chart on document ready -->
+		<script type="text/javascript">
+		
+			var chart;
+			$(document).ready(function() {
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container',
+						defaultSeriesType: 'line',
+						
+						marginRight: 130,
+						marginBottom: 25
+					},
+					title: {
+						text: '越秀区AQI按月统计',
+						x: -20 //center
+					},
+				
+					subtitle: {
+						text: '',
+						x: -20
+					},
+					exporting:{
+				     	enabled:false
+					},
+					xAxis: {
+					
+						categories: ['1', '2', '3', '4', '5', '6', 
+							'7', '8', '9', '10', '11', '12']				
+					},
+					yAxis: {
+						title: {
+							text: 'AQI监测值'
+						},
+						plotLines: [{
+							value: '70',
+							width:2,
+							color: '#00FF00'
+						},{
+							value: '110',
+							width:2,
+							color: '#FFFF00'
+						},{
+							value: '140',
+							width:2,
+							color: '#FF7E00'
+						},{
+							value: '160',
+							width:2,
+							color: '#FF0000'
+						},{
+							value: '180',
+							width:2,
+							color: '#99004C'
+						}
+						,{
+							value: '200',
+							width:2,
+							color: '#7E0023'
+						}
+						]
+
+					},
+					tooltip: {
+						formatter: function() {
+				                return '<b>'+ this.series.name +'</b><br/>'+
+								'企业排名前三名:'+'<br/>'+
+								'企业1'+'<br/>'+
+								'企业2'+'<br/>'+
+								'企业3'+'<br/>'+
+								'本企业排名第五'
+								//this.x +': '+ this.y +'';
+						}
+					},
+					legend: {
+						layout: 'vertical',
+						align: 'right',
+						verticalAlign: 'top',
+						x: -10,
+						y: 100,
+						borderWidth: 0
+					},
+					series: [{
+						name: '广州市猎德污水处理厂',
+						data: [60.0, 80, 110,80, 50,70,90, 150,180,130, 190, 170]
+					}]
+				});
+				
+				
+			});
+				
+		</script>
+		
+	</head>
+	<body>
+		<img >
+		<!-- 3. Add the container -->
+		<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+		
+				
+	</body>
+</html>

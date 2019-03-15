@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <title></title>
+    <meta name="description" content="description">
+    <meta name="author" content="DevOOPS">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="../js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="../Tools/sliders/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Tools/sliders/js/jquery-ui-slider.js"></script>
+    <script type="text/javascript" src="../Tools/sliders/js/jquery.uniform.js"></script>
+    <script type="text/javascript" src="../Tools/sliders/js/loader.js"></script>
+    <link type="text/css" rel="stylesheet" href="../Tools/sliders/css/progress-bars.css" />
+    <link type="text/css" rel="stylesheet" href="../Tools/sliders/css/slider.css" />
+    <link href="../plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <script src="../../Controls/jquery.nicescroll-master/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+        //时间控制器
+        var InterV = null;
+        //记录播放进度条的宽度
+        var step = 1;
+        //当前图片的下标
+        //var cur.currimg = 0;
+        //区分拖动进度按钮或者点击进度条
+        var state = 0;
+        //进度条前进精度
+        var forword = 7;
+        //选中的时间
+        var tdindex = 0;
+        var param = "<%=Path %>";
+        var MenuIndex = "<%=MenuIndex %>";
+        var _width = 0;
+        var _length = 0;
+
+        var cur = { currimg: 1 };
+
+        var imgArray;
+        $(function () {
+            _width = $("#eq1").width();
+            $(document).bind("selectstart", function () { return false; });
+            SetTime(code);
+
+           // InitImg($("#divMenu td").eq(tdindex).text()); //为空默认当前时间
+
+            InterV = setInterval(sliderAdd, 800);
+
+            //开始/暂停按钮
+            $("#bnt_play").toggle(function () {
+                $(this).attr("src", "images/Button_Play.png");
+                $(this).attr("title", "开始");
+                PausePlay();
+            }, function () {
+                $(this).attr("src", "images/Button_pause.png");
+                $(this).attr("title", "暂停");
+                Stratplay();
+            });
+
+            $("#btn_stop").click(function () {
+                StopPaly();
+                if ($("#bnt_play").attr("src") == "images/Button_pause.png") {
+                    $("#bnt_play").attr("src", "images/Button_Play.png");
+                    $("#bnt_play").attr("title", "开始");
+                }
+            });
+
+            //点击进度原点
+            $("#a1").mouseup(function () {
+                state = 1;
+            });
+
+            //上一张
+            $("#img_up").click(function () {
+                if (imgArray == null || imgArray.length == 0) return;
+                cur.currimg--;
+                if ($("#bnt_play").attr("src") == "images/Button_pause.png") {
+                    $("#bnt_play").attr("src", "images/Button_Play.png");
+                    $("#bnt_play").attr("title", "开始");
+                    PausePlay();
+                }
+                if (cur.currimg <= 1) {
+                    cur.currimg = _length - 1;
+                }
+                setPoint();
+            });
+
+            //下一张
+            $("#img_next").click(function () {
+                if (imgArray == null || imgArray.length == 0) return;
+                if ($("#bnt_play").attr("src") == "images/Button_pause.png") {
+                    $("#bnt_play").attr("src", "images/Button_Play.png");
+                    $("#bnt_play").attr("title", "开始");
+                    PausePlay();
+                }
+                cur.currimg++;
+                if (cur.currimg >= 72) {
+                    cur.currimg = 1;
+                }
+                setPoint();
+            });
+        });
+        function SetTime(code) {
+            $.ajax({
+                url: "../../Data/GetAirForeCastData.ashx",
+                dataType: "json",
+                data: { flag: "new", num: 3 },
+                success: function (result) {
+
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+                        var time = result.DataTable[0]["PublicTime"];
+                        InitImg(code,time)
+                    };
+                }
+            })
+        }
+        //初始化图片列表
+        function InitImg(code,time) {
+            imgArray = null;
+            $.get("../ajax/AirDataImg.ashx", { path: code, t: time }, function (result) {
+                if (result != "0") {
+                    imgArray = result.split(",");
+                    _length = imgArray.length;
+                    RestPlay();
+                } else {
+                    imgArray = null;
+                    RestPlay();
+                    $("#imgpplay").attr("src", "images/zanwu.jpg");
+                }
+            });
+        }
+
+
+        //播放方法
+        function sliderAdd() {
+            if (imgArray) {
+                cur.currimg++;
+                if (cur.currimg == _length) {
+                    cur.currimg = 1;
+                }
+                setPoint();
+            }
+        }
+
+        //开始播放
+        function Stratplay() {
+            InterV = setInterval(sliderAdd, 800);
+        }
+
+        //暂停播放
+        function PausePlay() {
+            clearInterval(InterV);
+        }
+
+        //复位
+        function RestPlay() {
+
+            $("#div1").width(0);
+            $("#a1").css("left", "0px");
+            cur.currimg = 0;
+            step = 1;
+            if (imgArray) {
+                $("#imgpplay").attr("src", imgArray[0]);
+            } else {
+                $("#imgpplay").attr("src", "images/zanwu.jpg");
+            }
+        }
+
+        //停止播放
+        function StopPaly() {
+            RestPlay();
+            clearInterval(InterV);
+        }
+
+
+        //点击播放进度条
+        function sliderClick(e) {
+            if (imgArray == null || imgArray.length == 0) return;
+            //点击进度原点
+            if (state == 1) {
+                state = 0;
+                cur.currimg = parseInt(parseInt($("#a1").css("left")) / (_width / (_length - 1)));
+                step = parseInt($("#a1").css("left"));
+                $("#imgpplay").attr("src", imgArray[cur.currimg]);
+                //点击进度条
+            } else {
+                cur.currimg = parseInt(e.offsetX / (_width / (_length - 1)));
+                step = e.offsetX;
+                $("#imgpplay").attr("src", imgArray[cur.currimg]);
+            }
+        }
+
+        //设置进度条位置
+        function setPoint() {
+            $("#a1").css("left", parseInt((cur.currimg) * (_width / (_length - 1)) - 7) + "px");
+            //设置播放进度
+            $("#div1").width(parseInt(cur.currimg * (_width / (_length - 1))));
+
+            $("#imgpplay").attr("src", imgArray[cur.currimg]);
+        }
+    </script>
+</head>
+<body style="background: #EBEBEB;">
+    <div class="col-xs-12">
+        <div style="text-align: center;  margin: 0 auto; padding: 10px; vertical-align: middle; line-height: 430px;
+                        width: 700px;">
+            <img id="imgpplay" src="images/zanwu.jpg" />
+        </div>
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr style="height:67px;">
+                <td id="img_up" style=" background:url(images/B_left_bg.png) no-repeat; height:67px; width:44px;  text-align:right; padding-top:3px; cursor:pointer;">
+                    <img title="上一张" src="images/up.png" />
+                </td>
+                <td style=" background:url(images/B_mid_line.png)">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="text-align: right; padding-left: 5px; width:30px;">
+                                <img alt="" title="暂停" src="images/Button_pause.png" id="bnt_play" style="border: none;
+                                                margin-right: 10px;" height="30" width="30" />
+                            </td>
+                            <td style="text-align: right; padding-right: 10px; width: 30px;">
+                                <img src="images/Button_Stop.png" id="btn_stop" title="停止" />
+                            </td>
+                            <td style="vertical-align: bottom; text-align: left;">
+                                <table cellpadding="0" cellspacing="0" style="width: 100%;">
+                                    <tr style="color: #109edc; font-size: 11px;" id="ruletr">
+                                        <td style="text-align: left; width: 11%;">
+                                            0h
+                                        </td>
+                                        <td style="text-align: left; width: 11%;">
+                                            |
+                                        </td>
+                                        <td style="text-align: left; width: 11%;">
+                                            |
+                                        </td>
+                                        <td style="text-align: left; width: 11%;">
+                                            24h
+                                        </td>
+                                        <td style="text-align: left; width: 11%;">
+                                            |
+                                        </td>
+                                        <td style="text-align: left; width: 11%;">
+                                            |
+                                        </td>
+                                        <td style="text-align: left; width: 11%;">
+                                            48h
+                                        </td>
+                                        <td style="text-align: left; width: 11%;">
+                                            |
+                                        </td>
+                                        <td style="text-align: left; width: 10%;">
+                                            |
+                                        </td>
+                                        <td style="text-align: right;">
+                                            72h
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="10">
+                                            <div class="slider_bar" style="text-align: left;">
+                                                <div id="eq1" style="width: 100%;">
+                                                    <div id="slider" onclick="sliderClick(event)" class="slider-info" rel="0">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td id="img_next" style=" background:url(images/B_right_bg.png) no-repeat;width:44px; cursor:pointer;">
+                    <img title="下一张" src="images/next.png" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+

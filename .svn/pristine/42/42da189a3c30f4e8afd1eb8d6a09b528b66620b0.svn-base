@@ -1,0 +1,417 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>准确率统计</title>
+    <link href="../plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../../Controls/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+    <link href="../plugins/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/css.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-1.7.2.js"></script>
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../plugins/data-tables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../js/method.js"></script>
+
+    <script src="../../Controls/Higcharts-4.1.8/highcharts.js"></script>
+    <script src="../../Controls/Higcharts-4.1.8/highcharts-more.js"></script>  
+    <script src="../../Controls/Higcharts-4.1.8/highcharts-3d.js"></script>
+    <script src="../../Controls/Higcharts-4.1.8/highcharts-3d.src.js"></script>
+    <script src="../../Controls/Higcharts-4.1.8/exporting.js"></script>
+
+    <script src="../plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js"></script>
+    <script src="../../Demo/plugins/jquery-ui/i18n/jquery.ui.datepicker-zh-CN.min.js"></script>
+    <script src="../../Controls/My97DatePicker/WdatePicker.js"></script>
+    <script src="shuo--js/ACCAnalysis-js.js"></script>
+
+    <style>
+        html, body
+        {
+            margin: 0px 0px 0px 0px;
+            height: 100%;
+            overflow: auto;
+            font-size: 13px;
+            background-color: white;
+        }
+        table
+        {
+            width: 100%;
+            font-size: 14px;
+        }
+ul,li{list-style:none;}
+.c_header{
+    width:100%; height:60px; background-color:#4B8EC3; 
+          /*background-image:linear-gradient(to bottom, #58B2C2, #83d8e7);*/ 
+          position:relative;}
+.c_header h1{font-size:16px; height:30px; line-height:30px; text-align:center; color:#ffffff;}
+.c_header ol{width:100%; position:absolute; left:0; top:30px; overflow:hidden;}
+.c_header ol li{float:left; color:#ffffff; width:14%; height:25px; line-height:30px; text-align:center;}
+.c_body{overflow:hidden;border:5px;}
+.c_body li{width:14%; height:25px; line-height:38px; font-size:14px; text-align:center; float:left; border:1px solid #ffffff; color:#333;}
+
+.tip {
+	display: none;
+	position: absolute;
+	border: 1px solid #dddddf;
+	background: #4B8EC3;
+        color:white;
+	padding: 5px;
+	line-height: 21px;
+    border-radius:5px;
+	width: 120px;
+    font-size:6px;
+    text-align:left
+}
+        
+    </style>
+   
+    <script type="text/javascript">
+        var ResultList;
+        var result_length;
+        var station;
+        var model;
+        var items;
+        var year;
+        var month;
+        var td_color;
+        var Tflag = 0.0;
+        var Fflag = 0.0;
+        var Nflag = 0.0;
+        var TrueArr = new Array();
+        var FalseArr = new Array();
+        var NoArr = new Array();
+        $(function () {
+            getStationList();
+            var mm = new Date().getMonth() + 1;
+            var yy = new Date().getFullYear();
+            $("#selectYear").find("option[value='" + yy + "']").attr("selected", true);
+            $("#selectMonth").find("option[value='" + mm + "']").attr("selected", true);
+        })
+        //获取监测站点
+        function getStationList() {
+            $.ajax({
+                url: "../../Data/GetBaseData.ashx",
+                //data: { flag: "ACCAnaCode" },
+                data: { flag: "AirStation" },
+                dataType: "json",
+                success: function (result) {
+                    var content = "<b>监测站点：</b><select name=\"selectstation\">";
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+
+                        for (var i = 0; i < result.DataTable.length; i++) {
+
+                            content += "<option  class='select_staion'";
+                            if (result.DataTable[i]["StationCode"] == "00") content += " selected='selected' ";
+                            content += "value=\""
+                            + result.DataTable[i]["StationCode"] + "\">"
+                            + result.DataTable[i]["StationName"]
+                            + "<i class='fa fa-circle-o small'></i></option>";
+                        }
+                        content += "</select>";
+                        $("#stationPanel").html();
+                        $("#stationPanel").append(content + "&nbsp;&nbsp;&nbsp;");
+                        
+                        getData();
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var ff = "";
+                }
+            });
+        }
+        
+        function getData() {
+
+            station = $("[class=select_staion]:selected").val();
+            model = $("[class=ForecastModel]:selected").val();
+            items = $("[class=stastyle]:selected").val();
+            year = $("[class=year]:selected").val();
+            month = $("[class=month]:selected").val();
+            //alert(parseInt(month));
+            $("#calendar").html();
+
+            $.ajax({
+                url: "../../Data/GetAirForeCastData.ashx",
+                data: { flag: "AAS", station: station,model:model, item: items, year: year, month: month },
+                dataType: "json",
+                success: function (result) {
+                    
+                    TrueArr.length = 0;
+                    FalseArr.length = 0;
+                    NoArr.length = 0;
+
+                    if (result && result.Table && result.Table.length > 0) {
+
+                        ResultList = result.Table;
+                        result_length = result.Table.length;                      
+                       
+                        var AT = getnum(items, ResultList)[0];
+                        var AF = getnum(items, ResultList)[1];
+                        var LT = getnum(items, ResultList)[2];
+                        var LF = getnum(items, ResultList)[3];
+                        var N = getnum(items, ResultList)[4];
+
+                        TrueArr = getArray(items, ResultList)[0];
+                        FalseArr = getArray(items, ResultList)[1];
+                        NoArr = getArray(items, ResultList)[2];
+                        if (items == "AQI") {
+                            if ((N + AT + AF) > 0) {
+                                Tflag = AT / (N + AT + AF);
+                                Fflag = AF / (N + AT + AF);
+                                Nflag = N / (N + AT + AF);                                
+                            }
+                        }
+                        if (items == "AirLevel") {
+                            if ((N + LT + LF) > 0) {
+                                Tflag = LT / (N + LT + LF);
+                                Fflag = LF / (N + LT + LF);
+                                Nflag = N / (N + LT + LF);                                
+                            }
+                        }                                                        
+                        Tflag = Tflag * 100;
+                        Fflag = Fflag * 100;
+                        Nflag = Nflag * 100;
+                        
+                        getChartpie(Tflag, Fflag, Nflag);
+                        var xdata = [];
+                        xdata.push(year+'年');
+                        var ydata = new Array();//y轴                        
+                        if (items == "AQI") {                           
+                            ydata.push(AT);                          
+                            ydata.push(AF);                           
+                            ydata.push(N); 
+                        }
+                        if (items == "AirLevel") {                           
+                            ydata.push(LT);                            
+                            ydata.push(LF);                            
+                            ydata.push(N);
+                        }
+
+                        getChartcolumn(xdata, ydata);
+                        var month_select = parseInt(month);
+                        if (month_select == "0") {
+                            showCalendar0(year,  items, ResultList, FalseArr, TrueArr, NoArr);
+                        }
+                        else if (month_select != "0") {
+                            showCalendar1(year, month_select, items, ResultList, FalseArr, TrueArr, NoArr);
+                        }
+                        $("#boxcontent").show();
+                        $("#forecast-items").html(items + "准确率统计");
+                        $("#line").show();
+                        $("#showTwo").show();
+                    }
+                    
+                else {
+                                         
+                        $("#boxcontent").hide();
+                        $("#forecast-items").html("（暂无数据）");
+                }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+        
+        function getChartcolumn(xdata, ydata) {                           
+            $("#showcolumn").highcharts({
+                chart: {
+                    type: 'column'                    
+                },
+                title: {
+                    text: '天数统计'
+                },
+                colors: ['#90ED7D', '#FFBC75', '#999EFF'],
+                xAxis: {
+                    categories: xdata
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '天数统计 (天)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="padding:0">{series.name}; </td>' +
+                        '<td style="padding:0"><b>{point.y} 天</b></td></tr>',
+                    footerFormat: '</table>',
+                    //shared: true,
+                    positioner: 0,
+                    enabled:false,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [
+                    { dataLabels: {enabled: true},name: '预报准确天数', data: [ydata[0]] },
+                    { dataLabels: {enabled: true}, name: '预报错误天数', data: [ydata[1]] },
+                    { dataLabels: {enabled: true}, name: '漏报天数', data: [ydata[2]] }
+                ]
+            });            
+        }
+
+        function getChartpie(Tflag, Fflag, Nflag) {
+            debugger;
+            $('#showpie').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45,
+                        beta: 0
+                    }
+                },
+                title: {
+                    text: '准确率统计'
+                },
+                tooltip: {                    
+                    pointFormat: '<b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        depth: 60,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}'
+                        }
+                    }
+                },//background:#2359a3,#371274;#ff6a00;#3ecf37,;
+                series: [{
+                    type: 'pie',
+                    name: 'null',
+                    data: [
+                { name: '准确率', color: '#90ED7D', y: Tflag },//#90ED7D
+                { name: '错误率', color: '#FFBC75', y: Fflag },
+                { name: '漏报率', color: '#999EFF', y: Nflag }]
+
+                }]
+            });
+        }       
+
+    </script>
+</head>
+
+<body id="main" style="margin-top: 0px;overflow-y:scroll;">
+    <div class="box ui-draggable ui-droppable" style="margin: 10px; ">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-table"></i>
+                <span>检索条件</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content" style="height: 60px;">
+
+            <div style="width: 100%;">
+
+                <span id="stationPanel" style="left: 0px; float: left;"></span>
+
+                <span id="ModelPanel">
+                    <b>参考模型：</b>
+                    <select>
+                        <option class="ForecastModel" selected='selected' value="0">统计模型</option>
+                        <option class="ForecastModel" value="1">数值模型</option>
+                        <!--CMAQ<option class="ForecastModel" value="2">WRF-CHEM</option>-->
+                    </select>
+                </span>
+
+                <span id="StaStylePanel">
+                    <b>统计方式：</b>
+                    <select>
+                        <option class="stastyle" selected='selected' value="AQI">AQI</option>
+                        <option class="stastyle" value="AirLevel">级别</option>
+                    </select>
+                </span>
+
+                <span id="YearPanel" style="width: 100%;">
+                    <b>年份：</b>
+                    <select id="selectYear">
+                        <option class="year" value="2014">2014</option>
+                        <option class="year" selected='selected' value="2015">2015</option>
+                        <option class="year" value="2016">2016</option>
+                        <option class="year" value="2017">2017</option>
+                        <option class="year" value="2018">2018</option>
+                        <option class="year" value="2019">2019</option>
+                    </select>
+                </span>
+                <span id="MonthPanel" style="width: 100%;">
+                    <b>月份：</b>
+                    <select id="selectMonth">
+                        <option class="month" selected='selected' value="0">全年</option>
+                        <option class="month" value="01">1</option>
+                        <option class="month" value="02">2</option>
+                        <option class="month" value="03">3</option>
+                        <option class="month" value="04">4</option>
+                        <option class="month" value="05">5</option>
+                        <option class="month" value="06">6</option>
+                        <option class="month" value="07">7</option>
+                        <option class="month" value="08">8</option>
+                        <option class="month" value="09">9</option>
+                        <option class="month" value="10">10</option>
+                        <option class="month" value="11">11</option>
+                        <option class="month" value="12">12</option>
+                    </select>
+                </span>
+                <button type="button" class="btn btn-primary btn-label-left" onclick="getData();"><span><i class="fa fa-clock-o"></i></span>查 询</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="box ui-draggable ui-droppable" style="margin: 10px;">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-table"></i>
+                <span id="forecast-items">预报结果</span>
+
+            </div>
+
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+
+        <div id="boxcontent" class="box-content no-padding">                                                                                                
+            <div id="calendar" style="width: 100%;"></div>
+            <div id="line" style="display:none;margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 15px;"></div>
+            <div id="showTwo" style="display:none;">
+            <div id="showcolumn" style="width: 50%;float:left;border-right:solid;"></div>                
+            <div id="showpie" style="width: 50%;float:left;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

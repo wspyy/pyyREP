@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+        <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../js/devoops.js"></script>
+    <!--<script type="text/javascript" src="../../Demo/js/devoops.js"></script>-->
+         <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <!--  <script src="../js/jquery-1.7.2.js"></script>-->
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <script src="../plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="../plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/devoops.js"></script>
+
+</head>
+<body id="main">
+
+<div class="row">
+	<div class="col-xs-12 col-sm-6">
+		<div class="box ui-draggable ui-droppable" style="top: 0px; left: 0px; opacity: 1; z-index: 1999;">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-search"></i>
+					<span>Thresholds</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content">
+				<div id="xchart-3" style="height: 200px;"><svg height="200" width="500" class="xchart"><g transform="translate(60,0)"><g class="scale"><g class="axis axisX" transform="translate(0,180)"><g class="tick" transform="translate(20,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Monday</text></g><g class="tick" transform="translate(108.8888888888889,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Wednesday</text></g><g class="tick" transform="translate(197.7777777777778,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Friday</text></g><g class="tick" transform="translate(286.6666666666667,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Sunday</text></g><g class="tick" transform="translate(375.5555555555556,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Tuesday</text></g><path class="domain" d="M20,-175V0H420V-175"></path></g><g class="axis axisY" transform="translate(0,0)"><g class="tick" transform="translate(0,175)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">-10</text></g><g class="tick" transform="translate(0,162)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">-8</text></g><g class="tick" transform="translate(0,148)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">-6</text></g><g class="tick" transform="translate(0,135)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">-4</text></g><g class="tick" transform="translate(0,121)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">-2</text></g><g class="tick" transform="translate(0,108)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">0</text></g><g class="tick" transform="translate(0,94)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">2</text></g><g class="tick" transform="translate(0,81)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">4</text></g><g class="tick" transform="translate(0,67)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">6</text></g><g class="tick" transform="translate(0,54)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">8</text></g><g class="tick" transform="translate(0,40)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">10</text></g><g class="tick" transform="translate(0,27)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">12</text></g><g class="tick" transform="translate(0,13)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">14</text></g><g class="tick" transform="translate(0,0)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">16</text></g><path class="domain" d="M440,0H0V175H440"></path></g><g class="axisZero"><line x1="0" x2="1002" y1="108" y2="108"></line></g></g><g data-index="3" class=" main xchart-class-3 line                 color0"><path class="fill" d="M20,108C27.40740740740741,108,49.62962962962964,108,64.44444444444446,108S94.07407407407409,108,108.8888888888889,108S138.51851851851853,108,153.33333333333334,108S182.962962962963,108,197.7777777777778,108S227.40740740740742,108,242.22222222222223,108S271.85185185185185,108,286.6666666666667,108S316.2962962962963,108,331.11111111111114,108S360.74074074074076,108,375.5555555555556,108S412.5925925925926,108,420,108L420,155C415.3272201691196,151.42532342937648,382.5492632948472,128.3958459343009,375.5555555555556,121S343.9523064183025,66.0342460765715,331.11111111111114,61S301.3300001060288,68.4903764350377,286.6666666666667,67S251.56778188398306,39.85064685875297,242.22222222222223,47S211.571429926861,131.24692624656367,197.7777777777778,135S166.22446960449233,132.97979941846776,153.33333333333334,128S118.96056023986631,26.911684464608243,108.8888888888889,20S72.53830617668832,59.62446849649278,64.44444444444446,67S24.67277983088042,97.42532342937648,20,101Z" style="opacity: 1;"></path><path class="line" d="M20,101C24.67277983088042,97.42532342937648,56.35058271220059,74.37553150350722,64.44444444444446,67S98.81721753791149,13.088315535391756,108.8888888888889,20S140.44219706217436,123.02020058153224,153.33333333333334,128S183.9841256286946,138.75307375343633,197.7777777777778,135S232.8766625604614,54.14935314124703,242.22222222222223,47S272.00333322730455,65.5096235649623,286.6666666666667,67S318.2699158039198,55.965753923428494,331.11111111111114,61S368.561847816264,113.6041540656991,375.5555555555556,121S415.3272201691196,151.42532342937648,420,155" style="opacity: 1;"></path></g></g></svg></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<div class="box ui-draggable ui-droppable" style="top: 0px; left: 0px; opacity: 1; z-index: 1999;">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-search"></i>
+					<span>Plot with points</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content">
+				<div id="xchart-1" style="height: 200px; width: 100%;"><svg height="200" width="500" class="xchart"><g transform="translate(60,0)"><g class="scale"><g class="axis axisX" transform="translate(0,180)"><g class="tick" transform="translate(20,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Monday</text></g><g class="tick" transform="translate(140,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Thursday</text></g><g class="tick" transform="translate(260,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Sunday</text></g><g class="tick" transform="translate(380,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Wednesday</text></g><path class="domain" d="M20,-175V0H420V-175"></path></g><g class="axis axisY" transform="translate(0,0)"><g class="tick" transform="translate(0,175)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">0</text></g><g class="tick" transform="translate(0,156)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">2</text></g><g class="tick" transform="translate(0,136)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">4</text></g><g class="tick" transform="translate(0,117)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">6</text></g><g class="tick" transform="translate(0,97)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">8</text></g><g class="tick" transform="translate(0,78)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">10</text></g><g class="tick" transform="translate(0,58)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">12</text></g><g class="tick" transform="translate(0,39)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">14</text></g><g class="tick" transform="translate(0,19)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">16</text></g><g class="tick" transform="translate(0,0)" style="opacity: 1;"><line x2="440" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">18</text></g><path class="domain" d="M440,0H0V175H440"></path></g><g class="axisZero"><line x1="0" x2="440" y1="175" y2="175"></line></g></g><g data-index="3" class=" main xchart-class-1 line                 color0"><path class="fill" d="M20,175C26.666666666666668,175,46.666666666666664,175,60,175S86.66666666666667,175,100,175S126.66666666666667,175,140,175S166.66666666666666,175,180,175S206.66666666666666,175,220,175S246.66666666666666,175,260,175S286.6666666666667,175,300,175S326.6666666666667,175,340,175S366.6666666666667,175,380,175S413.3333333333333,175,420,175L420,156C418.28620394173095,153.0865467009426,392.54901960784315,91.13725490196079,380,88S347.64567093749065,142.5943911835857,340,136S312.62140708968104,21.99758418379924,300,19S267.64567093749065,110.4056088164143,260,117S232.62140708968101,85.00241581620077,220,88S189.61058443075484,130.01854594243753,180,136S151.34615873154127,150.74834691858337,140,146S111.78474428025595,101.27196980159279,100,97S73.33333333333333,117,60,117S26.666666666666668,117,20,117Z" style="opacity: 1;"></path><path class="line" d="M20,117C26.666666666666668,117,46.666666666666664,117,60,117S88.21525571974405,92.72803019840721,100,97S128.65384126845873,141.25165308141663,140,146S170.38941556924516,141.98145405756247,180,136S207.37859291031899,90.99758418379923,220,88S252.35432906250932,123.5943911835857,260,117S287.37859291031896,16.00241581620076,300,19S332.35432906250935,129.4056088164143,340,136S367.45098039215685,84.86274509803921,380,88S418.28620394173095,153.0865467009426,420,156" style="opacity: 1;"></path><circle cx="20" cy="117" r="5" style="opacity: 1;"></circle><circle cx="60" cy="117" r="5" style="opacity: 1;"></circle><circle cx="100" cy="97" r="5" style="opacity: 1;"></circle><circle cx="140" cy="146" r="5" style="opacity: 1;"></circle><circle cx="180" cy="136" r="5" style="opacity: 1;"></circle><circle cx="220" cy="88" r="5" style="opacity: 1;"></circle><circle cx="260" cy="117" r="5" style="opacity: 1;"></circle><circle cx="300" cy="19" r="5" style="opacity: 1;"></circle><circle cx="340" cy="136" r="5" style="opacity: 1;"></circle><circle cx="380" cy="88" r="5" style="opacity: 1;"></circle><circle cx="420" cy="156" r="5" style="opacity: 1;"></circle></g></g></svg></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box ui-draggable ui-droppable" style="top: 0px; left: 0px; opacity: 1; z-index: 1999;">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-search"></i>
+					<span>Company cost (billions of dollars)</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content">
+				<div id="xchart-2" style="height: 200px;"><svg height="200" width="1062" class="xchart"><g transform="translate(60,0)"><g class="scale"><g class="axis axisX" transform="translate(0,180)"><g class="tick" transform="translate(134.5,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Apple</text></g><g class="tick" transform="translate(317.5,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Cisco</text></g><g class="tick" transform="translate(500.5,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Facebook</text></g><g class="tick" transform="translate(683.5,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Google</text></g><g class="tick" transform="translate(866.5,0)" style="opacity: 1;"><line y2="-175" x2="0"></line><text y="3" x="0" dy=".71em" style="text-anchor: middle;">Microsoft</text></g><path class="domain" d="M20,-175V0H982V-175"></path></g><g class="axis axisY" transform="translate(0,0)"><g class="tick" transform="translate(0,175)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">50</text></g><g class="tick" transform="translate(0,160)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">100</text></g><g class="tick" transform="translate(0,146)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">150</text></g><g class="tick" transform="translate(0,131)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">200</text></g><g class="tick" transform="translate(0,117)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">250</text></g><g class="tick" transform="translate(0,102)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">300</text></g><g class="tick" transform="translate(0,88)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">350</text></g><g class="tick" transform="translate(0,73)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">400</text></g><g class="tick" transform="translate(0,58)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">450</text></g><g class="tick" transform="translate(0,44)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">500</text></g><g class="tick" transform="translate(0,29)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">550</text></g><g class="tick" transform="translate(0,15)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">600</text></g><g class="tick" transform="translate(0,0)" style="opacity: 1;"><line x2="1002" y2="0"></line><text x="-3" dy=".32em" y="0" style="text-anchor: end;">650</text></g><path class="domain" d="M1002,0H0V175H1002"></path></g><g class="axisZero"><line x1="0" x2="440" y1="175" y2="175"></line></g></g><g data-index="2" class=" main xchart-class-2 bar                 color0" transform="translate(11,0)" style="opacity: 1;"><rect width="116" rx="3" ry="3" x="66" height="153" y="22"></rect><rect width="116" rx="3" ry="3" x="249" height="21" y="154"></rect><rect width="116" rx="3" ry="3" x="432" height="33" y="142"></rect><rect width="116" rx="3" ry="3" x="615" height="100" y="75"></rect><rect width="116" rx="3" ry="3" x="798" height="74" y="101"></rect></g></g></svg></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    // Draw all test xCharts
+    function DrawAllxCharts() {
+        xGraph1();
+        xGraph2();
+        xGraph3();
+    }
+    $(document).ready(function () {
+        // Load required scripts and callback to draw
+        LoadXChartScript(DrawAllxCharts);
+        // Required for correctly resize charts, when boxes expand
+        var graphxChartsResize;
+        $(".box").resize(function (event) {
+            event.preventDefault();
+            clearTimeout(graphxChartsResize);
+            graphxChartsResize = setTimeout(DrawAllxCharts, 500);
+        });
+        WinMove();
+    });
+</script>
+
+</body>
+</html>

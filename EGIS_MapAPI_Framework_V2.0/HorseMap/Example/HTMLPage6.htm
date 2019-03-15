@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>天津监测站门户嵌入地图测试</title>
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    </style>
+    
+</head>
+<body>
+    <!--<input type="button" value="居中" onclick="centerPoint()" />
+    <!--<input type="button" value="缩放居中" onclick="centerZoomPoint()" />-->
+    <!--<input type="button" value="获取范围" onclick="getMapExtent()" />-->
+    <!--<input type="button" value="图片符号点位" onclick="addPicGraphics()" />-->
+    <!--<input type="button" value="信息窗口符号点位" onclick="addInfoGraphics()" />-->
+    <!--<input type="button" value="简单点位图形" onclick="addSimpleGraphics()" />-->
+    <!--<input type="button" value="文本点位图形" onclick="addTextGraphics()" />-->
+    <!--<input type="button" value="线状图形" onclick="addPolylineGra()" />-->
+    <!--<input type="button" value="面状图形" onclick="addPolygonGra()" />-->
+    <!--<input type="button" value="移除图形" onclick="removeGraphic()" />-->
+    <!--<input type="button" value="添加专题图" onclick="addSpecialLayer()" />-->
+    <!--<input type="button" value="移除专题图" onclick="removeSpecialLayer()" />-->
+    <!--<input type="button" value="添加图片" onclick="addImage()" />-->
+    <!--<input type="button" value="移除图片" onclick="removeImage()" />-->
+    <input type="button" value="添加图例" onclick="addLegend()" />
+    <input type="button" value="移除图例" onclick="removeLegend()" />
+    <input type="button" value="添加气泡窗口" onclick="showInfoWindow()" />
+    <input type="button" value="隐藏气泡窗口" onclick="hideInfoWindow()" />
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://localhost/EGIS_Map_API_2.0/EGIS_MapAPI_Framework_V2.0/API-2.0/MapAPI.js"></script>
+<!--<script type="text/javascript" src="http://localhost/EGIS_Map_API_2.0/EGIS_MapAPI_Framework_V2.0/API-2.0/swfobject.js"></script>
+<script type="text/javascript" src="http://localhost/EGIS_Map_API_2.0/EGIS_MapAPI_Framework_V2.0/API-2.0/horseMap.js"></script>-->
+<!--<script type="text/javascript" src="http://localhost/tjProject/tjMapAPI/swfobject.js"></script>
+<script type="text/javascript" src="http://localhost/tjProject/tjMapAPI/tjMapJScript.js"></script>-->
+<script type="text/javascript">
+
+    var hmap;
+
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //监听地图加载完成事件
+        hmap.addEventListener("Load", onHMapLoad);
+        //添加底图
+        hmap.addBaseMap([new HMap.DynamicLayer("http://yutu-pc:8399/arcgis/rest/services/tj/tjSpecial/MapServer")]);
+        //设置地图显示范围
+        //hmap.extentTo(new HMap.Extent(116.34962476087209, 38.706922916276916, 118.40852477999691, 40.10794955650979);
+
+    }
+
+    //添加图片符号点位图形
+    function addPicGraphics() {
+        var picGra1 = new HMap.PictureGraphic(117.1652, 39.1820, "pic/water_3.png");
+        picGra1.addEventListener("mouseClick", onInfoGraClick);
+        var picGra2 = new HMap.PictureGraphic(117.4352, 39.1820, "pic/water_3.png");
+        var picGra3 = new HMap.PictureGraphic(117.4352, 39.5820, "pic/water_3.png");
+        var picGraphics = [picGra1, picGra2, picGra3];
+        graLayerId = hmap.addGraphic(picGraphics);
+    }
+
+    //添加信息窗口符号点位图形
+    function addInfoGraphics() {
+        var infoGra1 = new HMap.InfoGraphic(117.4352, 39.1820, "河西区：30");
+        infoGra1.addEventListener("mouseClick", onInfoGraClick);
+        var infoGra2 = new HMap.InfoGraphic(117.1652, 39.1820, "河东区：120\n空气质量：良", { backgroundColor: 0x00ff00, placement: "upperLeft", borderColor: 0xff0000 });
+        infoGra2.addEventListener("mouseClick", onInfoGraClick);
+        var infoGraphics = [infoGra1, infoGra2];
+        graLayerId = hmap.addGraphic(infoGraphics);
+    }
+
+    //添加简单点位图形
+    function addSimpleGraphics() {
+        var simpleGra1 = new HMap.SimpleGraphic(117.1652, 39.1820, { style: "square", size: 10, color: 0xff0000 });
+        simpleGra1.addEventListener("mouseClick", onInfoGraClick);
+        var simpleGra2 = new HMap.SimpleGraphic(117.4352, 39.1820);
+        var simpleGra3 = new HMap.SimpleGraphic(117.4352, 39.5820);
+        var simpleGraphics = [simpleGra1, simpleGra2, simpleGra3];
+        graLayerId = hmap.addGraphic(simpleGraphics);
+    }
+
+    //添加文本点位图形
+    function addTextGraphics() {
+        var textGra1 = new HMap.TextGraphic(117.1652, 39.1820, "测试1",{color: 0xff0000 });
+        textGra1.addEventListener("mouseClick", onInfoGraClick);
+        var textGra2 = new HMap.TextGraphic(117.4352, 39.1820, "text2");
+        var textGra3 = new HMap.TextGraphic(117.4352, 39.5820, "text3");
+        var textGraphics = [textGra1, textGra2, textGra3];
+        graLayerId = hmap.addGraphic(textGraphics);
+    }
+
+    //添加线状图形
+    function addPolylineGra() {
+        var point1 = new HMap.PictureGraphic(117.1652, 39.1820);
+        var point2 = new HMap.PictureGraphic(117.4352, 39.1820);
+        var point3 = new HMap.PictureGraphic(117.4352, 39.5820);
+        var polylineGra = new HMap.PolylineGraphic([point1, point2, point3]);
+        polylineGra.addEventListener("mouseClick", onInfoGraClick);
+        graLayerId = hmap.addGraphic([polylineGra]);
+    }
+
+    //添加面状图形
+    function addPolygonGra() {
+        var point1 = new HMap.PictureGraphic(117.1652, 39.1820);
+        var point2 = new HMap.PictureGraphic(117.4352, 39.1820);
+        var point3 = new HMap.PictureGraphic(117.4352, 39.5820);
+        var polygonGra = new HMap.PolygonGraphic([point1, point2, point3]);
+        polygonGra.addEventListener("mouseClick", onInfoGraClick);
+        graLayerId = hmap.addGraphic([polygonGra]);
+    }
+
+    //移除图形
+    function removeGraphic() {
+        hmap.removeGraphic(graLayerId);
+    }
+
+    //添加气泡窗口
+    function showInfoWindow(e) {
+   
+        var infoWindow = new HMap.IframeInfoWindow("http://mail.126.com/", 200, 200);
+        //        var field = new HMap.PopFieldOption("名称","数值","单位",true);
+        //        var link = new HMap.PopLinkOption("名称","callbackName",true);
+        //        var infoWindow = new HMap.PopInfoWindow("test",{fields:[field],links:[link],titleTextColor:0xff0000,titleBgColor:0x00ff00});
+        hmap.showInfoWindow(117.4352, 39.1820, infoWindow);
+    }
+
+    //隐藏气泡窗口
+    function hideInfoWindow(e) {
+        hmap.hideInfoWindow();
+    }
+
+    function onInfoGraClick(e) {
+        alert(e.type);
+    }
+
+    //添加专题图
+    function addSpecialLayer() {
+        layerId = hmap.addSpecialLayer(new HMap.DynamicLayer("http://yutu-pc:8399/arcgis/rest/services/tj/tjSpecial/MapServer", { visibleLayers: [6] }));
+//        layerId = hmap.addSpecialLayer(new HMap.FeatureLayerByName("http://yutu-pc:8399/arcgis/rest/services/tj/tjSpecial/MapServer", "所有水系"));
+    }
+
+    //移除专题图
+    function removeSpecialLayer() {
+        hmap.removeSpecialLayer(layerId);
+    }
+
+    //获取地图当前显示范围
+    function getMapExtent() {
+
+        var extentObj = hmap.getExtent();
+        alert(extentObj.xmax);
+    }
+
+    //地图居中
+    function centerPoint() {
+        hmap.centerAt(117.5352, 39.1820);
+    }
+
+    //地图缩放居中
+    function centerZoomPoint() {
+        hmap.centerAndLevel(117.1652, 39.1820, 3);
+    }
+
+    //添加图片
+    function addImage() {
+        image = hmap.addControl(new HMap.Image("pic/AQI.png", { right: 0, bottom: 30 }));
+    }
+    //移除图片
+    function removeImage() {
+        hmap.removeControl(image);
+    }
+
+    //添加图片
+    function addLegend() {
+        var name = "图例";
+        var layerUrl = "http://yutu-pc:8399/arcgis/rest/services/tj/tjSpecial/MapServer/6";
+        var legendSymbols = [0xff0000, 0x00ff00, 0x0000ff];
+        var legendLabels = [1,2,3];
+        legend = hmap.addControl(new HMap.Legend(name,layerUrl,legendSymbols,legendLabels, { right: 0, bottom: 30 }));
+    }
+    //移除图片
+    function removeLegend() {
+        hmap.removeControl(legend);
+    }
+
+    //地图加载完成
+    function onHMapLoad() {
+    }
+
+    function draw() {
+        var uDraw = new HMap.DrawPicturePoint(picUrl, drawNum, function (e) { e.DrawPicturePoint }, drawOption);
+        uDraw.clear();
+    }
+
+    draw = new HMap.draw();
+    draw.picPioint()
+
+    creatHMap();
+
+</script>
+</html>

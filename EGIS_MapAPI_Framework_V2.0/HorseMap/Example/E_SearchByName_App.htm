@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>按图层名称查询</title>
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style="position: absolute; top: 0px; z-index: 10001">
+        <label>图层名称为要查询的图层名，输入属性查询条件，默认为“1=1”，绘制几何查询条件，点击查询可获取查询结果；点击“Graphic查询”是通过传入的Graphic图形为几何查询条件，并查询得到查询结果</label>
+    </div>
+    <div style="position: absolute; top: 40px; left: 100px; background-color: #BEBE9A;
+        padding: 2px; z-index: 10000">
+        <label for="layerName">
+            图层名称：</label>
+        <input type="text" id="layerName" value="省会" />
+        <label for="where">
+            属性查询条件：</label>
+        <input type="text" id="where" value="1=1" />
+        <button onclick="drawExtent()">
+            几何查询条件</button>
+        <button onclick="searchByName()">
+            按图层名称查询</button>
+        <button onclick="searchByGraphic()">
+            Graphic查询</button>
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://192.168.5.150:8585/HorseMap/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+    var graLayerId;
+
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781);
+    }
+
+    var drawResult;
+
+    //按Graphic查询
+    function searchByGraphic() {
+        hmap.removeDrawResult(drawId);
+        var extentGra = new HMap.ExtentGraphic(100, 33, 110, 38, { fillColor: 0xff0000, data: "addExtentGra!" });
+        hmap.addGraphic([extentGra]);
+
+        removeGraphic(); //移除之前查询结果
+        var dynamicLayerUrl = "http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaSpecial/MapServer";
+        toolSearchByName = new HMap.SearchByName(dynamicLayerUrl, layerName.value, where.value, onResult, { geometry: extentGra, onFault: onFault });
+        hmap.useTool(toolSearchByName);
+    }
+    //按图层名称查询
+    function searchByName() {
+        removeGraphic(); //移除之前查询结果
+        var dynamicLayerUrl = "http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaSpecial/MapServer";
+        toolSearchByName = new HMap.SearchByName(dynamicLayerUrl, layerName.value, where.value, onResult, { geometry: drawResult, onFault: onFault });
+        hmap.useTool(toolSearchByName);
+    }
+
+    //绘制范围图形
+    function drawExtent() {
+        drawId = hmap.addDraw(new HMap.DrawExtent(1, drawCompleted, { showTime: -1 }));
+    }
+    function drawCompleted(e) {
+        drawResult = e.result[0];
+    }
+
+    function onResult(e) {
+        drawResult = null;
+        var result = e.result;
+        var graphicArr = new Array();
+        for (var i = 0; i < result.length; i++) {
+            var graphic;
+            if (result[i].Geometry.type == "geometry_mapPoint") {
+                graphic = new HMap.SimpleGraphic(result[i].Geometry.x, result[i].Geometry.y, { data: result[i].Attributes });
+            }
+            if (result[i].Geometry.type == "geometry_polyline") {
+                graphic = new HMap.PolylineGraphic(result[i].Geometry.paths, { data: result[i].Attributes });
+            }
+            if (result[i].Geometry.type == "geometry_polygon") {
+                graphic = new HMap.PolygonGraphic(result[i].Geometry.rings, { data: result[i].Attributes });
+            }
+            if (result[i].Geometry.type == "geometry_extent") {
+                graphic = new HMap.ExtentGraphic(result[i].Geometry.xmin, result[i].Geometry.ymin, result[i].Geometry.xmax, result[i].Geometry.ymax, { data: result[i].Attributes });
+            }
+            graphicArr.push(graphic);
+        }
+        graLayerId = hmap.addGraphic(graphicArr);
+    }
+    function onFault(e) {
+        alert(e.error);
+    }
+    //移除图形
+    function removeGraphic() {
+        hmap.removeGraphic(graLayerId);
+    }
+
+    creatHMap();
+
+</script>
+</html>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JinchengDB2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_Moni_ImgFiles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="50" />
+          <Property Name="Cate" Type="int" />
+          <Property Name="FileDate" Type="datetime" />
+          <Property Name="FullFileName" Type="varchar" MaxLength="300" />
+          <Property Name="CreatedTime" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="JinchengDB2ModelStoreContainer">
+          <EntitySet Name="T_Moni_ImgFiles" EntityType="Self.T_Moni_ImgFiles" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JinchengDB2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_Moni_ImgFiles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cate" Type="Int32" />
+          <Property Name="FileDate" Type="DateTime" Precision="3" />
+          <Property Name="FullFileName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="JinchengDB2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_Moni_ImgFiles" EntityType="Self.T_Moni_ImgFiles" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JinchengDB2ModelStoreContainer" CdmEntityContainer="JinchengDB2Entities">
+          <EntitySetMapping Name="T_Moni_ImgFiles">
+            <EntityTypeMapping TypeName="JinchengDB2Model.T_Moni_ImgFiles">
+              <MappingFragment StoreEntitySet="T_Moni_ImgFiles">
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Cate" ColumnName="Cate" />
+                <ScalarProperty Name="FileDate" ColumnName="FileDate" />
+                <ScalarProperty Name="FullFileName" ColumnName="FullFileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

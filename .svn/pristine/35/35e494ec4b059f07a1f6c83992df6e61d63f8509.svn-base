@@ -1,0 +1,585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JinChDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_AppendProperty”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_AppendProperty">
+    <Key>
+      <PropertyRef Name="Property_ID" />
+    </Key>
+    <Property Name="Property_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Property_Function" Type="varchar" MaxLength="50" />
+    <Property Name="Property_FunctionUrl" Type="varchar" MaxLength="200" />
+    <Property Name="Property_Control_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Property_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Property_Control_Type" Type="int" />
+    <Property Name="Property_Control_DataSource" Type="varchar(max)" />
+    <Property Name="Property_Control_Length" Type="varchar" MaxLength="50" />
+    <Property Name="Property_Control_Maxlength" Type="int" />
+    <Property Name="Property_Control_Style" Type="varchar" MaxLength="50" />
+    <Property Name="Property_Control_Validator" Type="varchar" MaxLength="200" />
+    <Property Name="Property_Colspan" Type="int" />
+    <Property Name="Property_Event" Type="varchar" MaxLength="200" />
+    <Property Name="SortCode" Type="int" />
+    <Property Name="DeleteMark" Type="int" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyDate" Type="date" />
+    <Property Name="ModifyUserId" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_AppendPropertyInstance”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_AppendPropertyInstance">
+    <Key>
+      <PropertyRef Name="PropertyInstance_ID" />
+    </Key>
+    <Property Name="PropertyInstance_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Property_Control_ID" Type="varchar" MaxLength="50" />
+    <Property Name="PropertyInstance_Value" Type="varchar(max)" />
+    <Property Name="PropertyInstance_Key" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_Button”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_Button">
+    <Key>
+      <PropertyRef Name="Button_ID" />
+    </Key>
+    <Property Name="Button_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Button_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Button_Title" Type="varchar" MaxLength="50" />
+    <Property Name="Button_Img" Type="varchar" MaxLength="50" />
+    <Property Name="Button_Code" Type="varchar" MaxLength="200" />
+    <Property Name="SortCode" Type="int" />
+    <Property Name="Button_Type" Type="varchar" MaxLength="50" />
+    <Property Name="Button_Remak" Type="varchar" MaxLength="200" />
+    <Property Name="DeleteMark" Type="int" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyDate" Type="date" />
+    <Property Name="ModifyUserId" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_O_A_Setup”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_O_A_Setup">
+    <Key>
+      <PropertyRef Name="Setup_ID" />
+    </Key>
+    <Property Name="Setup_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Setup_IName" Type="varchar" MaxLength="50" />
+    <Property Name="NavigateUrl" Type="varchar" MaxLength="200" />
+    <Property Name="Target" Type="varchar" MaxLength="50" />
+    <Property Name="Setup_Img" Type="varchar" MaxLength="50" />
+    <Property Name="Setup_Remak" Type="varchar" MaxLength="200" />
+    <Property Name="SortCode" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_Organization”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_Organization">
+    <Key>
+      <PropertyRef Name="Organization_ID" />
+    </Key>
+    <Property Name="Organization_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Organization_Code" Type="varchar" MaxLength="20" />
+    <Property Name="Organization_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Organization_InnerPhone" Type="varchar" MaxLength="20" />
+    <Property Name="Organization_OuterPhone" Type="varchar" MaxLength="20" />
+    <Property Name="Organization_Manager" Type="varchar" MaxLength="50" />
+    <Property Name="Organization_AssistantManager" Type="varchar" MaxLength="50" />
+    <Property Name="Organization_Fax" Type="varchar" MaxLength="20" />
+    <Property Name="Organization_Zipcode" Type="varchar" MaxLength="20" />
+    <Property Name="Organization_Address" Type="varchar" MaxLength="200" />
+    <Property Name="ParentId" Type="varchar" MaxLength="50" />
+    <Property Name="Organization_Remark" Type="varchar" MaxLength="200" />
+    <Property Name="SortCode" Type="int" />
+    <Property Name="DeleteMark" Type="int" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyDate" Type="date" />
+    <Property Name="ModifyUserId" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_Recyclebin”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_Recyclebin">
+    <Key>
+      <PropertyRef Name="Recyclebin_ID" />
+    </Key>
+    <Property Name="Recyclebin_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Recyclebin_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Recyclebin_Database" Type="varchar" MaxLength="50" />
+    <Property Name="Recyclebin_Table" Type="varchar" MaxLength="50" />
+    <Property Name="Recyclebin_FieldKey" Type="varchar" MaxLength="50" />
+    <Property Name="Recyclebin_EventField" Type="varchar" MaxLength="50" />
+    <Property Name="Recyclebin_Remark" Type="varchar(max)" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_RoleRight”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_RoleRight">
+    <Key>
+      <PropertyRef Name="RoleRight_ID" />
+    </Key>
+    <Property Name="RoleRight_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Roles_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Id" Type="varchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_Roles”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_Roles">
+    <Key>
+      <PropertyRef Name="Roles_ID" />
+    </Key>
+    <Property Name="Roles_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentId" Type="varchar" MaxLength="50" />
+    <Property Name="Roles_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Role_Restriction" Type="varchar" MaxLength="200" />
+    <Property Name="Roles_Remark" Type="varchar" MaxLength="200" />
+    <Property Name="AllowEdit" Type="int" />
+    <Property Name="AllowDelete" Type="int" />
+    <Property Name="SortCode" Type="int" />
+    <Property Name="DeleteMark" Type="int" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyDate" Type="date" />
+    <Property Name="ModifyUserId" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_StaffOrganize”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_StaffOrganize">
+    <Key>
+      <PropertyRef Name="StaffOrganize_Id" />
+    </Key>
+    <Property Name="StaffOrganize_Id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Organization_ID" Type="varchar" MaxLength="50" />
+    <Property Name="User_ID" Type="varchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“JinChDataBase.RM.Base_SysLoginlog”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="Base_SysLoginlog">
+          <Property Name="SYS_LOGINLOG_ID" Type="varchar" MaxLength="50" />
+          <Property Name="SYS_LOGINLOG_IP" Type="varchar" MaxLength="50" />
+          <Property Name="SYS_LOGINLOG_TIME" Type="date" />
+          <Property Name="User_Account" Type="varchar" MaxLength="50" />
+          <Property Name="SYS_LOGINLOG_STATUS" Type="int" />
+          <Property Name="OWNER_address" Type="varchar" MaxLength="200" />
+        </EntityType>-->
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_SysMenu”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_SysMenu">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="Menu_Id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentId" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Title" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Img" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Type" Type="int" />
+    <Property Name="NavigateUrl" Type="varchar" MaxLength="200" />
+    <Property Name="Target" Type="varchar" MaxLength="50" />
+    <Property Name="AllowEdit" Type="int" />
+    <Property Name="AllowDelete" Type="int" />
+    <Property Name="SortCode" Type="int" />
+    <Property Name="DeleteMark" Type="int" />
+    <Property Name="CreateDate" Type="date" Nullable="false" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyDate" Type="date" />
+    <Property Name="ModifyUserId" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_UserGroup”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_UserGroup">
+    <Key>
+      <PropertyRef Name="UserGroup_ID" />
+    </Key>
+    <Property Name="UserGroup_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentId" Type="varchar" MaxLength="50" />
+    <Property Name="UserGroup_Code" Type="varchar" MaxLength="50" />
+    <Property Name="UserGroup_Name" Type="varchar" MaxLength="50" />
+    <Property Name="UserGroup_Remark" Type="varchar" MaxLength="200" />
+    <Property Name="AllowEdit" Type="int" />
+    <Property Name="AllowDelete" Type="int" />
+    <Property Name="SortCode" Type="int" />
+    <Property Name="DeleteMark" Type="int" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyDate" Type="date" />
+    <Property Name="ModifyUserId" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_UserGroupRight”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_UserGroupRight">
+    <Key>
+      <PropertyRef Name="UserGroupRight_ID" />
+    </Key>
+    <Property Name="UserGroupRight_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserGroup_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Id" Type="varchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_UserInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_UserInfo">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_Code" Type="varchar" MaxLength="50" />
+    <Property Name="User_Account" Type="varchar" MaxLength="50" />
+    <Property Name="User_Pwd" Type="varchar" MaxLength="50" />
+    <Property Name="User_Name" Type="varchar" MaxLength="50" />
+    <Property Name="User_Sex" Type="int" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="20" />
+    <Property Name="Theme" Type="varchar" MaxLength="50" />
+    <Property Name="Question" Type="varchar" MaxLength="50" />
+    <Property Name="AnswerQuestion" Type="varchar" MaxLength="50" />
+    <Property Name="DeleteMark" Type="int" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyDate" Type="date" />
+    <Property Name="ModifyUserId" Type="varchar" MaxLength="50" />
+    <Property Name="ModifyUserName" Type="varchar" MaxLength="50" />
+    <Property Name="User_Remark" Type="varchar(max)" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_UserInfoUserGroup”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_UserInfoUserGroup">
+    <Key>
+      <PropertyRef Name="UserInfoUserGroup_ID" />
+    </Key>
+    <Property Name="UserInfoUserGroup_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_ID" Type="varchar" MaxLength="50" />
+    <Property Name="UserGroup_ID" Type="varchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_UserRight”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_UserRight">
+    <Key>
+      <PropertyRef Name="UserRight_ID" />
+    </Key>
+    <Property Name="UserRight_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Id" Type="varchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.Base_UserRole”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Base_UserRole">
+    <Key>
+      <PropertyRef Name="UserRole_ID" />
+    </Key>
+    <Property Name="UserRole_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Roles_ID" Type="varchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+    <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“JinChDataBase.RM.View_UserPermissionService”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="View_UserPermissionService">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+    </Key>
+    <Property Name="Menu_Id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Menu_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Title" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Img" Type="varchar" MaxLength="50" />
+    <Property Name="Target" Type="varchar" MaxLength="50" />
+    <Property Name="ParentId" Type="varchar" MaxLength="50" />
+    <Property Name="NavigateUrl" Type="varchar" MaxLength="200" />
+    <Property Name="SortCode" Type="int" />
+    <Property Name="User_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Menu_Type" Type="int" />
+  </EntityType>
+  <EntityContainer Name="JinChDataBaseModelStoreContainer">
+    <EntitySet Name="Base_AppendProperty" EntityType="Self.Base_AppendProperty" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_AppendProperty].[Property_ID] AS [Property_ID], 
+    [Base_AppendProperty].[Property_Function] AS [Property_Function], 
+    [Base_AppendProperty].[Property_FunctionUrl] AS [Property_FunctionUrl], 
+    [Base_AppendProperty].[Property_Control_ID] AS [Property_Control_ID], 
+    [Base_AppendProperty].[Property_Name] AS [Property_Name], 
+    [Base_AppendProperty].[Property_Control_Type] AS [Property_Control_Type], 
+    [Base_AppendProperty].[Property_Control_DataSource] AS [Property_Control_DataSource], 
+    [Base_AppendProperty].[Property_Control_Length] AS [Property_Control_Length], 
+    [Base_AppendProperty].[Property_Control_Maxlength] AS [Property_Control_Maxlength], 
+    [Base_AppendProperty].[Property_Control_Style] AS [Property_Control_Style], 
+    [Base_AppendProperty].[Property_Control_Validator] AS [Property_Control_Validator], 
+    [Base_AppendProperty].[Property_Colspan] AS [Property_Colspan], 
+    [Base_AppendProperty].[Property_Event] AS [Property_Event], 
+    [Base_AppendProperty].[SortCode] AS [SortCode], 
+    [Base_AppendProperty].[DeleteMark] AS [DeleteMark], 
+    [Base_AppendProperty].[CreateDate] AS [CreateDate], 
+    [Base_AppendProperty].[CreateUserId] AS [CreateUserId], 
+    [Base_AppendProperty].[CreateUserName] AS [CreateUserName], 
+    [Base_AppendProperty].[ModifyDate] AS [ModifyDate], 
+    [Base_AppendProperty].[ModifyUserId] AS [ModifyUserId], 
+    [Base_AppendProperty].[ModifyUserName] AS [ModifyUserName]
+    FROM [RM].[Base_AppendProperty] AS [Base_AppendProperty]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_AppendPropertyInstance" EntityType="Self.Base_AppendPropertyInstance" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_AppendPropertyInstance].[PropertyInstance_ID] AS [PropertyInstance_ID], 
+    [Base_AppendPropertyInstance].[Property_Control_ID] AS [Property_Control_ID], 
+    [Base_AppendPropertyInstance].[PropertyInstance_Value] AS [PropertyInstance_Value], 
+    [Base_AppendPropertyInstance].[PropertyInstance_Key] AS [PropertyInstance_Key]
+    FROM [RM].[Base_AppendPropertyInstance] AS [Base_AppendPropertyInstance]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_Button" EntityType="Self.Base_Button" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_Button].[Button_ID] AS [Button_ID], 
+    [Base_Button].[Button_Name] AS [Button_Name], 
+    [Base_Button].[Button_Title] AS [Button_Title], 
+    [Base_Button].[Button_Img] AS [Button_Img], 
+    [Base_Button].[Button_Code] AS [Button_Code], 
+    [Base_Button].[SortCode] AS [SortCode], 
+    [Base_Button].[Button_Type] AS [Button_Type], 
+    [Base_Button].[Button_Remak] AS [Button_Remak], 
+    [Base_Button].[DeleteMark] AS [DeleteMark], 
+    [Base_Button].[CreateDate] AS [CreateDate], 
+    [Base_Button].[CreateUserId] AS [CreateUserId], 
+    [Base_Button].[CreateUserName] AS [CreateUserName], 
+    [Base_Button].[ModifyDate] AS [ModifyDate], 
+    [Base_Button].[ModifyUserId] AS [ModifyUserId], 
+    [Base_Button].[ModifyUserName] AS [ModifyUserName]
+    FROM [RM].[Base_Button] AS [Base_Button]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_O_A_Setup" EntityType="Self.Base_O_A_Setup" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_O_A_Setup].[Setup_ID] AS [Setup_ID], 
+    [Base_O_A_Setup].[User_ID] AS [User_ID], 
+    [Base_O_A_Setup].[Setup_IName] AS [Setup_IName], 
+    [Base_O_A_Setup].[NavigateUrl] AS [NavigateUrl], 
+    [Base_O_A_Setup].[Target] AS [Target], 
+    [Base_O_A_Setup].[Setup_Img] AS [Setup_Img], 
+    [Base_O_A_Setup].[Setup_Remak] AS [Setup_Remak], 
+    [Base_O_A_Setup].[SortCode] AS [SortCode]
+    FROM [RM].[Base_O_A_Setup] AS [Base_O_A_Setup]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_Organization" EntityType="Self.Base_Organization" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_Organization].[Organization_ID] AS [Organization_ID], 
+    [Base_Organization].[Organization_Code] AS [Organization_Code], 
+    [Base_Organization].[Organization_Name] AS [Organization_Name], 
+    [Base_Organization].[Organization_InnerPhone] AS [Organization_InnerPhone], 
+    [Base_Organization].[Organization_OuterPhone] AS [Organization_OuterPhone], 
+    [Base_Organization].[Organization_Manager] AS [Organization_Manager], 
+    [Base_Organization].[Organization_AssistantManager] AS [Organization_AssistantManager], 
+    [Base_Organization].[Organization_Fax] AS [Organization_Fax], 
+    [Base_Organization].[Organization_Zipcode] AS [Organization_Zipcode], 
+    [Base_Organization].[Organization_Address] AS [Organization_Address], 
+    [Base_Organization].[ParentId] AS [ParentId], 
+    [Base_Organization].[Organization_Remark] AS [Organization_Remark], 
+    [Base_Organization].[SortCode] AS [SortCode], 
+    [Base_Organization].[DeleteMark] AS [DeleteMark], 
+    [Base_Organization].[CreateDate] AS [CreateDate], 
+    [Base_Organization].[CreateUserId] AS [CreateUserId], 
+    [Base_Organization].[CreateUserName] AS [CreateUserName], 
+    [Base_Organization].[ModifyDate] AS [ModifyDate], 
+    [Base_Organization].[ModifyUserId] AS [ModifyUserId], 
+    [Base_Organization].[ModifyUserName] AS [ModifyUserName]
+    FROM [RM].[Base_Organization] AS [Base_Organization]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_Recyclebin" EntityType="Self.Base_Recyclebin" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_Recyclebin].[Recyclebin_ID] AS [Recyclebin_ID], 
+    [Base_Recyclebin].[Recyclebin_Name] AS [Recyclebin_Name], 
+    [Base_Recyclebin].[Recyclebin_Database] AS [Recyclebin_Database], 
+    [Base_Recyclebin].[Recyclebin_Table] AS [Recyclebin_Table], 
+    [Base_Recyclebin].[Recyclebin_FieldKey] AS [Recyclebin_FieldKey], 
+    [Base_Recyclebin].[Recyclebin_EventField] AS [Recyclebin_EventField], 
+    [Base_Recyclebin].[Recyclebin_Remark] AS [Recyclebin_Remark], 
+    [Base_Recyclebin].[CreateDate] AS [CreateDate], 
+    [Base_Recyclebin].[CreateUserId] AS [CreateUserId], 
+    [Base_Recyclebin].[CreateUserName] AS [CreateUserName]
+    FROM [RM].[Base_Recyclebin] AS [Base_Recyclebin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_RoleRight" EntityType="Self.Base_RoleRight" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_RoleRight].[RoleRight_ID] AS [RoleRight_ID], 
+    [Base_RoleRight].[Roles_ID] AS [Roles_ID], 
+    [Base_RoleRight].[Menu_Id] AS [Menu_Id], 
+    [Base_RoleRight].[CreateDate] AS [CreateDate], 
+    [Base_RoleRight].[CreateUserId] AS [CreateUserId], 
+    [Base_RoleRight].[CreateUserName] AS [CreateUserName]
+    FROM [RM].[Base_RoleRight] AS [Base_RoleRight]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_Roles" EntityType="Self.Base_Roles" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_Roles].[Roles_ID] AS [Roles_ID], 
+    [Base_Roles].[ParentId] AS [ParentId], 
+    [Base_Roles].[Roles_Name] AS [Roles_Name], 
+    [Base_Roles].[Role_Restriction] AS [Role_Restriction], 
+    [Base_Roles].[Roles_Remark] AS [Roles_Remark], 
+    [Base_Roles].[AllowEdit] AS [AllowEdit], 
+    [Base_Roles].[AllowDelete] AS [AllowDelete], 
+    [Base_Roles].[SortCode] AS [SortCode], 
+    [Base_Roles].[DeleteMark] AS [DeleteMark], 
+    [Base_Roles].[CreateDate] AS [CreateDate], 
+    [Base_Roles].[CreateUserId] AS [CreateUserId], 
+    [Base_Roles].[CreateUserName] AS [CreateUserName], 
+    [Base_Roles].[ModifyDate] AS [ModifyDate], 
+    [Base_Roles].[ModifyUserId] AS [ModifyUserId], 
+    [Base_Roles].[ModifyUserName] AS [ModifyUserName]
+    FROM [RM].[Base_Roles] AS [Base_Roles]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_StaffOrganize" EntityType="Self.Base_StaffOrganize" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_StaffOrganize].[StaffOrganize_Id] AS [StaffOrganize_Id], 
+    [Base_StaffOrganize].[Organization_ID] AS [Organization_ID], 
+    [Base_StaffOrganize].[User_ID] AS [User_ID], 
+    [Base_StaffOrganize].[CreateDate] AS [CreateDate], 
+    [Base_StaffOrganize].[CreateUserId] AS [CreateUserId], 
+    [Base_StaffOrganize].[CreateUserName] AS [CreateUserName]
+    FROM [RM].[Base_StaffOrganize] AS [Base_StaffOrganize]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_SysMenu" EntityType="Self.Base_SysMenu" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_SysMenu].[Menu_Id] AS [Menu_Id], 
+    [Base_SysMenu].[ParentId] AS [ParentId], 
+    [Base_SysMenu].[Menu_Name] AS [Menu_Name], 
+    [Base_SysMenu].[Menu_Title] AS [Menu_Title], 
+    [Base_SysMenu].[Menu_Img] AS [Menu_Img], 
+    [Base_SysMenu].[Menu_Type] AS [Menu_Type], 
+    [Base_SysMenu].[NavigateUrl] AS [NavigateUrl], 
+    [Base_SysMenu].[Target] AS [Target], 
+    [Base_SysMenu].[AllowEdit] AS [AllowEdit], 
+    [Base_SysMenu].[AllowDelete] AS [AllowDelete], 
+    [Base_SysMenu].[SortCode] AS [SortCode], 
+    [Base_SysMenu].[DeleteMark] AS [DeleteMark], 
+    [Base_SysMenu].[CreateDate] AS [CreateDate], 
+    [Base_SysMenu].[CreateUserId] AS [CreateUserId], 
+    [Base_SysMenu].[CreateUserName] AS [CreateUserName], 
+    [Base_SysMenu].[ModifyDate] AS [ModifyDate], 
+    [Base_SysMenu].[ModifyUserId] AS [ModifyUserId], 
+    [Base_SysMenu].[ModifyUserName] AS [ModifyUserName]
+    FROM [RM].[Base_SysMenu] AS [Base_SysMenu]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_UserGroup" EntityType="Self.Base_UserGroup" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_UserGroup].[UserGroup_ID] AS [UserGroup_ID], 
+    [Base_UserGroup].[ParentId] AS [ParentId], 
+    [Base_UserGroup].[UserGroup_Code] AS [UserGroup_Code], 
+    [Base_UserGroup].[UserGroup_Name] AS [UserGroup_Name], 
+    [Base_UserGroup].[UserGroup_Remark] AS [UserGroup_Remark], 
+    [Base_UserGroup].[AllowEdit] AS [AllowEdit], 
+    [Base_UserGroup].[AllowDelete] AS [AllowDelete], 
+    [Base_UserGroup].[SortCode] AS [SortCode], 
+    [Base_UserGroup].[DeleteMark] AS [DeleteMark], 
+    [Base_UserGroup].[CreateDate] AS [CreateDate], 
+    [Base_UserGroup].[CreateUserId] AS [CreateUserId], 
+    [Base_UserGroup].[CreateUserName] AS [CreateUserName], 
+    [Base_UserGroup].[ModifyDate] AS [ModifyDate], 
+    [Base_UserGroup].[ModifyUserId] AS [ModifyUserId], 
+    [Base_UserGroup].[ModifyUserName] AS [ModifyUserName]
+    FROM [RM].[Base_UserGroup] AS [Base_UserGroup]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_UserGroupRight" EntityType="Self.Base_UserGroupRight" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_UserGroupRight].[UserGroupRight_ID] AS [UserGroupRight_ID], 
+    [Base_UserGroupRight].[UserGroup_ID] AS [UserGroup_ID], 
+    [Base_UserGroupRight].[Menu_Id] AS [Menu_Id], 
+    [Base_UserGroupRight].[CreateDate] AS [CreateDate], 
+    [Base_UserGroupRight].[CreateUserId] AS [CreateUserId], 
+    [Base_UserGroupRight].[CreateUserName] AS [CreateUserName]
+    FROM [RM].[Base_UserGroupRight] AS [Base_UserGroupRight]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_UserInfo" EntityType="Self.Base_UserInfo" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_UserInfo].[User_ID] AS [User_ID], 
+    [Base_UserInfo].[User_Code] AS [User_Code], 
+    [Base_UserInfo].[User_Account] AS [User_Account], 
+    [Base_UserInfo].[User_Pwd] AS [User_Pwd], 
+    [Base_UserInfo].[User_Name] AS [User_Name], 
+    [Base_UserInfo].[User_Sex] AS [User_Sex], 
+    [Base_UserInfo].[Title] AS [Title], 
+    [Base_UserInfo].[Email] AS [Email], 
+    [Base_UserInfo].[Theme] AS [Theme], 
+    [Base_UserInfo].[Question] AS [Question], 
+    [Base_UserInfo].[AnswerQuestion] AS [AnswerQuestion], 
+    [Base_UserInfo].[DeleteMark] AS [DeleteMark], 
+    [Base_UserInfo].[CreateDate] AS [CreateDate], 
+    [Base_UserInfo].[CreateUserId] AS [CreateUserId], 
+    [Base_UserInfo].[CreateUserName] AS [CreateUserName], 
+    [Base_UserInfo].[ModifyDate] AS [ModifyDate], 
+    [Base_UserInfo].[ModifyUserId] AS [ModifyUserId], 
+    [Base_UserInfo].[ModifyUserName] AS [ModifyUserName], 
+    [Base_UserInfo].[User_Remark] AS [User_Remark]
+    FROM [RM].[Base_UserInfo] AS [Base_UserInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_UserInfoUserGroup" EntityType="Self.Base_UserInfoUserGroup" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_UserInfoUserGroup].[UserInfoUserGroup_ID] AS [UserInfoUserGroup_ID], 
+    [Base_UserInfoUserGroup].[User_ID] AS [User_ID], 
+    [Base_UserInfoUserGroup].[UserGroup_ID] AS [UserGroup_ID], 
+    [Base_UserInfoUserGroup].[CreateDate] AS [CreateDate], 
+    [Base_UserInfoUserGroup].[CreateUserId] AS [CreateUserId], 
+    [Base_UserInfoUserGroup].[CreateUserName] AS [CreateUserName]
+    FROM [RM].[Base_UserInfoUserGroup] AS [Base_UserInfoUserGroup]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_UserRight" EntityType="Self.Base_UserRight" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_UserRight].[UserRight_ID] AS [UserRight_ID], 
+    [Base_UserRight].[User_ID] AS [User_ID], 
+    [Base_UserRight].[Menu_Id] AS [Menu_Id], 
+    [Base_UserRight].[CreateDate] AS [CreateDate], 
+    [Base_UserRight].[CreateUserId] AS [CreateUserId], 
+    [Base_UserRight].[CreateUserName] AS [CreateUserName]
+    FROM [RM].[Base_UserRight] AS [Base_UserRight]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Base_UserRole" EntityType="Self.Base_UserRole" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [Base_UserRole].[UserRole_ID] AS [UserRole_ID], 
+    [Base_UserRole].[User_ID] AS [User_ID], 
+    [Base_UserRole].[Roles_ID] AS [Roles_ID], 
+    [Base_UserRole].[CreateDate] AS [CreateDate], 
+    [Base_UserRole].[CreateUserId] AS [CreateUserId], 
+    [Base_UserRole].[CreateUserName] AS [CreateUserName]
+    FROM [RM].[Base_UserRole] AS [Base_UserRole]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_UserPermissionService" EntityType="Self.View_UserPermissionService" store:Type="Tables" store:Schema="RM">
+      <DefiningQuery>SELECT 
+    [View_UserPermissionService].[Menu_Id] AS [Menu_Id], 
+    [View_UserPermissionService].[Menu_Name] AS [Menu_Name], 
+    [View_UserPermissionService].[Menu_Title] AS [Menu_Title], 
+    [View_UserPermissionService].[Menu_Img] AS [Menu_Img], 
+    [View_UserPermissionService].[Target] AS [Target], 
+    [View_UserPermissionService].[ParentId] AS [ParentId], 
+    [View_UserPermissionService].[NavigateUrl] AS [NavigateUrl], 
+    [View_UserPermissionService].[SortCode] AS [SortCode], 
+    [View_UserPermissionService].[User_ID] AS [User_ID], 
+    [View_UserPermissionService].[Menu_Type] AS [Menu_Type]
+    FROM [RM].[View_UserPermissionService] AS [View_UserPermissionService]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

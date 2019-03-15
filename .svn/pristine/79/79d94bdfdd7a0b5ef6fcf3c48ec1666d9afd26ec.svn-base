@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../Devoops/plugins/jquery-validation/lib/jquery.js"></script>
+     
+    <script src="../Devoops/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+       <script src="../Devoops/plugins/jquery-validation/lib/jquery.metadata.js"></script>
+
+     <script type="text/javascript">
+         $().ready(function () {
+             $.metadata({});
+             $.metadata.setType("class", "metadata")
+             $("#form1").validate();
+         });
+    </script>
+</head>
+<body>
+    <form id="form1">
+         <label for="test"></label>
+        <input type="text" id ="test" name="test" class="{required}"/>
+        <input type="submit" />
+        <div id="tip"></div>
+    </form>
+   
+</body>
+</html>

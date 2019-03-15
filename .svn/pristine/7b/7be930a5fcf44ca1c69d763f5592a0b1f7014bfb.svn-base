@@ -1,0 +1,562 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AirMonitorData.aspx.cs" Inherits="Devoops_MoniData_AirMonitorData" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/css.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../plugins/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <script src="../plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="../plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/method.js"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../../Controls/My97DatePicker/WdatePicker.js"></script>
+
+    <script src="../../API-2.0/MapAPI.js"></script>
+    <script src="../js/MapOperation.js"></script>
+    <script src="../plugins/data-tables/jquery.dataTables.js" type="text/javascript"></script>
+    <style>
+        div, body, html {
+            background-color: #fff;
+        }
+
+        .form-control {
+            width: 140px;
+            display: normal;
+        }
+
+        ul li {
+            float: left;
+            border: solid;
+            border-width: 1px;
+            border-color: #C7C7C7;
+            padding-left: 2px;
+            padding-right: 2px;
+            padding-top: 2px;
+            margin-left: 10px;
+            list-style: none;
+            cursor: pointer;
+        }
+
+            ul li:hover {
+                background-color: #0a50be;
+                color: white;
+            }
+
+        #dataPanel {
+            overflow: auto;
+            width: 100%;
+        }
+
+        .tab {
+            background-color: white;
+        }
+
+        .fileUpload input.upload {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+    </style>
+    <script type="text/javascript">
+        function getPara() {
+            debugger;
+            //if (!hasdata) {
+            //    $("#nodatatd").css("color", "red");
+            //    return false;
+            //}             
+            $("#BeginTime").val($("#txt_beginTime").val());              
+            $("#EndTime").val($("#txt_endTime").val());
+            $("#Station").val(getCheckItem("checkstation"));
+            $("#Items").val(getCheckItem("checkitem"));
+            $("#Type").val($("[name=datatype]:checked").val());
+            return true;
+        }                 
+        //function exportData() {
+        //    var beginTime = $("#txt_beginTime").val();
+        //    var endTime = $("#txt_endTime").val();
+        //    var station = getCheckItem("checkstation");
+        //    var items = getCheckItem("checkitem");
+
+        //    var dataType = $("[name=datatype]:checked").val();
+        //    $.post("../../Data/GetAirMonitorData.ashx", { flag: "export", type: dataType, begin: beginTime, end: endTime, station: station, item: items }, function (msg) {
+        //        //if (msg == "ok") {
+        //        //    $("#success").alert();
+        //        //} else {
+
+        //        //        $("#warning").alert();
+
+        //        //}
+        //    });
+        //};
+        var resultData;
+        $(function () {
+            getSatationList();
+            getItemList();
+            $("#txt_beginTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM-dd' }); });
+            $("#txt_endTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM-dd' }); });
+            $("#txt_beginTime").val(new Date().addDays(0).format("yyyy-MM-dd"));
+            $("#txt_endTime").val(new Date().addDays(1).format("yyyy-MM-dd"));
+            $("#chart").hide();
+            $("#dataPanel").height(400);
+
+            $("input:radio[name='datatype']").change(function () {
+                //setdatePicker($(this).val(),$("#txt_beginTime").val());
+            });
+
+            getPara();
+            var flag =<%=this.Flag%>;
+              switch (flag) {
+                  case -1:
+                      alert("只能上传dbf文件");
+                      break;
+                  case 0:
+                      //alert("请选择要上传的dbf文件");
+                      break;
+                  case 1:
+                      alert("导入成功！");
+                      break;
+                  case 2:
+                      alert("导入失败！");
+                      break;
+
+              }
+          })
+
+          //获取监测站点
+          function getSatationList() {
+
+              $.ajax({
+                  url: "../../Data/GetBaseData.ashx",
+                  data: { flag: "AirStation" },
+                  dataType: "json",
+                  success: function (result) {
+                      var content = "<b>监测站点：</b>";
+                      if (result && result.DataTable && result.DataTable.length > 0) {
+                          for (var i = 0; i < result.DataTable.length; i++) {
+                              content += "<div class=\"checkbox-inline\"><label><input type=\"checkbox\" name=\"checkstation\" "
+                              if (result.DataTable[i]["StationCode"] == "53") content += " checked='checked' ";
+                              content += "value=\""
+                              + result.DataTable[i]["StationCode"] + "\">"
+                              + result.DataTable[i]["StationName"]
+                              + "<i class='fa fa-square-o small'></i></label></div>";
+                          }
+                          $("#stationPanel").html();
+                          $("#stationPanel").append(content + "&nbsp;&nbsp;&nbsp;");
+                      }
+                  },
+                  error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  }
+              });
+          }
+
+          //获取监测项
+          function getItemList() {
+
+              $.ajax({
+                  url: "../../Data/GetBaseData.ashx",
+                  data: { flag: "Pollute", type: "air" },
+                  dataType: "json",
+                  success: function (result) {
+                      var content = "<b>监&nbsp;&nbsp;测&nbsp;&nbsp;项：</b>";
+                      if (result && result.DataTable && result.DataTable.length > 0) {
+                          for (var i = 0; i < result.DataTable.length; i++) {
+                              content += "<div class=\"checkbox-inline\"><label><input type=\"checkbox\" name=\"checkitem\" "
+                              //if (result.DataTable[i]["PolluteCode"] == "AQI")
+                              content += " checked='checked' ";
+                              content += "value=\""
+                              + result.DataTable[i]["PolluteCode"] + "\" onclick=\" changeCheck(1)\">"
+                              if (result.DataTable[i]["PolluteHtml"].indexOf("<sub>") == -1)
+                                  content += result.DataTable[i]["PolluteHtml"] + "<i class='fa fa-square-o small'></i></label></div>";
+                              else
+                                  content += result.DataTable[i]["PolluteHtml"].split("<sub>")[0]
+                                      + "<i class='fa fa-square-o small'></i>" + "<sub>"
+                                      + result.DataTable[i]["PolluteHtml"].split("<sub>")[1]
+                                      + "</label></div>";
+                          }
+                          $("#itemPanel").html();
+                          $("#itemPanel").append(content + "&nbsp;&nbsp;&nbsp;");
+                          getData();
+                      }
+                  },
+                  error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  }
+              });
+          }
+
+          function getData() {
+              var beginTime = $("#txt_beginTime").val();
+              var endTime = $("#txt_endTime").val();
+              var station = getCheckItem("checkstation");
+              var items = getCheckItem("checkitem");
+
+              var dataType = $("[name=datatype]:checked").val();
+
+              //var dataType = $("[name=datatype]:checked").val();
+              $("#noData").hide();
+              $.ajax({
+                  url: "../../Data/GetAirMonitorData.ashx",
+                  data: { flag: "query", type: dataType, begin: beginTime, end: endTime, station: station, item: items },
+                  dataType: "json",
+                  success: function (result) {
+                      if (result && result.Table && result.Table.length > 0) {
+                          resultData = result.Table;
+                          var fAry = new Array();
+                          var strth = "<tr class='thcss'>", strtr = "";
+                          if (dataType == "yoy") {
+                              strth += "<th>站点名称</th>";
+                          }
+                          for (obj in resultData[0]) {
+                              if (obj != "sc") {
+                                  strth += "<th>" + getFieldName(obj) + "</th>";
+                              }
+                          }
+                          strth += "</tr>";
+                          if (dataType == "yoy") {
+                              for (var i = 0; i < resultData.length; i++) {
+                                  strtr += "<tr>";
+                                  strtr += "<td>" + resultData[i]["sc"] + "</td>"
+                                  for (obj in resultData[i]) {
+                                      if (obj != "sc") {
+                                          strtr += "<td>" + resultData[i][obj] + "</td>"
+                                      }
+                                  }
+                                  strtr += "</tr>";
+                              };
+                          }
+                          else {
+                              for (var i = 0; i < resultData.length; i++) {
+                                  strtr += "<tr>";
+                                  for (obj in resultData[i]) {
+                                      //if (resultData[i][obj].indexOf('T') > -1)
+                                      //    strtr += "<td>" + resultData[i][obj].toString().replace('T', ' ') + "</td>"
+                                      //else
+                                      strtr += "<td>" + resultData[i][obj].toString().replace('T', ' ') + "</td>"
+                                  }
+                                  strtr += "</tr>";
+                              };
+                          }
+                          $("#tbHead").html(strth);
+                          $("#tbBody").html(strtr);
+                          $(".btn.btn-primary.active").click();
+                      }
+                      else {
+                          $("#datatable").hide();
+                          $("#chart").hide();
+                          $("#noData").show();
+                      }
+                  },
+                  error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  }
+              });
+          }
+
+          function getCheckItem(controlName) {
+              var checkContrl = $("[name=" + controlName + "]");
+              var strItem = "";
+              for (i = 0; i < checkContrl.length; i++) {
+                  if (checkContrl[i].checked == true) {
+                      strItem += checkContrl[i].value + ",";
+                  }
+              }
+              return strItem;
+          }
+
+          function getFieldName(field) {
+              var strName = "";
+              switch (field) {
+                  case "StationCode":
+                      strName = "站点编号";
+                      break;
+                  case "StationName":
+                      strName = "监测站点";
+                      break;
+                  case "MoniDate":
+                      strName = "监测时间";
+                      break;
+                  case "YM":
+                      strName = "日期";
+                      break;
+                  case "AQI":
+                      strName = "AQI";
+                      break;
+                  default:
+                      strName = field;
+              }
+              return strName;
+          }
+
+          function getChart(charttype, xdata, ydata) {
+              var time = $("#txt_beginTime").val() + "至" + $("#txt_endTime").val();
+              $('#chart').highcharts({
+                  chart: {
+                      type: charttype
+                  },
+                  title: {
+                      text: '数据统计图'
+                  },
+                  subtitle: {
+                      text: time
+                  },
+                  xAxis: {
+                      categories: xdata,
+                      crosshair: true
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: '浓度'
+                      }
+                  },
+                  tooltip: {
+                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                          '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                      footerFormat: '</table>',
+                      shared: true,
+                      useHTML: true
+                  },
+                  series: ydata,
+                  //legend:{enabled:false}
+
+              });
+
+          }
+
+          function changeChart(type) {
+
+              if (type == "table") {
+                  $("#chart").hide();
+                  $("#datatable").show();
+              }
+              else {
+
+                  $("#datatable").hide();
+                  $("#chart").show();
+                  SetChartData(type);
+              }
+          }
+
+          function SetChartData(type) {
+              var dataObj = resultData;
+              var dataType = $("[name=datatype]:checked").val();
+              var xdata = new Array(), ydata = [];
+              var items = getCheckItem("checkitem");
+              if (items.length > 0) items = items.substr(0, items.length - 1);
+              if (dataType == "yoy") {
+                  for (var i = 0; i < dataObj.length; i++) {
+                      var itemdata = { name: [], data: [] };
+                      $.each(dataObj[i], function (key, value) {
+                          if (key != "sc") {
+                              xdata.push(key);
+                              itemdata.data.push(value);
+                          }
+                          else {
+                              itemdata.name.push(value);
+                          }
+                      })
+                      ydata.push(itemdata);
+                  }
+                  getChart(type, xdata, ydata);
+              }
+              else {
+                  for (var i = 0; i < dataObj.length; i++) {
+                      if (dataType == "day") {
+                          xdata.push(dataObj[i]["MoniDate"].substr(5, 5));
+                      }
+                      else if (dataType == "month") {
+                          xdata.push(dataObj[i]["YM"]);
+                      }
+                      else if (dataType == "year") {
+                          xdata.push(dataObj[i]["YY"]);
+                      } else if (dataType == "hour") {
+                          xdata.push(dataObj[i]["MoniDate"].substr(11, 5));
+                      }
+                  }
+                  for (var i = 0; i < items.split(',').length; i++) {
+                      var itemdata = { name: items.split(',')[i], data: [] };
+                      var station = station = dataObj[0]["StationName"];
+                      for (var j = 0; j < dataObj.length; j++) {
+                          var value = dataObj[j][items.split(',')[i]];
+                          if (station == dataObj[j]["StationName"])
+                              if (value != "--")
+                                  itemdata.data.push(value);
+                              else
+                                  itemdata.data.push(null);
+                      }
+                      ydata.push(itemdata);
+
+                  }
+                  getChart(type, xdata, ydata);
+              }
+          }
+
+          function setdatePicker(type, dateVal) {
+              var datetime = new Date();
+              switch (type) {
+                  case "hour":
+
+                      $("#txt_beginTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM-dd HH' }); });
+                      $("#txt_endTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM-dd HH' }); });
+                      //$("#txt_beginTime").val(datetime.format("yyyy-MM-dd hh"));
+                      //$("#txt_endTime").val(datetime.addDays(1).format("yyyy-MM-dd hh"));
+                      break;
+                  case "day":
+                      $("#txt_beginTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM-dd' }); });
+                      $("#txt_endTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM-dd' }); });
+                      //$("#txt_beginTime").val(datetime.format("yyyy-MM-dd"));
+                      //$("#txt_endTime").val(datetime.format("yyyy-MM-dd"));
+                      break;
+                  case "month":
+                      //$("#txt_beginTime").val(datetime.format("yyyy-MM"));
+                      //$("#txt_endTime").val(datetime.format("yyyy-MM"));
+                      $("#txt_beginTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM' }); });
+                      $("#txt_endTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM' }); });
+                      break;
+                  case "year":
+                      $("#txt_beginTime").val(datetime.format("yyyy"));
+                      $("#txt_endTime").val(datetime.format("yyyy"));
+                      $("#txt_beginTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy' }); });
+                      $("#txt_endTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy' }); });
+                      break;
+                  default:
+                      $("#txt_beginTime").val(datetime.format("yyyy-MM-dd"));
+                      $("#txt_endTime").val(datetime.format("yyyy-MM-dd"));
+                      $("#txt_beginTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM-dd' }); });
+                      $("#txt_endTime").bind("focus", function () { WdatePicker({ dateFmt: 'yyyy-MM-dd' }); });
+                      break;
+              }
+          }
+          
+    </script>
+</head>
+
+<body>
+    <!--<form id="form1" runat="server">-->
+    <div id="stationPanel"></div>
+    <div id="itemPanel"></div>
+    <div id="searchPanel">
+        <b>监测时间：</b>
+        <input type="text" class="form-control" id="txt_beginTime" />
+        <b>至</b>
+        <input type="text" class="form-control" id="txt_endTime" />
+    </div>
+    <div id="datatypePanle">
+        <b>数据类型：</b>
+        <div class="radio-inline">
+            <label>
+                <input type="radio" name="datatype" checked="" value="hour">
+                小时数据
+                <i class="fa fa-circle-o small"></i>
+            </label>
+        </div>
+        <div class="radio-inline">
+            <label>
+                <input type="radio" name="datatype" value="day">
+                日数据
+                <i class="fa fa-circle-o small"></i>
+            </label>
+        </div>
+        <div class="radio-inline">
+            <label>
+                <input type="radio" name="datatype" value="month">
+                月数据
+                <i class="fa fa-circle-o small"></i>
+            </label>
+        </div>
+        <div class="radio-inline">
+            <label>
+                <input type="radio" name="datatype" value="year">
+                年数据
+                <i class="fa fa-circle-o small"></i>
+            </label>
+        </div>
+        <div class="radio-inline">
+            <label>
+                <input type="radio" name="datatype" value="yoy">
+                数据同比
+                <i class="fa fa-circle-o small"></i>
+            </label>
+        </div>
+        <p style="float:right; margin: 0px;">注：监测项CO浓度单位为mg/m³，除此均为ug/m³</p>
+    </div>
+
+    <div style="height: 40px;">
+
+        <button type="button" class="btn btn-primary btn-label-left" style="float: left;" onclick="getData()"><span><i class="fa fa-clock-o"></i></span>查 询</button>
+        <asp:Button ID="btnExp" runat="server" Text="导出" Style="float: left; margin-left: 5px;" CssClass="btn btn-success btn-label-left" OnClick="Button1_Click" OnClientClick="return getPara()"></asp:Button>
+
+        <form action="../../Data/DbfUp.ashx" enctype="multipart/form-data" method="post" style="float: left; border: 0; width: 52px; height: 35px; margin-left: 5px;" target="refresh">
+            <input type="button" onmousemove="move(event)" value="导入" id="import" class="btn btn-success btn-label-left" /><!--请选择文件-->
+            <input type="file" id="f" onchange="this.form.submit()" name="dbf" style="position: absolute; filter: alpha(opacity=0); opacity: 0; width: 30px;" />
+            <iframe name="refresh" style="display: none;"></iframe>
+        </form>
+
+        <div id="chartType" class="btn-group" data-toggle="buttons" style="right: 0px; float: right;">
+            <label class="btn btn-primary active" onclick="changeChart('table')">
+                <input type="radio" name="options" id="option1" />
+                表格
+            </label>
+            <label class="btn btn-primary" onclick="changeChart('line')">
+                <input type="radio" name="options" id="option2" />
+                曲线图
+            </label>
+            <label class="btn btn-primary" onclick="changeChart('column')">
+                <input type="radio" name="options" id="option3" />
+                柱状图
+            </label>
+        </div>
+    </div>
+
+    <div id="dataPanel">
+        <%--<p style="width: 100%; text-align: right; margin: 0px;">注：监测项CO浓度单位为mg/m³，除此均为ug/m³</p>--%>
+        <hr style="margin: 0px;" />
+        <table id="datatable" class="tab">
+            <thead id="tbHead"></thead>
+            <tbody id="tbBody" class="tbcss"></tbody>
+        </table>
+
+        <input type="hidden" id="BeginTime" runat="server" />
+        <input type="hidden" id="EndTime" runat="server" />
+        <input type="hidden" id="Items" runat="server" />
+        <input type="hidden" id="Station" runat="server" />
+        <input type="hidden" id="Type" runat="server" />
+
+        <div id="chart"></div>
+        <div id="noData" style="display: none; width: 100%; text-align: center; margin-top: 20px;">暂无数据</div>
+    </div>
+    <!--</form>-->
+    <script type="text/javascript">
+        //var douploadFTimmer = null;
+        //var isuploadFDoing = false;
+        function move(event) {//event
+            //isuploadFDoing = false;
+            var event = event || window.event;
+            var a = document.getElementById('f');
+            a.style.left = event.clientX - 50 + 'px';
+            a.style.top = event.clientY - 10 + 'px';
+            //isuploadFDoing = setTimeout(uploadF, 3000);
+          
+        }
+    </script>
+
+</body>
+
+
+</html>

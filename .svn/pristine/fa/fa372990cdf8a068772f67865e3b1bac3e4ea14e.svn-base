@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <style> 
+        body {
+            margin:0px;
+            background: url(back.jpg);
+            background-attachment:fixed;
+        }
+        #main {
+            width: 1000px;
+            margin: auto;
+            background:rgba(256,256,256,0.8);
+        } 
+        #header {
+            height: 120px;
+            margin: auto; 
+        }
+
+        #logos {
+            width: 100%; 
+            padding-left:50px;
+        }
+
+        #group {
+            width: 100%; 
+        }
+        #forecast {
+            height: 350px;
+        }
+        .day {
+            font-weight: bold;
+            font-size: 16px;
+            font-family: '微软雅黑';
+            float: left;
+            text-align: center;
+            width: 100%; 
+        }
+
+        .date {
+            font-family: '微软雅黑';
+            text-align: center;
+            float: left;
+            width: 100%;
+        }
+
+
+        .today {
+            height: 320px;
+            width: 300px;
+            border-left:1px solid gray;
+            border-right:1px solid gray;
+            float: left;
+            padding-left:10px;
+        }
+
+            .today:hover {
+                FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#b8c4cb,endColorStr=red); /*IE 6 7 8*/
+                background: -ms-linear-gradient(top, #fff, #0000ff); /* IE 10 */
+                background: -moz-linear-gradient(top,#b8c4cb,#f6f6f8); /*火狐*/
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#b8c4cb), to(#f6f6f8)); /*谷歌*/
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#0000ff)); /* Safari 4-5, Chrome 1-9*/
+                background: -webkit-linear-gradient(top, rgba(256,256,256,0),rgba(62,150,158,0.5),rgba(256,256,256,0)); /*Safari5.1 Chrome 10+*/
+                background: -o-linear-gradient(top, #fff, #0000ff); /*Opera 11.10+*/
+            }
+
+        .future { 
+            height: 320px;
+            width: 218px;
+            border-right:1px solid gray;
+            float: left;
+            margin-left: 5px;
+            padding-right:5px;
+        }
+            .future:hover {
+                background: -webkit-linear-gradient(top, rgba(256,256,256,0),rgba(62,150,158,0.5),rgba(256,256,256,0)); /*Safari5.1 Chrome 10+*/
+            }
+
+        .AQI {
+            font-family: impact;
+            font-weight: normal;
+            font-size: 60px;
+            line-height: 50px;
+            margin-left: 45px;
+            color:green;
+        }
+
+        .category {
+            font-size: 23px;
+            font-family: '微软雅黑';
+            font-weight: bold;
+            padding-left: 5px;
+            color:green;
+        }
+
+        .tipItem {
+            font-weight:bolder;
+            height: 30px;
+            font-size: 13px;
+            font-family: '微软雅黑';
+        }
+        .tipVaule {
+            height: 30px;
+            font-size: 13px;
+            font-family: '微软雅黑';
+        }
+
+        table {
+            width:100%;
+        }
+        .big {
+            font-size: 85px;
+        }
+
+        .divShadow {
+            filter: progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=3); /*ie*/
+            -moz-box-shadow: 2px 2px 10px #909090; /*firefox*/
+            -webkit-box-shadow: 2px 2px 10px #909090; /*safari或chrome*/
+            box-shadow: 2px 2px 10px #909090; /*opera或ie9*/
+        }
+    </style>
+    <script >
+        $(function () {
+
+            var colors = Highcharts.getOptions().colors,
+                categories = ['市环保局', '区政府', '平朔', '朔唯', '市二中'],
+                name = 'Browser brands',
+                data = [{
+                    y: 55.11,
+                    color: colors[0],
+                    drilldown: {
+                        name: 'MSIE versions',
+                        categories: ['MSIE 6.0', 'MSIE 7.0', 'MSIE 8.0', 'MSIE 9.0'],
+                        data: [10.85, 7.35, 33.06, 2.81],
+                        color: colors[0]
+                    }
+                }, {
+                    y: 21.63,
+                    color: colors[1],
+                    drilldown: {
+                        name: 'Firefox versions',
+                        categories: ['Firefox 2.0', 'Firefox 3.0', 'Firefox 3.5', 'Firefox 3.6', 'Firefox 4.0'],
+                        data: [0.20, 0.83, 1.58, 13.12, 5.43],
+                        color: colors[1]
+                    }
+                }, {
+                    y: 11.94,
+                    color: colors[2],
+                    drilldown: {
+                        name: 'Chrome versions',
+                        categories: ['Chrome 5.0', 'Chrome 6.0', 'Chrome 7.0', 'Chrome 8.0', 'Chrome 9.0',
+                            'Chrome 10.0', 'Chrome 11.0', 'Chrome 12.0'],
+                        data: [0.12, 0.19, 0.12, 0.36, 0.32, 9.91, 0.50, 0.22],
+                        color: colors[2]
+                    }
+                }, {
+                    y: 7.15,
+                    color: colors[3],
+                    drilldown: {
+                        name: 'Safari versions',
+                        categories: ['Safari 5.0', 'Safari 4.0', 'Safari Win 5.0', 'Safari 4.1', 'Safari/Maxthon',
+                            'Safari 3.1', 'Safari 4.1'],
+                        data: [4.55, 1.42, 0.23, 0.21, 0.20, 0.19, 0.14],
+                        color: colors[3]
+                    }
+                }, {
+                    y: 2.14,
+                    color: colors[4],
+                    drilldown: {
+                        name: 'Opera versions',
+                        categories: ['Opera 9.x', 'Opera 10.x', 'Opera 11.x'],
+                        data: [0.12, 0.37, 1.65],
+                        color: colors[4]
+                    }
+                }];
+
+            function setChart(name, categories, data, color) {
+                chart.xAxis[0].setCategories(categories, false);
+                chart.series[0].remove(false);
+                chart.addSeries({
+                    name: name,
+                    data: data,
+                    color: color || 'white'
+                }, false);
+                chart.redraw();
+            }
+
+            var chart = $('#statoin').highcharts({
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'rgba(256,256,256,0.7)'
+                },
+                title: {
+                    text: '站点空气质量状况'
+                },
+                subtitle: {
+                    text: '2015-9-26'
+                },
+                xAxis: {
+                    categories: categories
+                },
+                yAxis: {
+                    title: {
+                        text: 'AQI'
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function () {
+                                    var drilldown = this.drilldown;
+                                    if (drilldown) { // drill down
+                                        setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
+                                    } else { // restore
+                                        setChart(name, categories, data);
+                                    }
+                                }
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            color: colors[0],
+                            style: {
+                                fontWeight: 'bold'
+                            },
+                            formatter: function () {
+                                return this.y + '';
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        var point = this.point,
+                            s = this.x + ':<b>' + this.y + '% market share</b><br/>';
+                        if (point.drilldown) {
+                            s += 'Click to view ' + point.category + ' versions';
+                        } else {
+                            s += 'Click to return to browser brands';
+                        }
+                        return s;
+                    }
+                },
+                series: [{
+                    name: name,
+                    data: data,
+                    color: 'white'
+                }],
+                exporting: {
+                    enabled: false
+                }
+            })
+            .highcharts(); // return chart
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#trend').highcharts({
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'rgba(256,256,256,0.7)'
+                },
+                title: {
+                    text: '未来空气质量趋势'
+                },
+                subtitle: {
+                    text: 'AQI走向'
+                },
+                xAxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                },
+                yAxis: {
+                    title: {
+                        text: 'AQI'
+                    }
+                },
+                tooltip: {
+                    enabled: false,
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br>' + this.x + ': ' + this.y + '°C';
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                    name: 'AQI',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                }]
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="logos">
+                <h1 style="margin-left:200px;margin-top:0px;padding-top:20px;">朔州市空气质量预测发布系统</h1>
+            </div>
+            <div id="group">
+                <p style="margin-left:320px;">朔州市环境质量监测站（9月26日13时发布）</p>
+            </div>
+            <hr />
+        </div>
+        <div id="forecast">
+            <div class="today">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="day">
+                                    今天&nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="date">
+                                    09月26日
+                                </div>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td style="height: 95px;">
+                                <span class="big AQI" >43
+                                </span>
+                                <span class="category">优
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>首要污染物：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>PM2.5
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>对健康的影响：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>空气质量令人满意，基本无空气污染。
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>建议措施：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>各类人群可正常活动。
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="future">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div  class="day">
+                                    周一&nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="date">
+                                    09月26日
+                                </div>
+                            </td>
+                        </tr>
+                         <tr class="tipItem">
+                            <td>空气质量指数：
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 65px">
+                                <span class="AQI" >50
+                                </span>
+                                <span class="category">优
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>首要污染物：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>PM2.5
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>对健康的影响：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>空气质量令人满意，基本无空气污染。
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>建议措施：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>各类人群可正常活动。
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="future">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div  class="day">
+                                    周二&nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="date">
+                                    09月26日
+                                </div>
+                            </td>
+                        </tr>
+                         <tr class="tipItem">
+                            <td>空气质量指数：
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 65px;">
+                                <span class="AQI">150
+                                </span>
+                                <span class="category">优
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>首要污染物：
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tipVaule">PM2.5
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>对健康的影响：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>空气质量令人满意，基本无空气污染。
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>建议措施：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>各类人群可正常活动。
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="future">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="date">
+                                    未来趋势&nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="date">
+                                    09月26日
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="tipItem">
+                            <td>空气质量指数：
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height: 65px;">
+                                <span class="AQI" >100
+                                </span>
+                                <span class="category">优
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>首要污染物：
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tipVaule">PM2.5
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>对健康的影响：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>空气质量令人满意，基本无空气污染。
+                            </td>
+                        </tr>
+                        <tr class="tipItem">
+                            <td>建议措施：
+                            </td>
+                        </tr>
+                        <tr class="tipVaule">
+                            <td>各类人群可正常活动。
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+        <div id="trend" style="margin-top:10px;" class="divShadow"></div> 
+        <div id="statoin" style="margin-top:30px;" class="divShadow"></div>
+         
+    </div>
+</body>
+</html>

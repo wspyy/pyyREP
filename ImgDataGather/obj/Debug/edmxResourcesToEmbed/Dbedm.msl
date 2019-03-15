@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JinchengDB2ModelStoreContainer" CdmEntityContainer="JinchengDB2Entities">
+    <EntitySetMapping Name="T_Moni_ImgFiles">
+      <EntityTypeMapping TypeName="JinchengDB2Model.T_Moni_ImgFiles">
+        <MappingFragment StoreEntitySet="T_Moni_ImgFiles">
+          <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Cate" ColumnName="Cate" />
+          <ScalarProperty Name="FileDate" ColumnName="FileDate" />
+          <ScalarProperty Name="FullFileName" ColumnName="FullFileName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

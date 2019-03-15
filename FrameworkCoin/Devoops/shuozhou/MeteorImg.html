@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../plugins/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <script src="../plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="../plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/devoops.js"></script>
+
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color:white;
+        }
+
+        .box {
+            float: left;
+            min-width: 300px;
+            margin-left: 10px;
+        }
+
+        img {
+            width: 267px;
+            height: 250px;
+        }
+    </style>
+
+</head>
+<body id="main" style="margin-top:0px;">
+    <div style="height:50px;background-color:white;border:solid;border-color:rgba(0,0,0,0.3);border-width:1px;margin-bottom:10px;padding:10px;">
+        开始时间：
+        <input type="text" style="border-radius:3px;border:solid;border-width:1px;border-color:rgba(0,0,0,0.6);" />
+        结束时间：
+        <input type="text" style="border-radius:3px;border:solid;border-width:1px;border-color:rgba(0,0,0,0.6);"/>
+        <input type="button" value="设置" />
+        <input type="button" value="播放" />
+    </div>
+    <div class="box ui-draggable ui-droppable">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-search"></i>
+                <span>卫星云图</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content">
+             <a id="imgshow1" href="img/SEVP_NSMC_WXCL_ASC_E99_ACHN_LNO_PY_20150426060000000.jpg">
+            <img class="image" src="img/SEVP_NSMC_WXCL_ASC_E99_ACHN_LNO_PY_20150426060000000.jpg" />
+                 </a>
+        </div>
+    </div>
+    <div class="box ui-draggable ui-droppable">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-search"></i>
+                <span>风场图</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content">
+            <a id="imgshow2" href="img/SEVP_NMC_STFC_SFER_EDA_ACHN_L88_PB_20150426060000000.jpg">
+            <img class="image" src="img/SEVP_NMC_STFC_SFER_EDA_ACHN_L88_PB_20150426060000000.jpg" />
+                 </a>
+        </div>
+    </div>
+    <div class="box ui-draggable ui-droppable">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-search"></i>
+                <span>雷达(大同)图</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content">
+            <a id="imgshow3" href="img/SEVP_AOC_RDCP_SLDAS_EBREF_AZ9352_L88_PI_20150426070000000.gif">
+            <img class="image" src="img/SEVP_AOC_RDCP_SLDAS_EBREF_AZ9352_L88_PI_20150426070000000.gif" />
+                 </a>
+        </div>
+    </div>
+    <div class="box ui-draggable ui-droppable">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-search"></i>
+                <span>地面分析图</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content">
+             <a id="imgshow4" href="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L00_P9_20150426060000000.bmp">
+            <img class="image" src="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L00_P9_20150426060000000.bmp" />
+                 </a>
+        </div>
+    </div>
+    <div class="box ui-draggable ui-droppable">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-search"></i>
+                <span>100hpa分析图</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content">
+            <a id="imgshow5" href="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L10_P9_20150426000000000.bmp">
+            <img class="image" src="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L10_P9_20150426000000000.bmp" />
+                 </a>
+        </div>
+    </div>
+    <div class="box ui-draggable ui-droppable">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-search"></i>
+                <span>500pha天气图</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content">
+             <a id="imgshow6" href="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L50_P9_20150426000000000.bmp">
+            <img class="image" src="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L50_P9_20150426000000000.bmp" />
+                 </a>
+        </div>
+    </div>
+    <div class="box ui-draggable ui-droppable">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-search"></i>
+                <span>700pha天气图</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content">
+             <a id="imgshow7" href="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L70_P9_20150426000000000.bmp">
+            <img class="image" src="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L70_P9_20150426000000000.bmp" />
+                 </a>
+        </div>
+    </div>
+    <div class="box ui-draggable ui-droppable">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-search"></i>
+                <span>850pha天气图</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content">
+             <a id="imgshow8" href="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L85_P9_20150426000000000.bmp">
+            <img class="image" src="img/SEVP_NMC_WESA_SFER_EGH_ACWP_L85_P9_20150426000000000.bmp" />
+                 </a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var graphxChartsResize;
+            $(".box").resize(function (event) {
+                event.preventDefault();
+                clearTimeout(graphxChartsResize);
+                graphxChartsResize = setTimeout(DrawAllxCharts, 500);
+            });
+            WinMove();
+        });
+
+        $(function () {
+            $("a[id^='imgshow']").fancybox({
+                'overlayShow': true,
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic'
+            });
+        });
+    </script>
+</body>
+</html>

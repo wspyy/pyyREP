@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JinChDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Base_AppendProperty">
+    <Key>
+      <PropertyRef Name="Property_ID" />
+    </Key>
+    <Property Name="Property_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Property_Function" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Property_FunctionUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Property_Control_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Property_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Property_Control_Type" Type="Int32" />
+    <Property Name="Property_Control_DataSource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Property_Control_Length" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Property_Control_Maxlength" Type="Int32" />
+    <Property Name="Property_Control_Style" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Property_Control_Validator" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Property_Colspan" Type="Int32" />
+    <Property Name="Property_Event" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SortCode" Type="Int32" />
+    <Property Name="DeleteMark" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_AppendPropertyInstance">
+    <Key>
+      <PropertyRef Name="PropertyInstance_ID" />
+    </Key>
+    <Property Name="PropertyInstance_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Property_Control_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PropertyInstance_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PropertyInstance_Key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_Button">
+    <Key>
+      <PropertyRef Name="Button_ID" />
+    </Key>
+    <Property Name="Button_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Button_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Button_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Button_Img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Button_Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SortCode" Type="Int32" />
+    <Property Name="Button_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Button_Remak" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DeleteMark" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_O_A_Setup">
+    <Key>
+      <PropertyRef Name="Setup_ID" />
+    </Key>
+    <Property Name="Setup_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Setup_IName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NavigateUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Setup_Img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Setup_Remak" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SortCode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Base_Organization">
+    <Key>
+      <PropertyRef Name="Organization_ID" />
+    </Key>
+    <Property Name="Organization_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Organization_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Organization_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Organization_InnerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Organization_OuterPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Organization_Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Organization_AssistantManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Organization_Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Organization_Zipcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Organization_Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Organization_Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SortCode" Type="Int32" />
+    <Property Name="DeleteMark" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_Recyclebin">
+    <Key>
+      <PropertyRef Name="Recyclebin_ID" />
+    </Key>
+    <Property Name="Recyclebin_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Recyclebin_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Recyclebin_Database" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Recyclebin_Table" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Recyclebin_FieldKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Recyclebin_EventField" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Recyclebin_Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_RoleRight">
+    <Key>
+      <PropertyRef Name="RoleRight_ID" />
+    </Key>
+    <Property Name="RoleRight_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Roles_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_Roles">
+    <Key>
+      <PropertyRef Name="Roles_ID" />
+    </Key>
+    <Property Name="Roles_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Roles_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role_Restriction" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Roles_Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AllowEdit" Type="Int32" />
+    <Property Name="AllowDelete" Type="Int32" />
+    <Property Name="SortCode" Type="Int32" />
+    <Property Name="DeleteMark" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_StaffOrganize">
+    <Key>
+      <PropertyRef Name="StaffOrganize_Id" />
+    </Key>
+    <Property Name="StaffOrganize_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Organization_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_SysMenu">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="Menu_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Type" Type="Int32" />
+    <Property Name="NavigateUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AllowEdit" Type="Int32" />
+    <Property Name="AllowDelete" Type="Int32" />
+    <Property Name="SortCode" Type="Int32" />
+    <Property Name="DeleteMark" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_UserGroup">
+    <Key>
+      <PropertyRef Name="UserGroup_ID" />
+    </Key>
+    <Property Name="UserGroup_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserGroup_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserGroup_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserGroup_Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AllowEdit" Type="Int32" />
+    <Property Name="AllowDelete" Type="Int32" />
+    <Property Name="SortCode" Type="Int32" />
+    <Property Name="DeleteMark" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_UserGroupRight">
+    <Key>
+      <PropertyRef Name="UserGroupRight_ID" />
+    </Key>
+    <Property Name="UserGroupRight_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserGroup_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_UserInfo">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Sex" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Theme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AnswerQuestion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeleteMark" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_UserInfoUserGroup">
+    <Key>
+      <PropertyRef Name="UserInfoUserGroup_ID" />
+    </Key>
+    <Property Name="UserInfoUserGroup_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserGroup_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_UserRight">
+    <Key>
+      <PropertyRef Name="UserRight_ID" />
+    </Key>
+    <Property Name="UserRight_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Base_UserRole">
+    <Key>
+      <PropertyRef Name="UserRole_ID" />
+    </Key>
+    <Property Name="UserRole_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Roles_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="View_UserPermissionService">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+    </Key>
+    <Property Name="Menu_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Menu_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NavigateUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SortCode" Type="Int32" />
+    <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Type" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="JinChDataBaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Base_AppendProperty" EntityType="Self.Base_AppendProperty" />
+    <EntitySet Name="Base_AppendPropertyInstance" EntityType="Self.Base_AppendPropertyInstance" />
+    <EntitySet Name="Base_Button" EntityType="Self.Base_Button" />
+    <EntitySet Name="Base_O_A_Setup" EntityType="Self.Base_O_A_Setup" />
+    <EntitySet Name="Base_Organization" EntityType="Self.Base_Organization" />
+    <EntitySet Name="Base_Recyclebin" EntityType="Self.Base_Recyclebin" />
+    <EntitySet Name="Base_RoleRight" EntityType="Self.Base_RoleRight" />
+    <EntitySet Name="Base_Roles" EntityType="Self.Base_Roles" />
+    <EntitySet Name="Base_StaffOrganize" EntityType="Self.Base_StaffOrganize" />
+    <EntitySet Name="Base_SysMenu" EntityType="Self.Base_SysMenu" />
+    <EntitySet Name="Base_UserGroup" EntityType="Self.Base_UserGroup" />
+    <EntitySet Name="Base_UserGroupRight" EntityType="Self.Base_UserGroupRight" />
+    <EntitySet Name="Base_UserInfo" EntityType="Self.Base_UserInfo" />
+    <EntitySet Name="Base_UserInfoUserGroup" EntityType="Self.Base_UserInfoUserGroup" />
+    <EntitySet Name="Base_UserRight" EntityType="Self.Base_UserRight" />
+    <EntitySet Name="Base_UserRole" EntityType="Self.Base_UserRole" />
+    <EntitySet Name="View_UserPermissionService" EntityType="Self.View_UserPermissionService" />
+  </EntityContainer>
+</Schema>

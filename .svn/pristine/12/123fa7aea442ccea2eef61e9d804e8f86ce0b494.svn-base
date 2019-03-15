@@ -1,0 +1,456 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>统计预报-趋势分析</title>
+    <link href="../plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../plugins/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../../Controls/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/css.css" rel="stylesheet" />
+    <link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-1.7.2.js"></script>
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <script src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="../plugins/data-tables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="../js/devoops.js"></script>
+    <script src="../js/method.js"></script>
+    <script src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <script src="../plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.js"></script>
+    <script src="../../Demo/plugins/jquery-ui/i18n/jquery.ui.datepicker-zh-CN.min.js"></script>
+    <script src="../../Controls/My97DatePicker/WdatePicker.js"></script>
+    <script src="shuo--js/AirForeCastSSCI-js.js"></script>
+    <style>
+        html, body {
+            margin: 0px 0px 0px 0px;
+            height: 100%;
+            overflow: auto;
+            font-size: 13px;
+            background-color: white;
+        }
+
+        table {
+            width: 100%;
+            font-size: 14px;
+        }
+
+            table th {
+                height: 40px;
+                background-color: #e0dfdf;
+            }
+
+            table td, th {
+                /*border: solid;*/
+                /*这一部分也作用在tooltip的table中了，所以注释掉，直接放在getData里的th和td*/
+                border-width: 1px;
+                border-color: rgba(0,0,0,0.3);
+                padding: 5px;
+                text-align: center;
+            }
+    </style>
+
+    <script type="text/javascript">
+        var resultData;//0727,定义一个变量，存放result.Table
+        $(function () {
+            getSatationList();
+            getItemList();
+            $("#txt_beginTime").val(new Date().format("yyyy-MM-dd"));
+            $("#txt_endTime").val(new Date().addDays(7).format("yyyy-MM-dd"));
+
+        })
+        //获取监测站点
+        function getSatationList() {
+
+            $.ajax({
+                url: "../../Data/GetBaseData.ashx",
+                data: { flag: "AirStation" },
+                dataType: "json",
+                success: function (result) {
+                    var content = "<b>监测站点：</b>";
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+                        for (var i = 0; i < result.DataTable.length; i++) {
+                            content += "<div class=\"checkbox-inline\"><label><input type=\"checkbox\" name=\"checkstation\" ";
+                            if (result.DataTable[i]["StationCode"] == "00") content += " checked='checked' ";
+                            content += "value=\""
+                            + result.DataTable[i]["StationCode"] + "\">"
+                            + result.DataTable[i]["StationName"]
+                            + "<i class='fa fa-square-o small'></i></label></div>";
+                        }
+                        $("#stationPanel").html();
+                        $("#stationPanel").append(content + "&nbsp;&nbsp;&nbsp;");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+
+        //获取监测项
+        function getItemList() {
+
+            $.ajax({
+                url: "../../Data/GetBaseData.ashx",
+                data: { flag: "Pollute", type: "air" },
+                dataType: "json",
+                success: function (result) {
+                    //debugger;
+                    var content = "<b>监&nbsp;测&nbsp;项：</b>";
+                    if (result && result.DataTable && result.DataTable.length > 0) {
+                        for (var i = 0; i < result.DataTable.length; i++) {
+                            content += "<div class=\"radio-inline\"><label><input type=\"radio\" name=\"checkitem\" "
+                            if (result.DataTable[i]["PolluteCode"] == "AQI") content += " checked='checked' ";
+                            content += "value=\""
+                            + result.DataTable[i]["PolluteCode"] + "\" onclick=\" changeCheck(1)\">"
+                            if (result.DataTable[i]["PolluteHtml"].indexOf("<sub>") == -1)
+                                content += result.DataTable[i]["PolluteHtml"] + "<i class='fa fa-circle-o small'></i></label></div>";
+                            else
+                                content += result.DataTable[i]["PolluteHtml"].split("<sub>")[0]
+                                    + "<i class='fa fa-circle-o small'></i>" + "<sub>"
+                                    + result.DataTable[i]["PolluteHtml"].split("<sub>")[1]
+                                    + "</label></div>";
+                        }
+                        $("#itemPanel").html();
+                        $("#itemPanel").append(content + "&nbsp;&nbsp;&nbsp;");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+
+        function getData() {
+            
+            var beginTime = $("#txt_beginTime").val();
+            var endTime = $("#txt_endTime").val();
+            var station = getCheckItem("checkstation");
+            var items = $("[name=checkitem]:checked").val();
+            //debugger;
+            $.ajax({
+                url: "../../Data/GetAirForeCastData.ashx",
+                data: { flag: "ssci", begin: beginTime, end: endTime, station: station, item: items },
+                dataType: "json",
+                success: function (result) {
+                    
+                    if (result && result.Table && result.Table.length > 0) {
+                        
+                        resultData = result.Table;//0727
+                        var strth = "<tr class='thcss'>";
+
+                        for (obj in result.Table[0]) {
+
+                            strth += "<th style='border:solid;border-width:1px;'>" + getFieldName(obj) + "</th>";
+
+                        }
+                        strth += "</tr>";
+
+                        var strtr = "";
+
+                        for (var i = 0  ; i < result.Table.length; i++) {
+                            strtr += "<tr >";
+
+                            for (obj1 in result.Table[i]) {
+                                var td_color = MapPointAQIDisplayOption(items, result.Table[i][obj1]);
+                                strtr += "<td style='border:solid;border-width:1px;background-color:" + td_color + "'>" + result.Table[i][obj1] + "</td>";
+                                //strtr += "<td>" + result.Table[i][obj1] + "</td>"; 
+
+                            }
+                            strtr += "</tr>";
+                        }
+
+
+                        $("#tbHead").html();
+                        $("#tbHead").html(strth);
+                        $("#tbBody").html();
+                        $("#tbBody").html(strtr);
+                        $("#forecast-items").html("预报结果（" + items + "）");
+                        //SetChartData();
+                        debugger;
+                        $(".btn.btn-primary.active").click();//07.28   
+                    }
+                    else {
+                        resultData = [];
+                        $("#tbHead").html("");
+                        $("#tbBody").html("");                        
+                        $("#forecast-items").html("（暂无数据）");
+                        
+                    }
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+
+        function getCheckItem(controlName) {
+            var checkContrl = $("[name=" + controlName + "]");
+            var strItem = "";
+            for (i = 0; i < checkContrl.length; i++) {
+                if (checkContrl[i].checked == true) {
+                    strItem += checkContrl[i].value + ",";
+                }
+            }
+            return strItem;
+        }
+
+        function getFieldName(field) {
+            var strName = "";
+            switch (field) {
+                case "StationCode":
+                    strName = "站点编号";
+                    break;
+                case "StationName":
+                    strName = "监测站点";
+                    break;
+                case "MoniDate":
+                    strName = "监测时间";
+                    break;
+                case "YM":
+                    strName = "日期";
+                    break;
+                default:
+                    strName = field;
+            }
+            return strName;
+        }
+
+        /*选择‘表格’、‘曲线图’、‘柱状图’的显示//0728*/
+        function changeChart(type, element) {
+            //debugger;
+            $(".active").removeClass("active");
+            $(element).addClass("active");
+            if (type == "table") {
+                $("#container").hide();
+                $("#dataPanel").show();
+            }
+            else {
+                $("#dataPanel").hide();
+                $("#container").show();
+                SetChartData(type);
+            }
+        }
+        /*选择‘表格’、‘曲线图’、‘柱状图’的显示//0728*/
+
+        /*图表x、y轴的设置//0727*/
+        function SetChartData(type) {//去掉type(27),加上type(28)
+            debugger;
+            var dataObj = resultData;
+
+            var xdata = [];//日期数组，0727
+            xdata.length = 0;
+            var ydata = new Array();//Y轴数据，0727
+            ydata.length = 0;
+
+            var beginTime = $("#txt_beginTime").val();
+            var endTime = $("#txt_endTime").val();
+            var items = $("[name=checkitem]:checked").val();
+            var station = getCheckItem("checkstation");
+            if (station.length > 0) station = station.substr(0, station.length - 1);
+            if (dataObj && dataObj.length > 0) {
+                for (var obj in dataObj[0]) {
+                    if (obj != "StationName") {
+                        xdata.push(obj);
+                    }
+
+                }
+            }
+
+            if (dataObj && dataObj.length > 0) {
+                for (var i = 0; i < dataObj.length; i++) {
+
+                    // var stationdata = { name: station.split(',')[i], data: [] };
+                    var stationdata = { name: [], data: [] };
+
+                    $.each(dataObj[i], function (i, n) {
+
+                        if (!isNaN(n)) {
+                            stationdata.data.push(n);
+                        }
+                        else {
+                            stationdata.name.push(n);
+                        }
+                    });
+                    ydata.push(stationdata);//0727
+
+                }
+            }
+            var ylabel;
+            if ("AQI" == items) {
+                ylabel = "AQI值";
+            }
+            else if ("CO" == items) {
+                ylabel = items + "浓度（mg/m³）";
+            }
+            else {
+                ylabel = items + "浓度（ug/m³）";
+            }
+            getChart(type, xdata, ydata, beginTime, endTime, items, ylabel);//加上type(28)
+
+        }
+        /*图表x、y轴的设置//0727*/
+
+        /*getChart(xdata, ydata)显示图表//0727*/
+        function getChart(chart_type, xdata, ydata, beginTime, endTime, items, ylabel) {//加上chart_type(28)
+
+
+            $('#container').highcharts({
+                chart: {
+                    type: chart_type//'column'改成chart_type(28)
+                    //borderRadius: 5,
+                    //borderColor: '#EBBA95',
+                    //borderWidth: 2
+
+                },
+                title: {
+                    text: '统计模式预报结果(' + items + ')'
+                },
+                subtitle: {
+                    text: beginTime + '至' + endTime
+                },
+                xAxis: {
+                    categories: xdata
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: ylabel
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name};</td>' +
+                        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    },
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    },
+                    spline: {
+                        states: {
+                            hover: {
+                                lineWidth: 3
+                            }
+                        },
+                        marker: {
+                            enabled: false
+                        },
+                    }
+                },
+                legend: {//图标显示位置  
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -10,
+                    y: 100,
+                    borderWidth: 0
+                },
+
+                series: ydata
+            });
+
+        }
+
+    </script>
+</head>
+<body id="main" style="margin-top:0px;overflow:auto;">
+    <div class="box ui-draggable ui-droppable" style="margin: 10px;">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-table"></i>
+                <span>检索条件</span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+          <div class="no-move"></div>
+        </div>
+        <div class="box-content" style="height: 100px;">
+
+            <div id="stationPanel" style="width: 100%;"></div>
+
+            <div id="itemPanel" style="width: 100%;"></div>
+
+            <div style="width: 100%;">
+                <b>预测时间：</b>
+                <input type="text" class="form-control" id="txt_beginTime" onclick="WdatePicker()" />
+                <b>至</b>
+                <input type="text" class="form-control" id="txt_endTime" onclick="WdatePicker()" />
+                <button type="button" class="btn btn-primary btn-label-left" onclick="getData();"><span><i class="fa fa-clock-o"></i></span>查 询</button>
+
+                <span id="chartType" class="btn-group" data-toggle="buttons" style="right: 0px; float: right;">
+                    <label class="btn btn-primary active" onclick="changeChart('table',this)">
+                        <input type="radio" name="options" id="option1" />
+                        表格
+                    </label>
+                    <label class="btn btn-primary" onclick="changeChart('line',this)">
+                        <input type="radio" name="options" id="option2" />
+                        曲线图
+                    </label>
+                    <label class="btn btn-primary" onclick="changeChart('column',this)">
+                        <input type="radio" name="options" id="option3" />
+                        柱状图
+                    </label>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="box ui-draggable ui-droppable" style="margin: 10px;">
+
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-table"></i>
+                <span id="forecast-items">预报结果</span>
+
+            </div>
+
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+
+        <div class="box-content no-padding"  >
+            <div id="dataPanel" style="overflow:auto;">
+                <table id="datatable" class="">
+                    <thead id="tbHead"></thead>
+                    <tbody id="tbBody"></tbody>
+                </table>
+            </div>
+            <div id="container" style="width: 98%;">
+            </div>
+        </div>
+
+
+
+
+    </div>
+</body>
+</html>

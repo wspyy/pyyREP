@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>数据库备份与还原</title>
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <link href="../../Demo/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color:white;
+        }
+    </style>
+    <link href="../css/thems/easyui.css" rel="stylesheet" />
+    <link href="../css/thems/icon.css" rel="stylesheet" />
+     <link href="../css/thems/demo.css" rel="stylesheet" />
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="../js/ devoops.js"></script>
+    <script type="text/javascript" src="../../Controls/Highcharts-4.0.1/highcharts.js"></script>
+    <script type="text/javascript" src="../js/exporting.js"></script>
+    <script type="text/javascript" src="../plugins/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/method.js"></script>
+    <link href="../js/MultiSelect/jquery.multiselect.css" rel="stylesheet" />
+    <link href="../js/MultiSelect/demos/assets/jquery-ui.css" rel="stylesheet" />
+    <script src="../js/MultiSelect/src/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="../js/MultiSelect/src/jquery.multiselect.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.min.js"></script>      
+    <script src="../js/jquery.easyui.min.js"></script>
+
+       
+    
+    <script>
+        $(function () {
+            $("#cc").combobox({
+                url: '../../Data/DBOperation.ashx?action=load',
+                valueField: 'name',
+                textField: 'name',
+                onSelect: function () {
+                    var selectValue = $('#cc').combobox("getValues")[0];
+                    $("#inputHelpBlock").val(selectValue + new Date().format("yyyyMMddhhmm") + ".bak");
+                }
+            });
+            $("#cc1").combobox({
+                url: '../../Data/DBOperation.ashx?action=load',
+                valueField: 'name',
+                textField: 'name'
+            });
+            //$("#Select1").combobox({
+            //    url: '../../Data/DBOperation.ashx?action=choose',
+            //    valueField: 'name',
+            //    textField: 'name'
+            //});
+            beiFen();
+            huanYuan();
+        });
+        //备份数据库的方法
+        function beiFen() {
+            $("#btnBF").click(function () {
+                var txtName = $("#inputHelpBlock").val();
+                var selectValue = $('#cc').combobox("getValues")[0];
+                $("#p").css("display", "block");
+                var value = $('#p').progressbar('getValue');
+                if (value < 100) {
+                    value += Math.floor(Math.random() * 10);
+                    $('#p').progressbar('setValue', value);
+                    setTimeout(arguments.callee, 100);
+                }
+                if (value ==100) {
+                    $.post("../../Data/DBOperation.ashx", { flag: "bf", name: txtName, value: selectValue }, function (data) {
+                        if (data == "ok") {
+                            $("#p").css("display", "none");
+                            $.messager.alert('消息', '数据库备份成功!', 'info')
+                        } else if (data == "no") {
+                            $("#p").css("display", "none");
+                            $.messager.alert('消息', '数据库备份失败,磁盘下已存在相同文件!', 'warning');
+                        } else {
+                            $("#p").css("display", "none");
+                            $.messager.alert('消息', "'" + data + "'", 'warning');
+                        }
+
+                    })
+                }
+            })
+        };
+        //还原数据库的方法
+        function huanYuan() {
+            $("#btnHY").click(function () {
+                var txtName = $("#txtFile").val().substring($("#txtFile").val().lastIndexOf("\\") + 1, $("#txtFile").val().length);
+                var selectValue = $('#cc1').combobox("getValues")[0];
+                $("#p1").css("display", "block");
+                var value = $('#p1').progressbar('getValue');
+                if (value < 100) {
+                    value += Math.floor(Math.random() * 10);
+                    $('#p1').progressbar('setValue', value);
+                    setTimeout(arguments.callee, 200);
+                }
+                if (value == 100) {
+                    $.post("../../Data/DBOperation.ashx", { flag: "hy", name: txtName, value: selectValue }, function (data) {
+                        if (data == "ok") {
+                            $("#p1").css("display", "none");
+                            $.messager.alert('消息', '数据库还原成功!', 'info');
+                        }
+                        else {
+                            $("#p1").css("display", "none");
+                            $.messager.alert('消息', "'" + data + "'", 'warning');
+                        }
+
+                    })
+                }
+            })
+        }
+         
+    </script>
+</head>
+<body class="container-fluid" style="padding-top: 20px;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="box ui-draggable ui-droppable" >
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-arrow-circle-down"></i>
+                        <span>备份</span>
+                    </div>
+                    <div class="box-icons">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="expand-link">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                    <div class="no-move"></div>
+                </div>
+                <div class="box-content" style="height:300px;">
+                    <h4 class="page-header">数据库备份</h4>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">选择数据库</label>
+                            <div class="col-sm-8">
+                            <select class="easyui-combobox" id="cc" style="width: 200px"></select>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">输入文件名</label>
+                            <div class="col-sm-8">
+                            <input type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock" style="width: 200px; float: left;">
+                                </div>
+                        </div>
+                    </form>
+                    <div class="form-group">
+						<div class="col-sm-8 col-sm-offset-4"> 
+                             <button type="submit" class="btn btn-primary btn-label-left"  id="btnBF">
+							<span><i class="fa fa-clock-o"></i></span>
+								开始备份
+							</button>
+						</div>
+					</div>
+                    <div class="row show-grid-forms">
+                       
+                    </div>
+                    <h6 class="page-header">注：</h6>
+                    <span class="label label-danger" style="font-size: 14px">数据库默认备份到服务器E盘yutu_bak文件夹下！</span><br />
+                    <br />
+                    <div id="p" class="easyui-progressbar" data-options="value:0" style="width: 400px; display: none"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="box ui-draggable ui-droppable">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-arrow-circle-up"></i>
+                        <span>还原</span>
+                    </div>
+                    <div class="box-icons">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="expand-link">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                    <div class="no-move"></div>
+                </div>
+                <div class="box-content" style="height:300px;">
+                    <h4 class="page-header">数据库还原</h4>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">选择、输入数据库</label>
+                            <div class="col-sm-8">
+                                <select class="easyui-combobox" id="cc1" style="width: 200px"></select><br />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">选择备份文件</label>
+                            <div class="col-sm-8">
+                                <select class="easyui-combobox" id="Select1" style="width: 200px"></select><br />
+                                <input type="file" id="txtFile" />
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group">
+						<div class="col-sm-8 col-sm-offset-4"> 
+                            <button type="submit" class="btn btn-primary btn-label-left"  id="btnHY">
+							<span><i class="fa fa-clock-o"></i></span>
+								开始还原
+							</button>
+						</div>
+					</div>
+                    <div>
+                        <h6 class="page-header">注：</h6>
+                    <span class="label label-danger" style="font-size: 14px">还原的数据库必须与备份的数据库名字相同！</span><br />
+                    <br />
+                    <div id="p1" class="easyui-progressbar" data-options="value:0" style="width: 400px; display: none"></div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+E:\晋城\project\Bll\bin\Debug\Bll.dll
+E:\晋城\project\Bll\bin\Debug\Bll.pdb
+E:\晋城\project\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+E:\晋城\project\Bll\obj\Debug\Bll.dll
+E:\晋城\project\Bll\obj\Debug\Bll.pdb
+E:\晋城\project\Bll\bin\Debug\Model.dll
+E:\晋城\project\Bll\bin\Debug\EntityFramework.dll
+E:\晋城\project\Bll\bin\Debug\Model.pdb
+E:\晋城\project\Bll\bin\Debug\EntityFramework.xml
+E:\晋城\project\Bll\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\Fanlu\晋城\系统源码\project\Bll\bin\Debug\Bll.dll
+E:\Fanlu\晋城\系统源码\project\Bll\bin\Debug\Bll.pdb
+E:\Fanlu\晋城\系统源码\project\Bll\bin\Debug\Model.dll
+E:\Fanlu\晋城\系统源码\project\Bll\bin\Debug\EntityFramework.dll
+E:\Fanlu\晋城\系统源码\project\Bll\bin\Debug\Model.pdb
+E:\Fanlu\晋城\系统源码\project\Bll\bin\Debug\EntityFramework.xml
+E:\Fanlu\晋城\系统源码\project\Bll\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\Fanlu\晋城\系统源码\project\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+E:\Fanlu\晋城\系统源码\project\Bll\obj\Debug\Bll.dll
+E:\Fanlu\晋城\系统源码\project\Bll\obj\Debug\Bll.pdb
+E:\Fanlu\晋城\系统源码\150\project\Bll\bin\Debug\Bll.dll
+E:\Fanlu\晋城\系统源码\150\project\Bll\bin\Debug\Bll.pdb
+E:\Fanlu\晋城\系统源码\150\project\Bll\bin\Debug\Model.dll
+E:\Fanlu\晋城\系统源码\150\project\Bll\bin\Debug\Model.pdb
+E:\Fanlu\晋城\系统源码\150\project\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+E:\Fanlu\晋城\系统源码\150\project\Bll\obj\Debug\Bll.dll
+E:\Fanlu\晋城\系统源码\150\project\Bll\obj\Debug\Bll.pdb
+E:\Fanlu\朔州\系统源码\原型\Bll\bin\Debug\Bll.dll
+E:\Fanlu\朔州\系统源码\原型\Bll\bin\Debug\Bll.pdb
+E:\Fanlu\朔州\系统源码\原型\Bll\bin\Debug\Model.dll
+E:\Fanlu\朔州\系统源码\原型\Bll\bin\Debug\Model.pdb
+E:\Fanlu\朔州\系统源码\原型\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+E:\Fanlu\朔州\系统源码\原型\Bll\obj\Debug\Bll.dll
+E:\Fanlu\朔州\系统源码\原型\Bll\obj\Debug\Bll.pdb
+E:\Fanlu\朔州\系统源码\150\源代码\Bll\bin\Debug\Bll.dll
+E:\Fanlu\朔州\系统源码\150\源代码\Bll\bin\Debug\Bll.pdb
+E:\Fanlu\朔州\系统源码\150\源代码\Bll\bin\Debug\Model.dll
+E:\Fanlu\朔州\系统源码\150\源代码\Bll\bin\Debug\Model.pdb
+E:\Fanlu\朔州\系统源码\150\源代码\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+E:\Fanlu\朔州\系统源码\150\源代码\Bll\obj\Debug\Bll.dll
+E:\Fanlu\朔州\系统源码\150\源代码\Bll\obj\Debug\Bll.pdb
+E:\pyy\shuozhou\朔州\Bll\bin\Debug\Bll.dll
+E:\pyy\shuozhou\朔州\Bll\bin\Debug\Bll.pdb
+E:\pyy\shuozhou\朔州\Bll\bin\Debug\Model.dll
+E:\pyy\shuozhou\朔州\Bll\bin\Debug\Model.pdb
+E:\pyy\shuozhou\朔州\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+E:\pyy\shuozhou\朔州\Bll\obj\Debug\Bll.dll
+E:\pyy\shuozhou\朔州\Bll\obj\Debug\Bll.pdb
+F:\公司项目\朔州空气质量\代码\朔州\Bll\bin\Debug\Bll.dll
+F:\公司项目\朔州空气质量\代码\朔州\Bll\bin\Debug\Bll.pdb
+F:\公司项目\朔州空气质量\代码\朔州\Bll\bin\Debug\Model.dll
+F:\公司项目\朔州空气质量\代码\朔州\Bll\bin\Debug\Model.pdb
+F:\公司项目\朔州空气质量\代码\朔州\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+F:\公司项目\朔州空气质量\代码\朔州\Bll\obj\Debug\Bll.dll
+F:\公司项目\朔州空气质量\代码\朔州\Bll\obj\Debug\Bll.pdb
+F:\公司项目\gongsixiangmu\01 朔州空气质量\代码\朔州\Bll\bin\Debug\Bll.dll
+F:\公司项目\gongsixiangmu\01 朔州空气质量\代码\朔州\Bll\bin\Debug\Bll.pdb
+F:\公司项目\gongsixiangmu\01 朔州空气质量\代码\朔州\Bll\bin\Debug\Model.dll
+F:\公司项目\gongsixiangmu\01 朔州空气质量\代码\朔州\Bll\bin\Debug\Model.pdb
+F:\公司项目\gongsixiangmu\01 朔州空气质量\代码\朔州\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+F:\公司项目\gongsixiangmu\01 朔州空气质量\代码\朔州\Bll\obj\Debug\Bll.dll
+F:\公司项目\gongsixiangmu\01 朔州空气质量\代码\朔州\Bll\obj\Debug\Bll.pdb

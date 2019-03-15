@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>FusionCharts 图表生成页面</title>
+
+    <script src="../../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+
+    <script src="FusionCharts.js" type="text/javascript"></script>
+    <script type="text/javascript">
+     $(document).ready(function() {
+        var strSql = "select X,max(case XType when 'Add' then Y end ) as 'Add(次数)'," +
+        "max(case XType when 'Delete' then Y end ) as 'Delete(次数)',"+
+        "max(case XType when 'Login' then Y end ) as 'Login(次数)' from "+
+        "(select convert(VARCHAR(10),Sys_DateTime,120) as X,OperateType as XType,count(ID) as Y from "+
+        "T_PC_Log  group by convert(VARCHAR(10),Sys_DateTime,120),OperateType)a group by X";
+        
+        //Line  Column
+        loadChart("divChart",strSql,"操作次数","Line",700,400,"对比值","60");
+     })
+     
+     function loadChart(divID,sql,title,type,width,height,avgLineName,avgLineValue)
+     {
+        $.ajax({
+                url:'../../Data/GetChartData.ashx',
+                method:'post',
+                data:{chartName:'FusionCharts',type:type,sql:sql,title:title,avgLineName:avgLineName,avgLineValue:avgLineValue},
+                cache:false,
+                dataType:'html',
+                beforSend:function(){$("#"+divID).html("图表加载中......")},
+                success:function(xml){
+                    $("#"+divID).html("");
+                    var chartUrl = "";
+                    
+                    if(type == "Column")
+                    {
+                        chartUrl = "Charts/MSColumn3D.swf";
+                    }
+                    else if(type == "Line")
+                    {
+                        chartUrl = "Charts/MSLine.swf";
+                    }
+
+                    var chart = new FusionCharts(chartUrl,"ChartID",width,height,"0","0");
+
+                    chart.setXMLData(xml);
+                    chart.render(divID);
+                },
+                error:function(){$("#"+divID).html("")}
+        });
+     }
+    </script>
+</head>
+<body>
+<div id="divChart"></div>
+</body>
+</html>

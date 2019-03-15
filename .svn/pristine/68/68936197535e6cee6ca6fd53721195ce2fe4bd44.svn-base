@@ -1,0 +1,334 @@
+﻿<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Aspose.Cell ">
+<link id=Main-File rel=Main-File href="../temp.htm">
+<link rel=File-List href=filelist.xml>
+<link rel=Edit-Time-Data href=editdata.mso>
+<!--[if !mso]>
+<style>
+v\\:* {behavior:url(#default#VML);}
+o\\:* {behavior:url(#default#VML);}
+x\\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<link rel=Stylesheet href=stylesheet.css>
+<style>
+<!--table
+ {mso-displayed-decimal-separator:"\.";
+ mso-displayed-thousand-separator:"\,";}
+@page
+ {
+ mso-header-data:"";
+ mso-footer-data:"";
+ margin:0.75in 0.7in 0.75in 0.7in;
+ mso-header-margin:0.3in;
+ mso-footer-margin:0.3in;
+ mso-page-orientation:Portrait;
+ }
+-->
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=4) {
+   if (parent.document.readyState=="complete"
+    && parent.frames['frTabs'].document.readyState=="complete")
+   parent.fnSetActiveSheet(5);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!="frSheet")
+ window.location.replace("../temp.htm");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]>
+<!--[if gte mso 9]><xml>
+<x:WorksheetOptions>
+ <x:StandardWidth>2304</x:StandardWidth>
+ <x:Print>
+  <x:ValidPrinterInfo/>
+  <x:PaperSizeIndex>9</x:PaperSizeIndex>
+  <x:HorizontalResolution>600</x:HorizontalResolution>
+  <x:VerticalResolution>600</x:VerticalResolution>
+ </x:Print>
+ <x:Selected/>
+ <x:TopRowVisible>4</x:TopRowVisible>
+ <x:ProtectContents>False</x:ProtectContents>
+ <x:ProtectObjects>False</x:ProtectObjects>
+ <x:ProtectScenarios>False</x:ProtectScenarios>
+</x:WorksheetOptions>
+</xml><![endif]-->
+</head>
+
+<body link=blue vlink=purple >
+
+<table border=0 cellpadding=0 cellspacing=0 width=1122 style='border-collapse: 
+ collapse;table-layout:fixed;width:841pt'>
+ <col width=118 style='mso-width-source:userset;width:88pt'>
+ <col width=307 style='mso-width-source:userset;width:230pt'>
+ <col width=379 style='mso-width-source:userset;width:284pt'>
+ <col class=x65 width=82 style='mso-width-source:userset;width:61pt'>
+ <col class=x65 width=92 style='mso-width-source:userset;width:69pt'>
+ <col width=72 span=2 style='width:54pt'>
+ <tr height=26 style='mso-height-source:userset;height:20.1pt'>
+<td colspan=5 height=26 class=x135 style='height:20.1pt;'>MAPUNI_2014_工作日志_黄科_技术研发中心</td>
+<td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+ <tr height=26 style='mso-height-source:userset;height:20.1pt'>
+<td height=26 class=x103 style='height:20.1pt;'>本月时间段</td>
+<td colspan=4 class=x136><font class="font53">2014-07-01</font><font class="font0"> 至 201</font><font class="font0">4</font><font class="font0">-</font><font class="font0">0</font><font class="font0">7</font><font class="font0">-</font><font class="font0">3</font><font class="font0">1</font></td>
+<td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+ <tr height=26 style='mso-height-source:userset;height:20.1pt'>
+<td height=26 class=x104 style='height:20.1pt;'>日期</td>
+<td class=x104>本日计划完成工作</td>
+<td class=x104>本日实际完成工作</td>
+<td class=x104>达成效果</td>
+<td class=x104>用时（h）</td>
+<td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td rowspan=3 height=57 class=x124 style='height:42.75pt;'>7月1日 周二</td>
+<td class=x99>配合修改移动执法bugger</td>
+<td class=x99>配合修改移动执法bugger</td>
+<td class=x101>需要跟进</td>
+<td class=x105 align=right>3</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td class=x99></td>
+<td class=x99>配合测试部调试bugger</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>2</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td class=x99></td>
+<td class=x99>配合青奥系统协调天气数据接口</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>3</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td rowspan=2 height=38 class=x124 style='height:28.5pt;'>7月2日 周三</td>
+<td class=x99>修改测试部回归测试bugger</td>
+<td class=x99>回复测试部回归测试bugger计划，修改tabs加载问题</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>7</td>
+<td></td>
+<td>v</td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td class=x99></td>
+<td class=x99>测试修改环境统计法人后环境统计数据无法查询的bugger</td>
+<td class=x101>需要跟进</td>
+<td class=x105 align=right>1</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td rowspan=4 height=76 class=x124 style='height:57pt;'>7月3日 周四</td>
+<td class=x99>修改测试部回归测试bugger</td>
+<td class=x99>修改测试部回归测试bugger</td>
+<td class=x101>需要跟进</td>
+<td class=x105 align=right>2</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td class=x99></td>
+<td class=x99>配合修改移动执法问题</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>2</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td class=x99></td>
+<td class=x99>组件会议</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>1</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td class=x99></td>
+<td class=x99>青奥项目天气展示修改，样式调整</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>3</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x106 style='height:14.25pt;'>7月4日 周五</td>
+<td class=x99>修改测试部回归测试bugger</td>
+<td class=x99>配合修改回归测试bugger</td>
+<td class=x101>需要跟进</td>
+<td class=x105 align=right>3</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x106 style='height:14.25pt;'></td>
+<td class=x99></td>
+<td class=x99>青奥项目天气展示修改，浏览器兼容性调整</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>4</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x106 style='height:14.25pt;'></td>
+<td class=x99></td>
+<td class=x99>企业数据上报，审批系统搭建截图</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>1</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x109 style='height:14.25pt;'><font class="font0">7月</font><font class="font0">7</font><font class="font0">日 周一</font></td>
+<td class=x99>修改测试部回归测试bugger</td>
+<td class=x99>曹妃甸出差，配合调试网络</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>8</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x106 style='height:14.25pt;'>7月8日 周二</td>
+<td class=x99>曹妃甸出差</td>
+<td class=x99>曹妃甸出差，配合安装地面站软件</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>8</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x106 style='height:14.25pt;'>7月9日 周三</td>
+<td class=x99>曹妃甸项目修改</td>
+<td class=x99>配合地理信息、移动执法开发</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>5</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x106 style='height:14.25pt;'></td>
+<td class=x99></td>
+<td class=x99>配合内蒙项目jquery easyui datagrid实现前台分页</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>3</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x106 style='height:14.25pt;'>7月10日 周四</td>
+<td class=x99>曹妃甸项目修改</td>
+<td class=x99>配合移动执法测试，问题修改</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>4</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x106 style='height:14.25pt;'></td>
+<td class=x99></td>
+<td class=x99>替换导入方式，将office组件换为ASPOSE</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>4</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=32 style='mso-height-source:userset;height:24pt'>
+<td height=32 class=x106 style='height:24pt;'>7月11日 周五</td>
+<td class=x99>曹妃甸项目修改</td>
+<td class=x99>曹妃甸项目修改，讨论地理信息专题，移动执法表单实现，移动执法企业信息同步实现</td>
+<td class=x101>完成</td>
+<td class=x105 align=right>8</td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=19 style='mso-height-source:userset;height:14.25pt'>
+<td height=19 class=x106 style='height:14.25pt;'>7月14日 周一</td>
+<td class=x99>曹妃甸项目修改</td>
+<td class=x99></td>
+<td class=x101></td>
+<td class=x105></td>
+<td></td>
+<td class=x98></td>
+ </tr>
+ <tr height=26 style='mso-height-source:userset;height:20.1pt'>
+<td rowspan=3 height=80 class=x129 style='height:60.3pt;'>需要协调事项</td>
+<td colspan=4 class=x130></td>
+<td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+ <tr height=26 style='mso-height-source:userset;height:20.1pt'>
+<td colspan=4 class=x130></td>
+<td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+ <tr height=26 style='mso-height-source:userset;height:20.1pt'>
+<td colspan=4 class=x130></td>
+<td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+ <tr height=26 style='mso-height-source:userset;height:20.1pt'>
+  <td height=26 style='height:20.1pt'></td>
+  <td></td>
+  <td></td>
+  <td class=x65></td>
+  <td class=x65></td>
+  <td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+ <tr height=26 style='mso-height-source:userset;height:20.1pt'>
+<td height=26 style='height:20.1pt;'></td>
+<td colspan=2 class=x98 style='mso-ignore:colspan;'></td>
+<td class=x65></td>
+<td class=x65></td>
+<td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+ <tr height=187 style='mso-height-source:userset;height:140.7pt;mso-xlrowspan:7'>
+  <td height=187 style='height:140.7pt'></td>
+  <td></td>
+  <td></td>
+  <td class=x65></td>
+  <td class=x65></td>
+  <td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+ <tr height=26 style='mso-height-source:userset;height:20.1pt'>
+<td height=26 class=x108 style='height:20.1pt;'> </td>
+<td colspan=2 style='mso-ignore:colspan;'></td>
+<td class=x65></td>
+<td class=x65></td>
+<td colspan=2 style='mso-ignore:colspan;'></td>
+ </tr>
+<![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=118 style='width:88.5pt'></td>
+  <td width=307 style='width:230.25pt'></td>
+  <td width=379 style='width:284.25pt'></td>
+  <td width=82 style='width:61.5pt'></td>
+  <td width=92 style='width:69pt'></td>
+  <td width=72 style='width:54pt'></td>
+  <td width=72 style='width:54pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>

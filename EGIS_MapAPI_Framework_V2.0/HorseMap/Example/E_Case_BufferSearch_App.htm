@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>缓冲查询</title>
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style="position:absolute; top:0px; left:100px;background-color:#BEBE9A;padding:2px; z-index:10000 ">
+          <input type="button" value="添加点位" onclick="addPoint()" />
+    </div>
+    <div id="flashContent" style="width: 100%; height: 100%; position: absolute"  />
+</body>
+<script type="text/javascript" src="http://192.168.5.150:8585/HorseMap/API-2.0/MapAPI.js"></script>
+<script type="text/javascript">
+
+    var hmap;
+
+    function creatHMap() {
+        //初始化地图
+        hmap = new HMap("flashContent", "2pZ9e1qhM2Q1LjE1MDo4NTg1LDIxMS45OS4xMzIuMTYyOjg1ODUsbG9jYWxob3N0LDIwMTQtMi0yNix0aW1lMg==");
+        //添加底图
+        hmap.addBaseMap([new HMap.TiledLayer("http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaMap_terrain/MapServer")]);
+        //设置地图显示范围
+        hmap.extentTo(70.3589943496297, 16.7574780802653, 138.169212649724, 57.9474199191781);
+    }
+
+    function addPoint() {
+        var pictureUrl = "http://192.168.5.150:8585/HorseMap/Images/pic/water_3.png";
+        var drawPoint = new HMap.DrawPicturePoint(pictureUrl, 1, drawCompleted,{showTime:-1});
+        hmap.addDraw(drawPoint);
+
+    }
+    function drawCompleted(e) {
+        var drawResult = e.result[0];
+        //缓冲
+        var geomtryServerUrl = "http://192.168.5.150/ArcGIS/rest/services/Geometry/GeometryServer";
+        toolBuffer = new HMap.Buffer(geomtryServerUrl, [drawResult], [1000000], onBufferResult, { unit: HMap.BUFFER_METER, onFault: onFault });
+        hmap.useTool(toolBuffer);
+    }
+
+    function onBufferResult(e) {
+        var result = e.result;
+        var graphic;
+        graphic = new HMap.PolygonGraphic(result[0].Geometry.rings);
+        graLayerId = hmap.addGraphic([graphic]);
+
+        //查询
+        var url = "http://192.168.5.150/ArcGIS/rest/services/horseMap/chinaSpecial/MapServer/4";
+        toolSearch = new HMap.Search(url, "1=1", onSearchResult, { geometry: result[0].Geometry, onFault: onFault });
+        hmap.useTool(toolSearch);
+    }
+
+    function onSearchResult(e) {
+        var graphicArr = new Array();
+        var result = e.result;
+        for (var i = 0; i < result.length; i++) {
+            var graphic;
+            if (result[i].Geometry.type == "geometry_mapPoint") {
+                graphic = new HMap.SimpleGraphic(result[i].Geometry.x, result[i].Geometry.y, { data: result[i].Attributes });
+                graphic.addEventListener("mouseClick",pointClick);
+            }
+            if (result[i].Geometry.type == "geometry_polyline") {
+                graphic = new HMap.PolylineGraphic(result[i].Geometry.paths, { data: result[i].Attributes });
+            }
+            if (result[i].Geometry.type == "geometry_polygon") {
+                graphic = new HMap.PolygonGraphic(result[i].Geometry.rings, { data: result[i].Attributes });
+            }
+            if (result[i].Geometry.type == "geometry_extent") {
+                graphic = new HMap.ExtentGraphic(result[i].Geometry.xmin, result[i].Geometry.ymin, result[i].Geometry.xmax, result[i].Geometry.ymax, { data: result[i].Attributes });
+            }
+            graphicArr.push(graphic);
+        }
+        graLayerId = hmap.addGraphic(graphicArr, { isAutoZoom: true });
+    }
+    function pointClick(e) {
+        var field1 = new HMap.PopFieldOption("名称",e.data.CITY, "", true);
+        var field2 = new HMap.PopFieldOption("省份", e.data.PROVINCE, "", true);
+
+        var infoWindow = new HMap.PopInfoWindow(e.data.CITY, { fields: [field1, field2] });
+        hmap.showInfoWindow(e.x, e.y, infoWindow);
+    }
+
+    function onFault(e) {
+        alert(e.error);
+    }
+    
+    creatHMap();
+
+</script>
+</html>
